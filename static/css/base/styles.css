@@ -1,0 +1,32 @@
+:root {
+    font-size: 10px;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    box-sizing: border-box;
+}
+
+    @media screen and (min-width: 1024px) {
+        body {
+            background: #f4f5f9;
+        }
+    }
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    margin: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+    cursor: default;
+}
+
+button {
+    border: none;
+    outline: none;
+}

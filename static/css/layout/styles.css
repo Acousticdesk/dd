@@ -1,0 +1,32 @@
+.l-page {
+    background: #fff;
+    position: relative;
+}
+
+.l-container {
+    width: 1190px;
+    padding: 0 24px;
+    margin: 0 auto;
+}
+
+    @media screen and (max-width: 1190px) {
+        .l-container {
+            width: 100%;
+        }
+    }
+
+.l-login {
+    position: relative;
+    padding-bottom: 10rem;
+}
+
+    @media screen and (min-width: 1024px) {
+        .l-login {
+            background: url('../../assets/login-page/team/@1x.png') right top no-repeat;
+            background-size: contain;
+        }
+    }
+
+    .l-login .form-column {
+        padding: 3.3rem 0;
+    }
