@@ -19,7 +19,7 @@ export default () => {
               </div>
               <div className="input">
                 <input type="password" placeholder="Password it like a boss"/>
-                <i className="input__icon input__icon--hover material-icons">remove_red_eye</i>
+                <i className="input__icon material-icons is-cursor-pointer">remove_red_eye</i>
               </div>
               <div className="extra">
                 <label className="remember-me">

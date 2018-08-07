@@ -105,3 +105,11 @@
     padding-top: 12rem;
     background: #fff;
 }
+
+.l-applications-list {
+
+}
+
+    .l-applications-list__row {
+        margin-bottom: .8rem;
+    }

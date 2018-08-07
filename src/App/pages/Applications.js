@@ -8,6 +8,8 @@ import downloads from '../../../static/assets/icons/downloads.svg';
 import documentation from '../../../static/assets/icons/documentation.svg';
 import NoApps from '../../../static/assets/icons/no-apps.svg';
 import logo from '../../../static/assets/logo/@1x.png';
+import appPlaceholder from '../../../static/assets/applications-page/app-placeholder.png';
+import appPlaceholder2 from '../../../static/assets/applications-page/app-placeholder_2.png';
 
 const iconsArray = [
   {open},
@@ -66,7 +68,7 @@ export default () => {
         <div className="l-sub-header">
           <div className="l-sub-header__search-container">
             <div className="search-bar is-rounded-borders">
-              <input className="text--lighter" type="text" placeholder="Search apps by name, type..."/>
+              <input className="text--light" type="text" placeholder="Search apps by name, type..."/>
             </div>
           </div>
           <div className="l-sub-header__sort-container is-cursor-pointer">
@@ -81,14 +83,69 @@ export default () => {
         </div>
         <div className="l-applications-main">
           <div className="l-applications-main__apps-container">
-
+            <ul className="l-applications-list">
+              <li className="l-applications-list__row">
+                <div className="application-card">
+                  <div className="application-card__icon-container text-center">
+                    <img src={appPlaceholder} width="36px" alt=""/>
+                  </div>
+                  <div className="application-card__info-container">
+                    <div className="app-info">
+                      <p className="app-info__title-row">
+                        <i className="icon icon--small material-icons">android</i>
+                        <span className="app-info__title text--lead text--dark">Bluetooth App Sender (5666)</span>
+                      </p>
+                      <div className="app-info__info-row">
+                        <div className="app-info__status-col">
+                          <span className="text--lighter">Status: </span>
+                          <span className="text--dark">Active</span>
+                        </div>
+                        <div className="app-info__package-col">
+                          <span className="text--lighter">Package: </span>
+                          <span className="text--dark">com.mram.blueappsender</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="application-card__options-container">
+                    <i className="icon material-icons is-cursor-pointer">more_vert</i>
+                  </div>
+                </div>
+                <div className="application-card">
+                  <div className="application-card__icon-container text-center">
+                    <img src={appPlaceholder2} width="36px" alt=""/>
+                  </div>
+                  <div className="application-card__info-container">
+                    <div className="app-info">
+                      <p className="app-info__title-row">
+                        <i className="icon icon--small material-icons">android</i>
+                        <span className="app-info__title text--lead text--dark">Pocket Casts (5666)</span>
+                      </p>
+                      <div className="app-info__info-row">
+                        <div className="app-info__status-col">
+                          <span className="text--lighter">Status: </span>
+                          <span className="text--dark">Active</span>
+                        </div>
+                        <div className="app-info__package-col">
+                          <span className="text--lighter">Package: </span>
+                          <span className="text--dark">com.traber.pocketcasts</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="application-card__options-container">
+                    <i className="icon material-icons is-cursor-pointer">more_vert</i>
+                  </div>
+                </div>
+              </li>
+            </ul>
           </div>
           <div className="l-applications-main__side-bar">
             <div className="no-apps-prompt">
               <div className="no-apps-prompt__icon-container text-center">
                 <NoApps/>
               </div>
-              <p className="text text--lead text--lighter text-center">
+              <p className="text text--lead text--light text-center">
                 Select an App <br/> to view it’s Placement details
               </p>
             </div>

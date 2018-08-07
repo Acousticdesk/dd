@@ -4,7 +4,6 @@
 
 .text {
     color: #666;
-    font-size: 12px;
 }
 
     .text--lead {
@@ -16,7 +15,15 @@
     }
 
     .text--lighter {
+        color: #999;
+    }
+
+    .text--light {
         color: #a6a6a6;
+    }
+
+    .text--dark {
+        color: #333;
     }
 
 .heading {
@@ -133,10 +140,6 @@
         color: #666;
     }
 
-    .input__icon--hover:hover {
-        cursor: pointer;
-    }
-
     .input--extra-offset-bottom {
         margin-bottom: 6rem;
     }
@@ -238,6 +241,10 @@
     color: #cccccc;
 }
 
+.icon--small {
+    font-size: 16px;
+}
+
 .icon--notification:after {
     content: ' ';
     position: absolute;
@@ -307,3 +314,49 @@
     .no-apps-prompt__icon-container {
         margin-bottom: 3.2rem;
     }
+
+.application-card {
+    display: flex;
+    height: 64px;
+    padding: 16px 12px 12px 0;
+    background: #fff;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.05);
+    margin-bottom: .8rem;
+}
+
+    .application-card__icon-container {
+        line-height: 36px;
+        width: 64px;
+    }
+
+    .application-card__info-container {
+        margin-right: auto;
+    }
+
+    .application-card__options-container {
+        line-height: 36px;
+    }
+
+.app-info {
+    width: 275px;
+}
+
+.app-info__title-row {
+    margin-bottom: 0.9rem;
+}
+
+.app-info__info-row {
+    display: flex;
+}
+
+.app-info__status-col {
+    margin-right: auto;
+}
+
+.app-info__title {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 12px;
+}
+
+
