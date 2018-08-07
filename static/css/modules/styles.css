@@ -174,3 +174,81 @@
             background-position: top center;
         }
     }
+
+.sidenav {
+    background: #2e324d;
+    height: 100%;
+}
+
+    .sidenav .item {
+        position: relative;
+        height: 56px;
+        line-height: 56px;
+        text-align: center;
+    }
+
+    .sidenav .item:before {
+        content: ' ';
+        position: absolute;
+        width: 2px;
+        height: 32px;
+        background: #91eae4;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+        transition: opacity .3s linear;
+    }
+
+        .sidenav .item:hover:before,
+        .sidenav .item.active:before {
+            opacity: 1;
+        }
+
+        .sidenav .item:hover path,
+        .sidenav .item.active path{
+            fill: #91eae4;
+        }
+
+        .sidenav .item:hover,
+        .sidenav .item:hover *{
+            cursor: pointer;
+        }
+
+    .sidenav .item svg {
+        vertical-align: middle;
+    }
+
+    .sidenav .item--open svg {
+        width: 16px;
+        height: 14px;
+    }
+
+    .sidenav .item--dashboard svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .sidenav .item--apps svg {
+        width: 18px;
+        height: 16px;
+    }
+
+    .sidenav .item--reports svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .sidenav .item--downloads svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .sidenav .item--documentation svg {
+        width: 16px;
+        height: 14px;
+    }
+
+    .sidenav .item path {
+        transition: fill .3s linear;
+    }

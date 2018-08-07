@@ -30,3 +30,9 @@
     .l-login .form-column {
         padding: 3.3rem 0;
     }
+
+.l-applications {
+    display: grid;
+    grid-template-columns: 56px auto;
+    height: 100vh;
+}
