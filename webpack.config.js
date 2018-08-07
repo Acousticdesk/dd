@@ -20,7 +20,7 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        use: 'svg-inline-loader'
+        use: 'react-svg-loader'
       }
     ],
   },

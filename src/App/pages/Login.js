@@ -12,29 +12,29 @@ export default () => {
             <div className="logo-container text-center">
               <img src={logo}/>
             </div>
-            <h4 className="header text-center">Developers Platform</h4>
+            <h4 className="heading heading--large text-center">Developers Platform</h4>
             <div className="form">
               <div className="input input--extra-offset-bottom">
                 <input type="text" placeholder="Your Email goes here"/>
               </div>
               <div className="input">
                 <input type="password" placeholder="Password it like a boss"/>
-                <i className="icon icon--hover material-icons">remove_red_eye</i>
+                <i className="input__icon input__icon--hover material-icons">remove_red_eye</i>
               </div>
               <div className="extra">
                 <label className="remember-me">
                   <span className="checkbox">
                     <input type="checkbox"/>
-                    <span className="checkbox-ui text-center material-icons">done</span>
+                    <span className="checkbox-ui text--white text-center material-icons">done</span>
                   </span>
-                  <span>Remember Me</span>
+                  <span className="text">Remember Me</span>
                 </label>
-                <div className="forgot-password">
+                <div className="text">
                   <a href="javascript:void(0);">Forgot Password</a>
                 </div>
               </div>
-              <button className="login-btn">Log In</button>
-              <div className="register text-center">
+              <button className="btn login-btn">Log In</button>
+              <div className="register text text-center">
                 To register <a href="javascript:void(0);">click here</a>
               </div>
             </div>

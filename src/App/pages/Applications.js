@@ -6,6 +6,8 @@ import apps from '../../../static/assets/icons/apps.svg';
 import reports from '../../../static/assets/icons/reports.svg';
 import downloads from '../../../static/assets/icons/downloads.svg';
 import documentation from '../../../static/assets/icons/documentation.svg';
+import NoApps from '../../../static/assets/icons/no-apps.svg';
+import logo from '../../../static/assets/logo/@1x.png';
 
 const iconsArray = [
   {open},
@@ -25,13 +27,15 @@ export default () => {
             {
               iconsArray.map(icon => {
                 const iconName = Object.keys(icon)[0];
+                const IconComponent = icon[iconName];
                 const activeClass = iconName === 'apps' ? 'active' : '';
                 return (
                   <li className={`item item--${iconName} ${activeClass}`}>
                     <a
                       href="javascript:void(0);"
-                      dangerouslySetInnerHTML={{__html: icon[iconName]}}
-                    />
+                    >
+                      <IconComponent/>
+                    </a>
                   </li>
                 );
               })
@@ -40,7 +44,57 @@ export default () => {
         </nav>
       </div>
 
-      <div/>
+      {/*Main*/}
+      <div>
+        <header className="l-header">
+          <div className="l-header__logo-container text-center">
+            <img src={logo} width="22px" alt="Display.io"/>
+          </div>
+          <div className="l-header__title-container">
+            <h4 className="heading heading--med heading--no-offset">Applications</h4>
+          </div>
+          <div className="l-header__notifications-container text-center">
+            <i className="icon icon--notification material-icons is-cursor-pointer">notifications</i>
+          </div>
+          <div className="l-header__user-container text-center is-cursor-pointer">
+            <p className="text">
+              carmitbaro@gmail.com
+              <i className="material-icons">arrow_drop_down</i>
+            </p>
+          </div>
+        </header>
+        <div className="l-sub-header">
+          <div className="l-sub-header__search-container">
+            <div className="search-bar is-rounded-borders">
+              <input className="text--lighter" type="text" placeholder="Search apps by name, type..."/>
+            </div>
+          </div>
+          <div className="l-sub-header__sort-container is-cursor-pointer">
+            <p className="text">
+              Sort By: Name
+              <i className="material-icons">arrow_drop_down</i>
+            </p>
+          </div>
+          <div className="l-sub-header__cta-container">
+            <button className="btn create-app-btn is-cursor-pointer">New Application</button>
+          </div>
+        </div>
+        <div className="l-applications-main">
+          <div className="l-applications-main__apps-container">
+
+          </div>
+          <div className="l-applications-main__side-bar">
+            <div className="no-apps-prompt">
+              <div className="no-apps-prompt__icon-container text-center">
+                <NoApps/>
+              </div>
+              <p className="text text--lead text--lighter text-center">
+                Select an App <br/> to view it’s Placement details
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

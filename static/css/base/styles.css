@@ -34,3 +34,15 @@ button {
 ul {
     padding-left: 0;
 }
+
+i,
+img,
+svg {
+    vertical-align: middle;
+}
+
+input {
+    background: transparent;
+    outline: none;
+    border: none;
+}

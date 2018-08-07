@@ -1,0 +1,7 @@
+.is-cursor-pointer {
+    cursor: pointer;
+}
+
+.is-rounded-borders {
+    border-radius: 2px;
+}

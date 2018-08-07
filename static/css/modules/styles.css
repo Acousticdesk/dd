@@ -2,13 +2,41 @@
     text-align: center;
 }
 
-.header {
+.text {
+    color: #666;
+    font-size: 12px;
+}
+
+    .text--lead {
+        font-size: 14px;
+    }
+
+    .text--white {
+        color: #fff;
+    }
+
+    .text--lighter {
+        color: #a6a6a6;
+    }
+
+.heading {
     font-weight: 700;
-    font-size: 3.4rem;
     letter-spacing: -0.4px;
     color: #333;
     margin-bottom: 7.8rem;
 }
+
+    .heading.heading--large {
+        font-size: 3.4rem;
+    }
+
+    .heading.heading--med {
+        font-size: 2.4rem;
+    }
+
+    .heading.heading--no-offset {
+        margin-bottom: 0;
+    }
 
 .login-form {
     padding-top: 3.3rem;
@@ -38,27 +66,15 @@
 
 .login-form .remember-me {
     margin-right: auto;
-    font-size: 12px;
-    color: #666;
 }
 
     .login-form .remember-me span:hover {
         cursor: pointer;
     }
 
-.login-form .forgot-password {
-    font-size: 12px;
-    color: #666;
-}
-
 .login-form .forgot-password a:hover {
     text-decoration: underline;
     cursor: pointer;
-}
-
-.login-form .register {
-    color: #666;
-    font-size: 12px;
 }
 
     .login-form .register a {
@@ -83,10 +99,8 @@
         width: 16px;
         height: 16px;
         background: #7f7fd5;
-        color: #fff;
         line-height: 16px;
         border-radius: 2px;
-        font-size: 12px;
     }
 
     .checkbox .checkbox-ui:hover {
@@ -101,9 +115,6 @@
     .input input {
         display: block;
         width: 100%;
-        background: transparent;
-        outline: none;
-        border: none;
         border-bottom: 1px solid #ccc;
         color: #999;
         font-size: 1.4rem;
@@ -114,7 +125,7 @@
         color: #999;
     }
 
-    .input .icon {
+    .input__icon {
         position: absolute;
         right: 0;
         top: 50%;
@@ -122,7 +133,7 @@
         color: #666;
     }
 
-    .input .icon--hover:hover {
+    .input__icon--hover:hover {
         cursor: pointer;
     }
 
@@ -130,19 +141,22 @@
         margin-bottom: 6rem;
     }
 
+.btn {
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 0 10px;
+}
+
 .login-btn {
     display: block;
     margin: 0 auto;
     width: 206px;
     height: 40px;
     line-height: 40px;
-    text-align: center;
     color: #fff;
     font-size: 1.6rem;
-    padding: 0 10px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
     background-image: linear-gradient(to right, #7f7fd5, #86a8e7 48%, #91eae4);
     border-radius: 25px;
     margin-bottom: 2rem;
@@ -215,40 +229,81 @@
             cursor: pointer;
         }
 
-    .sidenav .item svg {
-        vertical-align: middle;
-    }
-
-    .sidenav .item--open svg {
-        width: 16px;
-        height: 14px;
-    }
-
-    .sidenav .item--dashboard svg {
-        width: 18px;
-        height: 18px;
-    }
-
-    .sidenav .item--apps svg {
-        width: 18px;
-        height: 16px;
-    }
-
-    .sidenav .item--reports svg {
-        width: 18px;
-        height: 18px;
-    }
-
-    .sidenav .item--downloads svg {
-        width: 18px;
-        height: 18px;
-    }
-
-    .sidenav .item--documentation svg {
-        width: 16px;
-        height: 14px;
-    }
-
     .sidenav .item path {
         transition: fill .3s linear;
+    }
+
+.icon {
+    position: relative;
+    color: #cccccc;
+}
+
+.icon--notification:after {
+    content: ' ';
+    position: absolute;
+    top: 2px;
+    right: 3px;
+    border-radius: 50%;
+    background: #ff2866;
+    width: 6px;
+    height: 6px;
+}
+
+.icon--notification:before {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    right: 1px;
+    border-radius: 50%;
+    background: #fff;
+    width: 10px;
+    height: 10px;
+}
+
+.search-bar {
+    position: relative;
+    background: #f4f5f9;
+    padding: 12px 9px 9px 42px;
+    width: 49.2rem;
+}
+
+    .search-bar:before {
+        content: ' ';
+        width: 21px;
+        height: 21px;
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: url('../../assets/icons/serach.svg') no-repeat;
+        background-size: 100% 100%;
+    }
+
+    .search-bar input {
+        width: 100%;
+        font-size: 1.4rem;
+    }
+
+    .search-bar input::placeholder {
+        font-size: 1.4rem;
+        color: #a6a6a6;
+    }
+
+.create-app-btn {
+    width: 144px;
+    font-size: 1.2rem;
+    height: 32px;
+    line-height: 32px;
+    border: 1px solid #7f7fd5;
+    color: #7f7fd5;
+    background: transparent;
+}
+
+.no-apps-prompt {
+    width: 177px;
+    margin: 0 auto;
+}
+
+    .no-apps-prompt__icon-container {
+        margin-bottom: 3.2rem;
     }
