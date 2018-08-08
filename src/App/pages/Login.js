@@ -30,7 +30,7 @@ export default () => {
                   <span className="text">Remember Me</span>
                 </label>
                 <div className="text">
-                  <a href="javascript:void(0);">Forgot Password</a>
+                  <a href="javascript:void(0);" className="is-cursor-pointer">Forgot Password</a>
                 </div>
               </div>
               <button className="btn login-btn">Log In</button>

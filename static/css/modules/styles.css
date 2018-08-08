@@ -26,6 +26,10 @@
         color: #333;
     }
 
+    .text--bold {
+        font-weight: 700;
+    }
+
 .heading {
     font-weight: 700;
     letter-spacing: -0.4px;
@@ -108,6 +112,7 @@
         background: #7f7fd5;
         line-height: 16px;
         border-radius: 2px;
+        font-size: 12px;
     }
 
     .checkbox .checkbox-ui:hover {
@@ -143,14 +148,6 @@
     .input--extra-offset-bottom {
         margin-bottom: 6rem;
     }
-
-.btn {
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    padding: 0 10px;
-}
 
 .login-btn {
     display: block;
@@ -236,36 +233,47 @@
         transition: fill .3s linear;
     }
 
+/* Structure */
 .icon {
     position: relative;
-    color: #cccccc;
 }
 
-.icon--small {
-    font-size: 16px;
-}
+    /* Skin */
+    .icon-regular {
+        color: #cccccc;
+    }
 
-.icon--notification:after {
-    content: ' ';
-    position: absolute;
-    top: 2px;
-    right: 3px;
-    border-radius: 50%;
-    background: #ff2866;
-    width: 6px;
-    height: 6px;
-}
+    .icon-purple {
+        background: #7f7fd5;
+        color: #fff;
+    }
+    /* /Skin */
 
-.icon--notification:before {
-    content: ' ';
-    position: absolute;
-    top: 0;
-    right: 1px;
-    border-radius: 50%;
-    background: #fff;
-    width: 10px;
-    height: 10px;
-}
+    .icon--small {
+        font-size: 16px;
+    }
+
+    .icon--notification:after {
+        content: ' ';
+        position: absolute;
+        top: 2px;
+        right: 3px;
+        border-radius: 50%;
+        background: #ff2866;
+        width: 6px;
+        height: 6px;
+    }
+
+    .icon--notification:before {
+        content: ' ';
+        position: absolute;
+        top: 0;
+        right: 1px;
+        border-radius: 50%;
+        background: #fff;
+        width: 10px;
+        height: 10px;
+    }
 
 .search-bar {
     position: relative;
@@ -296,15 +304,43 @@
         color: #a6a6a6;
     }
 
-.create-app-btn {
-    width: 144px;
+/* Structure */
+.btn {
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 0 10px;
+    width: 140px;
     font-size: 1.2rem;
     height: 32px;
     line-height: 32px;
-    border: 1px solid #7f7fd5;
-    color: #7f7fd5;
-    background: transparent;
+    text-transform: uppercase;
+    cursor: pointer;
 }
+
+.btn--bigger {
+    width: 155px;
+}
+
+    /* Skin */
+    .btn-regular {
+        color: #7f7fd5;
+        background: transparent;
+    }
+    .btn-regular--bordered {
+        border: 1px solid #7f7fd5;
+    }
+    /* /Skin */
+
+    .btn__icon-container {
+        margin-right: 9px;
+    }
+
+    .btn__icon-container--center {
+        position: relative;
+        top: -2px;
+    }
 
 .no-apps-prompt {
     width: 177px;
@@ -318,10 +354,9 @@
 .application-card {
     display: flex;
     height: 64px;
-    padding: 16px 12px 12px 0;
+    padding: 16px 17px 12px 0;
     background: #fff;
     box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.05);
-    margin-bottom: .8rem;
 }
 
     .application-card__icon-container {
@@ -357,6 +392,90 @@
     display: inline-block;
     vertical-align: middle;
     padding-left: 12px;
+}
+
+.options-btn {
+    display: inline-block;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+    .options-btn:active,
+    .options-btn.active {
+        background: #f3f4f8;
+    }
+
+.dropdown {
+    position: relative;
+}
+
+    .dropdown.active .dropdown__list {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .dropdown__list {
+        visibility: hidden;
+        opacity: 0;
+        width: 132px;
+        position: absolute;
+        bottom: -5px;
+        right: -8px;
+        transform: translateY(100%);
+        padding: 5px 0;
+        box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.05);
+        background: #fff;
+        border-radius: 2px;
+    }
+
+.option-item {
+    display: flex;
+    height: 35px;
+    padding: 0 18px;
+    align-items: center;
+}
+
+    .option-item:hover {
+        background: #f3f4f8;
+    }
+
+    .option-item__legend-container {
+        margin: 3px 0 0 10px;
+    }
+
+.placements {
+    background: #fafafa;
+}
+
+    .placements__header {
+        display: flex;
+        align-items: center;
+        padding: 15px 12px 0;
+    }
+
+    .placements__legend-container {
+        margin-right: auto;
+    }
+
+    .placements__content {
+        display: flex;
+        margin-top: 2rem;
+        padding: 0 7px 12px;
+    }
+
+    .placements__item-column {
+        max-width: 33.333333333333333%;
+        flex-grow: 1;
+        padding: 0 5px;
+    }
+
+.placement-card {
+    background: #fff;
+    height: 184px;
+    border: 1px solid transparent;
 }
 
 
