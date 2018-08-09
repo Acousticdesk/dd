@@ -12,7 +12,7 @@ export default () => {
             <div className="login-form__logo-container text-center">
               <img src={logo}/>
             </div>
-            <h4 className="heading heading--large text-center">Developers Platform</h4>
+            <h4 className="heading developers-platform-heading heading--large text-center">Developers Platform</h4>
             <div className="form">
               <div className="login-form__field-container">
                 <div className="input">
@@ -28,9 +28,9 @@ export default () => {
               <div className="login-form__fields-footer">
                 <div className="login-optionals">
                   <div className="login-optionals__item-col--pull-left">
-                    <span className="checkbox">
+                    <span className="checkbox-radio-common checkbox">
                       <input type="checkbox"/>
-                      <span className="checkbox-ui color--white text-center material-icons isCursorPointer">done</span>
+                      <span className="checkbox-radio-common__ui checkbox__ui color--white text-center material-icons isCursorPointer">done</span>
                     </span>
                     <span className="color--grey isCursorPointer">Remember Me</span>
                   </div>

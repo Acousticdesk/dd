@@ -30,19 +30,19 @@ export default () => {
         </div>
 
         <div className="placement-settings__field-container placement-settings__field-container--offset-s">
-        <span className="checkbox">
-          <input type="checkbox"/>
-          <span className="checkbox-ui color--white text-center material-icons isCursorPointer">done</span>
-          <span className="color--dark text-bold isCursorPointer">Fullscreen Ads</span>
-        </span>
+          <span className="checkbox-radio-common checkbox">
+            <input type="checkbox"/>
+            <span className="checkbox-radio-common__ui checkbox__ui color--white text-center material-icons isCursorPointer">done</span>
+            <span className="color--dark text-bold isCursorPointer">Fullscreen Ads</span>
+          </span>
         </div>
 
         <div className="placement-settings__field-container placement-settings__field-container--offset-s">
-        <span className="checkbox">
-          <input type="checkbox"/>
-          <span className="checkbox-ui color--white text-center material-icons isCursorPointer">done</span>
-          <span className="color--dark text-bold isCursorPointer">Video Ads</span>
-        </span>
+          <span className="checkbox-radio-common checkbox">
+            <input type="checkbox"/>
+            <span className="checkbox-radio-common__ui checkbox__ui color--white text-center material-icons isCursorPointer">done</span>
+            <span className="color--dark text-bold isCursorPointer">Video Ads</span>
+          </span>
         </div>
       </div>
 

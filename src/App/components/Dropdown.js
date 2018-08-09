@@ -10,6 +10,13 @@ class Dropdown extends Component {
     });
   };
 
+  onEditClick = () => {
+    this.props.onEditClick();
+    this.setState({
+      isActive: false
+    });
+  };
+
   getActiveClass() {
     return this.state.isActive ? 'active' : '';
   }
@@ -21,7 +28,7 @@ class Dropdown extends Component {
           <i className="icon icon-regular material-icons isCursorPointer">more_vert</i>
         </a>
         <ul className="dropdown__list">
-          <li onClick={this.props.onEditClick} className="option-item isCursorPointer">
+          <li onClick={this.onEditClick} className="option-item isCursorPointer">
             <div className="option-item__icon-container">
               <i className="icon icon-regular icon--small material-icons">edit</i>
             </div>
