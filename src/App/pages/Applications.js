@@ -6,12 +6,13 @@ import apps from '../../../static/assets/icons/apps.svg';
 import reports from '../../../static/assets/icons/reports.svg';
 import downloads from '../../../static/assets/icons/downloads.svg';
 import documentation from '../../../static/assets/icons/documentation.svg';
-import NoApps from '../../../static/assets/icons/no-apps.svg';
+import IntegrateIcon from '../../../static/assets/icons/integrate.svg';
 import logo from '../../../static/assets/logo/@1x.png';
 import appPlaceholder from '../../../static/assets/applications-page/app-placeholder.png';
 // import appPlaceholder2 from '../../../static/assets/applications-page/app-placeholder_2.png';
 
 import Dropdown from '../components/Dropdown';
+import NoAppsPrompt from '../components/NoAppsPrompt';
 
 const iconsArray = [
   {open},
@@ -61,7 +62,7 @@ export default () => {
             <i className="icon icon-regular icon--notification material-icons is-cursor-pointer">notifications</i>
           </div>
           <div className="l-header__user-container text-center is-cursor-pointer">
-            <p className="text">
+            <p className="color--grey">
               carmitbaro@gmail.com
               <i className="material-icons">arrow_drop_down</i>
             </p>
@@ -70,17 +71,17 @@ export default () => {
         <div className="l-sub-header">
           <div className="l-sub-header__search-container">
             <div className="search-bar is-rounded-borders">
-              <input className="text--light" type="text" placeholder="Search apps by name, type..."/>
+              <input className="color--grey-light" type="text" placeholder="Search apps by name, type..."/>
             </div>
           </div>
           <div className="l-sub-header__sort-container is-cursor-pointer">
-            <p className="text">
+            <p className="color--grey">
               Sort By: Name
               <i className="material-icons">arrow_drop_down</i>
             </p>
           </div>
           <div className="l-sub-header__cta-container">
-            <button className="btn btn-regular btn-regular--bordered">New Application</button>
+            <button className="btn btn-regular btn-bordered color--chetwod-blue">New Application</button>
           </div>
         </div>
         <div className="l-applications-main">
@@ -95,16 +96,16 @@ export default () => {
                     <div className="app-info">
                       <p className="app-info__title-row">
                         <i className="icon icon-regular icon--small material-icons">android</i>
-                        <span className="app-info__title text--lead text--dark">Bluetooth App Sender (5666)</span>
+                        <span className="app-info__title color--lead color--dark">Bluetooth App Sender (5666)</span>
                       </p>
                       <div className="app-info__info-row">
                         <div className="app-info__status-col">
-                          <span className="text--lighter">Status: </span>
-                          <span className="text--dark">Active</span>
+                          <span className="color--grey-lighter">Status: </span>
+                          <span className="color--dark">Active</span>
                         </div>
                         <div className="app-info__package-col">
-                          <span className="text--lighter">Package: </span>
-                          <span className="text--dark">com.mram.blueappsender</span>
+                          <span className="color--grey-lighter">Package: </span>
+                          <span className="color--dark">com.mram.blueappsender</span>
                         </div>
                       </div>
                     </div>
@@ -115,36 +116,62 @@ export default () => {
                 </div>
                 <div className="placements">
                   <div className="placements__header">
-                    <div className="placements__legend-container text--dark text--bold">Placements</div>
+                    <div className="placements__legend-container color--dark color--bold">Placements</div>
                     <div className="placements__cta-container">
-                      <button className="btn btn-regular btn--bigger">
+                      <button className="btn btn--bigger btn-regular color--chetwod-blue">
                         <span className="btn__icon-container btn__icon-container--center">
-                          <i className="icon icon-purple icon--small material-icons">add</i>
+                          <i className="icon icon-chetwod-blue icon--small material-icons">add</i>
                         </span>
                         New Placement
                       </button>
                     </div>
                   </div>
-                  <div className="placements__content">
-                    <div className="placements__item-column">
-                      <div className="placement-card">
-
+                  <div className="placements__content ">
+                    {(new Array(3)).fill(undefined).map(i => (
+                      <div className="placements__item-col">
+                        <div className="placement-card">
+                          <div className="placement-card__content">
+                            <div className="placement-summary text-center text--smaller">
+                              <div className="placement-summary__icon-container">
+                                <div className="placement-type-icon-placeholder"/>
+                              </div>
+                              <div className="placement-summary__name-container">
+                                <p className="color--dark">Interstitial Static (2091)</p>
+                              </div>
+                              <p className="color--dark">
+                                <span className="color--grey-lighter">Status: </span>
+                                Active
+                              </p>
+                            </div>
+                          </div>
+                          <div className="placement-card__footer">
+                            <div className="placement-card__footer-col">
+                              <button className="btn btn-regular color--grey">
+                              <span className="btn__icon-container btn__icon-container--center">
+                                <IntegrateIcon/>
+                              </span>
+                                Integrate
+                              </button>
+                            </div>
+                            <div className="placement-card__footer-col">
+                              <button className="btn btn-regular color--grey">
+                              <span className="btn__icon-container btn__icon-container--center">
+                                <i className="icon icon-regular material-icons">delete</i>
+                              </span>
+                                Delete
+                              </button>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                    </div>
+                    ))}
                   </div>
                 </div>
               </li>
             </ul>
           </div>
           <div className="l-applications-main__side-bar">
-            <div className="no-apps-prompt">
-              <div className="no-apps-prompt__icon-container text-center">
-                <NoApps/>
-              </div>
-              <p className="text text--lead text--light text-center">
-                Select an App <br/> to view it’s Placement details
-              </p>
-            </div>
+            <NoAppsPrompt/>
           </div>
         </div>
       </div>

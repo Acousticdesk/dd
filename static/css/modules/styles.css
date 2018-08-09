@@ -2,32 +2,40 @@
     text-align: center;
 }
 
-.text {
-    color: #666;
+.text--smaller {
+    font-size: 11px;
 }
 
-    .text--lead {
-        font-size: 14px;
+    .color--grey {
+        color: #666;
     }
 
-    .text--white {
-        color: #fff;
-    }
-
-    .text--lighter {
+    .color--grey-lighter {
         color: #999;
     }
 
-    .text--light {
+    .color--grey-light {
         color: #a6a6a6;
     }
 
-    .text--dark {
+    .color--lead {
+        font-size: 14px;
+    }
+
+    .color--white {
+        color: #fff;
+    }
+
+    .color--dark {
         color: #333;
     }
 
-    .text--bold {
+    .color--bold {
         font-weight: 700;
+    }
+
+    .color--chetwod-blue {
+        color: #7f7fd5;
     }
 
 .heading {
@@ -243,7 +251,7 @@
         color: #cccccc;
     }
 
-    .icon-purple {
+    .icon-chetwod-blue {
         background: #7f7fd5;
         color: #fff;
     }
@@ -325,10 +333,10 @@
 
     /* Skin */
     .btn-regular {
-        color: #7f7fd5;
+        font-weight: 700;
         background: transparent;
     }
-    .btn-regular--bordered {
+    .btn-bordered {
         border: 1px solid #7f7fd5;
     }
     /* /Skin */
@@ -466,16 +474,61 @@
         padding: 0 7px 12px;
     }
 
-    .placements__item-column {
+    .placements__item-col {
         max-width: 33.333333333333333%;
         flex-grow: 1;
         padding: 0 5px;
     }
 
 .placement-card {
+    display: flex;
+    flex-direction: column;
     background: #fff;
     height: 184px;
     border: 1px solid transparent;
+}
+
+    .placement-card__content {
+        padding-top: 2.4rem;
+        flex-grow: 1;
+    }
+
+    .placement-card__footer {
+        display: flex;
+        align-items: center;
+        height: 42px;
+    }
+
+    .placement-card__footer-col {
+        position: relative;
+        flex-grow: 1;
+    }
+
+    .placement-card__footer-col:not(:first-child):before {
+        content: ' ';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1px;
+        height: 2.4rem;
+        background: #e8e9ed;
+    }
+
+.placement-summary__name-container {
+    margin-bottom: .5rem;
+}
+
+.placement-summary__icon-container {
+    margin-bottom: 1.4rem;
+}
+
+.placement-type-icon-placeholder {
+    width: 2.4rem;
+    height: 4.2rem;
+    margin: 0 auto;
+    background: #7f7fd5;
+    border-radius: 2px;
 }
 
 

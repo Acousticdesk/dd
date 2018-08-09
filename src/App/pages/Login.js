@@ -15,7 +15,7 @@ export default () => {
             <h4 className="heading heading--large text-center">Developers Platform</h4>
             <div className="form">
               <div className="input input--extra-offset-bottom">
-                <input type="text" placeholder="Your Email goes here"/>
+                <input type="color--grey" placeholder="Your Email goes here"/>
               </div>
               <div className="input">
                 <input type="password" placeholder="Password it like a boss"/>
@@ -25,16 +25,16 @@ export default () => {
                 <label className="remember-me">
                   <span className="checkbox">
                     <input type="checkbox"/>
-                    <span className="checkbox-ui text--white text-center material-icons">done</span>
+                    <span className="checkbox-ui color--white text-center material-icons">done</span>
                   </span>
-                  <span className="text">Remember Me</span>
+                  <span className="color--grey">Remember Me</span>
                 </label>
-                <div className="text">
+                <div className="color--grey">
                   <a href="javascript:void(0);" className="is-cursor-pointer">Forgot Password</a>
                 </div>
               </div>
               <button className="btn login-btn">Log In</button>
-              <div className="register text text-center">
+              <div className="register color--grey text-center">
                 To register <a href="javascript:void(0);">click here</a>
               </div>
             </div>
