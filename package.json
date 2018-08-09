@@ -6,7 +6,7 @@
   "scripts": {
     "build:prod": "ENV=production webpack",
     "build": "ENV=development webpack",
-    "start": "webpack-dev-server --hot --content-base dist"
+    "start": "ENV=development webpack-dev-server --hot --content-base dist"
   },
   "author": "Andrii Kicha",
   "license": "ISC",
@@ -25,6 +25,7 @@
     "webpack-dev-server": "^3.1.5"
   },
   "dependencies": {
+    "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2"
   }

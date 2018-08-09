@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-export default class Dropdown extends Component {
+class Dropdown extends Component {
   state = {isActive: false};
 
   onClick = () => {
@@ -17,10 +18,10 @@ export default class Dropdown extends Component {
     return (
       <div className={`dropdown ${this.getActiveClass()}`}>
         <a onClick={this.onClick} href="javascript:void(0);" className={`options-btn ${this.getActiveClass()}`}>
-          <i className="icon icon-regular material-icons is-cursor-pointer">more_vert</i>
+          <i className="icon icon-regular material-icons isCursorPointer">more_vert</i>
         </a>
         <ul className="dropdown__list">
-          <li className="option-item is-cursor-pointer">
+          <li onClick={this.props.onEditClick} className="option-item isCursorPointer">
             <div className="option-item__icon-container">
               <i className="icon icon-regular icon--small material-icons">edit</i>
             </div>
@@ -29,17 +30,23 @@ export default class Dropdown extends Component {
             </div>
           </li>
           <li className="dropdown__item">
-            <li className="option-item is-cursor-pointer">
+            <div className="option-item isCursorPointer">
               <div className="option-item__icon-container">
                 <i className="icon icon-regular icon--small material-icons">delete</i>
               </div>
               <div className="option-item__legend-container">
                 <span className="text text--lead">Delete</span>
               </div>
-            </li>
+            </div>
           </li>
         </ul>
       </div>
     );
   }
+}
+
+Dropdown.propTypes = {
+  onEditClick: PropTypes.func.isRequired
 };
+
+export default Dropdown;

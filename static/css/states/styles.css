@@ -1,7 +1,11 @@
-.is-cursor-pointer {
+.isCursorPointer {
     cursor: pointer;
 }
 
-.is-rounded-borders {
+.isRoundedBorders {
     border-radius: 2px;
+}
+
+.isHoverUnderline:hover {
+    text-decoration: underline;
 }
