@@ -36,6 +36,7 @@ export default class Applications extends Component {
   };
 
   render() {
+    console.log(this.props.user);
     return (
       <React.Fragment>
         <div className="l-applications">
@@ -76,7 +77,7 @@ export default class Applications extends Component {
               </div>
               <div className="l-header__user-container text-center isCursorPointer">
                 <p className="color--grey">
-                  carmitbaro@gmail.com
+                  {this.props.user.email}
                   <i className="material-icons">arrow_drop_down</i>
                 </p>
               </div>
@@ -137,7 +138,7 @@ export default class Applications extends Component {
             </div>
           </div>
         </div>
-        <NewApp/>
+        {/*<NewApp/>*/}
       </React.Fragment>
     );
   }

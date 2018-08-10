@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import logo from '../../../static/assets/logo/@1x.png';
 
-export default () => {
+const Login = ({onTryLogin, onUserType}) => {
   return (
     <div className="l-page">
       <div className="l-container">
@@ -16,12 +17,22 @@ export default () => {
             <div className="form">
               <div className="login-form__field-container">
                 <div className="input">
-                  <input type="text" className="input__field" placeholder="Your Email goes here"/>
+                  <input
+                    name="email"
+                    onChange={onUserType}
+                    type="text"
+                    className="input__field"
+                    placeholder="Your Email goes here"/>
                 </div>
               </div>
               <div className="login-form__field-container--offset-small">
                 <div className="input">
-                  <input type="password" className="input__field" placeholder="Password it like a boss"/>
+                  <input
+                    name="password"
+                    onChange={onUserType}
+                    type="password"
+                    className="input__field"
+                    placeholder="Password it like a boss"/>
                   <i className="input__icon material-icons isCursorPointer">remove_red_eye</i>
                 </div>
               </div>
@@ -40,7 +51,7 @@ export default () => {
                 </div>
               </div>
               <div className="login-form__cta-container">
-                <button className="btn login-btn">Log In</button>
+                <button onClick={onTryLogin} className="btn login-btn">Log In</button>
               </div>
               <div className="color--grey text-center">
                 To register <a href="javascript:void(0);" className="text-underline isCursorPointer">click here</a>
@@ -52,3 +63,10 @@ export default () => {
     </div>
   );
 };
+
+Login.propTypes = {
+  onTryLogin: PropTypes.func.isRequired,
+  onUserType: PropTypes.func.isRequired
+};
+
+export default Login;

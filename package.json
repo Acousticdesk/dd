@@ -6,7 +6,7 @@
   "scripts": {
     "build:prod": "ENV=production webpack",
     "build": "ENV=development webpack",
-    "start": "ENV=development webpack-dev-server --hot --content-base dist"
+    "start": "ENV=development webpack-dev-server --hot --content-base dist --history-api-fallback"
   },
   "author": "Andrii Kicha",
   "license": "ISC",
@@ -27,6 +27,8 @@
   "dependencies": {
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
-    "react-dom": "^16.4.2"
+    "react-dom": "^16.4.2",
+    "react-router-dom": "^4.3.1",
+    "whatwg-fetch": "^2.0.4"
   }
 }
