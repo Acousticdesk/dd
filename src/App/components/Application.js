@@ -35,7 +35,7 @@ const Application = ({app, isSelected, select}) => {
           <Dropdown onEditClick={select(app.id)}/>
         </div>
       </div>
-      {isSelected && <Placements/>}
+      {isSelected && <Placements placements={app.placements}/>}
     </li>
   );
 };

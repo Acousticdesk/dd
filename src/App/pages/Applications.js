@@ -56,13 +56,13 @@ export default class Applications extends Component {
 
   renderApps() {
     return Object.entries(this.state.apps).map((a) => {
-      const id = a[0];
+      const id = window.parseInt(a[0]);
       const props = a[1];
       return (
         <Application
           app={props}
           key={id}
-          isSelected={false}
+          isSelected={this.state.selectedApp === id}
           select={this.selectApp}
         />
       );

@@ -1,8 +1,37 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import IntegrateIcon from '../../../static/assets/icons/integrate.svg';
 
-export default () => {
+/*
+*
+* adUnitType
+:
+"Banner"
+appId
+:
+5124
+bannerEnabled
+:
+true
+id
+:
+1751
+name
+:
+"Banner"
+size
+:
+"320x50"
+status
+:
+"active"
+videoEnabled
+:
+false
+* */
+
+const Placements = ({placements}) => {
   return (
     <div className="placements">
       <div className="placements__header">
@@ -17,8 +46,8 @@ export default () => {
         </div>
       </div>
       <div className="placements__content ">
-        {(new Array(3)).fill(undefined).map((i, index) => (
-          <div key={index} className="placements__item-col">
+        {Object.entries(placements).map(([id, placement]) => (
+          <div key={id} className="placements__item-col">
             <div className="placement-card">
               <div className="placement-card__content">
                 <div className="placement-summary text-center text--smaller">
@@ -26,11 +55,11 @@ export default () => {
                     <div className="placement-type-icon-placeholder"/>
                   </div>
                   <div className="placement-summary__name-container">
-                    <p className="color--dark">Interstitial Static (2091)</p>
+                    <p className="color--dark">{placement.name} ({id})</p>
                   </div>
                   <p className="color--dark">
                     <span className="color--grey-lighter">Status: </span>
-                    Active
+                    {placement.status}
                   </p>
                 </div>
               </div>
@@ -59,3 +88,9 @@ export default () => {
     </div>
   );
 };
+
+Placements.propTypes = {
+  placements: PropTypes.object.isRequired
+};
+
+export default Placements;
