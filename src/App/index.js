@@ -24,8 +24,6 @@ export default class App extends Component {
       token = JSON.parse(persistedLoginData).token;
     }
 
-    console.log(token);
-
     if (token) {
       headers['Authorization'] = `Bearer ${token}`;
     }

@@ -60,6 +60,8 @@ export default class Applications extends Component {
       const props = a[1];
       return (
         <Application
+          selectPlacement={this.selectPlacement}
+          selectedPlacement={this.state.selectedPlacement}
           app={props}
           key={id}
           isSelected={this.state.selectedApp === id}
@@ -83,8 +85,13 @@ export default class Applications extends Component {
     return this.state.apps[appId].placements[placementId];
   }
 
+  selectPlacement = (id) => () => {
+    this.setState({
+      selectedPlacement: id
+    });
+  };
+
   render() {
-    console.log(this.state.apps);
     return (
       <React.Fragment>
         <div className="l-applications">

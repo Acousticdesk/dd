@@ -19,7 +19,7 @@ export default ({close}) => {
             <p className="text-lead color--dark">Choose your platform</p>
             <div className="platform-select__options-container">
               <div className="platform-select__option-col">
-                <div className="platform-select__option text-center isCursorPointer">
+                <div className="card-selectable platform-select__option text-center isCursorPointer">
                   <div className="platform-select__option-content">
                     <div className="platform-select__icon-container">
                       <i className="platform-select__icon icon icon--large icon-regular material-icons">android</i>
@@ -29,7 +29,7 @@ export default ({close}) => {
                 </div>
               </div>
               <div className="platform-select__option-col">
-                <div className="platform-select__option text-center isCursorPointer">
+                <div className="card-selectable platform-select__option text-center isCursorPointer">
                   <div className="platform-select__option-content">
                     <div className="platform-select__icon-container">
                       <i className="platform-select__icon icon icon--large icon-regular material-icons">android</i>

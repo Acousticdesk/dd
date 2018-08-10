@@ -499,6 +499,7 @@
         opacity: 0;
         width: 132px;
         position: absolute;
+        z-index: 10;
         bottom: -5px;
         right: -8px;
         transform: translateY(100%);
@@ -700,14 +701,15 @@
         margin-bottom: 1.9rem;
     }
 
-    .platform-select__option:active {
-        background: #f8f8fd;
-        border: 1px solid #7f7fd5;
-    }
-
     .platform-select__option:active .platform-select__icon {
         color: #7f7fd5;
     }
+
+.card-selectable:active,
+.card-selectable.selected {
+    background: #f8f8fd;
+    border: 1px solid #7f7fd5;
+}
 
 .integration-select {
     margin-bottom: 3.5rem;

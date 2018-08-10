@@ -6,7 +6,7 @@ import appPlaceholder from '../../../static/assets/applications-page/app-placeho
 import Dropdown from '../components/Dropdown';
 import Placements from '../components/Placements';
 
-const Application = ({app, isSelected, select}) => {
+const Application = ({app, isSelected, select, selectPlacement, selectedPlacement}) => {
   return (
     <li className="l-applications-list__row">
       <div className="application-card">
@@ -35,7 +35,7 @@ const Application = ({app, isSelected, select}) => {
           <Dropdown onEditClick={select(app.id)}/>
         </div>
       </div>
-      {isSelected && <Placements placements={app.placements}/>}
+      {isSelected && <Placements placements={app.placements} selectPlacement={selectPlacement} selectedPlacement={selectedPlacement}/>}
     </li>
   );
 };
@@ -43,7 +43,9 @@ const Application = ({app, isSelected, select}) => {
 Application.propTypes = {
   app: PropTypes.object.isRequired,
   isSelected: PropTypes.bool.isRequired,
-  select: PropTypes.func.isRequired
+  select: PropTypes.func.isRequired,
+  selectPlacement: PropTypes.func.isRequired,
+  selectedPlacement: PropTypes.string
 };
 
 export default Application;

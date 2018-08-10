@@ -31,7 +31,7 @@ videoEnabled
 false
 * */
 
-const Placements = ({placements}) => {
+const Placements = ({placements, selectPlacement, selectedPlacement}) => {
   return (
     <div className="placements">
       <div className="placements__header">
@@ -48,7 +48,7 @@ const Placements = ({placements}) => {
       <div className="placements__content ">
         {Object.entries(placements).map(([id, placement]) => (
           <div key={id} className="placements__item-col">
-            <div className="placement-card">
+            <div onClick={selectPlacement(id)} className={`card-selectable placement-card isCursorPointer ${selectedPlacement === id ? 'selected' : ''}`}>
               <div className="placement-card__content">
                 <div className="placement-summary text-center text--smaller">
                   <div className="placement-summary__icon-container">
@@ -90,7 +90,9 @@ const Placements = ({placements}) => {
 };
 
 Placements.propTypes = {
-  placements: PropTypes.object.isRequired
+  placements: PropTypes.object.isRequired,
+  selectPlacement: PropTypes.func.isRequired,
+  selectedPlacement: PropTypes.string
 };
 
 export default Placements;

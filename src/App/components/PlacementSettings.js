@@ -41,21 +41,21 @@ const PlacementSettings = ({placement}) => {
         <div className="placement-settings__field-container">
           <div className="input">
             <label className="input__label color--grey-lighter">Name</label>
-            <input type="text" className="input__field color--dark" placeholder="" defaultValue={placement.name}/>
+            <input type="text" className="input__field color--dark" placeholder="" onChange={() => {}} value={placement.name}/>
           </div>
         </div>
 
         <div className="placement-settings__field-container">
           <div className="input">
             <label className="input__label color--grey-lighter">Ad Unit</label>
-            <input type="text" className="input__field color--dark" placeholder="" defaultValue={placement.adUnitType}/>
+            <input type="text" className="input__field color--dark" placeholder="" onChange={() => {}} value={placement.adUnitType}/>
           </div>
         </div>
 
         <div className="placement-settings__field-container">
           <div className="input">
             <label className="input__label color--grey-lighter">Status</label>
-            <input type="text" className="input__field color--dark" placeholder="" defaultValue={placement.status}/>
+            <input type="text" className="input__field color--dark" placeholder="" onChange={() => {}} value={placement.status}/>
           </div>
         </div>
 
