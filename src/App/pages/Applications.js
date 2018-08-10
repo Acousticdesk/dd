@@ -7,13 +7,11 @@ import reports from '../../../static/assets/icons/reports.svg';
 import downloads from '../../../static/assets/icons/downloads.svg';
 import documentation from '../../../static/assets/icons/documentation.svg';
 import logo from '../../../static/assets/logo/@1x.png';
-import appPlaceholder from '../../../static/assets/applications-page/app-placeholder.png';
-// import appPlaceholder2 from '../../../static/assets/applications-page/app-placeholder_2.png';
 
-import Dropdown from '../components/Dropdown';
 import PlacementEdit from '../components/PlacementEdit';
-import Placements from '../components/Placements';
 import NewApp from '../components/NewApp';
+import App from '../../App';
+import Application from '../components/Application';
 
 const iconsArray = [
   {open},
@@ -26,17 +24,67 @@ const iconsArray = [
 
 export default class Applications extends Component {
   state = {
-    isAppSelected: false
+    selectedApp: null,
+    selectedPlacement: null,
+    isCreatingNewApp: false,
+    apps: null
   };
 
-  selectApp = () => {
+  selectApp = (id) => () => {
     this.setState({
-      isAppSelected: true
+      selectedApp: id
     });
   };
 
+  showApplicationModal = () => {
+    this.setState({
+      isCreatingNewApp: true
+    });
+  };
+
+  hideApplicationModal = () => {
+    this.setState({
+      isCreatingNewApp: false
+    });
+  };
+
+  componentDidMount() {
+    App.request('getApps')
+      .then(res => res.json())
+      .then(appsData => this.setState({apps: appsData.results}));
+  }
+
+  renderApps() {
+    return Object.entries(this.state.apps).map((a) => {
+      const id = a[0];
+      const props = a[1];
+      return (
+        <Application
+          app={props}
+          key={id}
+          isSelected={false}
+          select={this.selectApp}
+        />
+      );
+    })
+  }
+
+  getAppById(id) {
+    return this.state.apps && this.state.apps[id];
+  }
+
+  getPlacementById(appId, placementId) {
+    if (!this.state.apps || !appId) {
+      return null;
+    }
+    if (!placementId) {
+      return Object.entries(this.state.apps[appId].placements)[0][1];
+    }
+    return this.state.apps[appId].placements[placementId];
+  }
+
   render() {
-    console.log(this.props.user);
+    console.log(this.state.apps);
     return (
       <React.Fragment>
         <div className="l-applications">
@@ -95,50 +143,22 @@ export default class Applications extends Component {
                 </p>
               </div>
               <div className="l-sub-header__cta-container">
-                <button className="btn btn-regular btn-border-chetwod-blue color--chetwod-blue">New Application</button>
+                <button onClick={this.showApplicationModal} className="btn btn-regular btn-border-chetwod-blue color--chetwod-blue">New Application</button>
               </div>
             </div>
             <div className="l-applications-main">
               <div className="l-applications-main__apps-container">
                 <ul className="l-applications-list">
-                  <li className="l-applications-list__row">
-                    <div className="application-card">
-                      <div className="application-card__icon-container text-center">
-                        <img src={appPlaceholder} width="36px" alt=""/>
-                      </div>
-                      <div className="application-card__info-container">
-                        <div className="app-info">
-                          <p className="app-info__title-row">
-                            <i className="icon icon-regular icon--small material-icons">android</i>
-                            <span className="app-info__title text-lead color--dark">Bluetooth App Sender (5666)</span>
-                          </p>
-                          <div className="app-info__info-row">
-                            <div className="app-info__status-col">
-                              <span className="color--grey-lighter">Status: </span>
-                              <span className="color--dark">Active</span>
-                            </div>
-                            <div className="app-info__package-col">
-                              <span className="color--grey-lighter">Package: </span>
-                              <span className="color--dark">com.mram.blueappsender</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="application-card__options-container">
-                        <Dropdown onEditClick={this.selectApp}/>
-                      </div>
-                    </div>
-                    {this.state.isAppSelected && <Placements/>}
-                  </li>
+                  {this.state.apps ? this.renderApps() : null}
                 </ul>
               </div>
               <div className="l-applications-main__side-bar">
-                <PlacementEdit app={this.state.isAppSelected}/>
+                <PlacementEdit selectedPlacement={this.getPlacementById(this.state.selectedApp, this.state.selectedPlacement)}/>
               </div>
             </div>
           </div>
         </div>
-        {/*<NewApp/>*/}
+        {this.state.isCreatingNewApp && <NewApp close={this.hideApplicationModal}/>}
       </React.Fragment>
     );
   }

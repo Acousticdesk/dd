@@ -1,31 +1,61 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default () => {
+/*
+* adUnitType
+:
+"Banner"
+appId
+:
+5124
+bannerEnabled
+:
+true
+id
+:
+1751
+name
+:
+"Banner"
+size
+:
+"320x50"
+status
+:
+"active"
+videoEnabled
+:
+false
+*
+* */
+
+const PlacementSettings = ({placement}) => {
+  console.log(placement);
   return (
     <div className="placement-settings">
       <div className="placement-settings__fields-container">
         <div className="placement-settings__heading-container">
-          <h4 className="heading heading--small heading--thin heading--no-offset">Placement (2091)</h4>
+          <h4 className="heading heading--small heading--thin heading--no-offset">{placement.name} ({placement.id})</h4>
         </div>
 
         <div className="placement-settings__field-container">
           <div className="input">
             <label className="input__label color--grey-lighter">Name</label>
-            <input type="text" className="input__field color--dark" placeholder="" defaultValue="Interstitial Video"/>
+            <input type="text" className="input__field color--dark" placeholder="" defaultValue={placement.name}/>
           </div>
         </div>
 
         <div className="placement-settings__field-container">
           <div className="input">
             <label className="input__label color--grey-lighter">Ad Unit</label>
-            <input type="text" className="input__field color--dark" placeholder="" defaultValue="Interstitial"/>
+            <input type="text" className="input__field color--dark" placeholder="" defaultValue={placement.adUnitType}/>
           </div>
         </div>
 
         <div className="placement-settings__field-container">
           <div className="input">
             <label className="input__label color--grey-lighter">Status</label>
-            <input type="text" className="input__field color--dark" placeholder="" defaultValue="Active"/>
+            <input type="text" className="input__field color--dark" placeholder="" defaultValue={placement.status}/>
           </div>
         </div>
 
@@ -51,4 +81,10 @@ export default () => {
       </div>
     </div>
   );
-}
+};
+
+PlacementSettings.propTypes = {
+  placement: PropTypes.object.isRequired
+};
+
+export default PlacementSettings;

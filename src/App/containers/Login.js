@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import config from '../../../config';
 import Login from '../pages/Login';
+import App from '../../App';
 
 const loginRequest = (email, password) => {
-  return fetch(config.endpoint + 'auth', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({email, password})
-  })
+  return App.request('auth', 'POST', {email, password})
     .then(res => {
       if (res.status !== 200) {
         throw new Error(res.status)
@@ -22,7 +16,7 @@ const loginRequest = (email, password) => {
 };
 
 class LoginContainer extends Component {
-  state = {email: '', password: ''};
+  state = {email: 'andrii@display.io', password: '123456'};
 
   tryLogin = () => {
     const {email, password} = this.state;

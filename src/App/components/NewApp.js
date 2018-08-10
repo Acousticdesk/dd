@@ -1,15 +1,17 @@
 import React from 'react';
 
-export default () => {
+const stopPropagation = (e) => e.stopPropagation();
+
+export default ({close}) => {
   return (
-    <div className="modal">
-      <div className="modal__ui">
+    <div onClick={close} className="modal">
+      <div onClick={stopPropagation} className="modal__ui">
         <header className="modal__header">
           <div className="modal__title-container">
             <h4 className="heading heading--med heading--thin">New Application</h4>
           </div>
           <div className="modal__close-container text-center">
-            <i className="icon icon-light material-icons isCursorPointer">close</i>
+            <i onClick={close} className="icon icon-light material-icons isCursorPointer">close</i>
           </div>
         </header>
         <div className="modal__content">
@@ -86,7 +88,7 @@ export default () => {
         <div className="modal__footer">
           <div className="create-app-form__footer">
             <div className="create-app-form__footer-col">
-              <button className="btn btn--height-l btn-regular color--grey">Cancel</button>
+              <button onClick={close} className="btn btn--height-l btn-regular color--grey">Cancel</button>
             </div>
             <div className="create-app-form__footer-col">
               <button className="btn btn--height-l btn-chetwod-blue btn-border-chetwod-extra-blue">Save</button>
