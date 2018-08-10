@@ -16,7 +16,7 @@ const loginRequest = (email, password) => {
 };
 
 class LoginContainer extends Component {
-  state = {email: 'andrii@display.io', password: '123456'};
+  state = {email: '', password: ''};
 
   tryLogin = () => {
     const {email, password} = this.state;

@@ -6,22 +6,28 @@ import Applications from './pages/Applications';
 import config from '../../config';
 
 export default class App extends Component {
-  state = {loginData: null};
+  state = {loginData: JSON.parse(window.sessionStorage.getItem('loginData'))};
 
   onUserLoggedIn = (loginData) => {
     this.setState({loginData});
-    window.sessionStorage.setItem('token', loginData.token);
+    window.sessionStorage.setItem('loginData', JSON.stringify(loginData));
   };
 
   static request(apiMethod, reqMethod = 'GET', body) {
     const headers = {
       'Content-Type': 'application/json'
     };
+    const persistedLoginData = window.sessionStorage.getItem('loginData');
+    let token;
 
-    const token = window.sessionStorage.getItem('token');
+    if (persistedLoginData) {
+      token = JSON.parse(persistedLoginData).token;
+    }
+
+    console.log(token);
 
     if (token) {
-      headers['Authorization'] = `Bearer ${window.sessionStorage.getItem('token')}`;
+      headers['Authorization'] = `Bearer ${token}`;
     }
 
     const fetchOptions = {
