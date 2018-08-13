@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import IntegrateIcon from '../../../static/assets/icons/integrate.svg';
 
-const Placements = ({placements, selectPlacement, selectedPlacement, zendesk, appIntegration}) => {
+const Placements = ({placements, selectPlacement, selectedPlacement, zendesk, appIntegration, deletePlacement, settings}) => {
   return (
     <div className="placements">
       <div className="placements__header">
@@ -19,7 +19,6 @@ const Placements = ({placements, selectPlacement, selectedPlacement, zendesk, ap
       </div>
       <div className="placements__content ">
         {Object.entries(placements).map(([id, placement]) => {
-          console.log(zendesk[appIntegration][placement.adUnitType])
           return (
             <div key={id} className="placements__item-col">
               <div onClick={selectPlacement(id)} className={`card-selectable placement-card isCursorPointer ${selectedPlacement === id ? 'selected' : ''}`}>
@@ -52,7 +51,7 @@ const Placements = ({placements, selectPlacement, selectedPlacement, zendesk, ap
                     </a>
                   </div>
                   <div className="placement-card__footer-col">
-                    <button onClick={e => e.stopPropagation()} className="btn btn-regular color--grey">
+                    <button onClick={deletePlacement} className="btn btn-regular color--grey">
                       <span className="btn__icon-container btn__icon-container--center">
                         <i className="icon icon-regular material-icons">delete</i>
                       </span>
@@ -74,7 +73,8 @@ Placements.propTypes = {
   selectPlacement: PropTypes.func.isRequired,
   selectedPlacement: PropTypes.string,
   zendesk: PropTypes.object.isRequired,
-  appIntegration: PropTypes.string.isRequired
+  appIntegration: PropTypes.string.isRequired,
+  deletePlacement: PropTypes.func.isRequired,
 };
 
 export default Placements;

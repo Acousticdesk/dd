@@ -30,7 +30,8 @@ class Applications extends Component {
     selectedApp: null,
     selectedPlacement: null,
     isCreatingNewApp: false,
-    apps: null
+    apps: null,
+    settings: null
   };
 
   selectApp = (id) => () => {
@@ -55,6 +56,9 @@ class Applications extends Component {
     API.request('getApps')
       .then(res => res.json())
       .then(appsData => this.setState({apps: appsData.results}));
+    API.request('getSettings')
+      .then(res => res.json())
+      .then(settings => this.setState({settings: settings.adUnitTypes}));
   }
 
   renderApps() {
@@ -63,6 +67,7 @@ class Applications extends Component {
       const props = a[1];
       return (
         <Application
+          deletePlacement={this.deletePlacement}
           selectPlacement={this.selectPlacement}
           selectedPlacement={this.state.selectedPlacement}
           app={props}
@@ -93,6 +98,10 @@ class Applications extends Component {
     this.setState({
       selectedPlacement: id
     });
+  };
+
+  deletePlacement = (id) => {
+
   };
 
   render() {
@@ -160,7 +169,10 @@ class Applications extends Component {
                 </ul>
               </div>
               <div className="l-applications-main__side-bar">
-                <PlacementEdit selectedPlacement={this.getPlacementById(this.state.selectedApp, this.state.selectedPlacement)}/>
+                <PlacementEdit
+                  settings={this.state.settings}
+                  selectedAppIntegration={this.getAppById(this.state.selectedApp) && this.getAppById(this.state.selectedApp).integration}
+                  selectedPlacement={this.getPlacementById(this.state.selectedApp, this.state.selectedPlacement)}/>
               </div>
             </div>
           </div>
