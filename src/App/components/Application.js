@@ -11,7 +11,10 @@ const Application = ({app, isSelected, select, selectPlacement, selectedPlacemen
     <li className="l-applications-list__row">
       <div className="application-card">
         <div className="application-card__icon-container text-center">
-          <img src={appPlaceholder} width="36px" alt=""/>
+          {app.iconUrl
+            ? <img src={app.iconUrl} width="36px" alt=""/>
+            : <i className="icon icon-regular icon--large material-icons">smartphone</i>
+          }
         </div>
         <div className="application-card__info-container">
           <div className="app-info">
