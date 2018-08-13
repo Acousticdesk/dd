@@ -15,8 +15,8 @@ export default class App extends Component {
   }
 
   onUserLoggedIn = (loginData) => {
-    this.setState({loginData});
     API.setPersistedData('loginData', JSON.stringify(loginData));
+    this.setState({loginData});
   };
 
   onRememberMeChange = () => {

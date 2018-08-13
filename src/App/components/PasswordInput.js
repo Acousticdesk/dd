@@ -11,15 +11,22 @@ class PasswordInput extends Component {
   };
 
   render () {
+    const inputType = !this.state.isPasswordVisible ? 'password' : 'text';
+    const passwordVisibleClass = this.state.isPasswordVisible ? 'input__icon--password-visible' : '';
+
     return (
-      <div className="input">
+      <div className="password-input input">
         <input
           name="password"
           onChange={this.props.onChange}
-          type={!this.state.isPasswordVisible ? 'password' : 'text'}
+          type={inputType}
           className="input__field"
           placeholder="Password it like a boss"/>
-        <i onClick={this.onShowPassword} className="input__icon material-icons isCursorPointer">remove_red_eye</i>
+        <i
+          onClick={this.onShowPassword}
+          className={`input__icon ${passwordVisibleClass} material-icons isCursorPointer`}>
+          remove_red_eye
+        </i>
       </div>
     );
   }

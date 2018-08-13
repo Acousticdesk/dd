@@ -28,6 +28,7 @@ class API {
       'Content-Type': 'application/json'
     };
 
+
     const persistedLoginData = this.getPersistedData('loginData');
 
     let token;

@@ -8,7 +8,7 @@ const Checkbox = ({label, checked, onChange}) => {
     <React.Fragment>
         <span className={`checkbox-radio-common checkbox ${checked ? 'checked' : ''}`}>
           <input checked={checked} onChange={onChange} id={id} type="checkbox"/>
-          <span
+          <label htmlFor={id}
             className="
               checkbox-radio-common__ui
               checkbox__ui
@@ -17,7 +17,7 @@ const Checkbox = ({label, checked, onChange}) => {
               material-icons
               isCursorPointer">
             {checked ? 'done' : ''}
-          </span>
+          </label>
         </span>
       <label htmlFor={id} className="color--grey isCursorPointer">{label}</label>
     </React.Fragment>

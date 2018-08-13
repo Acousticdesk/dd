@@ -206,6 +206,10 @@
         margin-bottom: 14px;
     }
 
+    .password-input .input__icon--password-visible {
+        color: #7f7fd5;
+    }
+
 .login-btn {
     display: block;
     margin: 0 auto;
