@@ -19,6 +19,11 @@ export default class App extends Component {
     this.setState({loginData});
   };
 
+  onUserLoggedOut = () => {
+    API.removePersistedData('loginData');
+    this.setState({loginData: null});
+  };
+
   onRememberMeChange = () => {
     let storage = window.sessionStorage;
 
@@ -44,9 +49,14 @@ export default class App extends Component {
                 isRememberMe={this.state.rememberMe}
                 onUserLoggedIn={this.onUserLoggedIn}
                 onRememberMeChange={this.onRememberMeChange}/> :
-              <Applications {...props} user={this.state.loginData.user}/>
+              <Applications {...props} user={this.state.loginData.user} onUserLoggedOut={this.onUserLoggedOut}/>
           }}/>
-          <Route path="/applications" component={Applications}/>
+          <Route path="/applications" render={props => (
+            <Applications
+              {...props}
+              user={this.state.loginData.user}
+              onUserLoggedOut={this.onUserLoggedOut}/>
+          )}/>
         </Switch>
       </React.Fragment>
     );

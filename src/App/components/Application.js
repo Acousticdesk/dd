@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import appPlaceholder from '../../../static/assets/applications-page/app-placeholder.png';
 
-import Dropdown from '../components/Dropdown';
+import EditDropdown from '../components/EditDropdown';
 import Placements from '../components/Placements';
 
 const Application = ({app, isSelected, select, selectPlacement, selectedPlacement}) => {
@@ -32,7 +32,7 @@ const Application = ({app, isSelected, select, selectPlacement, selectedPlacemen
           </div>
         </div>
         <div className="application-card__options-container">
-          <Dropdown onEditClick={select(app.id)}/>
+          <EditDropdown onItemClick={select(app.id)}/>
         </div>
       </div>
       {isSelected && <Placements placements={app.placements} selectPlacement={selectPlacement} selectedPlacement={selectedPlacement}/>}

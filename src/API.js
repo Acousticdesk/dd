@@ -19,6 +19,10 @@ class API {
     this.storage.setItem(key, value);
   }
 
+  removePersistedData(key) {
+    this.storage.removeItem(key);
+  }
+
   getPersistedData(key) {
     return this.storage.getItem(key);
   }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import open from '../../../static/assets/icons/open.svg';
 import dashboard from '../../../static/assets/icons/dashboard.svg';
@@ -12,6 +13,7 @@ import PlacementEdit from '../components/PlacementEdit';
 import NewApp from '../components/NewApp';
 import API from '../../API';
 import Application from '../components/Application';
+import UserDropdown from '../components/UserDropdown';
 
 const iconsArray = [
   {open},
@@ -22,7 +24,7 @@ const iconsArray = [
   {documentation}
 ];
 
-export default class Applications extends Component {
+class Applications extends Component {
   state = {
     selectedApp: null,
     selectedPlacement: null,
@@ -118,7 +120,6 @@ export default class Applications extends Component {
             </nav>
           </div>
 
-          {/*Main*/}
           <div>
             <header className="l-header">
               <div className="l-header__logo-container text-center">
@@ -131,10 +132,7 @@ export default class Applications extends Component {
                 <i className="icon icon-regular icon--notification material-icons isCursorPointer">notifications</i>
               </div>
               <div className="l-header__user-container text-center isCursorPointer">
-                <p className="color--grey">
-                  {this.props.user.email}
-                  <i className="material-icons">arrow_drop_down</i>
-                </p>
+                <UserDropdown email={this.props.user.email} onItemClick={this.props.onUserLoggedOut}/>
               </div>
             </header>
             <div className="l-sub-header">
@@ -170,3 +168,10 @@ export default class Applications extends Component {
     );
   }
 }
+
+Applications.propTypes = {
+  user: PropTypes.object.isRequired,
+  onUserLoggedOut: PropTypes.func.isRequired
+};
+
+export default Applications;

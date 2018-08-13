@@ -10,8 +10,11 @@ class Dropdown extends Component {
     });
   };
 
-  onEditClick = () => {
-    this.props.onEditClick();
+  onItemClick = () => {
+    if (this.props.onItemClick) {
+      this.props.onItemClick();
+    }
+
     this.setState({
       isActive: false
     });
@@ -24,28 +27,13 @@ class Dropdown extends Component {
   render() {
     return (
       <div className={`dropdown ${this.getActiveClass()}`}>
-        <a onClick={this.onClick} href="javascript:void(0);" className={`options-btn ${this.getActiveClass()}`}>
-          <i className="icon icon-regular material-icons isCursorPointer">more_vert</i>
-        </a>
+        {React.cloneElement(this.props.Toggle, {
+          onClick: this.onClick
+        })}
         <ul className="dropdown__list">
-          <li onClick={this.onEditClick} className="option-item isCursorPointer">
-            <div className="option-item__icon-container">
-              <i className="icon icon-regular icon--small material-icons">edit</i>
-            </div>
-            <div className="option-item__legend-container">
-              <span className="text text--lead">Edit</span>
-            </div>
-          </li>
-          <li className="dropdown__item">
-            <div className="option-item isCursorPointer">
-              <div className="option-item__icon-container">
-                <i className="icon icon-regular icon--small material-icons">delete</i>
-              </div>
-              <div className="option-item__legend-container">
-                <span className="text text--lead">Delete</span>
-              </div>
-            </div>
-          </li>
+          {React.cloneElement(this.props.Items, {
+            onItemClick: this.onItemClick
+          })}
         </ul>
       </div>
     );
@@ -53,7 +41,9 @@ class Dropdown extends Component {
 }
 
 Dropdown.propTypes = {
-  onEditClick: PropTypes.func.isRequired
+  onItemClick: PropTypes.func,
+  Items: PropTypes.element.isRequired,
+  Toggle: PropTypes.element.isRequired
 };
 
 export default Dropdown;
