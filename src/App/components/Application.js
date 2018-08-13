@@ -6,7 +6,7 @@ import appPlaceholder from '../../../static/assets/applications-page/app-placeho
 import EditDropdown from '../components/EditDropdown';
 import Placements from '../components/Placements';
 
-const Application = ({app, isSelected, select, selectPlacement, selectedPlacement}) => {
+const Application = ({app, isSelected, select, selectPlacement, selectedPlacement, zendesk}) => {
   return (
     <li className="l-applications-list__row">
       <div className="application-card">
@@ -38,7 +38,15 @@ const Application = ({app, isSelected, select, selectPlacement, selectedPlacemen
           <EditDropdown onItemClick={select(app.id)}/>
         </div>
       </div>
-      {isSelected && <Placements placements={app.placements} selectPlacement={selectPlacement} selectedPlacement={selectedPlacement}/>}
+      {isSelected && (
+        <Placements
+          appIntegration={app.integration}
+          placements={app.placements}
+          selectPlacement={selectPlacement}
+          selectedPlacement={selectedPlacement}
+          zendesk={zendesk}
+        />
+      )}
     </li>
   );
 };
@@ -48,7 +56,8 @@ Application.propTypes = {
   isSelected: PropTypes.bool.isRequired,
   select: PropTypes.func.isRequired,
   selectPlacement: PropTypes.func.isRequired,
-  selectedPlacement: PropTypes.string
+  selectedPlacement: PropTypes.string,
+  zendesk: PropTypes.object.isRequired
 };
 
 export default Application;

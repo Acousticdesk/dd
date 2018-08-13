@@ -9,6 +9,7 @@ import downloads from '../../../static/assets/icons/downloads.svg';
 import documentation from '../../../static/assets/icons/documentation.svg';
 import logo from '../../../static/assets/logo/@1x.png';
 
+import config from '../../../config';
 import PlacementEdit from '../components/PlacementEdit';
 import NewApp from '../components/NewApp';
 import API from '../../API';
@@ -68,6 +69,7 @@ class Applications extends Component {
           key={id}
           isSelected={this.state.selectedApp === id}
           select={this.selectApp}
+          zendesk={config.zendesk}
         />
       );
     })

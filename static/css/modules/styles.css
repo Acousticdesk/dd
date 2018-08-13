@@ -374,6 +374,7 @@
 
 /* Structure */
 .btn {
+    display: inline-block;
     text-align: center;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -713,7 +714,6 @@
         color: #7f7fd5;
     }
 
-.card-selectable:active,
 .card-selectable.selected {
     background: #f8f8fd;
     border: 1px solid #7f7fd5;
