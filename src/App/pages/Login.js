@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 
 import logo from '../../../static/assets/logo/@1x.png';
 
-const Login = ({onTryLogin, onUserType}) => {
+import PasswordInput from '../components/PasswordInput';
+import Checkbox from '../components/Checkbox';
+
+const Login = ({onTryLogin, onUserType, onRememberMeChange, isRememberMe}) => {
   return (
     <div className="l-page">
       <div className="l-container">
@@ -26,24 +29,12 @@ const Login = ({onTryLogin, onUserType}) => {
                 </div>
               </div>
               <div className="login-form__field-container--offset-small">
-                <div className="input">
-                  <input
-                    name="password"
-                    onChange={onUserType}
-                    type="password"
-                    className="input__field"
-                    placeholder="Password it like a boss"/>
-                  <i className="input__icon material-icons isCursorPointer">remove_red_eye</i>
-                </div>
+                <PasswordInput onChange={onUserType}/>
               </div>
               <div className="login-form__fields-footer">
                 <div className="login-optionals">
                   <div className="login-optionals__item-col--pull-left">
-                    <span className="checkbox-radio-common checkbox">
-                      <input type="checkbox"/>
-                      <span className="checkbox-radio-common__ui checkbox__ui color--white text-center material-icons isCursorPointer">done</span>
-                    </span>
-                    <span className="color--grey isCursorPointer">Remember Me</span>
+                    <Checkbox label="Remember Me" onChange={onRememberMeChange} checked={isRememberMe}/>
                   </div>
                   <div className="login-optionals__item-col">
                     <a href="javascript:void(0);" className="color--grey isCursorPointer isHoverUnderline">Forgot Password</a>
@@ -66,7 +57,9 @@ const Login = ({onTryLogin, onUserType}) => {
 
 Login.propTypes = {
   onTryLogin: PropTypes.func.isRequired,
-  onUserType: PropTypes.func.isRequired
+  onUserType: PropTypes.func.isRequired,
+  onRememberMeChange: PropTypes.func.isRequired,
+  isRememberMe: PropTypes.bool.isRequired
 };
 
 export default Login;

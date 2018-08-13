@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Login from '../pages/Login';
-import App from '../../App';
+import API from '../../API';
 
 const loginRequest = (email, password) => {
-  return App.request('auth', 'POST', {email, password})
+  return API.request('auth', 'POST', {email, password})
     .then(res => {
       if (res.status !== 200) {
         throw new Error(res.status)
@@ -47,13 +47,20 @@ class LoginContainer extends Component {
 
   render() {
     return (
-      <Login onTryLogin={this.tryLogin} onUserType={this.onUserType}/>
+      <Login
+        onTryLogin={this.tryLogin}
+        onUserType={this.onUserType}
+        onRememberMeChange={this.props.onRememberMeChange}
+        isRememberMe={this.props.isRememberMe}
+      />
     );
   }
 }
 
 LoginContainer.propTypes = {
-  onUserLoggedIn: PropTypes.func.isRequired
+  onUserLoggedIn: PropTypes.func.isRequired,
+  onRememberMeChange: PropTypes.func.isRequired,
+  isRememberMe: PropTypes.bool.isRequired
 };
 
 export default LoginContainer;

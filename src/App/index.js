@@ -3,42 +3,35 @@ import { Route, Switch } from 'react-router-dom';
 
 import LoginContainer from './containers/Login';
 import Applications from './pages/Applications';
-import config from '../../config';
+import API from '../API';
 
 export default class App extends Component {
-  state = {loginData: JSON.parse(window.sessionStorage.getItem('loginData'))};
+  constructor(props) {
+    super(props);
+    this.state = {
+      loginData: JSON.parse(API.getPersistedData('loginData')),
+      rememberMe: false
+    };
+  }
 
   onUserLoggedIn = (loginData) => {
     this.setState({loginData});
-    window.sessionStorage.setItem('loginData', JSON.stringify(loginData));
+    API.setPersistedData('loginData', JSON.stringify(loginData));
   };
 
-  static request(apiMethod, reqMethod = 'GET', body) {
-    const headers = {
-      'Content-Type': 'application/json'
-    };
-    const persistedLoginData = window.sessionStorage.getItem('loginData');
-    let token;
+  onRememberMeChange = () => {
+    let storage = window.sessionStorage;
 
-    if (persistedLoginData) {
-      token = JSON.parse(persistedLoginData).token;
-    }
-
-    if (token) {
-      headers['Authorization'] = `Bearer ${token}`;
-    }
-
-    const fetchOptions = {
-      headers,
-      method: reqMethod
-    };
-
-    if (body) {
-      fetchOptions.body = JSON.stringify(body);
-    }
-
-    return fetch(config.endpoint + apiMethod, fetchOptions)
-  }
+    this.setState(
+      (prevState) => ({rememberMe: !prevState.rememberMe}),
+      () => {
+        if (this.state.rememberMe) {
+          storage = window.localStorage;
+        }
+        API.setStorage(storage);
+      }
+    );
+  };
 
   render() {
     return (
@@ -46,7 +39,11 @@ export default class App extends Component {
         <Switch>
           <Route path="/" exact render={props => {
             return !this.state.loginData ?
-              <LoginContainer {...props} onUserLoggedIn={this.onUserLoggedIn}/> :
+              <LoginContainer
+                {...props}
+                isRememberMe={this.state.rememberMe}
+                onUserLoggedIn={this.onUserLoggedIn}
+                onRememberMeChange={this.onRememberMeChange}/> :
               <Applications {...props} user={this.state.loginData.user}/>
           }}/>
           <Route path="/applications" component={Applications}/>

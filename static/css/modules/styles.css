@@ -135,10 +135,14 @@
         }
 
     .checkbox__ui {
-        background: #7f7fd5;
+        background: #ccc;
         border-radius: 2px;
         line-height: 16px;
         font-size: 12px;
+    }
+
+    .checkbox.checked .checkbox__ui {
+        background: #7f7fd5;
     }
 
     .checkbox__switch-ui {

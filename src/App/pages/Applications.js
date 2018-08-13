@@ -10,7 +10,7 @@ import logo from '../../../static/assets/logo/@1x.png';
 
 import PlacementEdit from '../components/PlacementEdit';
 import NewApp from '../components/NewApp';
-import App from '../../App';
+import API from '../../API';
 import Application from '../components/Application';
 
 const iconsArray = [
@@ -49,7 +49,7 @@ export default class Applications extends Component {
   };
 
   componentDidMount() {
-    App.request('getApps')
+    API.request('getApps')
       .then(res => res.json())
       .then(appsData => this.setState({apps: appsData.results}));
   }
