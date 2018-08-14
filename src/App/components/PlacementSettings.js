@@ -12,7 +12,14 @@ class PlacementSettings extends Component {
 
     const extraFields = schema
       ? Object.entries(schema).map(([key, props]) => {
+        console.log(props);
         switch (props.type) {
+          case 'int':
+            return (
+              <div key={key} className="placement-settings__field-container placement-settings__field-container--offset-s">
+                <Input label={props.label} value={props.default}/>
+              </div>
+            );
           case 'boolean':
             return (
               <div key={key} className="placement-settings__field-container placement-settings__field-container--offset-s">
@@ -31,7 +38,6 @@ class PlacementSettings extends Component {
         }
       })
     : null;
-
     return (
       <div className="placement-settings">
         <div className="placement-settings__fields-container">
