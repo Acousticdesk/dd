@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Checkbox from './Checkbox';
 import Input from './Input';
-import Dropdown from './Dropdown';
+import InputDropdown from './InputDropdown';
 
 class PlacementSettings extends Component {
   render() {
@@ -12,7 +12,6 @@ class PlacementSettings extends Component {
 
     const extraFields = schema
       ? Object.entries(schema).map(([key, props]) => {
-        console.log(props);
         switch (props.type) {
           case 'boolean':
             return (
@@ -21,7 +20,11 @@ class PlacementSettings extends Component {
               </div>
             );
           case 'select':
-            return null;
+            return (
+              <div key={key} className="placement-settings__field-container placement-settings__field-container--offset-s">
+                <InputDropdown label={props.label} defaultValue={props.default || props.options[0]} items={props.options}/>
+              </div>
+            );
           default:
             return null;
         }
@@ -42,22 +45,11 @@ class PlacementSettings extends Component {
           </div>
 
           <div className="placement-settings__field-container">
-            <Dropdown
-              Toggle={<Input name="ad_unit" label="Ad Unit" value={this.props.placement.adUnitType}/>}
-              items={[
-                'Banner',
-                'Infeed',
-                'Interstitial'
-              ]}
-            />
+            <InputDropdown defaultValue="Banner" items={['Banner', 'In-Feed', 'Interstitial']}/>
           </div>
 
           <div className="placement-settings__field-container">
-            <Input
-              name="status"
-              label="Status"
-              value={this.props.placement.status}
-            />
+            <InputDropdown label="Status" defaultValue="Active" items={['Active', 'Inactive']}/>
           </div>
 
           {extraFields}

@@ -518,6 +518,11 @@
         border-radius: 2px;
     }
 
+        .dropdown__list--full-width {
+            width: 100%;
+            right: 0;
+        }
+
 .option-item {
     display: flex;
     height: 35px;

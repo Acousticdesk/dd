@@ -5,15 +5,14 @@ class Dropdown extends Component {
   state = {isActive: false};
 
   onClick = () => {
-    console.log('click is being triggered');
     this.setState(prevState => {
       return {isActive: !prevState.isActive};
     });
   };
 
-  onItemClick = () => {
+  onItemClick = (evt) => {
     if (this.props.onItemClick) {
-      this.props.onItemClick();
+      this.props.onItemClick(evt);
     }
 
     this.setState({
@@ -23,6 +22,10 @@ class Dropdown extends Component {
 
   getActiveClass() {
     return this.state.isActive ? 'active' : '';
+  }
+
+  getFullWidthClass() {
+    return this.props.fullWidth ? 'dropdown__list--full-width' : '';
   }
 
   render() {
@@ -35,14 +38,14 @@ class Dropdown extends Component {
             })
             : null
         }
-        <ul className="dropdown__list">
+        <ul className={`dropdown__list ${this.getFullWidthClass()}`}>
           {
             this.props.Items
               ? React.cloneElement(this.props.Items, {
                 onItemClick: this.onItemClick
               })
               : this.props.items && this.props.items.map((i, index) => (
-                <li key={index} onClick={this.onItemClick} className="option-item isCursorPointer">
+                <li data-value={i} key={index} onClick={this.onItemClick} className="option-item isCursorPointer">
                   {/*<div className="option-item__icon-container">*/}
                     {/*<i className="icon icon-regular icon--small material-icons">edit</i>*/}
                   {/*</div>*/}
@@ -62,7 +65,8 @@ Dropdown.propTypes = {
   onItemClick: PropTypes.func,
   Items: PropTypes.element,
   Toggle: PropTypes.element.isRequired,
-  items: PropTypes.array
+  items: PropTypes.array,
+  fullWidth: PropTypes.bool
 };
 
 export default Dropdown;
