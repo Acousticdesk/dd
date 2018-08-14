@@ -12,7 +12,6 @@ class PlacementSettings extends Component {
 
     const extraFields = schema
       ? Object.entries(schema).map(([key, props]) => {
-        console.log(props);
         switch (props.type) {
           case 'boolean':
             return (
@@ -47,11 +46,15 @@ class PlacementSettings extends Component {
           </div>
 
           <div className="placement-settings__field-container">
-            <InputDropdown defaultValue="Banner" items={['Banner', 'In-Feed', 'Interstitial']}/>
+            <InputDropdown
+              label="Ad Unit"
+              defaultValue={this.props.placement.adUnitType}
+              items={['Banner', 'In-Feed', 'Interstitial']}
+            />
           </div>
 
           <div className="placement-settings__field-container">
-            <InputDropdown label="Status" defaultValue="Active" items={['Active', 'Inactive']}/>
+            <InputDropdown label="Status" defaultValue={this.props.placement.status} items={['Active', 'Inactive']}/>
           </div>
 
           {extraFields}

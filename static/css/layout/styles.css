@@ -104,6 +104,7 @@
 
 .l-applications-main__side-bar {
     background: #fff;
+    overflow-y: scroll;
 }
 
 .l-applications-list {

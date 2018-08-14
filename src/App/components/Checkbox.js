@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-const Checkbox = ({checked, label, extraClass, ...props}) => {
-  const id = `checkbox_${Date.now()}`;
+const Checkbox = ({checked, label, extraClass, theSwitch, ...props}) => {
+  const id = 'checkbox_' + Math.random().toString(36).substr(2, 9);
 
   return (
     <React.Fragment>
@@ -11,17 +11,17 @@ const Checkbox = ({checked, label, extraClass, ...props}) => {
           <label htmlFor={id}
             className={`
               checkbox-radio-common__ui
-              checkbox__ui
+              ${!theSwitch ? 'checkbox__ui' : 'checkbox__switch-ui'}
               color--white
               text-center
               material-icons
               isCursorPointer
               ${extraClass}
             `}>
-            {checked ? 'done' : ''}
+            {checked && !theSwitch ? 'done' : ''}
           </label>
         </span>
-      <label htmlFor={id} className="color--grey isCursorPointer">{label}</label>
+      <label htmlFor={id} className={`color--grey ${checked ? 'text-bold' : ''} isCursorPointer`}>{label}</label>
     </React.Fragment>
   );
 };
@@ -29,7 +29,8 @@ const Checkbox = ({checked, label, extraClass, ...props}) => {
 Checkbox.propTypes = {
   checked: PropTypes.bool,
   label: PropTypes.string,
-  extraClass: PropTypes.string
+  extraClass: PropTypes.string,
+  theSwitch: PropTypes.bool
 };
 
 export default Checkbox;
