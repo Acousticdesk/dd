@@ -12,6 +12,7 @@ class PlacementSettings extends Component {
 
     const extraFields = schema
       ? Object.entries(schema).map(([key, props]) => {
+        console.log(props);
         switch (props.type) {
           case 'boolean':
             return (
@@ -20,6 +21,7 @@ class PlacementSettings extends Component {
               </div>
             );
           case 'select':
+          case 'list':
             return (
               <div key={key} className="placement-settings__field-container placement-settings__field-container--offset-s">
                 <InputDropdown label={props.label} defaultValue={props.default || props.options[0]} items={props.options}/>
@@ -41,7 +43,7 @@ class PlacementSettings extends Component {
           </div>
 
           <div className="placement-settings__field-container">
-            <Input name="name" label="Name" value={this.props.placement.name}/>
+            <Input name="name" label="Name" value={this.props.placement.name} onChange={() => {}}/>
           </div>
 
           <div className="placement-settings__field-container">

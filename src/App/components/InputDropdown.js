@@ -29,6 +29,9 @@ class InputDropdown extends Component {
     this.setState({
       value: evt.currentTarget.dataset.value
     });
+    if (this.props.onChange && typeof this.props.onChange === 'function') {
+      this.props.onChange(this.state.value);
+    }
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -56,7 +59,10 @@ class InputDropdown extends Component {
 
 InputDropdown.propTypes = {
   items: PropTypes.array,
-  defaultValue: PropTypes.string
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ])
 };
 
 export default InputDropdown;

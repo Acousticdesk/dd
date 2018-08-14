@@ -22,7 +22,10 @@ const Input = ({value, name, label, icon, extraClass, onChange, onClick, ...prop
 };
 
 Input.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
   label: PropTypes.string,
   name: PropTypes.string,
   icon: PropTypes.element,

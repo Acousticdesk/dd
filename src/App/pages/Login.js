@@ -41,7 +41,7 @@ const Login = ({onTryLogin, onUserType, onRememberMeChange, isRememberMe}) => {
                   </div>
                 </div>
               </div>
-              <div className="login-form__cta-container">
+              <div className="login-form__cta-container text-center">
                 <button onClick={onTryLogin} className="btn login-btn">Log In</button>
               </div>
               <div className="color--grey text-center">

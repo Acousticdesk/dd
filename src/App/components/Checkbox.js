@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-const Checkbox = ({checked, label, ...props}) => {
+const Checkbox = ({checked, label, extraClass, ...props}) => {
   const id = `checkbox_${Date.now()}`;
 
   return (
@@ -9,13 +9,15 @@ const Checkbox = ({checked, label, ...props}) => {
         <span className={`checkbox-radio-common checkbox ${checked ? 'checked' : ''}`}>
           <input {...props} id={id} type="checkbox"/>
           <label htmlFor={id}
-            className="
+            className={`
               checkbox-radio-common__ui
               checkbox__ui
               color--white
               text-center
               material-icons
-              isCursorPointer">
+              isCursorPointer
+              ${extraClass}
+            `}>
             {checked ? 'done' : ''}
           </label>
         </span>
@@ -26,7 +28,8 @@ const Checkbox = ({checked, label, ...props}) => {
 
 Checkbox.propTypes = {
   checked: PropTypes.bool,
-  label: PropTypes.string
+  label: PropTypes.string,
+  extraClass: PropTypes.string
 };
 
 export default Checkbox;
