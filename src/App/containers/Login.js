@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Login from '../pages/Login';
 import API from '../../API';
+import LoginForm from '../components/LoginForm';
 
 const loginRequest = (email, password) => {
   return API.request('auth', 'POST', {email, password})
@@ -47,12 +48,13 @@ class LoginContainer extends Component {
 
   render() {
     return (
-      <Login
-        onTryLogin={this.tryLogin}
-        onUserType={this.onUserType}
-        onRememberMeChange={this.props.onRememberMeChange}
-        isRememberMe={this.props.isRememberMe}
-      />
+      <Login>
+        <LoginForm
+          onTryLogin={this.tryLogin}
+          onUserType={this.onUserType}
+          onRememberMeChange={this.props.onRememberMeChange}
+          isRememberMe={this.props.isRememberMe}/>
+      </Login>
     );
   }
 }
