@@ -26,20 +26,20 @@ class PlacementSettings extends Component {
           case 'int':
             return (
               <div key={key} className="placement-settings__field-container placement-settings__field-container--offset-s">
-                <Input name={key} label={props.label} value={props.default}/>
+                <Input onChange={this.props.onPlacementEdit} name={key} label={props.label} value={this.props.placement[key]}/>
               </div>
             );
           case 'boolean':
             return (
               <div key={key} className="placement-settings__field-container placement-settings__field-container--offset-s">
-                <Checkbox name={key} label={props.label} checked={props.default}/>
+                <Checkbox onChange={this.props.onPlacementEdit} name={key} label={props.label} checked={this.props.placement[key]}/>
               </div>
             );
           case 'select':
           case 'list':
             return (
               <div key={key} className="placement-settings__field-container placement-settings__field-container--offset-s">
-                <InputDropdown name={key} label={props.label} defaultValue={props.default || props.options[0]} items={props.options}/>
+                <InputDropdown onChange={this.props.onPlacementEdit} name={key} label={props.label} value={this.props.placement[key]} items={props.options}/>
               </div>
             );
           default:
