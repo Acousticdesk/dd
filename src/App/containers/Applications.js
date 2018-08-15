@@ -148,8 +148,6 @@ class ApplicationsContainer extends Component {
         subheader={
           <SubHeader onCreateAppClick={this.showApplicationModal}/>
         }
-        appsList={this.getAppsList()}
-        showApplicationModal={this.showApplicationModal}
         placementEdit={
           <PlacementEdit
             settings={this.state.settings}
@@ -157,6 +155,8 @@ class ApplicationsContainer extends Component {
             selectedAppIntegration={this.getAppById(this.state.selectedApp) && this.getAppById(this.state.selectedApp).integration}
             selectedPlacement={this.state.selectedPlacement}/>
         }
+        appsList={this.getAppsList()}
+        showApplicationModal={this.showApplicationModal}
         createAppModal={this.state.isCreatingNewApp ? <NewApp close={this.hideApplicationModal}/> : null}
       />
     );
@@ -165,7 +165,7 @@ class ApplicationsContainer extends Component {
 
 ApplicationsContainer.propTypes = {
   user: PropTypes.object.isRequired,
-  onUserLoggedOut: PropTypes.func.isRequired
+  onUserLoggedOut: PropTypes.func.isRequired,
 };
 
 export default ApplicationsContainer;
