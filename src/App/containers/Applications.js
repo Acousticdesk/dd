@@ -1,15 +1,14 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
-import config from '../../../config';
 import API from '../../API';
 import Applications from '../pages/Applications';
 import PlacementEdit from '../components/PlacementEdit';
-import Application from '../components/Application';
 import Sidenav from '../components/Sidenav';
 import Header from '../components/Header';
 import SubHeader from '../components/SubHeader';
 import NewApp from '../components/NewApp';
+import ApplicationsList from '../components/ApplicationsList';
 
 import open from '../../../static/assets/icons/open.svg';
 import dashboard from '../../../static/assets/icons/dashboard.svg';
@@ -17,6 +16,7 @@ import apps from '../../../static/assets/icons/apps.svg';
 import reports from '../../../static/assets/icons/reports.svg';
 import downloads from '../../../static/assets/icons/downloads.svg';
 import documentation from '../../../static/assets/icons/documentation.svg';
+import config from '../../../config';
 
 const iconsArray = [
   {open},
@@ -61,29 +61,6 @@ class ApplicationsContainer extends Component {
     API.request('getSettings')
       .then(res => res.json())
       .then(settings => this.setState({settings: settings.adUnitTypes}));
-  }
-
-  getAppsList() {
-    if (!this.state.apps) {
-      return null;
-    }
-
-    return Object.entries(this.state.apps).map((a) => {
-      const id = window.parseInt(a[0]);
-      const props = a[1];
-      return (
-        <Application
-          deletePlacement={this.deletePlacement}
-          selectPlacement={this.selectPlacement}
-          selectedPlacement={this.state.selectedPlacement}
-          app={props}
-          key={id}
-          isSelected={this.state.selectedApp === id}
-          select={this.selectApp}
-          zendesk={config.zendesk}
-        />
-      );
-    })
   }
 
   getAppById(id) {
@@ -155,7 +132,16 @@ class ApplicationsContainer extends Component {
             selectedAppIntegration={this.getAppById(this.state.selectedApp) && this.getAppById(this.state.selectedApp).integration}
             selectedPlacement={this.state.selectedPlacement}/>
         }
-        appsList={this.getAppsList()}
+        appsList={
+          <ApplicationsList
+            apps={this.state.apps}
+            deletePlacement={this.deletePlacement}
+            selectPlacement={this.selectPlacement}
+            selectedPlacement={this.state.selectedPlacement}
+            selectedApp={this.state.selectedApp}
+            select={this.selectApp}
+            zendesk={config.zendesk}/>
+        }
         showApplicationModal={this.showApplicationModal}
         createAppModal={this.state.isCreatingNewApp ? <NewApp close={this.hideApplicationModal}/> : null}
       />

@@ -37,7 +37,7 @@ const Applications = ({
 };
 
 Applications.propTypes = {
-  appsList: PropTypes.arrayOf(PropTypes.element),
+  appsList: PropTypes.element,
   placementEdit: PropTypes.element,
   createAppModal: PropTypes.element,
   sidenav: PropTypes.element,
