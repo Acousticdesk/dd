@@ -9,23 +9,7 @@ import Header from '../components/Header';
 import SubHeader from '../components/SubHeader';
 import NewApp from '../components/NewApp';
 import ApplicationsList from '../components/ApplicationsList';
-
-import open from '../../../static/assets/icons/open.svg';
-import dashboard from '../../../static/assets/icons/dashboard.svg';
-import apps from '../../../static/assets/icons/apps.svg';
-import reports from '../../../static/assets/icons/reports.svg';
-import downloads from '../../../static/assets/icons/downloads.svg';
-import documentation from '../../../static/assets/icons/documentation.svg';
 import config from '../../../config';
-
-const iconsArray = [
-  {open},
-  {dashboard},
-  {apps},
-  {reports},
-  {downloads},
-  {documentation}
-];
 
 class ApplicationsContainer extends Component {
   state = {
@@ -96,28 +80,11 @@ class ApplicationsContainer extends Component {
     });
   };
 
-  getSideNavLinks() {
-    return iconsArray.map((icon, index) => {
-      const iconName = Object.keys(icon)[0];
-      const IconComponent = icon[iconName];
-      const activeClass = iconName === 'apps' ? 'active' : '';
-      return (
-        <li key={index} className={`item item--${iconName} ${activeClass}`}>
-          <a
-            href="javascript:void(0);"
-          >
-            <IconComponent/>
-          </a>
-        </li>
-      );
-    })
-  }
-
   render() {
     return (
       <Applications
         sidenav={
-          <Sidenav sideNavLinks={this.getSideNavLinks()}/>
+          <Sidenav/>
         }
         header={
           <Header userEmail={this.props.user.email} onUserLoggedOut={this.props.onUserLoggedOut}/>
