@@ -6,6 +6,10 @@ import API from '../../API';
 import Applications from '../pages/Applications';
 import PlacementEdit from '../components/PlacementEdit';
 import Application from '../components/Application';
+import Sidenav from '../components/Sidenav';
+import Header from '../components/Header';
+import SubHeader from '../components/SubHeader';
+import NewApp from '../components/NewApp';
 
 import open from '../../../static/assets/icons/open.svg';
 import dashboard from '../../../static/assets/icons/dashboard.svg';
@@ -135,9 +139,15 @@ class ApplicationsContainer extends Component {
   render() {
     return (
       <Applications
-        sideNavLinks={this.getSideNavLinks()}
-        userEmail={this.props.user.email}
-        onUserLoggedOut={this.props.onUserLoggedOut}
+        sidenav={
+          <Sidenav sideNavLinks={this.getSideNavLinks()}/>
+        }
+        header={
+          <Header userEmail={this.props.user.email} onUserLoggedOut={this.props.onUserLoggedOut}/>
+        }
+        subheader={
+          <SubHeader onCreateAppClick={this.showApplicationModal}/>
+        }
         appsList={this.getAppsList()}
         showApplicationModal={this.showApplicationModal}
         placementEdit={
