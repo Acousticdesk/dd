@@ -36,8 +36,8 @@ UserDropdownToggle.propTypes = {
 const UserDropdown = ({email, onItemClick}) => {
   return (
     <Dropdown
-      Items={<UserDropdownItems/>}
-      Toggle={<UserDropdownToggle email={email}/>}
+      items={<UserDropdownItems/>}
+      toggle={<UserDropdownToggle email={email}/>}
       onItemClick={onItemClick}
     />
   );

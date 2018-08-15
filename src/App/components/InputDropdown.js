@@ -38,8 +38,8 @@ class InputDropdown extends Component {
     return (
       <Dropdown
         fullWidth
-        Toggle={<InputDropdownToggle value={this.state.value || this.props.value} label={this.props.label}/>}
-        items={this.props.items}
+        toggle={<InputDropdownToggle value={this.state.value || this.props.value} label={this.props.label}/>}
+        options={this.props.options}
         onItemClick={this.onItemClick}
       />
     );
@@ -47,7 +47,7 @@ class InputDropdown extends Component {
 }
 
 InputDropdown.propTypes = {
-  items: PropTypes.array,
+  options: PropTypes.array,
   defaultValue: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number

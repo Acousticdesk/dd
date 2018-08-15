@@ -47,8 +47,8 @@ EditDropdownToggle.propTypes = {
 const EditDropdown = ({onItemClick}) => {
   return (
     <Dropdown
-      Items={<EditDropdownItems/>}
-      Toggle={<EditDropdownToggle/>}
+      items={<EditDropdownItems/>}
+      toggle={<EditDropdownToggle/>}
       onItemClick={onItemClick}
     />
   );

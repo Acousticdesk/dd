@@ -39,7 +39,7 @@ class PlacementSettings extends Component {
           case 'list':
             return (
               <div key={key} className="placement-settings__field-container placement-settings__field-container--offset-s">
-                <InputDropdown onChange={this.props.onPlacementEdit} name={key} label={props.label} value={this.props.placement[key]} items={props.options}/>
+                <InputDropdown onChange={this.props.onPlacementEdit} name={key} label={props.label} value={this.props.placement[key]} options={props.options}/>
               </div>
             );
           default:
@@ -70,7 +70,7 @@ class PlacementSettings extends Component {
               name="adUnitType"
               label="Ad Unit"
               value={this.props.placement.adUnitType}
-              items={adUnitTypes}
+              options={adUnitTypes}
               onChange={this.props.onPlacementEdit}
             />
           </div>
@@ -80,7 +80,7 @@ class PlacementSettings extends Component {
               name="status"
               label="Status"
               value={this.props.placement.status}
-              items={['active', 'inactive']}
+              options={['active', 'inactive']}
               onChange={this.props.onPlacementEdit}
             />
           </div>
