@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import LoginContainer from './containers/Login';
-import Applications from './pages/Applications';
+import Login from './containers/Login';
+import Applications from './containers/Applications';
 import API from '../API';
 
 export default class App extends Component {
@@ -44,7 +44,7 @@ export default class App extends Component {
         <Switch>
           <Route path="/" exact render={props => {
             return !this.state.loginData ?
-              <LoginContainer
+              <Login
                 {...props}
                 isRememberMe={this.state.rememberMe}
                 onUserLoggedIn={this.onUserLoggedIn}
