@@ -31,7 +31,7 @@ class Applications extends Component {
     selectedPlacement: null,
     isCreatingNewApp: false,
     apps: null,
-    settings: null
+    settings: null,
   };
 
   selectApp = (id) => () => {
@@ -96,12 +96,21 @@ class Applications extends Component {
 
   selectPlacement = (id) => () => {
     this.setState({
-      selectedPlacement: id
+      selectedPlacement: this.getPlacementById(this.state.selectedApp, id)
     });
   };
 
   deletePlacement = (id) => {
 
+  };
+
+  onPlacementEdit = (field) => {
+    this.setState({
+      selectedPlacement: {
+        ...this.state.selectedPlacement,
+        [field.name]: field.value
+      }
+    });
   };
 
   render() {
@@ -171,8 +180,9 @@ class Applications extends Component {
               <div className="l-applications-main__side-bar">
                 <PlacementEdit
                   settings={this.state.settings}
+                  onPlacementEdit={this.onPlacementEdit}
                   selectedAppIntegration={this.getAppById(this.state.selectedApp) && this.getAppById(this.state.selectedApp).integration}
-                  selectedPlacement={this.getPlacementById(this.state.selectedApp, this.state.selectedPlacement)}/>
+                  selectedPlacement={this.state.selectedPlacement}/>
               </div>
             </div>
           </div>

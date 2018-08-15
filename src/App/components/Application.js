@@ -57,7 +57,7 @@ Application.propTypes = {
   isSelected: PropTypes.bool.isRequired,
   select: PropTypes.func.isRequired,
   selectPlacement: PropTypes.func.isRequired,
-  selectedPlacement: PropTypes.string,
+  selectedPlacement: PropTypes.object,
   zendesk: PropTypes.object.isRequired,
   deletePlacement: PropTypes.func.isRequired
 };

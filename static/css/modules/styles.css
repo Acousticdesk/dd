@@ -617,6 +617,7 @@
 }
 
 .placement-settings {
+    position: relative;
     padding: 2rem 2.3rem;
     height: 100%;
     display: flex;
@@ -751,6 +752,42 @@
     align-items: center;
     padding: 0 2.5rem;
 }
+
+@keyframes loader {
+    from {
+        transform: rotate(0deg) translate(-50%, -50%);
+    }
+    to {
+        transform: rotate(360deg) translate(-50%, -50%);
+    }
+}
+
+.loader {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.7);
+    z-index: 10;
+}
+
+    .loader:after {
+        content: ' ';
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transform-origin: left top;
+        border-radius: 50%;
+        border-left: 3px solid #ccc;
+        border-right: 3px solid #ccc;
+        border-bottom: 3px solid #ccc;
+        border-top: 3px solid #7f7fd5;
+        animation: loader 1s linear forwards infinite;
+    }
 
 .color--grey {
     color: #666;

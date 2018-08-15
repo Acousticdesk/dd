@@ -30,26 +30,15 @@ class InputDropdown extends Component {
       value: evt.currentTarget.dataset.value
     });
     if (this.props.onChange && typeof this.props.onChange === 'function') {
-      this.props.onChange(this.state.value);
+      this.props.onChange({name: this.props.name, value: evt.currentTarget.dataset.value});
     }
   };
-
-  static getDerivedStateFromProps(props, state) {
-    if (state.value) {
-      return state;
-    }
-
-    return {
-      ...state,
-      value: props.defaultValue
-    }
-  }
 
   render() {
     return (
       <Dropdown
         fullWidth
-        Toggle={<InputDropdownToggle value={this.state.value} label={this.props.label}/>}
+        Toggle={<InputDropdownToggle value={this.state.value || this.props.value} label={this.props.label}/>}
         items={this.props.items}
         onItemClick={this.onItemClick}
       />
@@ -62,7 +51,8 @@ InputDropdown.propTypes = {
   defaultValue: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number
-  ])
+  ]),
+  name: PropTypes.string.isRequired
 };
 
 export default InputDropdown;

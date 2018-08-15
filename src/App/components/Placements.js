@@ -21,7 +21,7 @@ const Placements = ({placements, selectPlacement, selectedPlacement, zendesk, ap
         {Object.entries(placements).map(([id, placement]) => {
           return (
             <div key={id} className="placements__item-col">
-              <div onClick={selectPlacement(id)} className={`card-selectable placement-card isCursorPointer ${selectedPlacement === id ? 'selected' : ''}`}>
+              <div onClick={selectPlacement(id)} className={`card-selectable placement-card isCursorPointer ${selectedPlacement === placement ? 'selected' : ''}`}>
                 <div className="placement-card__content">
                   <div className="placement-summary text-center text--smaller">
                     <div className="placement-summary__icon-container">
@@ -71,7 +71,7 @@ const Placements = ({placements, selectPlacement, selectedPlacement, zendesk, ap
 Placements.propTypes = {
   placements: PropTypes.object.isRequired,
   selectPlacement: PropTypes.func.isRequired,
-  selectedPlacement: PropTypes.string,
+  selectedPlacement: PropTypes.object,
   zendesk: PropTypes.object.isRequired,
   appIntegration: PropTypes.string.isRequired,
   deletePlacement: PropTypes.func.isRequired,
