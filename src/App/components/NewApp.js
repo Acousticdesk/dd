@@ -4,11 +4,16 @@ import PlatformSelect from './PlatformSelect';
 import Radio from './Radio';
 import Checkbox from './Checkbox';
 import Input from './Input';
+import API from '../../API';
 
 const stopPropagation = (e) => e.stopPropagation();
 
 class NewApp extends Component {
-  state = {switch: false, checked: null};
+  state = {status: 'active', integration: null, platform: null};
+
+  create = () => {
+    API.request('createApp', 'POST', this.state);
+  };
 
   render() {
     const {close} = this.props;
@@ -24,31 +29,38 @@ class NewApp extends Component {
             </div>
           </header>
           <div className="modal__content">
-            <PlatformSelect/>
+            <PlatformSelect onChange={(platform) => this.setState({platform})}/>
             <div className="integration-select">
               <div className="integration-select__legend-container">
                 <div className="text-lead color--dark">Select Integration</div>
               </div>
               <div className="integration-select__options-container">
                 <Radio onChange={() => {
-                  this.setState({checked: 'SDK'})
-                }} checked={this.state.checked === 'SDK'} label="SDK"/>
-                <Radio onChange={() => this.setState({checked: 'JS Tag'})} checked={this.state.checked === 'JS Tag'} label="JS Tag"/>
-                <Radio onChange={() => this.setState({checked: 'API'})} checked={this.state.checked === 'API'} label="API"/>
+                  this.setState({integration: 'SDK'})
+                }} checked={this.state.integration === 'SDK'} label="SDK"/>
+                <Radio onChange={() => this.setState({integration: 'JS Tag'})} checked={this.state.integration === 'JS Tag'} label="JS Tag"/>
+                <Radio onChange={() => this.setState({integration: 'API'})} checked={this.state.integration === 'API'} label="API"/>
               </div>
             </div>
             <div className="application-info">
               <div className="application-info__field-container">
-                <Input label="Package Name" defaultValue="supercell.clashofclans.com"/>
+                <Input
+                  onChange={({value}) => this.setState({package: value})}
+                  name="name"
+                  label="Package Name"
+                />
               </div>
               <div className="application-info__field-container">
-                <Input label="Application Name" defaultValue="my new app1"/>
+                <Input
+                  onChange={({value}) => this.setState({name: value})}
+                  label="Application Name"
+                />
               </div>
               <div className="application-info__field-container">
                 <p className="input__label color--grey-lighter">Status</p>
                 <Checkbox
-                  onChange={() => this.setState(state => ({switch: !state.switch}))}
-                  checked={this.state.switch}
+                  onChange={() => this.setState(state => ({status: state.status === 'active' ? 'inactive' : 'active'}))}
+                  checked={this.state.status === 'active'}
                   label="Active"
                   theSwitch
                 />
@@ -61,7 +73,7 @@ class NewApp extends Component {
                 <button onClick={close} className="btn btn--height-l btn-regular color--grey">Cancel</button>
               </div>
               <div className="create-app-form__footer-col">
-                <button className="btn btn--height-l btn-chetwod-blue btn-border-chetwod-extra-blue">Save</button>
+                <button onClick={this.create} className="btn btn--height-l btn-chetwod-blue btn-border-chetwod-extra-blue">Save</button>
               </div>
             </div>
           </div>
