@@ -48,13 +48,13 @@ class LoginContainer extends Component {
 
   render() {
     return (
-      <Login>
+      <Login loginForm={
         <LoginForm
           onTryLogin={this.tryLogin}
           onUserType={this.onUserType}
           onRememberMeChange={this.props.onRememberMeChange}
           isRememberMe={this.props.isRememberMe}/>
-      </Login>
+      }/>
     );
   }
 }

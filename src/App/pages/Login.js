@@ -1,16 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const Login = ({children}) => {
+const Login = ({loginForm}) => {
   return (
     <div className="l-page">
       <div className="l-container">
         <div className="wave"/>
         <div className="l-login">
-          {children}
+          {loginForm}
         </div>
       </div>
     </div>
   );
+};
+
+Login.propTypes = {
+  loginForm: PropTypes.element
 };
 
 export default Login;
