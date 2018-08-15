@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import appPlaceholder from '../../../static/assets/applications-page/app-placeholder.png';
-
 import EditDropdown from '../components/EditDropdown';
 import Placements from '../components/Placements';
+import AppleIcon from '../../../static/assets/icons/apple.svg';
 
 const Application = ({app, isSelected, select, selectPlacement, selectedPlacement, zendesk, deletePlacement}) => {
   return (
@@ -19,7 +18,11 @@ const Application = ({app, isSelected, select, selectPlacement, selectedPlacemen
         <div className="application-card__info-container">
           <div className="app-info">
             <p className="app-info__title-row">
-              <i className="icon icon-regular icon--small material-icons">android</i>
+              {
+                app.integration === 'ios'
+                  ? <AppleIcon width="16px" height="16px" className="platform-select__icon"/>
+                  : <i className="platform-select__icon icon icon--small icon-regular material-icons">android</i>
+              }
               <span className="app-info__title text-lead color--dark">{app.name} ({app.id})</span>
             </p>
             <div className="app-info__info-row">

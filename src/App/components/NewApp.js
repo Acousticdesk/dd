@@ -5,8 +5,6 @@ import Radio from './Radio';
 import Checkbox from './Checkbox';
 import Input from './Input';
 
-let isSwitchActive = false;
-
 const stopPropagation = (e) => e.stopPropagation();
 
 class NewApp extends Component {
