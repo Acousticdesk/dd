@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import PasswordInputPresentation from './Presentation';
+
 class PasswordInput extends Component {
   state = {
     isPasswordVisible: false
@@ -15,19 +17,12 @@ class PasswordInput extends Component {
     const passwordVisibleClass = this.state.isPasswordVisible ? 'input__icon--password-visible' : '';
 
     return (
-      <div className="password-input input">
-        <input
-          name="password"
-          onChange={this.props.onChange}
-          type={inputType}
-          className="input__field"
-          placeholder="Password it like a boss"/>
-        <i
-          onClick={this.onShowPassword}
-          className={`input__icon ${passwordVisibleClass} material-icons isCursorPointer`}>
-          remove_red_eye
-        </i>
-      </div>
+      <PasswordInputPresentation
+        onChange={this.onChange}
+        type={inputType}
+        passwordVisibleClass={passwordVisibleClass}
+        onClick={this.onShowPassword}
+      />
     );
   }
 }

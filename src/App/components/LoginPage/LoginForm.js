@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import logo from '../../../../static/assets/logo/@1x.png';
 
-import PasswordInput from '../Form/PasswordInput';
+import PasswordInput from '../Form/PasswordInput/index';
 import Checkbox from '../Form/Checkbox';
 
 const LoginForm = ({onTryLogin, onUserType, onRememberMeChange, isRememberMe}) => {
