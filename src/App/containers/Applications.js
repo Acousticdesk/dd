@@ -7,7 +7,7 @@ import PlacementEdit from '../components/PlacementEdit';
 import Sidenav from '../components/Sidenav';
 import Header from '../components/Header';
 import SubHeader from '../components/SubHeader';
-import NewApp from '../components/NewApp';
+import NewApp from '../components/NewApp/index';
 import ApplicationsList from '../components/ApplicationsList';
 import config from '../../../config';
 
