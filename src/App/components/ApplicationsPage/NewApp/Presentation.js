@@ -5,6 +5,18 @@ import PlatformSelect from './PlatformSelect';
 
 const stopPropagation = (e) => e.stopPropagation();
 
+const RenderLoader = ({loader}) => {
+  if (!loader) {
+    return null;
+  }
+
+  return <div className="loader"/>;
+};
+
+RenderLoader.propTypes = {
+  loader: PropTypes.bool
+};
+
 const NewAppPresentation =
   ({
      close,
@@ -12,11 +24,13 @@ const NewAppPresentation =
      onPlatformChange,
      createApp,
      statusField,
-     appTextFields
+     appTextFields,
+     loader
    }) => {
     return (
       <div onClick={close} className="modal">
         <div onClick={stopPropagation} className="modal__ui">
+          <RenderLoader loader={loader}/>
           <header className="modal__header">
             <div className="modal__title-container">
               <h4 className="heading heading--med heading--thin">New Application</h4>
@@ -59,7 +73,8 @@ NewAppPresentation.propTypes = {
   createApp: PropTypes.func,
   integrationSelect: PropTypes.element,
   statusField: PropTypes.element,
-  appTextFields: PropTypes.element
+  appTextFields: PropTypes.element,
+  loader: PropTypes.bool
 };
 
 export default NewAppPresentation;

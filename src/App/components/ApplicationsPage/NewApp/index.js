@@ -8,10 +8,14 @@ import IntegrationSelect from './IntegrationSelect';
 import StatusField from './StatusField';
 
 class NewApp extends Component {
-  state = {status: 'active', integration: null, platform: null};
+  state = {status: 'active', integration: null, platform: null, loader: false};
 
   create = () => {
-    API.request('createApp', 'POST', this.state);
+    this.setState({loader: true});
+    API.request('createApp', 'POST', this.state)
+      .then(() => {
+        window.setTimeout(() => this.setState({loader: false}), 1000)
+      });
   };
 
   onPlatformChange = (platform) => {
@@ -66,6 +70,7 @@ class NewApp extends Component {
         appTextFields={this.getAppTextFields()}
         statusField={this.getStatusField()}
         createApp={this.create}
+        loader={this.state.loader}
       />
     );
   }
