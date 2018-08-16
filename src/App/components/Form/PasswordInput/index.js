@@ -21,7 +21,7 @@ class PasswordInput extends Component {
         onChange={this.onChange}
         type={inputType}
         passwordVisibleClass={passwordVisibleClass}
-        onClick={this.onShowPassword}
+        onShowPassword={this.onShowPassword}
       />
     );
   }
