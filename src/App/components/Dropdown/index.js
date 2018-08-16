@@ -22,13 +22,13 @@ class Dropdown extends Component {
     document.body.removeEventListener('click', this.close);
   }
 
-  onClick = () => {
+  onToggle = () => {
     this.setState(prevState => {
       return {isActive: !prevState.isActive};
     });
   };
 
-  onItemClick = (evt) => {
+  onOptionClick = (evt) => {
     if (this.props.onItemClick) {
       this.props.onItemClick(evt);
     }
@@ -48,10 +48,10 @@ class Dropdown extends Component {
         activeClass={activeClass}
         fullWidthClass={fullWidthClass}
         toggle={
-          <Toggle toggle={this.props.toggle} onClick={this.onClick}/>
+          <Toggle toggle={this.props.toggle} onClick={this.onToggle}/>
         }
         items={
-          <Items onItemClick={this.onItemClick} items={this.props.items} options={this.props.options}/>
+          <Items onItemClick={this.onOptionClick} items={this.props.items} options={this.props.options}/>
         }
       />
     );
