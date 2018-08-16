@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Checkbox from '../Form/Checkbox';
 import Input from '../Form/Input';
-import InputDropdown from '../Form/Select';
+import InputDropdown from '../Form/Select/index';
 import API from '../../../API';
 
 class PlacementSettings extends Component {

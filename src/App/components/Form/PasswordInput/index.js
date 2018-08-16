@@ -18,7 +18,7 @@ class PasswordInput extends Component {
 
     return (
       <PasswordInputPresentation
-        onChange={this.onChange}
+        onChange={this.props.onChange}
         type={inputType}
         passwordVisibleClass={passwordVisibleClass}
         onShowPassword={this.onShowPassword}

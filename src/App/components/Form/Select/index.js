@@ -1,25 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Dropdown from '../Dropdown/index';
-import Input from './Input';
-
-const InputDropdownCaret = () => {
-  return (
-    <i
-      className="input__icon material-icons">
-      arrow_drop_down
-    </i>
-  );
-};
-
-const InputDropdownToggle = ({label, ...props}) => {
-  return (
-    <React.Fragment>
-      <Input {...props} label={label} extraClass="isCursorPointer" readOnly icon={<InputDropdownCaret/>}/>
-    </React.Fragment>
-  );
-};
+import Dropdown from '../../Dropdown/index';
+import Toggle from './Toggle';
 
 class InputDropdown extends Component {
   state = {value: null};
@@ -38,7 +21,7 @@ class InputDropdown extends Component {
     return (
       <Dropdown
         fullWidth
-        toggle={<InputDropdownToggle value={this.state.value || this.props.value} label={this.props.label}/>}
+        toggle={<Toggle value={this.state.value || this.props.value} label={this.props.label}/>}
         options={this.props.options}
         onItemClick={this.onItemClick}
       />
