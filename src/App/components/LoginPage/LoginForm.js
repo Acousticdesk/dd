@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import logo from '../../../static/assets/logo/@1x.png';
+import logo from '../../../../static/assets/logo/@1x.png';
 
-import PasswordInput from '../components/PasswordInput';
-import Checkbox from '../components/Checkbox';
+import PasswordInput from '../Form/PasswordInput';
+import Checkbox from '../Form/Checkbox';
 
 const LoginForm = ({onTryLogin, onUserType, onRememberMeChange, isRememberMe}) => {
   return (

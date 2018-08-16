@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Application from './Application';
+import Application from './Application/index';
 
 const createList = (apps, props) => {
   if (!apps) {

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Login from '../pages/Login';
 import API from '../../API';
-import LoginForm from '../components/LoginForm';
+import LoginForm from '../components/LoginPage/LoginForm';
 
 const loginRequest = (email, password) => {
   return API.request('auth', 'POST', {email, password})

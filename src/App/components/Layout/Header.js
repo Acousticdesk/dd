@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import logo from '../../../static/assets/logo/@1x.png';
+import logo from '../../../../static/assets/logo/@1x.png';
 
-import UserDropdown from '../components/UserDropdown';
+import UserDropdown from './UserDropdown';
 
 const Header = ({userEmail, onUserLoggedOut}) => {
   return (

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Checkbox from './Checkbox';
-import Input from './Input';
-import InputDropdown from './InputDropdown';
-import API from '../../API';
+import Checkbox from '../Form/Checkbox';
+import Input from '../Form/Input';
+import InputDropdown from '../Form/Select';
+import API from '../../../API';
 
 class PlacementSettings extends Component {
   state = {loader: false};

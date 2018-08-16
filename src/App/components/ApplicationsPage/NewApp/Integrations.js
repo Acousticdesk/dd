@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Radio from '../Radio';
+import Radio from '../../Form/Radio';
 
 const Integrations = ({integrations, onIntegrationChange, integrationSelected}) => {
   return integrations.map((i) => (

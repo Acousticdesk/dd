@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import IntegrateIcon from '../../../static/assets/icons/integrate.svg';
+import IntegrateIcon from '../../../../static/assets/icons/integrate.svg';
 
 const Placements = ({placements, selectPlacement, selectedPlacement, zendesk, appIntegration, deletePlacement, settings}) => {
   return (

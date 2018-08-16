@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import AppleIcon from '../../../static/assets/icons/apple.svg';
+import AppleIcon from '../../../../../static/assets/icons/apple.svg';
 
 class PlatformSelect extends Component {
   platforms = ['iOS', 'Android'];

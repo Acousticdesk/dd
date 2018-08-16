@@ -3,12 +3,12 @@ import React, { Component } from 'react';
 
 import API from '../../API';
 import Applications from '../pages/Applications';
-import PlacementEdit from '../components/PlacementEdit';
-import Sidenav from '../components/Sidenav';
-import Header from '../components/Header';
-import SubHeader from '../components/SubHeader';
-import NewApp from '../components/NewApp/index';
-import ApplicationsList from '../components/ApplicationsList';
+import PlacementEdit from '../components/ApplicationsPage/PlacementEdit';
+import Sidenav from '../components/Layout/Sidenav';
+import Header from '../components/Layout/Header';
+import SubHeader from '../components/Layout/SubHeader';
+import NewApp from '../components/ApplicationsPage/NewApp/index';
+import ApplicationsList from '../components/ApplicationsPage/ApplicationsList';
 import config from '../../../config';
 
 class ApplicationsContainer extends Component {

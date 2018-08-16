@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Dropdown from './Dropdown';
+import Dropdown from '../Dropdown/index';
 
 const UserDropdownItems = ({onItemClick}) => {
   return (
