@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Dropdown from '../Dropdown';
 
 const DropdownPresentational = ({activeClass, fullWidthClass, items, toggle}) => {
   return (
