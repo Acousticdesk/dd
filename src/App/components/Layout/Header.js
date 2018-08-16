@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import logo from '../../../../static/assets/logo/@1x.png';
 
-import UserDropdown from './UserDropdown';
+import UserDropdown from './UserDropdown/index';
 
 const Header = ({userEmail, onUserLoggedOut}) => {
   return (
