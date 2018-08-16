@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import EditDropdown from '../EditDropdown';
+import EditDropdown from '../EditDropdown/index';
 import Placements from '../Placements';
 import AppIcon from './AppIcon';
 import IntegrationIcon from './IntegrationIcon';

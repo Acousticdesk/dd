@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Dropdown from '../Dropdown/index';
-
-const EditDropdownItems = ({onItemClick}) => {
+const Items = ({onItemClick}) => {
   return (
     <React.Fragment>
       <li onClick={onItemClick} className="option-item isCursorPointer">
@@ -28,34 +26,8 @@ const EditDropdownItems = ({onItemClick}) => {
   );
 };
 
-EditDropdownItems.propTypes = {
+Items.propTypes = {
   onItemClick: PropTypes.func
 };
 
-const EditDropdownToggle = ({onClick}) => {
-  return (
-    <a onClick={onClick} href="javascript:void(0);" className="options-btn">
-      <i className="icon icon-regular material-icons isCursorPointer">more_vert</i>
-    </a>
-  );
-};
-
-EditDropdownToggle.propTypes = {
-  onClick: PropTypes.func
-};
-
-const EditDropdown = ({onItemClick}) => {
-  return (
-    <Dropdown
-      items={<EditDropdownItems/>}
-      toggle={<EditDropdownToggle/>}
-      onItemClick={onItemClick}
-    />
-  );
-};
-
-EditDropdown.propTypes = {
-  onItemClick: PropTypes.func.isRequired
-};
-
-export default EditDropdown;
+export default Items;
