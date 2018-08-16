@@ -624,6 +624,10 @@
     flex-direction: column;
 }
 
+    .placement-settings__loader-container {
+        position: relative;
+    }
+
     .placement-settings__fields-container {
         flex-grow: 1;
     }

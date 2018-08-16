@@ -49,50 +49,52 @@ class PlacementSettings extends Component {
     : null;
     return (
       <div className="placement-settings">
-        { this.state.loader ? <div className="loader"/> : null }
-        <div className="placement-settings__fields-container">
-          <div className="placement-settings__heading-container">
-            <h4 className="heading heading--small heading--thin heading--no-offset">
-              {this.props.placement.name} ({this.props.placement.id})
-            </h4>
-          </div>
+        <div className="placement-settings__loader-container">
+          {this.state.loader ? <div className="loader"/> : null}
+          <div className="placement-settings__fields-container">
+            <div className="placement-settings__heading-container">
+              <h4 className="heading heading--small heading--thin heading--no-offset">
+                {this.props.placement.name} ({this.props.placement.id})
+              </h4>
+            </div>
 
-          <div className="placement-settings__field-container">
-            <Input
-              name="name"
-              label="Name"
-              value={this.props.placement.name}
-              onChange={this.props.onPlacementEdit}/>
-          </div>
+            <div className="placement-settings__field-container">
+              <Input
+                name="name"
+                label="Name"
+                value={this.props.placement.name}
+                onChange={this.props.onPlacementEdit}/>
+            </div>
 
-          <div className="placement-settings__field-container">
-            <InputDropdown
-              name="adUnitType"
-              label="Ad Unit"
-              value={this.props.placement.adUnitType}
-              options={adUnitTypes}
-              onChange={this.props.onPlacementEdit}
-            />
-          </div>
+            <div className="placement-settings__field-container">
+              <InputDropdown
+                name="adUnitType"
+                label="Ad Unit"
+                value={this.props.placement.adUnitType}
+                options={adUnitTypes}
+                onChange={this.props.onPlacementEdit}
+              />
+            </div>
 
-          <div className="placement-settings__field-container">
-            <InputDropdown
-              name="status"
-              label="Status"
-              value={this.props.placement.status}
-              options={['active', 'inactive']}
-              onChange={this.props.onPlacementEdit}
-            />
-          </div>
+            <div className="placement-settings__field-container">
+              <InputDropdown
+                name="status"
+                label="Status"
+                value={this.props.placement.status}
+                options={['active', 'inactive']}
+                onChange={this.props.onPlacementEdit}
+              />
+            </div>
 
-          {extraFields}
-        </div>
-        <div className="placement-settings__cta-container">
-          <button
-            onClick={this.save}
-            className="btn btn--height-l btn--full-width btn-chetwod-blue btn-border-chetwod-extra-blue">
-            Save
-          </button>
+            {extraFields}
+          </div>
+          <div className="placement-settings__cta-container">
+            <button
+              onClick={this.save}
+              className="btn btn--height-l btn--full-width btn-chetwod-blue btn-border-chetwod-extra-blue">
+              Save
+            </button>
+          </div>
         </div>
       </div>
     );
