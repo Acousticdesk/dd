@@ -35,11 +35,11 @@ class NewApp extends Component {
                 <div className="text-lead color--dark">Select Integration</div>
               </div>
               <div className="integration-select__options-container">
-                <Radio onChange={() => {
+                <Radio name="integration" onChange={() => {
                   this.setState({integration: 'SDK'})
                 }} checked={this.state.integration === 'SDK'} label="SDK"/>
-                <Radio onChange={() => this.setState({integration: 'JS Tag'})} checked={this.state.integration === 'JS Tag'} label="JS Tag"/>
-                <Radio onChange={() => this.setState({integration: 'API'})} checked={this.state.integration === 'API'} label="API"/>
+                <Radio name="integration" onChange={() => this.setState({integration: 'JS Tag'})} checked={this.state.integration === 'JS Tag'} label="JS Tag"/>
+                <Radio name="integration" onChange={() => this.setState({integration: 'API'})} checked={this.state.integration === 'API'} label="API"/>
               </div>
             </div>
             <div className="application-info">
