@@ -6,9 +6,7 @@ import Caret from './Caret';
 
 const Toggle = ({label, ...props}) => {
   return (
-    <React.Fragment>
-      <Input {...props} label={label} extraClass="isCursorPointer" readOnly icon={<Caret/>}/>
-    </React.Fragment>
+    <Input {...props} label={label} extraClass="isCursorPointer" readOnly icon={<Caret/>}/>
   );
 };
 
