@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import EditDropdown from '../EditDropdown/index';
-import Placements from '../Placements';
+import Placements from '../Placements/index';
 import AppIcon from './AppIcon';
 import IntegrationIcon from './IntegrationIcon';
 import RenderPlacements from './RenderPlacements';
