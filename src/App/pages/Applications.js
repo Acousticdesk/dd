@@ -11,7 +11,7 @@ const Applications = ({
   }) => {
   return (
     <React.Fragment>
-      <div className="l-applications">
+      <div className="l-page">
         <div>
           {sidenav}
         </div>

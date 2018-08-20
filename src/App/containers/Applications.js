@@ -84,7 +84,7 @@ class ApplicationsContainer extends Component {
     return (
       <Applications
         sidenav={
-          <Sidenav/>
+          <Sidenav activeOne={'apps'}/>
         }
         header={
           <Header userEmail={this.props.user.email} onUserLoggedOut={this.props.onUserLoggedOut}/>

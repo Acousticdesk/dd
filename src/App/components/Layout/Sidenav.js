@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import open from '../../../../static/assets/icons/open.svg';
 import dashboard from '../../../../static/assets/icons/dashboard.svg';
@@ -16,11 +17,11 @@ const iconsArray = [
   {documentation}
 ];
 
-const createLinks = () => {
+const createLinks = (activeOne) => {
   return iconsArray.map((icon, index) => {
     const iconName = Object.keys(icon)[0];
     const IconComponent = icon[iconName];
-    const activeClass = iconName === 'apps' ? 'active' : '';
+    const activeClass = iconName === activeOne ? 'active' : '';
     return (
       <li key={index} className={`item item--${iconName} ${activeClass}`}>
         <a href="javascript:void(0);">
@@ -31,14 +32,18 @@ const createLinks = () => {
   })
 };
 
-const Sidenav = () => {
+const Sidenav = ({activeOne}) => {
   return (
     <nav className="sidenav">
       <ul>
-        {createLinks()}
+        {createLinks(activeOne)}
       </ul>
     </nav>
   );
+};
+
+Sidenav.propTypes = {
+  activeOne: PropTypes.string
 };
 
 export default Sidenav;

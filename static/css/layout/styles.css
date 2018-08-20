@@ -85,7 +85,7 @@
     line-height: 64px;
 }
 
-.l-applications {
+.l-page {
     display: grid;
     grid-template: 100% / 56px auto;
     height: 100vh;

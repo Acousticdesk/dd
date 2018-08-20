@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Login from './containers/Login';
 import Applications from './containers/Applications';
+import Dashboard from './containers/Dashboard';
 import API from '../API';
 
 export default class App extends Component {
@@ -38,24 +39,48 @@ export default class App extends Component {
     );
   };
 
+  getUserEmail() {
+    if (!this.state.loginData || !this.state.loginData.user) {
+      return null;
+    }
+
+    return this.state.loginData.user.email;
+  }
+
+  renderApplicationsPage(props) {
+    return (
+      <Applications
+        {...props}
+        user={this.state.loginData.user}
+        onUserLoggedOut={this.onUserLoggedOut}
+      />
+    );
+  }
+
   render() {
+    if (!this.state.loginData) {
+      return (
+        <Login
+          isRememberMe={this.state.rememberMe}
+          onUserLoggedIn={this.onUserLoggedIn}
+          onRememberMeChange={this.onRememberMeChange}
+        />
+      );
+    }
+
     return (
       <React.Fragment>
         <Switch>
-          <Route path="/" exact render={props => {
-            return !this.state.loginData ?
-              <Login
-                {...props}
-                isRememberMe={this.state.rememberMe}
-                onUserLoggedIn={this.onUserLoggedIn}
-                onRememberMeChange={this.onRememberMeChange}/> :
-              <Applications {...props} user={this.state.loginData.user} onUserLoggedOut={this.onUserLoggedOut}/>
-          }}/>
+          <Route path="/" exact render={props => (
+            this.renderApplicationsPage(props)
+          )}/>
           <Route path="/applications" render={props => (
-            <Applications
-              {...props}
-              user={this.state.loginData.user}
-              onUserLoggedOut={this.onUserLoggedOut}/>
+            this.renderApplicationsPage(props)
+          )}/>
+          <Route path="/dashboard" render={props => (
+            <Dashboard
+              onUserLoggedOut={this.onUserLoggedOut}
+              userEmail={this.getUserEmail()}/>
           )}/>
         </Switch>
       </React.Fragment>
