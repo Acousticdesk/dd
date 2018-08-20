@@ -125,10 +125,15 @@
     display: grid;
     flex: 1;
     padding: 0 20px;
+    grid-column-gap: 17px;
     grid-template: 100% / 41rem auto;
     min-height: 0;
 }
 
 .l-dashboard__container-left {
     overflow-y: auto;
+}
+
+.l-dashboard__container-right {
+    display: flex;
 }
