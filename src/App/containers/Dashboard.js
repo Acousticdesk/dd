@@ -13,7 +13,13 @@ class DashboardContainer extends Component {
   getHeader() {
     const {onUserLoggedOut, userEmail} = this.props;
 
-    return <Header onUserLoggedOut={onUserLoggedOut} userEmail={userEmail}/>
+    return (
+      <Header
+        pageTitle="Dashboard"
+        onUserLoggedOut={onUserLoggedOut}
+        userEmail={userEmail}
+      />
+    );
   }
 
   render() {

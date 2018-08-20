@@ -10,7 +10,6 @@ const Dashboard = ({sidenav, header}) => {
 
       <div>
         {header}
-        Hello from Dashboard!
       </div>
     </div>
   );

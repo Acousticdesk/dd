@@ -11,6 +11,10 @@ import NewApp from '../components/ApplicationsPage/NewApp/index';
 import ApplicationsList from '../components/ApplicationsPage/ApplicationsList';
 import config from '../../../config';
 
+const getSidenav = () => (
+  <Sidenav activeOne={'apps'}/>
+);
+
 class ApplicationsContainer extends Component {
   state = {
     selectedApp: null,
@@ -80,37 +84,62 @@ class ApplicationsContainer extends Component {
     });
   };
 
+  getHeader() {
+    return (
+      <Header
+        userEmail={this.props.user.email}
+        onUserLoggedOut={this.props.onUserLoggedOut}
+        pageTitle="Applications"
+      />
+    );
+  };
+
+  getSubheader() {
+    return (
+      <SubHeader onCreateAppClick={this.showApplicationModal}/>
+    );
+  }
+
+  getPlacementEdit() {
+    const selectedApp = this.getAppById(this.state.selectedApp);
+    const selectedAppIntegration = selectedApp && selectedApp.integration;
+
+    return (
+      <PlacementEdit
+        settings={this.state.settings}
+        onPlacementEdit={this.onPlacementEdit}
+        selectedAppIntegration={selectedAppIntegration}
+        selectedPlacement={this.state.selectedPlacement}/>
+    );
+  }
+
+  getAppsList() {
+    return (
+      <ApplicationsList
+        apps={this.state.apps}
+        deletePlacement={this.deletePlacement}
+        selectPlacement={this.selectPlacement}
+        selectedPlacement={this.state.selectedPlacement}
+        selectedApp={this.state.selectedApp}
+        select={this.selectApp}
+        zendesk={config.zendesk}/>
+    );
+  }
+
+  getAppModal() {
+    return this.state.isCreatingNewApp ? <NewApp close={this.hideApplicationModal}/> : null;
+  }
+
   render() {
     return (
       <Applications
-        sidenav={
-          <Sidenav activeOne={'apps'}/>
-        }
-        header={
-          <Header userEmail={this.props.user.email} onUserLoggedOut={this.props.onUserLoggedOut}/>
-        }
-        subheader={
-          <SubHeader onCreateAppClick={this.showApplicationModal}/>
-        }
-        placementEdit={
-          <PlacementEdit
-            settings={this.state.settings}
-            onPlacementEdit={this.onPlacementEdit}
-            selectedAppIntegration={this.getAppById(this.state.selectedApp) && this.getAppById(this.state.selectedApp).integration}
-            selectedPlacement={this.state.selectedPlacement}/>
-        }
-        appsList={
-          <ApplicationsList
-            apps={this.state.apps}
-            deletePlacement={this.deletePlacement}
-            selectPlacement={this.selectPlacement}
-            selectedPlacement={this.state.selectedPlacement}
-            selectedApp={this.state.selectedApp}
-            select={this.selectApp}
-            zendesk={config.zendesk}/>
-        }
+        sidenav={getSidenav()}
+        header={this.getHeader()}
+        subheader={this.getSubheader()}
+        placementEdit={this.getPlacementEdit()}
+        appsList={this.getAppsList()}
         showApplicationModal={this.showApplicationModal}
-        createAppModal={this.state.isCreatingNewApp ? <NewApp close={this.hideApplicationModal}/> : null}
+        createAppModal={this.getAppModal()}
       />
     );
   }
