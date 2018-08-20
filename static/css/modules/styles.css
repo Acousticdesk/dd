@@ -2,6 +2,10 @@
     text-align: center;
 }
 
+.text-left {
+    text-align: left;
+}
+
 .text--smaller {
     font-size: 11px;
 }
@@ -12,6 +16,10 @@
 
 .text-bold {
     font-weight: 700;
+}
+
+.text-regular-weight {
+    font-weight: 400;
 }
 
 .text-lead {
@@ -791,6 +799,119 @@
         border-bottom: 3px solid #ccc;
         border-top: 3px solid #7f7fd5;
         animation: loader 1s linear forwards infinite;
+    }
+
+.dashboard-header {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr) 75px;
+    grid-gap: 10px;
+}
+
+    .dashboard-header__filters-container {
+        padding-left: 10px;
+    }
+
+    .dashboard-header__metric {
+        height: 10rem;
+        background: #fff;
+    }
+
+.metric-card {
+    border-left: 7px solid #cdcdcd;
+    padding-left: 5rem;
+}
+
+    .metric-card__title-container {
+        padding: 15px 0 5px;
+    }
+
+    .metric-card--active {
+        border-left: 7px solid #7f7fd5;
+    }
+
+.currency {
+    margin-left: 5px;
+}
+
+.metric-filters {
+    width: calc(100% + 20px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.svg-icon path {
+    fill: #aaa;
+}
+
+.apps-metrics {
+    background: #fff;
+}
+
+.apps-metrics-head {
+    height: 47px;
+    display: flex;
+    padding: 0 16px;
+    align-items: center;
+}
+
+    .apps-metrics-head__controls-container {
+
+    }
+
+    .apps-metrics-head__icon-container {
+        margin-left: auto;
+    }
+
+.apps-metrics-body {
+    overflow-x: auto;
+}
+
+    .apps-metrics-body__table {
+        width: 100%;
+        border-collapse: collapse;
+        color: #666;
+    }
+
+        .apps-metrics-body__table th,
+        .apps-metrics-body__table td {
+            padding: 0 1.8rem;
+            text-align: left;
+            border-bottom: 1px solid #eeeef3;
+        }
+
+        .apps-metrics-body__table th {
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        .apps-metrics-body__table th {
+            border-top: 1px solid #eeeef3;
+        }
+
+        .apps-metrics-body__table td {
+            padding-top: 1.8rem;
+            padding-bottom: 1.8rem;
+        }
+
+        .apps-metrics-body__table th:not(:last-of-type),
+        .apps-metrics-body__table td:not(:last-of-type) {
+            border-right: 1px solid #eeeef3;
+        }
+
+.app-badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .app-badge__icon-container {
+        margin-right: 2rem;
+    }
+
+    .app-badge__integration {
+        margin-bottom: 1rem;
     }
 
 .color--grey {

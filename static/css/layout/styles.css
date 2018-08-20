@@ -34,7 +34,7 @@
 .l-header {
     display: flex;
     background: #fff;
-    height: 56px;
+    min-height: 56px;
     border-bottom: 1px solid #edeef2;
 }
 
@@ -89,6 +89,7 @@
     display: grid;
     grid-template: 100% / 56px auto;
     height: 100vh;
+    background: #f4f5f9;
 }
 
 .l-applications-main {
@@ -114,3 +115,20 @@
     .l-applications-list__row {
         margin-bottom: .8rem;
     }
+
+.l-dashboard__main {
+    display: flex;
+    flex-direction: column;
+}
+
+.l-dashboard__page-content {
+    display: grid;
+    flex: 1;
+    padding: 0 20px;
+    grid-template: 100% / 41rem auto;
+    min-height: 0;
+}
+
+.l-dashboard__container-left {
+    overflow-y: auto;
+}
