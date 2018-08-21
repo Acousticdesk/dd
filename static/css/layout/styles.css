@@ -15,10 +15,15 @@
     padding-bottom: 10rem;
 }
 
-    @media screen and (min-width: 1024px) {
-        .l-login {
-            background: url('../../assets/login-page/team/@1x.png') right top no-repeat;
-            background-size: contain;
+.l-login__background {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+    @media screen and (max-width: 1023px) {
+        .l-login__background {
+            display: none;
         }
     }
 
