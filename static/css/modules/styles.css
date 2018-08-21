@@ -6,8 +6,12 @@
     text-align: left;
 }
 
+.text--small {
+    font-size: 1.2rem;
+}
+
 .text--smaller {
-    font-size: 11px;
+    font-size: 1.1rem;
 }
 
 .text-underline {
@@ -187,7 +191,6 @@
 
 .input {
     position: relative;
-    border-bottom: 1px solid #ccc;
 }
 
     .input__field {
@@ -196,6 +199,11 @@
         color: #999;
         font-size: 1.4rem;
         padding: 1.3rem 0;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .input__field--error {
+        border-bottom: 1px solid #ff2866;
     }
 
     .input__field::placeholder {
@@ -214,15 +222,17 @@
         margin-bottom: 14px;
     }
 
+    .input__error {
+        color: #ff2866;
+        margin-top: 11px;
+    }
+
     .password-input--visible .input__icon {
         color: #7f7fd5;
     }
 
-    .password-input--visible {
-        border-bottom: 1px solid #7f7fd5;
-    }
-
     .password-input--visible .input__field {
+        border-bottom: 1px solid #7f7fd5;
         color: #7f7fd5;
     }
 

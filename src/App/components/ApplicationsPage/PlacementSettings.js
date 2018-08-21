@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Checkbox from '../Form/Checkbox';
-import Input from '../Form/Input';
+import Input from '../Form/Input/index';
 import InputDropdown from '../Form/Select/index';
 import API from '../../../API';
 

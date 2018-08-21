@@ -50,6 +50,7 @@ class LoginContainer extends Component {
     return (
       <Login loginForm={
         <LoginForm
+          onSubmit={(values) => console.log(values)}
           onTryLogin={this.tryLogin}
           onUserType={this.onUserType}
           onRememberMeChange={this.props.onRememberMeChange}

@@ -1,22 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Field, reduxForm } from 'redux-form';
 
 import logo from '../../../../static/assets/logo/@1x.png';
 
 import PasswordInput from '../Form/PasswordInput/index';
 import Checkbox from '../Form/Checkbox';
-import Input from '../Form/Input';
+import Input from '../Form/Input/index';
 
-const LoginForm = ({onTryLogin, onUserType, onRememberMeChange, isRememberMe}) => {
+import validate from '../../validations/login';
+
+const LoginForm = ({onTryLogin, onUserType, onRememberMeChange, isRememberMe, handleSubmit}) => {
   return (
-    <form className="login-form">
+    <form className="login-form" onSubmit={handleSubmit}>
       <div className="login-form__logo-container text-center">
         <img src={logo}/>
       </div>
       <h4 className="heading developers-platform-heading heading--large text-center">Developers Platform</h4>
       <div className="form">
         <div className="login-form__field-container">
-          <Input name="email" onChange={onUserType} type="text" placeholder="Your Email goes here"/>
+          <Field
+            name="email"
+            onChange={onUserType}
+            type="text"
+            placeholder="Your Email goes here"
+            component={Input}
+          />
         </div>
         <div className="login-form__field-container--offset-small">
           <PasswordInput onChange={onUserType}/>
@@ -49,4 +58,7 @@ LoginForm.propTypes = {
   isRememberMe: PropTypes.bool.isRequired
 };
 
-export default LoginForm;
+export default reduxForm({
+  form: 'login',
+  validate
+})(LoginForm);

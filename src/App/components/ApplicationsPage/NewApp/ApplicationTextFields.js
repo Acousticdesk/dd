@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Input from '../../Form/Input';
+import Input from '../../Form/Input/index';
 
 const ApplicationTextFields = ({onAppTextFieldChange}) => {
   return (
