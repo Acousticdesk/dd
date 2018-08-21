@@ -1,8 +1,3 @@
-.l-page {
-    background: #fff;
-    position: relative;
-}
-
 .l-container {
     width: 1190px;
     padding: 0 24px;
@@ -86,11 +81,22 @@
 }
 
 .l-page {
-    display: grid;
-    grid-template: 100% / 56px auto;
-    height: 100vh;
-    background: #f4f5f9;
+    position: relative;
 }
+
+    .l-page--with-sidebar {
+        display: grid;
+        grid-template: 100% / 56px auto;
+        height: 100vh;
+    }
+
+    .l-page-bg-whisper {
+        background: #f4f5f9;
+    }
+
+    .l-page-bg-white {
+        background: #fff;
+    }
 
 .l-applications-main {
     display: grid;

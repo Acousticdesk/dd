@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Login = ({loginForm}) => {
   return (
-    <div className="l-page">
+    <div className="l-page l-page-bg-white">
       <div className="l-container">
         <div className="wave"/>
         <div className="l-login">

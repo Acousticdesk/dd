@@ -11,7 +11,7 @@ const Applications = ({
   }) => {
   return (
     <React.Fragment>
-      <div className="l-page">
+      <div className="l-page l-page--with-sidebar l-page-bg-whisper">
         <div>
           {sidenav}
         </div>

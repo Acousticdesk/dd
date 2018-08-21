@@ -6,7 +6,7 @@ import appIcon from '../../../static/assets/applications-page/app-placeholder.pn
 
 const Dashboard = ({sidenav, header}) => {
   return (
-    <div className="l-page">
+    <div className="l-page l-page--with-sidebar l-page-bg-whisper">
       <div>
         {sidenav}
       </div>
