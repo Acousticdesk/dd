@@ -22,6 +22,7 @@ class PasswordInput extends Component {
         type={inputType}
         passwordVisibleClass={passwordVisibleClass}
         onShowPassword={this.onShowPassword}
+        isPasswordVisible={this.state.isPasswordVisible}
       />
     );
   }

@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Presentation = ({onChange, type, passwordVisibleClass, onShowPassword}) => {
+import Icon from './Icon';
+
+const Presentation = ({onChange, type, passwordVisibleClass, onShowPassword, isPasswordVisible}) => {
   return (
     <div className={`password-input input ${passwordVisibleClass}`}>
       <input
@@ -10,11 +12,7 @@ const Presentation = ({onChange, type, passwordVisibleClass, onShowPassword}) =>
         type={type}
         className="input__field"
         placeholder="Password it like a boss"/>
-      <i
-        onClick={onShowPassword}
-        className="input__icon material-icons isCursorPointer">
-        remove_red_eye
-      </i>
+      <Icon onShowPassword={onShowPassword} isPasswordVisible={isPasswordVisible}/>
     </div>
   );
 };
@@ -23,7 +21,8 @@ Presentation.propTypes = {
   onChange: PropTypes.func,
   type: PropTypes.string,
   passwordVisibleClass: PropTypes.string,
-  onShowPassword: PropTypes.func
+  onShowPassword: PropTypes.func,
+  isPasswordVisible: PropTypes.bool
 };
 
 export default Presentation;
