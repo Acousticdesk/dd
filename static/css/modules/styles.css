@@ -187,12 +187,12 @@
 
 .input {
     position: relative;
+    border-bottom: 1px solid #ccc;
 }
 
     .input__field {
         display: block;
         width: 100%;
-        border-bottom: 1px solid #ccc;
         color: #999;
         font-size: 1.4rem;
         padding: 1.3rem 0;
@@ -214,7 +214,15 @@
         margin-bottom: 14px;
     }
 
-    .password-input .input__icon--password-visible {
+    .password-input--visible .input__icon {
+        color: #7f7fd5;
+    }
+
+    .password-input--visible {
+        border-bottom: 1px solid #7f7fd5;
+    }
+
+    .password-input--visible .input__field {
         color: #7f7fd5;
     }
 

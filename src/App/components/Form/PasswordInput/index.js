@@ -14,7 +14,7 @@ class PasswordInput extends Component {
 
   render () {
     const inputType = !this.state.isPasswordVisible ? 'password' : 'text';
-    const passwordVisibleClass = this.state.isPasswordVisible ? 'input__icon--password-visible' : '';
+    const passwordVisibleClass = this.state.isPasswordVisible ? 'password-input--visible' : '';
 
     return (
       <PasswordInputPresentation

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Presentation = ({onChange, type, passwordVisibleClass, onShowPassword}) => {
   return (
-    <div className="password-input input">
+    <div className={`password-input input ${passwordVisibleClass}`}>
       <input
         name="password"
         onChange={onChange}
@@ -12,7 +12,7 @@ const Presentation = ({onChange, type, passwordVisibleClass, onShowPassword}) =>
         placeholder="Password it like a boss"/>
       <i
         onClick={onShowPassword}
-        className={`input__icon ${passwordVisibleClass} material-icons isCursorPointer`}>
+        className="input__icon material-icons isCursorPointer">
         remove_red_eye
       </i>
     </div>
