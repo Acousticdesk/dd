@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Login from './containers/Login';
 import Applications from './containers/Applications';
@@ -69,7 +69,7 @@ export default class App extends Component {
     }
 
     return (
-      <React.Fragment>
+      <Router>
         <Switch>
           <Route path="/" exact render={props => (
             this.renderApplicationsPage(props)
@@ -83,7 +83,7 @@ export default class App extends Component {
               userEmail={this.getUserEmail()}/>
           )}/>
         </Switch>
-      </React.Fragment>
+      </Router>
     );
   }
 };

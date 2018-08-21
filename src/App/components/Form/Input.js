@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Input = ({value, name, label, icon, extraClass, onChange, onClick, ...props}) => {
+const Input = ({value, name, label, icon, extraClass, onChange, onClick, input, ...props}) => {
   const theOnChange = (evt) => {
     onChange({name, value: evt.currentTarget.value});
   };
@@ -9,12 +9,12 @@ const Input = ({value, name, label, icon, extraClass, onChange, onClick, ...prop
     <div className="input">
       <label className="input__label color--grey-lighter">{label}</label>
       <input
+        {...input}
         {...props}
         autoComplete="off"
         type="text"
         name={name}
         className={`input__field color--dark ${extraClass}`}
-        placeholder=""
         value={value}
         onChange={theOnChange}
         onClick={onClick}

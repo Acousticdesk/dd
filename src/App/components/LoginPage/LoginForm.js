@@ -5,24 +5,18 @@ import logo from '../../../../static/assets/logo/@1x.png';
 
 import PasswordInput from '../Form/PasswordInput/index';
 import Checkbox from '../Form/Checkbox';
+import Input from '../Form/Input';
 
 const LoginForm = ({onTryLogin, onUserType, onRememberMeChange, isRememberMe}) => {
   return (
-    <div className="login-form">
+    <form className="login-form">
       <div className="login-form__logo-container text-center">
         <img src={logo}/>
       </div>
       <h4 className="heading developers-platform-heading heading--large text-center">Developers Platform</h4>
       <div className="form">
         <div className="login-form__field-container">
-          <div className="input">
-            <input
-              name="email"
-              onChange={onUserType}
-              type="text"
-              className="input__field"
-              placeholder="Your Email goes here"/>
-          </div>
+          <Input name="email" onChange={onUserType} type="text" placeholder="Your Email goes here"/>
         </div>
         <div className="login-form__field-container--offset-small">
           <PasswordInput onChange={onUserType}/>
@@ -44,7 +38,7 @@ const LoginForm = ({onTryLogin, onUserType, onRememberMeChange, isRememberMe}) =
           To register <a href="javascript:void(0);" className="text-underline isCursorPointer">click here</a>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 
