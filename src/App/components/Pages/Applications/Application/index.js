@@ -10,7 +10,7 @@ import RenderPlacements from './RenderPlacements';
 const Application = ({app, isSelected, select, selectPlacement, selectedPlacement, zendesk, deletePlacement}) => {
   return (
     <li className="l-applications-list__row">
-      <div className="application-card">
+      <div onClick={select(app.id)} className="application-card isCursorPointer">
         <div className="application-card__icon-container text-center">
           <AppIcon url={app.iconUrl}/>
         </div>
@@ -33,7 +33,7 @@ const Application = ({app, isSelected, select, selectPlacement, selectedPlacemen
           </div>
         </div>
         <div className="application-card__options-container">
-          <EditDropdown onItemClick={select(app.id)}/>
+          <EditDropdown/>
         </div>
       </div>
       <RenderPlacements

@@ -16,7 +16,7 @@ const EditDropdown = ({onItemClick}) => {
 };
 
 EditDropdown.propTypes = {
-  onItemClick: PropTypes.func.isRequired
+  onItemClick: PropTypes.func
 };
 
 export default EditDropdown;

@@ -2,8 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Toggle = ({onClick}) => {
+  const onToggleClick = (e) => {
+    e.persist();
+    e.stopPropagation();
+    onClick && onClick(e);
+  };
+
   return (
-    <a onClick={onClick} href="javascript:void(0);" className="options-btn">
+    <a onClick={onToggleClick} href="javascript:void(0);" className="options-btn">
       <i className="icon icon-regular material-icons isCursorPointer">more_vert</i>
     </a>
   );
