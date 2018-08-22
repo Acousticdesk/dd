@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Dropdown from '../../Dropdown/index';
+import Dropdown from '../../Layout/Dropdown/index';
 import Toggle from './Toggle';
 
 class InputDropdown extends Component {

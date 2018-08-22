@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 
-import logo from '../../../../static/assets/logo/@1x.png';
+import logo from '../../../../../static/assets/logo/@1x.png';
 
-import PasswordInput from '../Form/PasswordInput/index';
-import Checkbox from '../Form/Checkbox';
-import Input from '../Form/Input/index';
+import PasswordInput from '../../Form/PasswordInput/index';
+import Checkbox from '../../Form/Checkbox';
+import Input from '../../Form/Input/index';
 
-import validate from '../../validations/login';
+import validate from '../../../validations/login';
 
 const LoginForm = ({onRememberMeChange, isRememberMe, handleSubmit}) => {
   return (
