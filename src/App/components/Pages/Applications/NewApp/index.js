@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import API from '../../../../API';
+import API from '../../../../../API';
 import NewAppPresentation from './Presentation/index';
 import ApplicationTextFields from './ApplicationTextFields';
 import IntegrationSelect from './IntegrationSelect';

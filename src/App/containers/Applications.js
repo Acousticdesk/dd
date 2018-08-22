@@ -2,14 +2,15 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import API from '../../API';
+import config from '../../../config';
 import Applications from '../pages/Applications';
-import PlacementEdit from '../components/ApplicationsPage/PlacementEdit';
+import PlacementEdit from '../components/Pages/Applications/PlacementEdit';
 import Sidenav from '../components/Layout/Sidenav';
 import Header from '../components/Layout/Header';
 import SubHeader from '../components/Layout/SubHeader';
-import NewApp from '../components/ApplicationsPage/NewApp/index';
-import ApplicationsList from '../components/ApplicationsPage/ApplicationsList';
-import config from '../../../config';
+import NewApp from '../components/Pages/Applications/NewApp';
+import ApplicationsList from '../components/Pages/Applications/ApplicationsList';
+import DeletePlacementModal from '../components/Pages/Applications/DeletePlacementModal';
 
 const getSidenav = () => (
   <Sidenav activeOne={'apps'}/>
@@ -130,6 +131,10 @@ class ApplicationsContainer extends Component {
     return this.state.isCreatingNewApp ? <NewApp close={this.hideApplicationModal}/> : null;
   }
 
+  getDeletePlacementModal() {
+    return <DeletePlacementModal close={() => console.log('should be closed')}/>
+  }
+
   render() {
     return (
       <Applications
@@ -140,6 +145,7 @@ class ApplicationsContainer extends Component {
         appsList={this.getAppsList()}
         showApplicationModal={this.showApplicationModal}
         createAppModal={this.getAppModal()}
+        deletePlacementModal={this.getDeletePlacementModal()}
       />
     );
   }

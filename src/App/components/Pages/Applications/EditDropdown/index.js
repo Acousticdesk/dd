@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Dropdown from '../../Dropdown/index';
+import Dropdown from '../../../Layout/Dropdown';
 import Items from './Items';
 import Toggle from './Toggle';
 

@@ -8,6 +8,7 @@ const Applications = ({
     sidenav,
     header,
     subheader,
+    deletePlacementModal
   }) => {
   return (
     <React.Fragment>
@@ -31,6 +32,7 @@ const Applications = ({
           </div>
         </div>
       </div>
+      {deletePlacementModal}
       {createAppModal}
     </React.Fragment>
   );
@@ -42,7 +44,8 @@ Applications.propTypes = {
   createAppModal: PropTypes.element,
   sidenav: PropTypes.element,
   header: PropTypes.element,
-  subheader: PropTypes.element
+  subheader: PropTypes.element,
+  deletePlacementModal: PropTypes.element,
 };
 
 export default Applications;

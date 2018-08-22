@@ -1,6 +1,6 @@
 import React from 'react';
 
-import NoAppsIcon from '../../../../static/assets/icons/no-apps.svg';
+import NoAppsIcon from '../../../../../static/assets/icons/no-apps.svg';
 
 export default () => {
   return (
