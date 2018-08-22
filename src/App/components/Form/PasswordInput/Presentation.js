@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Icon from './Icon';
 
 const Presentation = ({passwordVisibleClass, onShowPassword, isPasswordVisible, input, ...props}) => {
-  console.log(props.input);
   return (
     <div className={`password-input input ${passwordVisibleClass}`}>
       <input
