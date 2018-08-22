@@ -20,38 +20,25 @@ class NewApp extends Component {
       });
   };
 
-  onPlatformChange = (platform) => {
-    // this.setState({platform})
-  };
-
-  onStatusChange = () => {
-    // this.setState(state => ({
-    //   status: state.status === 'active' ? 'inactive' : 'active'
-    // }))
-  };
-
-  onAppTextFieldsChange = ({name, value}) => {
-    // this.setState({
-    //   [name]: value
-    // });
-  };
-
   render() {
     return (
       <NewAppPresentation
+        selectedPlatform={this.props.form.platform}
         close={this.props.close}
-        onPlatformChange={this.onPlatformChange}
-        integrationSelect={<IntegrationSelect
-          integrationSelected={this.props.form.integration}
-          availableIntegrations={['SDK', 'JS Tag', 'API']}
-        />}
         appTextFields={<ApplicationTextFields/>}
-        statusField={<StatusField
-          onStatusChange={this.onStatusChange}
-          isActiveStatus={this.props.form.status === 'active'}
-        />}
         loader={this.state.loader}
         onSubmit={this.onSubmit}
+        integrationSelect={
+          <IntegrationSelect
+            integrationSelected={this.props.form.integration}
+            availableIntegrations={['SDK', 'JS Tag', 'API']}
+          />
+        }
+        statusField={
+          <StatusField
+            isActiveStatus={this.props.form.status}
+          />
+        }
       />
     );
   }
@@ -63,7 +50,11 @@ NewApp.propTypes = {
 };
 
 const getFormValuesFromState = (state) => {
-  return {};
+  if (!state || !state.form || !state.form.newapp || !state.form.newapp.values) {
+    return {};
+  }
+
+  return state.form.newapp.values;
 };
 //
 const mapStateToProps = (state) => ({

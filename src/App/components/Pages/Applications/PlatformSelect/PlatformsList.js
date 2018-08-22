@@ -3,26 +3,23 @@ import PropTypes from 'prop-types';
 
 import PlatformPresentation from './PlatformPresentation';
 
-const PlatformsList = ({platforms, selected, onSelectPlatform}) => {
-  return (
-    platforms.map(p => {
-      const selectedClass = selected === p ? 'selected' : '';
-      return (
-        <PlatformPresentation
-          key={p}
-          platform={p}
-          selectedClass={selectedClass}
-          onSelectPlatform={onSelectPlatform}
-        />
-      );
-    })
-  );
+const platforms = ['iOS', 'Android'];
+
+const PlatformsList = ({selected}) => {
+  return platforms.map(p => {
+    const selectedClass = selected === p ? 'selected' : '';
+    return (
+      <PlatformPresentation
+        key={p}
+        platform={p}
+        selectedClass={selectedClass}
+      />
+    );
+  })
 };
 
 PlatformsList.propTypes = {
-  platforms: PropTypes.array,
   selected: PropTypes.string,
-  onSelectPlatform: PropTypes.func
 };
 
 export default PlatformsList;

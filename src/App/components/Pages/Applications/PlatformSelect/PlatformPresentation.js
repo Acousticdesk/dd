@@ -1,16 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Field } from 'redux-form';
 
 import PlatformIcon from './PlatformIcon';
 
-const PlatformPresentation = ({platform, selectedClass, onSelectPlatform}) => {
+const PlatformPresentation = ({platform, selectedClass}) => {
+  const id = `newapp_${platform}`;
+
   return (
     <div
       data-value={platform}
-      onClick={onSelectPlatform}
       className="platform-select__option-col"
     >
-      <div className={`
+      <Field hidden name="platform" component="input" type="radio" value={platform} id={id}/>
+      <label htmlFor={id} className={`
         card-selectable
         platform-select__option
         text-center
@@ -23,7 +26,7 @@ const PlatformPresentation = ({platform, selectedClass, onSelectPlatform}) => {
           </div>
           <p className="text-lead">{platform}</p>
         </div>
-      </div>
+      </label>
     </div>
   );
 };
@@ -31,7 +34,6 @@ const PlatformPresentation = ({platform, selectedClass, onSelectPlatform}) => {
 PlatformPresentation.propTypes = {
   platform: PropTypes.string,
   selectedClass: PropTypes.string,
-  onSelectPlatform: PropTypes.func
 };
 
 export default PlatformPresentation;

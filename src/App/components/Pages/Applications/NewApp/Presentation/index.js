@@ -8,11 +8,11 @@ const NewAppPresentation =
   ({
      close,
      integrationSelect,
-     onPlatformChange,
      statusField,
      appTextFields,
      loader,
-     onSubmit
+     onSubmit,
+     selectedPlatform
    }) => {
   return (
     <form onSubmit={onSubmit}>
@@ -21,9 +21,9 @@ const NewAppPresentation =
         close={close}
         content={
           <Content
+            selectedPlatform={selectedPlatform}
             loader={loader}
             statusField={statusField}
-            onPlatformChange={onPlatformChange}
             appTextFields={appTextFields}
             integrationSelect={integrationSelect}
           />
@@ -36,11 +36,11 @@ const NewAppPresentation =
 NewAppPresentation.propTypes = {
   close: PropTypes.func,
   loader: PropTypes.bool,
-  onPlatformChange: PropTypes.func,
   integrationSelect: PropTypes.element,
   statusField: PropTypes.element,
   appTextFields: PropTypes.element,
-  onSubmit: PropTypes.func
+  onSubmit: PropTypes.func,
+  selectedPlatform: PropTypes.string
 };
 
 export default NewAppPresentation;
