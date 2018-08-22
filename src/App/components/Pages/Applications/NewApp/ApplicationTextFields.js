@@ -1,31 +1,27 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { Field } from 'redux-form';
 
 import Input from '../../../Form/Input/index';
 
-const ApplicationTextFields = ({onAppTextFieldChange}) => {
+const ApplicationTextFields = () => {
   return (
     <React.Fragment>
       <div className="application-info__field-container">
-        <Input
-          onChange={onAppTextFieldChange}
+        <Field
           name="name"
           label="Package Name"
+          component={Input}
         />
       </div>
       <div className="application-info__field-container">
-        <Input
+        <Field
           name="package"
-          onChange={onAppTextFieldChange}
           label="Application Name"
+          component={Input}
         />
       </div>
     </React.Fragment>
   );
-};
-
-ApplicationTextFields.propTypes = {
-  onAppTextFieldChange: PropTypes.func
 };
 
 export default ApplicationTextFields;

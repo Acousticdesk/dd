@@ -19,6 +19,7 @@ const Modal = ({close, content, title, onSubmit, confirmText, header}) => {
             </div>
             <div className="create-app-form__footer-col">
               <button
+                type="submit"
                 onClick={onSubmit}
                 className="btn btn--height-l btn-chetwod-blue btn-border-chetwod-extra-blue"
               >

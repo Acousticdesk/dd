@@ -9,26 +9,27 @@ const NewAppPresentation =
      close,
      integrationSelect,
      onPlatformChange,
-     createApp,
      statusField,
      appTextFields,
-     loader
+     loader,
+     onSubmit
    }) => {
-  const RenderContent = () => (
-    <Content
-      loader={loader}
-      statusField={statusField}
-      onPlatformChange={onPlatformChange}
-      appTextFields={appTextFields}
-      integrationSelect={integrationSelect}/>
-  );
   return (
-    <Modal
-      onSubmit={createApp}
-      title="New Application"
-      close={close}
-      content={RenderContent()}
-    />
+    <form onSubmit={onSubmit}>
+      <Modal
+        title="New Application"
+        close={close}
+        content={
+          <Content
+            loader={loader}
+            statusField={statusField}
+            onPlatformChange={onPlatformChange}
+            appTextFields={appTextFields}
+            integrationSelect={integrationSelect}
+          />
+        }
+      />
+    </form>
   );
 };
 
@@ -39,6 +40,7 @@ NewAppPresentation.propTypes = {
   integrationSelect: PropTypes.element,
   statusField: PropTypes.element,
   appTextFields: PropTypes.element,
+  onSubmit: PropTypes.func
 };
 
 export default NewAppPresentation;
