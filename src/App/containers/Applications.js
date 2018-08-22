@@ -23,6 +23,7 @@ class ApplicationsContainer extends Component {
     isCreatingNewApp: false,
     apps: null,
     settings: null,
+    placementToDelete: null
   };
 
   selectApp = (id) => () => {
@@ -72,8 +73,10 @@ class ApplicationsContainer extends Component {
     });
   };
 
-  deletePlacement = (id) => {
-
+  deletePlacement = (id) => () => {
+    this.setState({
+      placementToDelete: id
+    });
   };
 
   onPlacementEdit = (field) => {
@@ -132,8 +135,21 @@ class ApplicationsContainer extends Component {
   }
 
   getDeletePlacementModal() {
-    return <DeletePlacementModal close={() => console.log('should be closed')}/>
+    return this.state.placementToDelete
+      ? (
+        <DeletePlacementModal
+          close={this.closeDeletePlacementModal}
+          placementId={this.state.placementToDelete}
+        />
+      )
+      : null;
   }
+
+  closeDeletePlacementModal = () => {
+    this.setState({
+      placementToDelete: null
+    });
+  };
 
   render() {
     return (

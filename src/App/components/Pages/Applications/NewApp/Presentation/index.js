@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Modal from '../../../../Layout/Modal';
-import Header from './Header';
 import Content from './Content';
-import Footer from './Footer';
 
 const NewAppPresentation =
   ({
@@ -16,7 +14,6 @@ const NewAppPresentation =
      appTextFields,
      loader
    }) => {
-  const RenderHeader = () => <Header close={close}/>;
   const RenderContent = () => (
     <Content
       loader={loader}
@@ -25,14 +22,12 @@ const NewAppPresentation =
       appTextFields={appTextFields}
       integrationSelect={integrationSelect}/>
   );
-  const RenderFooter = () => <Footer close={close} createApp={createApp}/>;
-
   return (
     <Modal
+      onSubmit={createApp}
+      title="New Application"
       close={close}
-      header={RenderHeader()}
       content={RenderContent()}
-      footer={RenderFooter()}
     />
   );
 };

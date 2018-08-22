@@ -6,7 +6,7 @@ import PlatformSelect from '../../PlatformSelect';
 
 const Content = ({onPlatformChange, integrationSelect, appTextFields, statusField, loader}) => {
   return (
-    <React.Fragment>
+    <div className="modal__content">
       <RenderLoader loader={loader}/>
       <PlatformSelect onChange={onPlatformChange}/>
       {integrationSelect}
@@ -14,7 +14,7 @@ const Content = ({onPlatformChange, integrationSelect, appTextFields, statusFiel
         {appTextFields}
         {statusField}
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 

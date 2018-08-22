@@ -38,7 +38,7 @@ const PlacementPresentation = ({selectPlacement, selectedClassName, placement, z
             </a>
           </div>
           <div className="placement-card__footer-col">
-            <button onClick={deletePlacement} className="btn btn-regular color--grey">
+            <button onClick={deletePlacement(placement.id)} className="btn btn-regular color--grey">
               <span className="btn__icon-container btn__icon-container--center">
                 <i className="icon icon-regular material-icons">delete</i>
               </span>
