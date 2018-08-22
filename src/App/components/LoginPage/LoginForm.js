@@ -10,7 +10,7 @@ import Input from '../Form/Input/index';
 
 import validate from '../../validations/login';
 
-const LoginForm = ({onTryLogin, onUserType, onRememberMeChange, isRememberMe, handleSubmit}) => {
+const LoginForm = ({onRememberMeChange, isRememberMe, handleSubmit}) => {
   return (
     <form className="login-form" onSubmit={handleSubmit}>
       <div className="login-form__logo-container text-center">
@@ -21,14 +21,13 @@ const LoginForm = ({onTryLogin, onUserType, onRememberMeChange, isRememberMe, ha
         <div className="login-form__field-container">
           <Field
             name="email"
-            onChange={onUserType}
             type="text"
             placeholder="Your Email goes here"
             component={Input}
           />
         </div>
         <div className="login-form__field-container--offset-small">
-          <Field name="password" onChange={onUserType} component={PasswordInput}/>
+          <Field name="password" component={PasswordInput}/>
         </div>
         <div className="login-form__fields-footer">
           <div className="login-optionals">
@@ -41,7 +40,7 @@ const LoginForm = ({onTryLogin, onUserType, onRememberMeChange, isRememberMe, ha
           </div>
         </div>
         <div className="login-form__cta-container text-center">
-          <button onClick={onTryLogin} className="btn login-btn">Log In</button>
+          <button type="submit" className="btn login-btn">Log In</button>
         </div>
         <div className="color--grey text-center">
           To register <a href="javascript:void(0);" className="text-underline isCursorPointer">click here</a>
@@ -52,8 +51,6 @@ const LoginForm = ({onTryLogin, onUserType, onRememberMeChange, isRememberMe, ha
 };
 
 LoginForm.propTypes = {
-  onTryLogin: PropTypes.func.isRequired,
-  onUserType: PropTypes.func.isRequired,
   onRememberMeChange: PropTypes.func.isRequired,
   isRememberMe: PropTypes.bool.isRequired
 };
