@@ -48,7 +48,11 @@ Input.propTypes = {
   onClick: PropTypes.func,
   extraClass: PropTypes.string,
   input: PropTypes.object,
-  meta: PropTypes.object,
+  meta: PropTypes.object.isRequired,
+};
+
+Input.defaultProps = {
+  meta: {}
 };
 
 export default Input;
