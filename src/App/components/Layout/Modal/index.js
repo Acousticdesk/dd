@@ -1,20 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import ConfirmText from './ConfirmText';
+import RenderHeader from './RenderHeader';
+
 const stopPropagation = (e) => e.stopPropagation();
 
-const Modal = ({close, content, title, onSubmit}) => {
+const Modal = ({close, content, title, onSubmit, confirmText, header}) => {
   return (
     <div onClick={close} className="modal">
       <div onClick={stopPropagation} className="modal__ui">
-        <header className="modal__header">
-          <div className="modal__title-container">
-            <h4 className="heading heading--med heading--thin">{title}</h4>
-          </div>
-          <div className="modal__close-container text-center">
-            <i onClick={close} className="icon icon-light material-icons isCursorPointer">close</i>
-          </div>
-        </header>
+        <RenderHeader header={header} title={title} close={close}/>
         {content}
         <div className="modal__footer">
           <div className="create-app-form__footer">
@@ -26,7 +22,7 @@ const Modal = ({close, content, title, onSubmit}) => {
                 onClick={onSubmit}
                 className="btn btn--height-l btn-chetwod-blue btn-border-chetwod-extra-blue"
               >
-                Save
+                <ConfirmText text={confirmText}/>
               </button>
             </div>
           </div>
@@ -40,7 +36,9 @@ Modal.propTypes = {
   close: PropTypes.func,
   content: PropTypes.element,
   title: PropTypes.string,
-  onSubmit: PropTypes.string,
+  onSubmit: PropTypes.func,
+  confirmText: PropTypes.string,
+  header: PropTypes.element
 };
 
 export default Modal;

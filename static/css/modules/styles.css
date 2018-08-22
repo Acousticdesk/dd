@@ -710,6 +710,11 @@
         border-bottom: 1px solid #edeef2;
     }
 
+        .modal__header--bordered {
+            border-top: 8px solid #7f7fd5;
+            height: 7.3rem;
+        }
+
     .modal__title__container {
 
     }

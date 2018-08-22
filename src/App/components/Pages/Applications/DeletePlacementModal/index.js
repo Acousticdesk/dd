@@ -1,24 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Modal from '../../Layout/Modal';
+import Modal from '../../../Layout/Modal/index';
+import Header from './Header';
 
 const Content = () => {
   return (
     <div className="modal__content modal__content--placement-delete">
       <p className="text--big placement-delete-text">
-        It looks like you made some changes to the placement.
+        It looks like you want to delete the placement.
         <br/>
-        Are you sure you want to exit without saving?
+        Are you sure?
       </p>
     </div>
   );
 };
 
 const DeletePlacementModal = ({close, placementId}) => {
+  const RenderHeader = () => <Header close={close} placementId={placementId}/>;
+
   return (
     <Modal
-      title={`Placement (${placementId})`}
+      header={<RenderHeader/>}
+      confirmText="Delete"
       close={close}
       content={<Content/>}/>
   );
