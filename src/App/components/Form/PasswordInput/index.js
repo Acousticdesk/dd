@@ -18,7 +18,7 @@ class PasswordInput extends Component {
 
     return (
       <PasswordInputPresentation
-        onChange={this.props.onChange}
+        {...this.props}
         type={inputType}
         passwordVisibleClass={passwordVisibleClass}
         onShowPassword={this.onShowPassword}
@@ -29,7 +29,8 @@ class PasswordInput extends Component {
 }
 
 PasswordInput.propTypes = {
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  input: PropTypes.object
 };
 
 export default PasswordInput;

@@ -28,7 +28,7 @@ const LoginForm = ({onTryLogin, onUserType, onRememberMeChange, isRememberMe, ha
           />
         </div>
         <div className="login-form__field-container--offset-small">
-          <PasswordInput onChange={onUserType}/>
+          <Field name="password" onChange={onUserType} component={PasswordInput}/>
         </div>
         <div className="login-form__fields-footer">
           <div className="login-optionals">

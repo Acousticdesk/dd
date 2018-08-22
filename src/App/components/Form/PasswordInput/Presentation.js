@@ -3,26 +3,26 @@ import PropTypes from 'prop-types';
 
 import Icon from './Icon';
 
-const Presentation = ({onChange, type, passwordVisibleClass, onShowPassword, isPasswordVisible}) => {
+const Presentation = ({passwordVisibleClass, onShowPassword, isPasswordVisible, input, ...props}) => {
+  console.log(props.input);
   return (
     <div className={`password-input input ${passwordVisibleClass}`}>
       <input
-        name="password"
-        onChange={onChange}
-        type={type}
+        {...input}
+        {...props}
         className="input__field"
-        placeholder="Password it like a boss"/>
+        placeholder="Password it like a boss"
+      />
       <Icon onShowPassword={onShowPassword} isPasswordVisible={isPasswordVisible}/>
     </div>
   );
 };
 
 Presentation.propTypes = {
-  onChange: PropTypes.func,
-  type: PropTypes.string,
   passwordVisibleClass: PropTypes.string,
   onShowPassword: PropTypes.func,
-  isPasswordVisible: PropTypes.bool
+  isPasswordVisible: PropTypes.bool,
+  input: PropTypes.object,
 };
 
 export default Presentation;

@@ -21,6 +21,7 @@ class LoginContainer extends Component {
 
   tryLogin = () => {
     const {email, password} = this.state;
+    console.log(email, password);
     loginRequest(email, password)
       .then(loginData => this.props.onUserLoggedIn(loginData))
       .catch((err) => {
