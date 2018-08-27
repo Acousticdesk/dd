@@ -39,7 +39,7 @@ Modal.propTypes = {
   title: PropTypes.string,
   onSubmit: PropTypes.func,
   confirmText: PropTypes.string,
-  header: PropTypes.element
+  header: PropTypes.element,
 };
 
 export default Modal;

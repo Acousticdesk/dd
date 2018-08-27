@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { reduxForm } from 'redux-form';
+import { reduxForm, SubmissionError } from 'redux-form';
 import { connect } from 'react-redux';
 
 import API from '../../../../../API';
@@ -33,27 +33,28 @@ class NewApp extends Component {
 
   render() {
     return (
-      <NewAppPresentation
-        close={this.props.close}
-        loader={this.state.loader}
-        onSubmit={this.onSubmit}
-        appTextFields={
-          <ApplicationTextFields/>
-        }
-        platformSelect={
-          <PlatformSelect defaultSelected={'iOS'} selected={this.props.form.platform}/>
-        }
-        integrationSelect={
-          <IntegrationSelect
-            defaultSelected={'SDK'}
-            integrationSelected={this.props.form.integration}
-            availableIntegrations={['SDK', 'JS Tag', 'API']}
-          />
-        }
-        statusField={
-          <StatusField/>
-        }
-      />
+      <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+        <NewAppPresentation
+          close={this.props.close}
+          loader={this.state.loader}
+          appTextFields={
+            <ApplicationTextFields/>
+          }
+          platformSelect={
+            <PlatformSelect defaultSelected={'iOS'} selected={this.props.form.platform}/>
+          }
+          integrationSelect={
+            <IntegrationSelect
+              defaultSelected={'SDK'}
+              integrationSelected={this.props.form.integration}
+              availableIntegrations={['SDK', 'JS Tag', 'API']}
+            />
+          }
+          statusField={
+            <StatusField/>
+          }
+        />
+      </form>
     );
   }
 }
