@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import RenderLoader from './RenderLoader';
-import PlatformSelect from '../../PlatformSelect';
 
-const Content = ({integrationSelect, appTextFields, statusField, loader, selectedPlatform}) => {
+const Content = ({integrationSelect, appTextFields, statusField, loader, platformSelect}) => {
   return (
     <div className="modal__content">
       <RenderLoader loader={loader}/>
-      <PlatformSelect selected={selectedPlatform}/>
+      {platformSelect}
       {integrationSelect}
       <div className="application-info">
         {appTextFields}
@@ -24,7 +23,9 @@ Content.propTypes = {
   statusField: PropTypes.element,
   appTextFields: PropTypes.element,
   loader: PropTypes.bool,
-  selectedPlatform: PropTypes.string
+  selectedPlatform: PropTypes.string,
+  defaultSelectedPlatform: PropTypes.string,
+  platformSelect: PropTypes.element,
 };
 
 export default Content;

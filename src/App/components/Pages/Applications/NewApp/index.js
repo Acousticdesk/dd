@@ -9,6 +9,7 @@ import NewAppPresentation from './Presentation/index';
 import ApplicationTextFields from './ApplicationTextFields';
 import IntegrationSelect from './IntegrationSelect';
 import StatusField from './StatusField';
+import PlatformSelect from '../PlatformSelect';
 
 class NewApp extends Component {
   state = {loader: false};
@@ -33,11 +34,13 @@ class NewApp extends Component {
   render() {
     return (
       <NewAppPresentation
-        selectedPlatform={this.props.form.platform}
         close={this.props.close}
         appTextFields={<ApplicationTextFields/>}
         loader={this.state.loader}
         onSubmit={this.onSubmit}
+        platformSelect={
+          <PlatformSelect defaultSelected={'iOS'} selected={this.props.form.platform}/>
+        }
         integrationSelect={
           <IntegrationSelect
             defaultSelected={'SDK'}

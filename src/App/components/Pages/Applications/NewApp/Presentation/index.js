@@ -12,7 +12,7 @@ const NewAppPresentation =
      appTextFields,
      loader,
      onSubmit,
-     selectedPlatform
+     platformSelect
    }) => {
   return (
     <form onSubmit={onSubmit}>
@@ -21,11 +21,11 @@ const NewAppPresentation =
         close={close}
         content={
           <Content
-            selectedPlatform={selectedPlatform}
             loader={loader}
             statusField={statusField}
             appTextFields={appTextFields}
             integrationSelect={integrationSelect}
+            platformSelect={platformSelect}
           />
         }
       />
@@ -40,7 +40,7 @@ NewAppPresentation.propTypes = {
   statusField: PropTypes.element,
   appTextFields: PropTypes.element,
   onSubmit: PropTypes.func,
-  selectedPlatform: PropTypes.string
+  platformSelect: PropTypes.element
 };
 
 export default NewAppPresentation;

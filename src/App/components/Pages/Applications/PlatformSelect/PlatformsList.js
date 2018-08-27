@@ -5,14 +5,27 @@ import PlatformPresentation from './PlatformPresentation';
 
 const platforms = ['iOS', 'Android'];
 
-const PlatformsList = ({selected}) => {
+const getSelectedClass = (condition) => {
+  return condition ? 'selected' : '';
+};
+
+const isSelectedClass = (selected, defaultSelected) => p => {
+  if (!selected) {
+    return getSelectedClass(defaultSelected === p);
+  }
+
+  return getSelectedClass(selected === p);
+};
+
+const PlatformsList = ({selected, defaultSelected}) => {
+  const selectedClass = isSelectedClass(selected, defaultSelected);
+
   return platforms.map(p => {
-    const selectedClass = selected === p ? 'selected' : '';
     return (
       <PlatformPresentation
         key={p}
         platform={p}
-        selectedClass={selectedClass}
+        selectedClass={selectedClass(p)}
       />
     );
   })
@@ -20,6 +33,7 @@ const PlatformsList = ({selected}) => {
 
 PlatformsList.propTypes = {
   selected: PropTypes.string,
+  defaultSelected: PropTypes.string,
 };
 
 export default PlatformsList;
