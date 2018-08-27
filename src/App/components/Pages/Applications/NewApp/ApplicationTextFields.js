@@ -8,14 +8,14 @@ const ApplicationTextFields = () => {
     <React.Fragment>
       <div className="application-info__field-container">
         <Field
-          name="name"
+          name="package"
           label="Package Name"
           component={Input}
         />
       </div>
       <div className="application-info__field-container">
         <Field
-          name="package"
+          name="name"
           label="Application Name"
           component={Input}
         />
