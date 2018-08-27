@@ -23,6 +23,29 @@ class Select extends Component {
     this.props.input.onChange(value);
   }
 
+  getValue() {
+    const selectedLabel = this.state.selected && this.state.selected.label;
+    return selectedLabel || this.getInitialValueFromReduxForm() || this.props.value || '';
+  }
+
+  getInitialValueFromReduxForm() {
+    const initialValue = this.props.input && this.props.input.value;
+
+    if (!initialValue) {
+      return;
+    }
+
+    const selected = this.props.options.filter(o => o.value === initialValue)[0];
+
+    if (!selected) {
+      return;
+    }
+
+    this.setState({
+      selected
+    })
+  }
+
   render() {
     return (
       <Fragment>
@@ -30,7 +53,7 @@ class Select extends Component {
           fullWidth
           toggle={
             <Toggle
-              value={this.state.selected && this.state.selected.label || this.props.value || ''}
+              value={this.getValue()}
               label={this.props.label}
             />
           }

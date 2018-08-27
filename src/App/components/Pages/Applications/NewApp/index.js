@@ -71,7 +71,7 @@ const getFormValuesFromState = (state) => {
   return state.form.newapp.values;
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   form: getFormValuesFromState(state)
 });
 
@@ -79,5 +79,8 @@ const connected = connect(mapStateToProps)(NewApp);
 
 export default reduxForm({
   form: 'newapp',
-  validate
+  initialValues: {
+    status: 'active'
+  },
+  validate,
 })(connected);

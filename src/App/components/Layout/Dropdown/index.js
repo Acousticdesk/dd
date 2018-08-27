@@ -63,7 +63,7 @@ Dropdown.propTypes = {
   items: PropTypes.element,
   toggle: PropTypes.element.isRequired,
   options: PropTypes.array,
-  fullWidth: PropTypes.bool
+  fullWidth: PropTypes.bool,
 };
 
 export default Dropdown;
