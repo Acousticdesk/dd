@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 const Radio = ({checked, label, input, ...props}) => {
   const id = 'radio_' + Math.random().toString(36).substr(2, 9);
 
+  console.log(props.defaultChecked);
+
   return (
     <span className={`integration-select__option checkbox-radio-common radio ${checked ? 'selected' : ''}`}>
       <input {...props} {...input} id={id}/>
