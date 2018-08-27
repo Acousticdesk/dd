@@ -8,9 +8,9 @@ const Items = ({items, options, onItemClick}) => {
         onItemClick
       })
       : options && options.map((i, index) => (
-      <li data-value={i} key={index} onClick={onItemClick} className="option-item isCursorPointer">
+      <li key={index} onClick={onItemClick(i)} className="option-item isCursorPointer">
         <div className="option-item__legend-container">
-          <span className="text text--lead">{i}</span>
+          <span className="text text--lead">{i.label}</span>
         </div>
       </li>
     ))

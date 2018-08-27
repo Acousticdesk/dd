@@ -1,41 +1,55 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import Dropdown from '../../Layout/Dropdown/index';
 import Toggle from './Toggle';
 
-class InputDropdown extends Component {
-  state = {value: null};
+class Select extends Component {
+  state = {selected: null};
 
-  onItemClick = (evt) => {
-    evt.persist();
+  onItemClick = (selected) => {
     this.setState({
-      value: evt.currentTarget.dataset.value
+      selected
     });
-    if (this.props.onChange && typeof this.props.onChange === 'function') {
-      this.props.onChange({name: this.props.name, value: evt.currentTarget.dataset.value});
-    }
+
+    this.triggerReduxFormChange(selected.value);
   };
+
+  triggerReduxFormChange(value) {
+    if (!this.props.input || typeof this.props.input.onChange !== 'function') {
+      return;
+    }
+
+    this.props.input.onChange(value);
+  }
 
   render() {
     return (
-      <Dropdown
-        fullWidth
-        toggle={<Toggle value={this.state.value || this.props.value} label={this.props.label}/>}
-        options={this.props.options}
-        onItemClick={this.onItemClick}
-      />
+      <Fragment>
+        <Dropdown
+          fullWidth
+          toggle={
+            <Toggle
+              value={this.state.selected && this.state.selected.label || this.props.value || ''}
+              label={this.props.label}
+            />
+          }
+          options={this.props.options}
+          onItemClick={this.onItemClick}
+        />
+      </Fragment>
     );
   }
 }
 
-InputDropdown.propTypes = {
+Select.propTypes = {
   options: PropTypes.array,
   defaultValue: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number
   ]),
-  name: PropTypes.string.isRequired
+  name: PropTypes.string,
+  label: PropTypes.string,
 };
 
-export default InputDropdown;
+export default Select;

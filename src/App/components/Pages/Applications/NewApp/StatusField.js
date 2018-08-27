@@ -2,18 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
 
-import Checkbox from '../../../Form/Checkbox';
+import Select from '../../../Form/Select';
 
-const StatusField = ({isActiveStatus}) => {
+const StatusField = ({}) => {
   return (
     <div className="application-info__field-container">
-      <p className="input__label color--grey-lighter">Status</p>
       <Field
         name="status"
-        checked={isActiveStatus}
-        label="Active"
-        theSwitch
-        component={Checkbox}
+        options={[
+          {label: 'Active', value: 'active'},
+          {label: 'Inactive', value: 'inactive'}
+        ]}
+        label="Status"
+        component={Select}
       />
     </div>
   );

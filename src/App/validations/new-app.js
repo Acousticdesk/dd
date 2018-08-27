@@ -6,7 +6,7 @@ const validateName = (name) => {
 
 const validatePackage = (pckg) => {
   if (!pckg) {
-    return 'Please, select a package';
+    return 'Please, enter a package name';
   }
 };
 

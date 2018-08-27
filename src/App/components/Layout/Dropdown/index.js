@@ -28,9 +28,9 @@ class Dropdown extends Component {
     });
   };
 
-  onOptionClick = (evt) => {
+  onOptionClick = (item) => () => {
     if (this.props.onItemClick) {
-      this.props.onItemClick(evt);
+      this.props.onItemClick(item);
     }
 
     this.setState({

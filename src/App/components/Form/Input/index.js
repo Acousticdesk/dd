@@ -11,11 +11,7 @@ const errClass = (err, isTouched) => {
   return 'input__field--error';
 };
 
-const Input = ({value, name, label, icon, extraClass, onChange, onClick, input, meta, ...props}) => {
-  const theOnChange = (evt) => {
-    typeof onChange === 'function' && onChange({name, value: evt.currentTarget.value});
-  };
-
+const Input = ({value, name, label, icon, extraClass, onClick, input, meta, ...props}) => {
   return (
     <div className="input">
       <label className="input__label color--grey-lighter">{label}</label>
@@ -27,7 +23,6 @@ const Input = ({value, name, label, icon, extraClass, onChange, onClick, input, 
         name={name}
         className={`input__field color--dark ${extraClass} ${errClass(meta.error, meta.touched)}`}
         value={value}
-        onChange={theOnChange}
         onClick={onClick}
       />
       {icon}
@@ -44,7 +39,6 @@ Input.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string,
   icon: PropTypes.element,
-  onChange: PropTypes.func,
   onClick: PropTypes.func,
   extraClass: PropTypes.string,
   input: PropTypes.object,

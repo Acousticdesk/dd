@@ -35,9 +35,11 @@ class NewApp extends Component {
     return (
       <NewAppPresentation
         close={this.props.close}
-        appTextFields={<ApplicationTextFields/>}
         loader={this.state.loader}
         onSubmit={this.onSubmit}
+        appTextFields={
+          <ApplicationTextFields/>
+        }
         platformSelect={
           <PlatformSelect defaultSelected={'iOS'} selected={this.props.form.platform}/>
         }
@@ -49,9 +51,7 @@ class NewApp extends Component {
           />
         }
         statusField={
-          <StatusField
-            isActiveStatus={this.props.form.status}
-          />
+          <StatusField/>
         }
       />
     );
