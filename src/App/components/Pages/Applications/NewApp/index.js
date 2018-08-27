@@ -11,6 +11,17 @@ import IntegrationSelect from './IntegrationSelect';
 import StatusField from './StatusField';
 import PlatformSelect from '../PlatformSelect';
 
+const integrations = {
+  sdk: 'SDK',
+  js: 'JS Tag',
+  api: 'API'
+};
+
+const platforms = {
+  ios: 'iOS',
+  android: 'Android'
+};
+
 class NewApp extends Component {
   state = {loader: false};
 
@@ -41,10 +52,15 @@ class NewApp extends Component {
             <ApplicationTextFields/>
           }
           platformSelect={
-            <PlatformSelect defaultSelected={this.props.initialValues.platform} selected={this.props.form.platform}/>
+            <PlatformSelect
+              platforms={platforms}
+              defaultSelected={this.props.initialValues.platform}
+              selected={this.props.form.platform}
+            />
           }
           integrationSelect={
             <IntegrationSelect
+              integrations={integrations}
               defaultSelected={this.props.initialValues.integration}
               integrationSelected={this.props.form.integration}
             />
@@ -81,8 +97,8 @@ export default reduxForm({
   form: 'newapp',
   initialValues: {
     status: 'active',
-    platform: 'android',
-    integration: 'js'
+    platform: platforms.android,
+    integration: integrations.sdk
   },
   validate,
 })(connected);

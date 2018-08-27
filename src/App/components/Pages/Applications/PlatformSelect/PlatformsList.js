@@ -3,11 +3,6 @@ import PropTypes from 'prop-types';
 
 import PlatformPresentation from './PlatformPresentation';
 
-const platforms = {
-  ios: 'iOS',
-  android: 'Android'
-};
-
 const getSelectedClass = (condition) => {
   return condition ? 'selected' : '';
 };
@@ -20,7 +15,7 @@ const isSelectedClass = (selected, defaultSelected) => p => {
   return getSelectedClass(selected === p);
 };
 
-const PlatformsList = ({selected, defaultSelected}) => {
+const PlatformsList = ({selected, defaultSelected, platforms}) => {
   const selectedClass = isSelectedClass(selected, defaultSelected);
 
   return Object.keys(platforms).map(p => {
@@ -37,6 +32,7 @@ const PlatformsList = ({selected, defaultSelected}) => {
 PlatformsList.propTypes = {
   selected: PropTypes.string,
   defaultSelected: PropTypes.string,
+  platforms: PropTypes.object,
 };
 
 export default PlatformsList;
