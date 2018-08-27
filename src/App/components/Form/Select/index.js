@@ -38,12 +38,10 @@ class Select extends Component {
     const selected = this.props.options.filter(o => o.value === initialValue)[0];
 
     if (!selected) {
-      return;
+      return '';
     }
 
-    this.setState({
-      selected
-    })
+    return selected.label;
   }
 
   render() {
