@@ -97,8 +97,8 @@ export default reduxForm({
   form: 'newapp',
   initialValues: {
     status: 'active',
-    platform: platforms.android,
-    integration: integrations.sdk
+    platform: 'ios',
+    integration: 'sdk'
   },
   validate,
 })(connected);
