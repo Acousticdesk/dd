@@ -41,13 +41,12 @@ class NewApp extends Component {
             <ApplicationTextFields/>
           }
           platformSelect={
-            <PlatformSelect defaultSelected={'iOS'} selected={this.props.form.platform}/>
+            <PlatformSelect defaultSelected={this.props.initialValues.platform} selected={this.props.form.platform}/>
           }
           integrationSelect={
             <IntegrationSelect
-              defaultSelected={'SDK'}
+              defaultSelected={this.props.initialValues.integration}
               integrationSelected={this.props.form.integration}
-              availableIntegrations={['SDK', 'JS Tag', 'API']}
             />
           }
           statusField={
@@ -81,7 +80,9 @@ const connected = connect(mapStateToProps)(NewApp);
 export default reduxForm({
   form: 'newapp',
   initialValues: {
-    status: 'active'
+    status: 'active',
+    platform: 'android',
+    integration: 'js'
   },
   validate,
 })(connected);

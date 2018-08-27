@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 
 import Integrations from './Integrations';
 
-const IntegrationSelect = ({availableIntegrations, onIntegrationChange, integrationSelected, defaultSelected}) => {
+const integrations = {
+  sdk: 'SDK',
+  js: 'JS Tag',
+  api: 'API'
+};
+
+const IntegrationSelect = ({onIntegrationChange, integrationSelected, defaultSelected}) => {
   return (
     <div className="integration-select">
       <div className="integration-select__legend-container">
@@ -12,7 +18,7 @@ const IntegrationSelect = ({availableIntegrations, onIntegrationChange, integrat
       <div className="integration-select__options-container">
         <Integrations
           defaultSelected={defaultSelected}
-          integrations={availableIntegrations}
+          integrations={integrations}
           onIntegrationChange={onIntegrationChange}
           integrationSelected={integrationSelected}/>
       </div>
@@ -23,7 +29,6 @@ const IntegrationSelect = ({availableIntegrations, onIntegrationChange, integrat
 IntegrationSelect.propTypes = {
   onIntegrationChange: PropTypes.func,
   integrationSelected: PropTypes.string,
-  availableIntegrations: PropTypes.array,
   defaultSelected: PropTypes.string
 };
 

@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 
 import PlatformPresentation from './PlatformPresentation';
 
-const platforms = ['iOS', 'Android'];
+const platforms = {
+  ios: 'iOS',
+  android: 'Android'
+};
 
 const getSelectedClass = (condition) => {
   return condition ? 'selected' : '';
@@ -20,7 +23,7 @@ const isSelectedClass = (selected, defaultSelected) => p => {
 const PlatformsList = ({selected, defaultSelected}) => {
   const selectedClass = isSelectedClass(selected, defaultSelected);
 
-  return platforms.map(p => {
+  return Object.keys(platforms).map(p => {
     return (
       <PlatformPresentation
         key={p}

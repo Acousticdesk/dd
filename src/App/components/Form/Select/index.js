@@ -46,19 +46,17 @@ class Select extends Component {
 
   render() {
     return (
-      <Fragment>
-        <Dropdown
-          fullWidth
-          toggle={
-            <Toggle
-              value={this.getValue()}
-              label={this.props.label}
-            />
-          }
-          options={this.props.options}
-          onItemClick={this.onItemClick}
-        />
-      </Fragment>
+      <Dropdown
+        fullWidth
+        toggle={
+          <Toggle
+            value={this.getValue()}
+            label={this.props.label}
+          />
+        }
+        options={this.props.options}
+        onItemClick={this.onItemClick}
+      />
     );
   }
 }

@@ -11,17 +11,21 @@ const isChecked = (selected, defaultSelected) => i => {
 const Integrations = ({integrations, integrationSelected, defaultSelected}) => {
   const checked = isChecked(integrationSelected, defaultSelected);
 
-  return integrations.map((i) => (
-    <Field
-      key={i}
-      value={i}
-      name="integration"
-      checked={checked(i)}
-      label={i}
-      type="radio"
-      component={Radio}
-    />
-  ));
+  return Object.keys(integrations).map((i) => {
+    const label = integrations[i];
+
+    return (
+      <Field
+        key={i}
+        value={i}
+        name="integration"
+        checked={checked(i)}
+        label={label}
+        type="radio"
+        component={Radio}
+      />
+    );
+  });
 };
 
 Integrations.propTypes = {
