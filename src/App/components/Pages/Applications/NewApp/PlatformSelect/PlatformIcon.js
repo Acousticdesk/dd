@@ -5,7 +5,7 @@ import AppleIcon from '../../../../../../../static/assets/icons/apple.svg';
 
 const PlatformIcon = ({platform}) => {
   return (
-    platform === 'iOS'
+    platform === 'ios'
       ? <AppleIcon className="platform-select__icon"/>
       : <i className="platform-select__icon icon icon--large icon-regular material-icons">android</i>
   );
