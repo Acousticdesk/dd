@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import API from '../../../../../API';
 import validate from '../../../../validations/new-app';
 
-import NewAppPresentation from './Presentation/index';
+import NewAppPresentation from './Presentation';
 import ApplicationTextFields from './ApplicationTextFields';
 import IntegrationSelect from './IntegrationSelect';
 import StatusField from './StatusField';

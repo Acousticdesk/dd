@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Dropdown from '../../Layout/Dropdown/index';
+import Dropdown from '../../Layout/Dropdown';
 import Toggle from './Toggle';
+import Options from './Options';
 
 class Select extends Component {
   state = {optionSelected: null};
 
-  onItemClick = (optionSelected) => {
+  onOptionClick = (optionSelected) => () => {
     this.setState({
       optionSelected
     });
@@ -65,8 +66,9 @@ class Select extends Component {
             label={this.props.label}
           />
         }
-        options={this.props.options}
-        onItemClick={this.onItemClick}
+        items={
+          <Options onOptionClick={this.onOptionClick} options={this.props.options} />
+        }
       />
     );
   }

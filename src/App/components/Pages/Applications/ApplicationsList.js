@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Application from './Application/index';
+import Application from './Application';
 
 const createList = (apps, onEditClick, props) => {
   if (!apps) {

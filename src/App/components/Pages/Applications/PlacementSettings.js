@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Checkbox from '../../Form/Checkbox/index';
+import Checkbox from '../../Form/Checkbox';
 import Input from '../../Form/Input';
 import InputDropdown from '../../Form/Select';
 import API from '../../../../API';

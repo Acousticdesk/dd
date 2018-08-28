@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
 
-import Radio from '../../../Form/Radio/index';
+import Radio from '../../../Form/Radio';
 
 const isChecked = (selected) => i => {
   return selected === i;

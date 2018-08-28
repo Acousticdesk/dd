@@ -14,7 +14,7 @@ import Header from '../components/Layout/Header';
 import SubHeader from '../components/Layout/SubHeader';
 import AppModal from '../components/Pages/Applications/AppModal';
 import ApplicationsList from '../components/Pages/Applications/ApplicationsList';
-import DeletePlacementModal from '../components/Pages/Applications/DeletePlacementModal/index';
+import DeletePlacementModal from '../components/Pages/Applications/DeletePlacementModal';
 
 const getSidenav = () => (
   <Sidenav activeOne={'apps'}/>

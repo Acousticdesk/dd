@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Modal from '../../../../Layout/Modal/index';
+import Modal from '../../../../Layout/Modal';
 import Content from './Content';
 
 const NewAppPresentation =

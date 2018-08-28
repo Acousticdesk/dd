@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Input from '../Input/index';
+import Input from '../Input';
 import Caret from './Caret';
 
 const Toggle = ({label, ...props}) => {

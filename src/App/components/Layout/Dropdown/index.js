@@ -8,10 +8,10 @@ import DropdownPresentational from './Presentation';
 const stopPropagation = (evt) => evt.stopPropagation();
 
 class Dropdown extends Component {
-  state = {isActive: false};
+  state = {isFocused: false};
 
   close = () => {
-    this.setState({isActive: false});
+    this.setState({isFocused: false});
   };
 
   componentDidMount() {
@@ -24,7 +24,7 @@ class Dropdown extends Component {
 
   onToggle = () => {
     this.setState(prevState => {
-      return {isActive: !prevState.isActive};
+      return {isFocused: !prevState.isFocused};
     });
   };
 
@@ -33,13 +33,12 @@ class Dropdown extends Component {
       this.props.onItemClick(item);
     }
 
-    this.setState({
-      isActive: false
-    });
+    this.close();
   };
 
   render() {
-    const activeClass = this.state.isActive ? 'active' : '';
+    const {isFocused} = this.state;
+    const activeClass = isFocused ? 'active' : '';
     const fullWidthClass = this.props.fullWidth ? 'dropdown__list--full-width' : '';
 
     return (
@@ -48,10 +47,10 @@ class Dropdown extends Component {
         activeClass={activeClass}
         fullWidthClass={fullWidthClass}
         toggle={
-          <Toggle toggle={this.props.toggle} onClick={this.onToggle}/>
+          <Toggle toggle={this.props.toggle} onClick={this.onToggle} />
         }
         items={
-          <Items onItemClick={this.onOptionClick} items={this.props.items} options={this.props.options}/>
+          <Items onItemClick={this.onOptionClick} items={this.props.items} options={this.props.options} />
         }
       />
     );
@@ -61,7 +60,7 @@ class Dropdown extends Component {
 Dropdown.propTypes = {
   onItemClick: PropTypes.func,
   items: PropTypes.element,
-  toggle: PropTypes.element.isRequired,
+  toggle: PropTypes.element,
   options: PropTypes.array,
   fullWidth: PropTypes.bool,
 };

@@ -1,19 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const Items = ({items, options, onItemClick}) => {
+const Items = ({items, onItemClick}) => {
   return (
     items
       ? React.cloneElement(items, {
         onItemClick
       })
-      : options && options.map((i, index) => (
-      <li key={index} onClick={onItemClick(i)} className="option-item isCursorPointer">
-        <div className="option-item__legend-container">
-          <span className="text text--lead">{i.label}</span>
-        </div>
-      </li>
-    ))
+      : null
   );
 };
 

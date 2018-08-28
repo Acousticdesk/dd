@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field } from 'redux-form';
 
-import Input from '../../../Form/Input/index';
+import Input from '../../../Form/Input';
 
 const ApplicationTextFields = () => {
   return (
