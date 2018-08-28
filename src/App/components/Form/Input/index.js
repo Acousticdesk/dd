@@ -17,15 +17,15 @@ const getValue = (props, input) => {
 
 const Input = ({icon, extraClass, input, meta, ...props}) => {
   const errorClass = errClass(meta.error, meta.touched);
-  const className = `input__field color--dark ${extraClass} ${errorClass}`;
   const value = getValue(props, input);
 
   return (
     <Presentation
       {...props}
       icon={icon}
-      classNameValue={className}
       inputValue={value}
+      errorClass={errorClass}
+      extraClass={extraClass}
       meta={meta}
       input={input}
     />

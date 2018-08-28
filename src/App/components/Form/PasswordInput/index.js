@@ -3,6 +3,14 @@ import PropTypes from 'prop-types';
 
 import PasswordInputPresentation from './Presentation';
 
+const getInputType = (isPasswordVisible) => {
+  return !isPasswordVisible ? 'password' : 'text'
+};
+
+const getVisibilityClass = (isPasswordVisible) => {
+  return isPasswordVisible ? 'password-input--visible' : ''
+};
+
 class PasswordInput extends Component {
   state = {
     isPasswordVisible: false
@@ -13,8 +21,9 @@ class PasswordInput extends Component {
   };
 
   render () {
-    const inputType = !this.state.isPasswordVisible ? 'password' : 'text';
-    const passwordVisibleClass = this.state.isPasswordVisible ? 'password-input--visible' : '';
+    const {isPasswordVisible} = this.state;
+    const inputType = getInputType(isPasswordVisible);
+    const passwordVisibleClass = getVisibilityClass(isPasswordVisible);
 
     return (
       <PasswordInputPresentation
@@ -22,7 +31,7 @@ class PasswordInput extends Component {
         type={inputType}
         passwordVisibleClass={passwordVisibleClass}
         onShowPassword={this.onShowPassword}
-        isPasswordVisible={this.state.isPasswordVisible}
+        isPasswordVisible={isPasswordVisible}
       />
     );
   }
