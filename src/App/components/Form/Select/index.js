@@ -1,56 +1,67 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Dropdown from '../../Layout/Dropdown/index';
 import Toggle from './Toggle';
 
 class Select extends Component {
-  state = {selected: null};
+  state = {optionSelected: null};
 
-  onItemClick = (selected) => {
+  onItemClick = (optionSelected) => {
     this.setState({
-      selected
+      optionSelected
     });
 
-    this.triggerReduxFormChange(selected.value);
+    this.triggerReduxFormChange(optionSelected.value);
   };
 
   triggerReduxFormChange(value) {
-    if (!this.props.input || typeof this.props.input.onChange !== 'function') {
+    const inputPropReduxForm = this.props.input;
+
+    if (!inputPropReduxForm || typeof inputPropReduxForm.onChange !== 'function') {
       return;
     }
 
-    this.props.input.onChange(value);
+    inputPropReduxForm.onChange(value);
+  }
+
+  getLabelOfSelectedOption() {
+    const {optionSelected} = this.state;
+
+    return optionSelected && optionSelected.label;
   }
 
   getValue() {
-    const selectedLabel = this.state.selected && this.state.selected.label;
-    return selectedLabel || this.getInitialValueFromReduxForm() || this.props.value || '';
+    const labelSelected = this.getLabelOfSelectedOption();
+
+    return labelSelected || this.getInitialValueFromReduxForm() || this.props.value || '';
   }
 
   getInitialValueFromReduxForm() {
-    const initialValue = this.props.input && this.props.input.value;
+    const valueReduxForm = this.props.input && this.props.input.value;
 
-    if (!initialValue) {
-      return;
-    }
-
-    const selected = this.props.options.filter(o => o.value === initialValue)[0];
-
-    if (!selected) {
+    if (!valueReduxForm) {
       return '';
     }
 
-    return selected.label;
+    const optionSelected = this.props.options.filter(o => o.value === valueReduxForm)[0];
+
+    if (!optionSelected) {
+      return '';
+    }
+
+    return optionSelected.label;
   }
 
   render() {
+    const value = this.getValue();
+
     return (
       <Dropdown
         fullWidth
         toggle={
           <Toggle
-            value={this.getValue()}
+            value={value}
             label={this.props.label}
           />
         }
@@ -63,10 +74,6 @@ class Select extends Component {
 
 Select.propTypes = {
   options: PropTypes.array,
-  defaultValue: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
   name: PropTypes.string,
   label: PropTypes.string,
 };

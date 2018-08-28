@@ -5,7 +5,7 @@ import { Field, reduxForm } from 'redux-form';
 import logo from '../../../../../static/assets/logo/@1x.png';
 
 import PasswordInput from '../../Form/PasswordInput/index';
-import Checkbox from '../../Form/Checkbox';
+import Checkbox from '../../Form/Checkbox/index';
 import Input from '../../Form/Input/index';
 
 import validate from '../../../validations/login';

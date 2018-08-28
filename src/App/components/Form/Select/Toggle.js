@@ -6,7 +6,7 @@ import Caret from './Caret';
 
 const Toggle = ({label, ...props}) => {
   return (
-    <Input {...props} label={label} extraClass="isCursorPointer" readOnly icon={<Caret/>}/>
+    <Input {...props} label={label} classExtra="isCursorPointer" readOnly icon={<Caret/>}/>
   );
 };
 
