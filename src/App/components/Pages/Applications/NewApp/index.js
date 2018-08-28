@@ -9,7 +9,7 @@ import NewAppPresentation from './Presentation/index';
 import ApplicationTextFields from './ApplicationTextFields';
 import IntegrationSelect from './IntegrationSelect';
 import StatusField from './StatusField';
-import PlatformSelect from '../PlatformSelect';
+import PlatformSelect from './PlatformSelect';
 
 const integrations = {
   sdk: 'SDK',

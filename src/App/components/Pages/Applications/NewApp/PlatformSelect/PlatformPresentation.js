@@ -4,7 +4,7 @@ import { Field } from 'redux-form';
 
 import PlatformIcon from './PlatformIcon';
 
-const PlatformPresentation = ({platform, selectedClass}) => {
+const PlatformPresentation = ({platform, selectedClass, label}) => {
   const id = `newapp_${platform}`;
 
   return (
@@ -24,7 +24,7 @@ const PlatformPresentation = ({platform, selectedClass}) => {
           <div className="platform-select__icon-container">
             <PlatformIcon platform={platform}/>
           </div>
-          <p className="text-lead">{platform}</p>
+          <p className="text-lead">{label}</p>
         </div>
       </label>
     </div>
@@ -34,6 +34,7 @@ const PlatformPresentation = ({platform, selectedClass}) => {
 PlatformPresentation.propTypes = {
   platform: PropTypes.string,
   selectedClass: PropTypes.string,
+  label: PropTypes.string
 };
 
 export default PlatformPresentation;

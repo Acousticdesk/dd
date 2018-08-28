@@ -23,6 +23,7 @@ const PlatformsList = ({selected, defaultSelected, platforms}) => {
       <PlatformPresentation
         key={p}
         platform={p}
+        label={platforms[p]}
         selectedClass={selectedClass(p)}
       />
     );
