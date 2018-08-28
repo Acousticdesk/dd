@@ -134,7 +134,8 @@ class ApplicationsContainer extends Component {
         selectedApp={this.state.selectedApp}
         select={this.selectApp}
         zendesk={config.zendesk}
-        onEditClick={this.onEditAppClick}
+        onEditApp={this.onEditApp}
+        onDeleteApp={this.onDeleteApp}
       />
     );
   }
@@ -165,9 +166,15 @@ class ApplicationsContainer extends Component {
     });
   };
 
-  onEditAppClick = (id) => () => {
+  onEditApp = (id) => (evt) => {
+    evt.persist();
+    evt.stopPropagation();
     this.props.editApp(id);
   };
+
+  onDeleteApp() {
+    console.log('the app should be deleted');
+  }
 
   render() {
     return (

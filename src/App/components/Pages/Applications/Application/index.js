@@ -7,7 +7,17 @@ import AppIcon from './AppIcon';
 import IntegrationIcon from './IntegrationIcon';
 import RenderPlacements from './RenderPlacements';
 
-const Application = ({app, isSelected, select, selectPlacement, selectedPlacement, zendesk, deletePlacement, onEditClick}) => {
+const Application = ({
+  app,
+  isSelected,
+  select,
+  selectPlacement,
+  selectedPlacement,
+  zendesk,
+  deletePlacement,
+  onEditApp,
+  onDeleteApp
+}) => {
   return (
     <li className="l-applications-list__row">
       <div onClick={select(app.id)} className="application-card isCursorPointer">
@@ -33,7 +43,7 @@ const Application = ({app, isSelected, select, selectPlacement, selectedPlacemen
           </div>
         </div>
         <div className="application-card__options-container">
-          <EditDropdown onItemClick={onEditClick}/>
+          <EditDropdown onEditClick={onEditApp} onDeleteClick={onDeleteApp} />
         </div>
       </div>
       <RenderPlacements
@@ -61,7 +71,8 @@ Application.propTypes = {
   selectedPlacement: PropTypes.object,
   zendesk: PropTypes.object,
   deletePlacement: PropTypes.func,
-  onEditClick: PropTypes.func,
+  onEditApp: PropTypes.func,
+  onDeleteApp: PropTypes.func,
 };
 
 export default Application;

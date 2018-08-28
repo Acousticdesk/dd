@@ -5,18 +5,18 @@ import Dropdown from '../../../Layout/Dropdown';
 import Items from './Items';
 import Toggle from './Toggle';
 
-const EditDropdown = ({onItemClick}) => {
+const EditDropdown = ({onEditClick, onDeleteClick}) => {
   return (
     <Dropdown
-      items={<Items/>}
+      items={<Items onEditClick={onEditClick} onDeleteClick={onDeleteClick} />}
       toggle={<Toggle/>}
-      onItemClick={onItemClick}
     />
   );
 };
 
 EditDropdown.propTypes = {
-  onItemClick: PropTypes.func
+  onEditClick: PropTypes.func,
+  onDeleteClick: PropTypes.func,
 };
 
 export default EditDropdown;

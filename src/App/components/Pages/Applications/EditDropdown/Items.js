@@ -1,16 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Items = ({onItemClick}) => {
-  const onItemClickStopPropagated = (evt) => {
-    evt.persist();
-    evt.stopPropagation();
-    onItemClick && onItemClick(evt.currentTarget)();
-  };
-
+const Items = ({onEditClick, onDeleteClick}) => {
   return (
     <React.Fragment>
-      <li onClick={onItemClickStopPropagated} className="option-item isCursorPointer">
+      <li onClick={onEditClick} className="option-item isCursorPointer">
         <div className="option-item__icon-container">
           <i className="icon icon-regular icon--small material-icons">edit</i>
         </div>
@@ -18,7 +12,7 @@ const Items = ({onItemClick}) => {
           <span className="text text--lead">Edit</span>
         </div>
       </li>
-      <li onClick={onItemClickStopPropagated} className="dropdown__item">
+      <li onClick={onDeleteClick} className="dropdown__item">
         <div className="option-item isCursorPointer">
           <div className="option-item__icon-container">
             <i className="icon icon-regular icon--small material-icons">delete</i>
@@ -33,7 +27,8 @@ const Items = ({onItemClick}) => {
 };
 
 Items.propTypes = {
-  onItemClick: PropTypes.func
+  onEditClick: PropTypes.func,
+  onDeleteClick: PropTypes.func,
 };
 
 export default Items;

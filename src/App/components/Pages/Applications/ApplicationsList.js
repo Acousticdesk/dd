@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Application from './Application';
 
-const createList = (apps, onEditClick, props) => {
+const createList = (apps, onEditApp, onDeleteApp, props) => {
   if (!apps) {
     return null;
   }
@@ -13,14 +13,23 @@ const createList = (apps, onEditClick, props) => {
     const app = a[1];
     const isSelected = props.selectedApp === id;
 
-    return <Application key={id} id={id} isSelected={isSelected} app={app} onEditClick={onEditClick(id)} {...props}/>;
+    return (
+      <Application
+        {...props}
+        key={id}
+        id={id}
+        isSelected={isSelected}
+        app={app}
+        onEditApp={onEditApp(id)}
+      />
+    );
   });
 };
 
-const ApplicationsList = ({apps, onEditClick, ...props}) => {
+const ApplicationsList = ({apps, onEditApp, onDeleteApp, ...props}) => {
   return (
     <React.Fragment>
-      {createList(apps, onEditClick, props)}
+      {createList(apps, onEditApp, onDeleteApp, props)}
     </React.Fragment>
   );
 };
@@ -33,7 +42,8 @@ ApplicationsList.propTypes = {
   selectedApp: PropTypes.number,
   select: PropTypes.func,
   zendesk: PropTypes.object,
-  onEditClick: PropTypes.func,
+  onEditApp: PropTypes.func,
+  onDeleteApp: PropTypes.func,
 };
 
 export default ApplicationsList;
