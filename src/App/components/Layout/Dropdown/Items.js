@@ -1,20 +1,16 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-const Items = ({items, onItemClick}) => {
+const Items = ({items}) => {
   return (
     items
-      ? React.cloneElement(items, {
-        onItemClick
-      })
+      ? items
       : null
   );
 };
 
 Items.propTypes = {
   items: PropTypes.element,
-  options: PropTypes.array,
-  onItemClick: PropTypes.func
 };
 
 export default Items;

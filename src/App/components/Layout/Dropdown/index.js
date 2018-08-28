@@ -10,10 +10,6 @@ const stopPropagation = (evt) => evt.stopPropagation();
 class Dropdown extends Component {
   state = {isFocused: false};
 
-  close = () => {
-    this.setState({isFocused: false});
-  };
-
   componentDidMount() {
     document.body.addEventListener('click', this.close);
   }
@@ -22,18 +18,14 @@ class Dropdown extends Component {
     document.body.removeEventListener('click', this.close);
   }
 
+  close = () => {
+    this.setState({isFocused: false});
+  };
+
   onToggle = () => {
     this.setState(prevState => {
       return {isFocused: !prevState.isFocused};
     });
-  };
-
-  onOptionClick = (item) => () => {
-    if (this.props.onItemClick) {
-      this.props.onItemClick(item);
-    }
-
-    this.close();
   };
 
   render() {
@@ -50,7 +42,7 @@ class Dropdown extends Component {
           <Toggle toggle={this.props.toggle} onClick={this.onToggle} />
         }
         items={
-          <Items onItemClick={this.onOptionClick} items={this.props.items} options={this.props.options} />
+          <Items items={this.props.items} options={this.props.options} />
         }
       />
     );
@@ -58,7 +50,6 @@ class Dropdown extends Component {
 }
 
 Dropdown.propTypes = {
-  onItemClick: PropTypes.func,
   items: PropTypes.element,
   toggle: PropTypes.element,
   options: PropTypes.array,
