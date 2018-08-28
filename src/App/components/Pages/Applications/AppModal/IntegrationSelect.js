@@ -29,7 +29,7 @@ IntegrationSelect.propTypes = {
   onIntegrationChange: PropTypes.func,
   integrationSelected: PropTypes.string,
   integrations: PropTypes.object,
-  isDisabled: PropTypes.string,
+  isDisabled: PropTypes.bool,
 };
 
 export default IntegrationSelect;

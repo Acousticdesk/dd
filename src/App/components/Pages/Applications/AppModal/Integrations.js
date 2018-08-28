@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
 
-import Radio from '../../../Form/Radio';
+import Radio from '../../../Form/Radio/index';
 
 const isChecked = (selected) => i => {
   return selected === i;
@@ -30,7 +30,7 @@ const Integrations = ({integrations, integrationSelected, isDisabled}) => {
 };
 
 Integrations.propTypes = {
-  integrations: PropTypes.array,
+  integrations: PropTypes.object,
   integrationSelected: PropTypes.string,
   isDisabled: PropTypes.bool,
 };
