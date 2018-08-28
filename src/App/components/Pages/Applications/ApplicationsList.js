@@ -21,6 +21,7 @@ const createList = (apps, onEditApp, onDeleteApp, props) => {
         isSelected={isSelected}
         app={app}
         onEditApp={onEditApp(id)}
+        onDeleteApp={onDeleteApp}
       />
     );
   });

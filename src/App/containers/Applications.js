@@ -172,7 +172,9 @@ class ApplicationsContainer extends Component {
     this.props.editApp(id);
   };
 
-  onDeleteApp() {
+  onDeleteApp(evt) {
+    evt.persist();
+    evt.stopPropagation();
     console.log('the app should be deleted');
   }
 
