@@ -7,16 +7,17 @@ const getSelectedClass = (condition) => {
   return condition ? 'selected' : '';
 };
 
-const isSelectedClass = (selected, defaultSelected) => p => {
-  if (!selected) {
-    return getSelectedClass(defaultSelected === p);
-  }
-
+const isSelectedClass = (selected) => p => {
   return getSelectedClass(selected === p);
 };
 
-const PlatformsList = ({selected, defaultSelected, platforms}) => {
-  const selectedClass = isSelectedClass(selected, defaultSelected);
+const isDisabledClass = (isDisabled) => {
+  return isDisabled ? 'platform-select__option--disabled' : '';
+};
+
+const PlatformsList = ({selected, platforms, isDisabled}) => {
+  const selectedClass = isSelectedClass(selected);
+  const disabledClass = isDisabledClass(isDisabled);
 
   return Object.keys(platforms).map(p => {
     return (
@@ -25,6 +26,8 @@ const PlatformsList = ({selected, defaultSelected, platforms}) => {
         platform={p}
         label={platforms[p]}
         selectedClass={selectedClass(p)}
+        isDisabled={isDisabled}
+        disabledClass={disabledClass}
       />
     );
   })
@@ -32,8 +35,8 @@ const PlatformsList = ({selected, defaultSelected, platforms}) => {
 
 PlatformsList.propTypes = {
   selected: PropTypes.string,
-  defaultSelected: PropTypes.string,
   platforms: PropTypes.object,
+  isDisabled: PropTypes.bool
 };
 
 export default PlatformsList;

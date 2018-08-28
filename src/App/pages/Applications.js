@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Applications = ({
     appsList,
     placementEdit,
-    createAppModal,
+    appModal,
     sidenav,
     header,
     subheader,
@@ -33,7 +33,7 @@ const Applications = ({
         </div>
       </div>
       {deletePlacementModal}
-      {createAppModal}
+      {appModal}
     </React.Fragment>
   );
 };

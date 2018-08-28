@@ -39,9 +39,11 @@ class ApplicationsContainer extends Component {
     });
   };
 
+  // TODO: Implement proper property names
   hideApplicationModal = () => {
     this.setState({
-      isCreatingNewApp: false
+      isCreatingNewApp: false,
+      idAppEdit: null
     });
   };
 
@@ -134,8 +136,10 @@ class ApplicationsContainer extends Component {
   }
 
   getAppModal() {
-    return this.state.isCreatingNewApp
-      ? <AppModal close={this.hideApplicationModal} appId={this.state.idAppEdit} />
+    const app = this.getAppById(this.state.idAppEdit);
+
+    return this.state.isCreatingNewApp || this.state.idAppEdit
+      ? <AppModal close={this.hideApplicationModal} app={app} />
       : null;
   }
 

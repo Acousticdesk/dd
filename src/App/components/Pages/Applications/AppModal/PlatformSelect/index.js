@@ -3,12 +3,16 @@ import PropTypes from 'prop-types';
 
 import PlatformsList from './PlatformsList';
 
-const Presentation = ({selected, defaultSelected, platforms}) => {
+const Presentation = ({selected, platforms, isDisabled}) => {
   return (
     <div className="platform-select">
-      <p className="text-lead color--dark">Choose your platform</p>
+      <p className={`text-lead ${isDisabled ? 'color--disabled' : 'color--dark'}`}>Choose your platform</p>
       <div className="platform-select__options-container">
-        <PlatformsList defaultSelected={defaultSelected} selected={selected} platforms={platforms} />
+        <PlatformsList
+          isDisabled={isDisabled}
+          selected={selected}
+          platforms={platforms}
+        />
       </div>
     </div>
   );
@@ -16,8 +20,8 @@ const Presentation = ({selected, defaultSelected, platforms}) => {
 
 Presentation.propTypes = {
   selected: PropTypes.string,
-  defaultSelected: PropTypes.string,
-  platforms: PropTypes.object
+  platforms: PropTypes.object,
+  isDisabled: PropTypes.bool
 };
 
 export default Presentation;

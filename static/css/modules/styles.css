@@ -762,6 +762,12 @@
         justify-content: center;
         border: 1px solid #edeef2;
         background: #fff;
+        cursor: pointer;
+    }
+
+    .platform-select__option--disabled {
+        opacity: .2;
+        cursor: default;
     }
 
     .platform-select__icon-container {
@@ -1038,6 +1044,10 @@
 
 .color--chetwod-blue {
     color: #7f7fd5;
+}
+
+.color--disabled {
+    color: #ccc;
 }
 
 

@@ -4,7 +4,7 @@ import { Field } from 'redux-form';
 
 import PlatformIcon from './PlatformIcon';
 
-const PlatformPresentation = ({platform, selectedClass, label}) => {
+const PlatformPresentation = ({platform, selectedClass, label, isDisabled, disabledClass}) => {
   const id = `newapp_${platform}`;
 
   return (
@@ -12,13 +12,13 @@ const PlatformPresentation = ({platform, selectedClass, label}) => {
       data-value={platform}
       className="platform-select__option-col"
     >
-      <Field hidden name="platform" component="input" type="radio" value={platform} id={id}/>
+      <Field hidden disabled={isDisabled} name="platform" component="input" type="radio" value={platform} id={id}/>
       <label htmlFor={id} className={`
         card-selectable
         platform-select__option
         text-center
-        isCursorPointer
         ${selectedClass}
+        ${disabledClass}
       `}>
         <div className="platform-select__option-content">
           <div className="platform-select__icon-container">
@@ -34,7 +34,9 @@ const PlatformPresentation = ({platform, selectedClass, label}) => {
 PlatformPresentation.propTypes = {
   platform: PropTypes.string,
   selectedClass: PropTypes.string,
-  label: PropTypes.string
+  label: PropTypes.string,
+  isDisabled: PropTypes.bool,
+  disabledClass: PropTypes.string,
 };
 
 export default PlatformPresentation;

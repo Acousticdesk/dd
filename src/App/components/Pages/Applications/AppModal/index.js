@@ -42,6 +42,21 @@ class NewApp extends Component {
     return formData;
   }
 
+  getSelectedPlatform() {
+    const {form, initialValues, app} = this.props;
+
+    if (app) {
+      return app.integration;
+    }
+
+    if (form.platform) {
+      return form.platform;
+    }
+
+    return initialValues.platform;
+
+  }
+
   render() {
     return (
       <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
@@ -53,9 +68,9 @@ class NewApp extends Component {
           }
           platformSelect={
             <PlatformSelect
+              isDisabled={!!this.props.app}
               platforms={platforms}
-              defaultSelected={this.props.initialValues.platform}
-              selected={this.props.form.platform}
+              selected={this.getSelectedPlatform()}
             />
           }
           integrationSelect={
@@ -77,7 +92,7 @@ class NewApp extends Component {
 NewApp.propTypes = {
   close: PropTypes.func,
   form: PropTypes.object,
-  appId: PropTypes.number,
+  app: PropTypes.object,
 };
 
 const getFormValuesFromState = (state) => {
