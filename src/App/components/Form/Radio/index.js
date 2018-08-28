@@ -12,6 +12,7 @@ const Radio = ({input, ...props}) => {
 
   return (
     <Presentation
+      {...props}
       id={id}
       input={input}
       classChecked={classChecked}
