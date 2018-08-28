@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ErrorMsg from './ErrorMsg';
+import Presentation from './Presentation';
 
 const errClass = (err, isTouched) => {
   if (!err || !isTouched) {
@@ -11,23 +11,24 @@ const errClass = (err, isTouched) => {
   return 'input__field--error';
 };
 
+const getValue = (props, input) => {
+  return input ? input.value : props.value;
+};
+
 const Input = ({icon, extraClass, input, meta, ...props}) => {
+  const errorClass = errClass(meta.error, meta.touched);
+  const className = `input__field color--dark ${extraClass} ${errorClass}`;
+  const value = getValue(props, input);
+
   return (
-    <div className="input">
-      <label className="input__label color--grey-lighter">{props.label}</label>
-      <input
-        {...input}
-        {...props}
-        autoComplete="off"
-        type="text"
-        name={props.name}
-        className={`input__field color--dark ${extraClass} ${errClass(meta.error, meta.touched)}`}
-        value={input ? input.value : props.value}
-        onClick={props.onClick}
-      />
-      {icon}
-      <ErrorMsg error={meta.error} isTouched={meta.touched}/>
-    </div>
+    <Presentation
+      {...props}
+      icon={icon}
+      classNameValue={className}
+      inputValue={value}
+      meta={meta}
+      input={input}
+    />
   );
 };
 
