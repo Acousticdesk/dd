@@ -11,11 +11,12 @@ const NewAppPresentation =
      statusField,
      appTextFields,
      loader,
-     platformSelect
+     platformSelect,
+     title
    }) => {
   return (
     <Modal
-      title="New Application"
+      title={title}
       close={close}
       content={
         <Content
@@ -37,6 +38,7 @@ NewAppPresentation.propTypes = {
   statusField: PropTypes.element,
   appTextFields: PropTypes.element,
   platformSelect: PropTypes.element,
+  title: PropTypes.string,
 };
 
 export default NewAppPresentation;

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { reduxForm, SubmissionError } from 'redux-form';
+import { reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 
 import API from '../../../../../API';
 import validate from '../../../../validations/new-app';
+
 import NewAppPresentation from './Presentation/index';
 import ApplicationTextFields from './ApplicationTextFields';
 import IntegrationSelect from './IntegrationSelect';
@@ -25,32 +26,32 @@ const platforms = {
 class NewApp extends Component {
   state = {loader: false};
 
-  onSubmit = () => {
+  onSubmit = (values) => {
     this.setState({loader: true});
 
-    API.request('createApp', 'POST', this.getFormData())
+    const endpoint = this.props.app ? 'updateApp' : 'createApp';
+    const id = this.props.app && this.props.app.id;
+    const body = {...values};
+
+    if (id) {
+      body.id = id;
+    }
+
+    API.request(endpoint, 'POST', body)
       .then(() => {
         window.setTimeout(() => this.setState({loader: false}), 1000)
       });
   };
 
-  getFormData() {
-    const formData = {...this.props.form};
-
-    formData.status = formData.status ? 'active' : 'inactive';
-
-    return formData;
-  }
-
   getSelectedPlatform() {
-    const {form, initialValues, app} = this.props;
+    const {formValues, initialValues, app} = this.props;
 
     if (app) {
       return app.integration;
     }
 
-    if (form.platform) {
-      return form.platform;
+    if (formValues.platform) {
+      return formValues.platform;
     }
 
     return initialValues.platform;
@@ -58,17 +59,28 @@ class NewApp extends Component {
   }
 
   getSelectedIntegration() {
-    return this.props.form.integration;
+    const { formValues, initialValues, app} = this.props;
+
+    if (app) {
+      return 'sdk';
+    }
+
+    if (formValues.integration) {
+      return formValues.integration;
+    }
+
+    return initialValues.integration;
   }
 
   render() {
     return (
       <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
         <NewAppPresentation
+          title={this.props.title}
           close={this.props.close}
           loader={this.state.loader}
           appTextFields={
-            <ApplicationTextFields/>
+            <ApplicationTextFields />
           }
           platformSelect={
             <PlatformSelect
@@ -95,30 +107,44 @@ class NewApp extends Component {
 
 NewApp.propTypes = {
   close: PropTypes.func,
-  form: PropTypes.object,
   app: PropTypes.object,
+  title: PropTypes.string,
 };
 
-const getFormValuesFromState = (state) => {
-  if (!state || !state.form || !state.form.newapp || !state.form.newapp.values) {
-    return {};
-  }
+const selector = formValueSelector('newapp');
 
-  return state.form.newapp.values;
-};
-
-const mapStateToProps = state => ({
-  form: getFormValuesFromState(state)
+const getInitialFormValues = () => ({
+  status: 'active',
+  platform: 'ios',
+  integration: 'sdk',
+  name: '',
+  package: ''
 });
 
-const connected = connect(mapStateToProps)(NewApp);
+const getAppValues = (app) => ({
+  status: app.status,
+  platform: app.integration,
+  integration: 'sdk',
+  name: app.name,
+  package: app.package
+});
 
-export default reduxForm({
+const getInitialValues = (props) => {
+  if (!props.app) {
+    return getInitialFormValues();
+  }
+
+  return getAppValues(props.app);
+};
+
+const mapStateToProps = (state, props) => ({
+  formValues: selector(state, 'status', 'platform', 'integration', 'name', 'package'),
+  initialValues: getInitialValues(props),
+});
+
+const reduxFormed = reduxForm({
   form: 'newapp',
-  initialValues: {
-    status: 'active',
-    platform: 'ios',
-    integration: 'sdk'
-  },
   validate,
-})(connected);
+})(NewApp);
+
+export default connect(mapStateToProps)(reduxFormed);

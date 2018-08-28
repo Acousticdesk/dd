@@ -11,19 +11,19 @@ const errClass = (err, isTouched) => {
   return 'input__field--error';
 };
 
-const Input = ({value, name, label, icon, extraClass, onClick, input, meta, ...props}) => {
+const Input = ({icon, extraClass, input, meta, ...props}) => {
   return (
     <div className="input">
-      <label className="input__label color--grey-lighter">{label}</label>
+      <label className="input__label color--grey-lighter">{props.label}</label>
       <input
         {...input}
         {...props}
         autoComplete="off"
         type="text"
-        name={name}
+        name={props.name}
         className={`input__field color--dark ${extraClass} ${errClass(meta.error, meta.touched)}`}
-        value={value}
-        onClick={onClick}
+        value={input ? input.value : props.value}
+        onClick={props.onClick}
       />
       {icon}
       <ErrorMsg error={meta.error} isTouched={meta.touched}/>
@@ -32,12 +32,6 @@ const Input = ({value, name, label, icon, extraClass, onClick, input, meta, ...p
 };
 
 Input.propTypes = {
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
-  label: PropTypes.string,
-  name: PropTypes.string,
   icon: PropTypes.element,
   onClick: PropTypes.func,
   extraClass: PropTypes.string,

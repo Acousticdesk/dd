@@ -1,8 +1,12 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import API from '../../API';
 import config from '../../../config';
+import { editApp } from '../redux/reducer';
+
 import Applications from '../pages/Applications';
 import PlacementEdit from '../components/Pages/Applications/PlacementEdit';
 import Sidenav from '../components/Layout/Sidenav';
@@ -21,7 +25,6 @@ class ApplicationsContainer extends Component {
     selectedApp: null,
     selectedPlacement: null,
     isCreatingNewApp: false,
-    idAppEdit: null,
     apps: null,
     settings: null,
     placementToDelete: null
@@ -43,8 +46,9 @@ class ApplicationsContainer extends Component {
   hideApplicationModal = () => {
     this.setState({
       isCreatingNewApp: false,
-      idAppEdit: null
     });
+
+    this.props.editApp(null);
   };
 
   componentDidMount() {
@@ -136,10 +140,11 @@ class ApplicationsContainer extends Component {
   }
 
   getAppModal() {
-    const app = this.getAppById(this.state.idAppEdit);
+    const app = this.getAppById(this.props.idAppEdit);
+    const title = app ? 'Edit Application' : 'New Application';
 
-    return this.state.isCreatingNewApp || this.state.idAppEdit
-      ? <AppModal close={this.hideApplicationModal} app={app} />
+    return this.state.isCreatingNewApp || this.props.idAppEdit
+      ? <AppModal close={this.hideApplicationModal} app={app} title={title} />
       : null;
   }
 
@@ -161,9 +166,7 @@ class ApplicationsContainer extends Component {
   };
 
   onEditAppClick = (id) => () => {
-    this.setState({
-      idAppEdit: id
-    });
+    this.props.editApp(id);
   };
 
   render() {
@@ -183,8 +186,17 @@ class ApplicationsContainer extends Component {
 }
 
 ApplicationsContainer.propTypes = {
-  user: PropTypes.object.isRequired,
-  onUserLoggedOut: PropTypes.func.isRequired,
+  user: PropTypes.object,
+  onUserLoggedOut: PropTypes.func,
+  editApp: PropTypes.func
 };
 
-export default ApplicationsContainer;
+const mapStateToProps = state => ({
+  idAppEdit: state.app.idAppEdit
+});
+
+const mapDispatchToProps = dispatch => ({
+  editApp: bindActionCreators(editApp, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ApplicationsContainer);
