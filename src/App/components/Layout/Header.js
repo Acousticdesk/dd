@@ -18,7 +18,7 @@ const Header = ({userEmail, onUserLoggedOut, pageTitle}) => {
         <i className="icon icon-regular icon--notification material-icons isCursorPointer">notifications</i>
       </div>
       <div className="l-header__user-container text-center isCursorPointer">
-        <UserDropdown email={userEmail} onItemClick={onUserLoggedOut}/>
+        <UserDropdown email={userEmail} onLogOut={onUserLoggedOut}/>
       </div>
     </header>
   );

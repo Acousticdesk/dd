@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Items = ({onItemClick}) => {
+const Items = ({onLogOut}) => {
   return (
     <React.Fragment>
-      <li onClick={onItemClick} className="option-item isCursorPointer">
+      <li onClick={onLogOut} className="option-item isCursorPointer">
         <div className="option-item__legend-container">
           <span className="text text--lead">Log Out</span>
         </div>
@@ -14,7 +14,7 @@ const Items = ({onItemClick}) => {
 };
 
 Items.propTypes = {
-  onItemClick: PropTypes.func
+  onLogOut: PropTypes.func
 };
 
 export default Items;

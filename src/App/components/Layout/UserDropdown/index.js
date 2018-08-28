@@ -5,19 +5,18 @@ import Dropdown from '../Dropdown';
 import Toggle from './Toggle';
 import Items from './Items';
 
-const UserDropdown = ({email, onItemClick}) => {
+const UserDropdown = ({email, onLogOut}) => {
   return (
     <Dropdown
-      items={<Items/>}
-      toggle={<Toggle email={email}/>}
-      onItemClick={onItemClick}
+      items={<Items onLogOut={onLogOut} />}
+      toggle={<Toggle email={email} />}
     />
   );
 };
 
 UserDropdown.propTypes = {
   email: PropTypes.string,
-  onItemClick: PropTypes.func.isRequired
+  onLogOut: PropTypes.func
 };
 
 export default UserDropdown;

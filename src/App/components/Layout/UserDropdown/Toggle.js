@@ -12,7 +12,7 @@ const Toggle = ({email, onClick}) => {
 
 Toggle.propTypes = {
   email: PropTypes.string,
-  onItemClick: PropTypes.func
+  onClick: PropTypes.func,
 };
 
 export default Toggle;
