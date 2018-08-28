@@ -4,18 +4,19 @@ import { Field } from 'redux-form';
 
 import Radio from '../../../Form/Radio';
 
-const isChecked = (selected, defaultSelected) => i => {
-  return selected ? selected === i : defaultSelected === i;
+const isChecked = (selected) => i => {
+  return selected === i;
 };
 
-const Integrations = ({integrations, integrationSelected, defaultSelected}) => {
-  const checked = isChecked(integrationSelected, defaultSelected);
+const Integrations = ({integrations, integrationSelected, isDisabled}) => {
+  const checked = isChecked(integrationSelected);
 
   return Object.keys(integrations).map((i) => {
     const label = integrations[i];
 
     return (
       <Field
+        disabled={isDisabled}
         key={i}
         value={i}
         name="integration"
@@ -31,7 +32,7 @@ const Integrations = ({integrations, integrationSelected, defaultSelected}) => {
 Integrations.propTypes = {
   integrations: PropTypes.array,
   integrationSelected: PropTypes.string,
-  defaultSelected: PropTypes.string
+  isDisabled: PropTypes.bool,
 };
 
 export default Integrations;

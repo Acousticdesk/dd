@@ -57,6 +57,10 @@ class NewApp extends Component {
 
   }
 
+  getSelectedIntegration() {
+    return this.props.form.integration;
+  }
+
   render() {
     return (
       <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
@@ -75,9 +79,9 @@ class NewApp extends Component {
           }
           integrationSelect={
             <IntegrationSelect
+              isDisabled={!!this.props.app}
               integrations={integrations}
-              defaultSelected={this.props.initialValues.integration}
-              integrationSelected={this.props.form.integration}
+              integrationSelected={this.getSelectedIntegration()}
             />
           }
           statusField={

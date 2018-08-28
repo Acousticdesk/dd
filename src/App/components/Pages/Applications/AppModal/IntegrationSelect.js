@@ -3,15 +3,20 @@ import PropTypes from 'prop-types';
 
 import Integrations from './Integrations';
 
-const IntegrationSelect = ({onIntegrationChange, integrationSelected, defaultSelected, integrations}) => {
+const IntegrationSelect = ({
+  onIntegrationChange,
+  integrationSelected,
+  integrations,
+  isDisabled
+}) => {
   return (
     <div className="integration-select">
       <div className="integration-select__legend-container">
-        <div className="text-lead color--dark">Select Integration</div>
+        <div className={`text-lead ${isDisabled ? 'color--disabled' : 'color--dark'}`}>Select Integration</div>
       </div>
       <div className="integration-select__options-container">
         <Integrations
-          defaultSelected={defaultSelected}
+          isDisabled={isDisabled}
           integrations={integrations}
           onIntegrationChange={onIntegrationChange}
           integrationSelected={integrationSelected}/>
@@ -23,8 +28,8 @@ const IntegrationSelect = ({onIntegrationChange, integrationSelected, defaultSel
 IntegrationSelect.propTypes = {
   onIntegrationChange: PropTypes.func,
   integrationSelected: PropTypes.string,
-  defaultSelected: PropTypes.string,
-  integrations: PropTypes.object
+  integrations: PropTypes.object,
+  isDisabled: PropTypes.string,
 };
 
 export default IntegrationSelect;

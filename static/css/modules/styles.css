@@ -128,7 +128,13 @@
         margin-right: 13px;
         width: 16px;
         height: 16px;
+        cursor: pointer;
     }
+
+        .checkbox-radio-common__ui--disabled {
+            opacity: 0.2;
+            cursor: default;
+        }
 
     .radio__ui {
         position: relative;
@@ -766,7 +772,7 @@
     }
 
     .platform-select__option--disabled {
-        opacity: .2;
+        opacity: 0.2;
         cursor: default;
     }
 
