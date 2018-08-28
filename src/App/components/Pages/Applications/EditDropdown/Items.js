@@ -5,7 +5,7 @@ const Items = ({onItemClick}) => {
   const onItemClickStopPropagated = (evt) => {
     evt.persist();
     evt.stopPropagation();
-    onItemClick && onItemClick(evt);
+    onItemClick && onItemClick(evt.currentTarget)();
   };
 
   return (

@@ -8,7 +8,7 @@ import PlacementEdit from '../components/Pages/Applications/PlacementEdit';
 import Sidenav from '../components/Layout/Sidenav';
 import Header from '../components/Layout/Header';
 import SubHeader from '../components/Layout/SubHeader';
-import NewApp from '../components/Pages/Applications/NewApp';
+import AppModal from '../components/Pages/Applications/AppModal';
 import ApplicationsList from '../components/Pages/Applications/ApplicationsList';
 import DeletePlacementModal from '../components/Pages/Applications/DeletePlacementModal/index';
 
@@ -21,6 +21,7 @@ class ApplicationsContainer extends Component {
     selectedApp: null,
     selectedPlacement: null,
     isCreatingNewApp: false,
+    idAppEdit: null,
     apps: null,
     settings: null,
     placementToDelete: null
@@ -126,12 +127,16 @@ class ApplicationsContainer extends Component {
         selectedPlacement={this.state.selectedPlacement}
         selectedApp={this.state.selectedApp}
         select={this.selectApp}
-        zendesk={config.zendesk}/>
+        zendesk={config.zendesk}
+        onEditClick={this.onEditAppClick}
+      />
     );
   }
 
   getAppModal() {
-    return this.state.isCreatingNewApp ? <NewApp close={this.hideApplicationModal}/> : null;
+    return this.state.isCreatingNewApp
+      ? <AppModal close={this.hideApplicationModal} appId={this.state.idAppEdit} />
+      : null;
   }
 
   getDeletePlacementModal() {
@@ -151,6 +156,12 @@ class ApplicationsContainer extends Component {
     });
   };
 
+  onEditAppClick = (id) => () => {
+    this.setState({
+      idAppEdit: id
+    });
+  };
+
   render() {
     return (
       <Applications
@@ -160,7 +171,7 @@ class ApplicationsContainer extends Component {
         placementEdit={this.getPlacementEdit()}
         appsList={this.getAppsList()}
         showApplicationModal={this.showApplicationModal}
-        createAppModal={this.getAppModal()}
+        appModal={this.getAppModal()}
         deletePlacementModal={this.getDeletePlacementModal()}
       />
     );

@@ -76,7 +76,8 @@ class NewApp extends Component {
 
 NewApp.propTypes = {
   close: PropTypes.func,
-  form: PropTypes.object
+  form: PropTypes.object,
+  appId: PropTypes.number,
 };
 
 const getFormValuesFromState = (state) => {

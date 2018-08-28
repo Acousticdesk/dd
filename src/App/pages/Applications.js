@@ -41,7 +41,7 @@ const Applications = ({
 Applications.propTypes = {
   appsList: PropTypes.element,
   placementEdit: PropTypes.element,
-  createAppModal: PropTypes.element,
+  appModal: PropTypes.element,
   sidenav: PropTypes.element,
   header: PropTypes.element,
   subheader: PropTypes.element,
