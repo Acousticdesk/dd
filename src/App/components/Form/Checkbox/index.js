@@ -9,7 +9,7 @@ const getClassValue = (condition) => (classNameTrue, classNameFalse = '') => {
 
 const Checkbox = ({classExtra, theSwitch, input, ...props}) => {
   const id = 'checkbox_' + Math.random().toString(36).substr(2, 9);
-  const valueReduxForm = input.value;
+  const valueReduxForm = input && input.value;
   const checked = valueReduxForm || props.checked;
   const classChecked = getClassValue(checked)('checked');
   const classSwitch = getClassValue(theSwitch)('checkbox__switch-ui', 'checkbox__ui');
