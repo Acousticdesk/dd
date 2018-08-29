@@ -2,8 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import IntegrateIcon from '../../../../../../static/assets/icons/integrate.svg';
+import InterstitialIcon from '../../../../../../static/assets/icons/adUnits/interstitial.svg';
+import BannerIcon from '../../../../../../static/assets/icons/adUnits/banner.svg';
 
 const stopPropagation = evt => evt.stopPropagation();
+
+const AdUnitIcon = ({type}) => {
+  if (type === 'Interstitial') {
+    return <InterstitialIcon />;
+  }
+
+  return <BannerIcon />;
+};
+
+AdUnitIcon.propTypes = {
+  type: PropTypes.string,
+};
 
 const PlacementPresentation = ({selectPlacement, selectedClassName, placement, zendeskUrl, deletePlacement}) => {
   return (
@@ -12,7 +26,7 @@ const PlacementPresentation = ({selectPlacement, selectedClassName, placement, z
         <div className="placement-card__content">
           <div className="placement-summary text-center text--smaller">
             <div className="placement-summary__icon-container">
-              <div className="placement-type-icon-placeholder"/>
+              <AdUnitIcon type={placement.adUnitType} />
             </div>
             <div className="placement-summary__name-container">
               <p className="color--dark">{placement.name} ({placement.id})</p>
