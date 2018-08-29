@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { reduxForm, Field, formValueSelector } from 'redux-form';
+import { reduxForm, Field, formValueSelector, Form } from 'redux-form';
 import { connect } from 'react-redux';
 
 import { required } from '../../../validations';
@@ -26,6 +26,22 @@ class PlacementSettings extends Component {
     API.request('updatePlacement', 'POST', values)
       .then(() => window.setTimeout(() => this.setState({loader: false}), 1000));
   };
+
+  componentDidUpdate() {
+    const formPristineReduxForm = this.props.pristine;
+
+    if (formPristineReduxForm) {
+      return;
+    }
+
+    if (this.props.onSettingsChange && typeof this.props.onSettingsChange === 'function') {
+      this.props.onSettingsChange();
+      return;
+    }
+
+    console.warn('No onSettingsChange method was triggered after placement settings were changed');
+    console.trace();
+  }
 
   render() {
     const adUnitTypeSettings = this.props.settings[this.props.formValues && this.props.formValues.adUnitType || this.props.placement.adUnitType];
@@ -80,7 +96,7 @@ class PlacementSettings extends Component {
     : null;
     return (
       <div className="placement-settings">
-        <form onSubmit={this.props.handleSubmit(this.save)}>
+        <Form onSubmit={this.props.handleSubmit(this.save)}>
           <div className="placement-settings__loader-container">
             {this.state.loader ? <div className="loader"/> : null}
             <div className="placement-settings__fields-container">
@@ -129,7 +145,7 @@ class PlacementSettings extends Component {
               </button>
             </div>
           </div>
-        </form>
+        </Form>
       </div>
     );
   }
@@ -138,7 +154,8 @@ class PlacementSettings extends Component {
 PlacementSettings.propTypes = {
   placement: PropTypes.object.isRequired,
   settings: PropTypes.object,
-  formValues: PropTypes.object
+  formValues: PropTypes.object,
+  onSettingsChange: PropTypes.func,
 };
 
 PlacementSettings.defaultProps = {

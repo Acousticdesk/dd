@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { submit } from 'redux-form';
 
 import API from '../../API';
 import config from '../../../config';
@@ -14,7 +15,8 @@ import Header from '../components/Layout/Header';
 import SubHeader from '../components/Layout/SubHeader';
 import AppModal from '../components/Pages/Applications/AppModal';
 import ApplicationsList from '../components/Pages/Applications/ApplicationsList';
-import DeletePlacementModal from '../components/Pages/Applications/DeletePlacementModal';
+import PlacementDeleteModal from '../components/Pages/Applications/PlacementDeleteModal';
+import PlacementSaveModal from '../components/Pages/Applications/PlacementSaveModal';
 
 const getSidenav = () => (
   <Sidenav activeOne={'apps'}/>
@@ -27,13 +29,19 @@ class ApplicationsContainer extends Component {
     isCreatingNewApp: false,
     apps: null,
     settings: null,
-    placementToDelete: null
+    placementToDelete: null,
+    placementSettingsChanged: false,
+    placementSaveModalShow: false,
+    placementToLinkAfterSaveModal: null,
   };
 
   selectApp = (id) => () => {
-    this.setState({
-      selectedApp: id
-    });
+    if (id === this.state.selectedApp) {
+      this.setState({selectedApp: null});
+      return;
+    }
+
+    this.setState({selectedApp: id});
   };
 
   showApplicationModal = () => {
@@ -75,6 +83,15 @@ class ApplicationsContainer extends Component {
   }
 
   selectPlacement = (id) => () => {
+    if (this.state.placementSettingsChanged) {
+      this.setState({
+        placementSaveModalShow: true,
+        placementToLinkAfterSaveModal: id
+      });
+
+      return;
+    }
+
     this.setState({
       selectedPlacement: this.getPlacementById(this.state.selectedApp, id)
     });
@@ -110,7 +127,9 @@ class ApplicationsContainer extends Component {
       <PlacementEdit
         settings={this.state.settings}
         selectedAppIntegration={selectedAppIntegration}
-        selectedPlacement={this.state.selectedPlacement}/>
+        selectedPlacement={this.state.selectedPlacement}
+        onSettingsChange={this.onSettingsChange}
+      />
     );
   }
 
@@ -139,20 +158,42 @@ class ApplicationsContainer extends Component {
       : null;
   }
 
-  getDeletePlacementModal() {
+  getPlacementDeleteModal() {
     return this.state.placementToDelete
       ? (
-        <DeletePlacementModal
-          close={this.closeDeletePlacementModal}
+        <PlacementDeleteModal
+          close={this.closePlacementDeleteModal}
           placementId={this.state.placementToDelete}
         />
       )
       : null;
   }
 
-  closeDeletePlacementModal = () => {
+  getPlacementSaveModal() {
+    return this.state.placementSaveModalShow
+      ? (
+        <PlacementSaveModal
+          close={this.closePlacementSaveModal}
+          submitForm={this.submitPlacementEditForm}
+          placementId={this.state.selectedPlacement.id}
+        />
+      )
+      : null;
+  }
+
+  closePlacementDeleteModal = () => {
     this.setState({
       placementToDelete: null
+    });
+  };
+
+  closePlacementSaveModal = () => {
+    this.setState({
+      placementSaveModalShow: false,
+      placementSettingsChanged: false,
+    }, () => {
+      this.selectPlacement(this.state.placementToLinkAfterSaveModal)();
+      this.setState({placementToLinkAfterSaveModal: null});
     });
   };
 
@@ -168,6 +209,27 @@ class ApplicationsContainer extends Component {
     console.log('the app should be deleted');
   }
 
+  onSettingsChange = () => {
+    this.setState({
+      placementSettingsChanged: true
+    });
+  };
+
+  submitPlacementEditForm = () => {
+    const {submitPlacementEditForm} = this.props;
+
+    if (!submitPlacementEditForm && typeof submitPlacementEditForm !== 'function') {
+      return;
+    }
+
+    submitPlacementEditForm();
+
+    this.setState({
+      placementSaveModalShow: false,
+      placementSettingsChanged: false,
+    });
+  };
+
   render() {
     return (
       <Applications
@@ -178,7 +240,8 @@ class ApplicationsContainer extends Component {
         appsList={this.getAppsList()}
         showApplicationModal={this.showApplicationModal}
         appModal={this.getAppModal()}
-        deletePlacementModal={this.getDeletePlacementModal()}
+        deletePlacementModal={this.getPlacementDeleteModal()}
+        placementSaveModal={this.getPlacementSaveModal()}
       />
     );
   }
@@ -195,7 +258,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  editApp: bindActionCreators(editApp, dispatch)
+  editApp: bindActionCreators(editApp, dispatch),
+  submitPlacementEditForm: bindActionCreators(() => submit('placementSettings'), dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ApplicationsContainer);
