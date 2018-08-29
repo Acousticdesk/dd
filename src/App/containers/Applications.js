@@ -86,15 +86,6 @@ class ApplicationsContainer extends Component {
     });
   };
 
-  onPlacementEdit = (field) => {
-    this.setState({
-      selectedPlacement: {
-        ...this.state.selectedPlacement,
-        [field.name]: field.value
-      }
-    });
-  };
-
   getHeader() {
     return (
       <Header
@@ -118,7 +109,6 @@ class ApplicationsContainer extends Component {
     return (
       <PlacementEdit
         settings={this.state.settings}
-        onPlacementEdit={this.onPlacementEdit}
         selectedAppIntegration={selectedAppIntegration}
         selectedPlacement={this.state.selectedPlacement}/>
     );

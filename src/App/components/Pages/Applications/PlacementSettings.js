@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { reduxForm, Field } from 'redux-form';
+import { connect } from 'react-redux';
 
 import Checkbox from '../../Form/Checkbox';
 import Input from '../../Form/Input';
-import InputDropdown from '../../Form/Select';
+import Select from '../../Form/Select';
 import API from '../../../../API';
+
+const getOptions = (optionsValues) => {
+  if (!optionsValues || !Array.isArray(optionsValues)) {
+    return null;
+  }
+
+  return optionsValues.map(o => ({value: o, label: o}));
+};
 
 class PlacementSettings extends Component {
   state = {loader: false};
@@ -25,21 +35,42 @@ class PlacementSettings extends Component {
         switch (props.type) {
           case 'int':
             return (
-              <div key={key} className="placement-settings__field-container placement-settings__field-container--offset-s">
-                <Input onChange={this.props.onPlacementEdit} name={key} label={props.label} value={this.props.placement[key]}/>
+              <div
+                key={key}
+                className="placement-settings__field-container placement-settings__field-container--offset-s">
+                <Field
+                  name={key}
+                  label={props.label}
+                  value={this.props.placement[key]}
+                  component={Input}
+                />
               </div>
             );
           case 'boolean':
             return (
-              <div key={key} className="placement-settings__field-container placement-settings__field-container--offset-s">
-                <Checkbox onChange={this.props.onPlacementEdit} name={key} label={props.label} checked={this.props.placement[key]}/>
+              <div
+                key={key}
+                className="placement-settings__field-container placement-settings__field-container--offset-s">
+                <Field
+                  name={key}
+                  label={props.label}
+                  component={Checkbox}
+                />
               </div>
             );
           case 'select':
           case 'list':
             return (
-              <div key={key} className="placement-settings__field-container placement-settings__field-container--offset-s">
-                <InputDropdown onChange={this.props.onPlacementEdit} name={key} label={props.label} value={this.props.placement[key]} options={props.options}/>
+              <div
+                key={key}
+                className="placement-settings__field-container placement-settings__field-container--offset-s">
+                <Field
+                  name={key}
+                  label={props.label}
+                  value={this.props.placement[key]}
+                  options={getOptions(props.options)}
+                  component={Select}
+                />
               </div>
             );
           default:
@@ -49,53 +80,57 @@ class PlacementSettings extends Component {
     : null;
     return (
       <div className="placement-settings">
-        <div className="placement-settings__loader-container">
-          {this.state.loader ? <div className="loader"/> : null}
-          <div className="placement-settings__fields-container">
-            <div className="placement-settings__heading-container">
-              <h4 className="heading heading--small heading--thin heading--no-offset">
-                {this.props.placement.name} ({this.props.placement.id})
-              </h4>
-            </div>
+        <form onSubmit={this.props.handleSubmit(this.save)}>
+          <div className="placement-settings__loader-container">
+            {this.state.loader ? <div className="loader"/> : null}
+            <div className="placement-settings__fields-container">
+              <div className="placement-settings__heading-container">
+                <h4 className="heading heading--small heading--thin heading--no-offset">
+                  {this.props.placement.name} ({this.props.placement.id})
+                </h4>
+              </div>
+              <div className="placement-settings__field-container">
+                <Field
+                  name="name"
+                  label="Name"
+                  component={Input}
+                />
+              </div>
 
-            <div className="placement-settings__field-container">
-              <Input
-                name="name"
-                label="Name"
-                value={this.props.placement.name}
-                onChange={this.props.onPlacementEdit}/>
-            </div>
+              <div className="placement-settings__field-container">
+                <Field
+                  name="adUnitType"
+                  label="Ad Unit"
+                  value={this.props.placement.adUnitType}
+                  options={getOptions(adUnitTypes)}
+                  component={Select}
+                />
+              </div>
 
-            <div className="placement-settings__field-container">
-              <InputDropdown
-                name="adUnitType"
-                label="Ad Unit"
-                value={this.props.placement.adUnitType}
-                options={adUnitTypes}
-                onChange={this.props.onPlacementEdit}
-              />
-            </div>
+              <div className="placement-settings__field-container">
+                <Field
+                  name="status"
+                  label="Status"
+                  value={this.props.placement.status}
+                  options={[
+                    {value: 'active', label: 'Active'},
+                    {value: 'inactive', label: 'Inactive'}
+                  ]}
+                  component={Select}
+                />
+              </div>
 
-            <div className="placement-settings__field-container">
-              <InputDropdown
-                name="status"
-                label="Status"
-                value={this.props.placement.status}
-                options={['active', 'inactive']}
-                onChange={this.props.onPlacementEdit}
-              />
+              {extraFields}
             </div>
-
-            {extraFields}
+            <div className="placement-settings__cta-container">
+              <button
+                type="submit"
+                className="btn btn--height-l btn--full-width btn-chetwod-blue btn-border-chetwod-extra-blue">
+                Save
+              </button>
+            </div>
           </div>
-          <div className="placement-settings__cta-container">
-            <button
-              onClick={this.save}
-              className="btn btn--height-l btn--full-width btn-chetwod-blue btn-border-chetwod-extra-blue">
-              Save
-            </button>
-          </div>
-        </div>
+        </form>
       </div>
     );
   }
@@ -104,11 +139,18 @@ class PlacementSettings extends Component {
 PlacementSettings.propTypes = {
   placement: PropTypes.object.isRequired,
   settings: PropTypes.object,
-  onPlacementEdit: PropTypes.func
 };
 
 PlacementSettings.defaultProps = {
   settings: {}
 };
 
-export default PlacementSettings;
+const reduxFormed = reduxForm({
+  form: 'placementSettings'
+})(PlacementSettings);
+
+const mapStateToProps = (state, props) => ({
+  initialValues: props.placement
+});
+
+export default connect(mapStateToProps)(reduxFormed);
