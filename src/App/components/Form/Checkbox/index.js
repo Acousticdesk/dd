@@ -19,13 +19,14 @@ const Checkbox = ({classExtra, theSwitch, input, ...props}) => {
   return (
     <Presentation
       {...props}
-      {...input}
+      input={input}
       id={id}
       classChecked={classChecked}
       classSwitch={classSwitch}
       classLabel={classLabel}
       classExtra={classExtra}
       icon={icon}
+      isChecked={valueReduxForm}
     />
   );
 };

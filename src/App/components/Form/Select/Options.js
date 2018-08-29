@@ -10,7 +10,7 @@ const Option = ({label, onOptionClick}) => (
 );
 
 Option.propTypes = {
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onOptionClick: PropTypes.func
 };
 

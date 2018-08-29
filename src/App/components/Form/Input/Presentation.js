@@ -26,7 +26,7 @@ Presentation.propTypes = {
   onClick: PropTypes.func,
   input: PropTypes.object,
   meta: PropTypes.object.isRequired,
-  inputValue: PropTypes.string,
+  inputValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   classNameValue: PropTypes.string,
   errorClass: PropTypes.string,
   extraClass: PropTypes.string,

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
+
+import { required } from '../../../validations';
 
 import Checkbox from '../../Form/Checkbox';
 import Input from '../../Form/Input';
@@ -19,14 +21,14 @@ const getOptions = (optionsValues) => {
 class PlacementSettings extends Component {
   state = {loader: false};
 
-  save = () => {
+  save = (values) => {
     this.setState({loader: true});
-    API.request('updatePlacement', 'POST', this.props.placement)
+    API.request('updatePlacement', 'POST', values)
       .then(() => window.setTimeout(() => this.setState({loader: false}), 1000));
   };
 
   render() {
-    const adUnitTypeSettings = this.props.settings[this.props.placement.adUnitType];
+    const adUnitTypeSettings = this.props.settings[this.props.formValues && this.props.formValues.adUnitType || this.props.placement.adUnitType];
     const adUnitTypes = Object.keys(this.props.settings);
     const schema = adUnitTypeSettings && adUnitTypeSettings.schema;
 
@@ -41,7 +43,6 @@ class PlacementSettings extends Component {
                 <Field
                   name={key}
                   label={props.label}
-                  value={this.props.placement[key]}
                   component={Input}
                 />
               </div>
@@ -67,7 +68,6 @@ class PlacementSettings extends Component {
                 <Field
                   name={key}
                   label={props.label}
-                  value={this.props.placement[key]}
                   options={getOptions(props.options)}
                   component={Select}
                 />
@@ -93,6 +93,7 @@ class PlacementSettings extends Component {
                 <Field
                   name="name"
                   label="Name"
+                  validate={[required]}
                   component={Input}
                 />
               </div>
@@ -101,7 +102,6 @@ class PlacementSettings extends Component {
                 <Field
                   name="adUnitType"
                   label="Ad Unit"
-                  value={this.props.placement.adUnitType}
                   options={getOptions(adUnitTypes)}
                   component={Select}
                 />
@@ -111,7 +111,6 @@ class PlacementSettings extends Component {
                 <Field
                   name="status"
                   label="Status"
-                  value={this.props.placement.status}
                   options={[
                     {value: 'active', label: 'Active'},
                     {value: 'inactive', label: 'Inactive'}
@@ -139,18 +138,23 @@ class PlacementSettings extends Component {
 PlacementSettings.propTypes = {
   placement: PropTypes.object.isRequired,
   settings: PropTypes.object,
+  formValues: PropTypes.object
 };
 
 PlacementSettings.defaultProps = {
   settings: {}
 };
 
+const selector = formValueSelector('placementSettings');
+
 const reduxFormed = reduxForm({
-  form: 'placementSettings'
+  form: 'placementSettings',
+  enableReinitialize: true,
 })(PlacementSettings);
 
 const mapStateToProps = (state, props) => ({
-  initialValues: props.placement
+  initialValues: props.placement,
+  formValues: selector(state, 'adUnitType', ''),
 });
 
 export default connect(mapStateToProps)(reduxFormed);
