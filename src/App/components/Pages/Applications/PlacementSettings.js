@@ -28,7 +28,6 @@ class PlacementSettings extends Component {
         this.setState({
           loader: false,
         });
-        this.props.reset();
       }, 1000));
   };
 
@@ -85,8 +84,7 @@ class PlacementSettings extends Component {
             return null;
         }
       })
-    : null;
-    // TODO: Make onchage on every Field component
+      : null;
     return (
       <div className="placement-settings">
         <Form onSubmit={this.props.handleSubmit(this.save)}>

@@ -22,7 +22,9 @@ class Dropdown extends Component {
     this.setState({isFocused: false});
   };
 
-  onToggle = () => {
+  onToggle = (evt) => {
+    evt.stopPropagation();
+
     this.setState(prevState => {
       return {isFocused: !prevState.isFocused};
     });
@@ -35,7 +37,6 @@ class Dropdown extends Component {
 
     return (
       <DropdownPresentational
-        onClick={stopPropagation}
         activeClass={activeClass}
         fullWidthClass={fullWidthClass}
         toggle={

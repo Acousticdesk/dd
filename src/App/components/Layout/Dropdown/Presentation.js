@@ -16,7 +16,7 @@ DropdownPresentational.propTypes = {
   activeClass: PropTypes.string,
   fullWidthClass: PropTypes.string,
   toggle: PropTypes.element,
-  items: PropTypes.element
+  items: PropTypes.element,
 };
 
 export default DropdownPresentational;
