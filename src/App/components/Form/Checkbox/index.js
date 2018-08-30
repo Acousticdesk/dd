@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import withCustomOnChangeReduxForm from '../../../HOC/withCustomOnChange';
 import Presentation from './Presentation';
 
 const getClassValue = (condition) => (classNameTrue, classNameFalse = '') => {
@@ -15,10 +16,6 @@ const Checkbox = ({classExtra, theSwitch, input, onChange, ...props}) => {
   const classSwitch = getClassValue(theSwitch)('checkbox__switch-ui', 'checkbox__ui');
   const classLabel = getClassValue(checked)('text-bold');
   const icon = getClassValue(checked && !theSwitch)('done');
-
-  const customOnChange = (evt) => {
-
-  };
 
   return (
     <Presentation
@@ -42,4 +39,4 @@ Checkbox.propTypes = {
   onChange: PropTypes.func,
 };
 
-export default Checkbox;
+export default withCustomOnChangeReduxForm(Checkbox);

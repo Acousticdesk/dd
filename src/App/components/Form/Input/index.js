@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import withCustomOnChangeReduxForm from '../../../HOC/withCustomOnChange';
 import Presentation from './Presentation';
 
 const errClass = (err, isTouched) => {
@@ -18,19 +19,6 @@ const getValue = (props, input) => {
 const Input = ({icon, extraClass, input, meta, onChange, ...props}) => {
   const errorClass = errClass(meta.error, meta.touched);
   const value = getValue(props, input);
-  const customOnChange = (evt) => {
-    if ((!input || !input.onChange) && !onChange) {
-      return;
-    }
-
-    if (input.onChange && typeof input.onChange === 'function') {
-      input.onChange(evt);
-    }
-
-    if (onChange && typeof input.onChange === 'function') {
-      onChange(evt);
-    }
-  };
 
   return (
     <Presentation
@@ -41,7 +29,7 @@ const Input = ({icon, extraClass, input, meta, onChange, ...props}) => {
       extraClass={extraClass}
       meta={meta}
       input={input}
-      onChange={customOnChange}
+      onChange={onChange}
     />
   );
 };
@@ -59,4 +47,4 @@ Input.defaultProps = {
   meta: {}
 };
 
-export default Input;
+export default withCustomOnChangeReduxForm(Input);

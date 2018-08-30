@@ -14,6 +14,10 @@ class Select extends Component {
     });
 
     this.triggerReduxFormChange(optionSelected.value);
+
+    if (this.props.onOptionSelected && typeof this.props.onOptionSelected === 'function') {
+      this.props.onOptionSelected(optionSelected);
+    }
   };
 
   triggerReduxFormChange(value) {
@@ -78,6 +82,7 @@ Select.propTypes = {
   options: PropTypes.array,
   name: PropTypes.string,
   label: PropTypes.string,
+  onOptionSelected: PropTypes.func,
 };
 
 export default Select;

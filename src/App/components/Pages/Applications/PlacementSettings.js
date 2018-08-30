@@ -49,6 +49,7 @@ class PlacementSettings extends Component {
                   name={key}
                   label={props.label}
                   component={Input}
+                  onChange={this.props.onSettingsChange}
                 />
               </div>
             );
@@ -61,6 +62,7 @@ class PlacementSettings extends Component {
                   name={key}
                   label={props.label}
                   component={Checkbox}
+                  onChange={this.props.onSettingsChange}
                 />
               </div>
             );
@@ -75,6 +77,7 @@ class PlacementSettings extends Component {
                   label={props.label}
                   options={getOptions(props.options)}
                   component={Select}
+                  onOptionSelected={this.props.onSettingsChange}
                 />
               </div>
             );
@@ -111,6 +114,7 @@ class PlacementSettings extends Component {
                   label="Ad Unit"
                   options={getOptions(adUnitTypes)}
                   component={Select}
+                  onOptionSelected={this.props.onSettingsChange}
                 />
               </div>
 
@@ -123,6 +127,7 @@ class PlacementSettings extends Component {
                     {value: 'inactive', label: 'Inactive'}
                   ]}
                   component={Select}
+                  onOptionSelected={this.props.onSettingsChange}
                 />
               </div>
 

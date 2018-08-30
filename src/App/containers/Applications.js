@@ -210,6 +210,7 @@ class ApplicationsContainer extends Component {
   }
 
   onSettingsChange = () => {
+    console.log('Wow, my first Hoc works really well!');
     this.setState({
       placementSettingsChanged: true
     });
