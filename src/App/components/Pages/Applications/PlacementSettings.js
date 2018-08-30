@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { reduxForm, Field, formValueSelector, Form } from 'redux-form';
+import { reduxForm, Field, getFormValues, Form } from 'redux-form';
 import { connect } from 'react-redux';
 
 import { required } from '../../../validations';
@@ -24,24 +24,13 @@ class PlacementSettings extends Component {
   save = (values) => {
     this.setState({loader: true});
     API.request('updatePlacement', 'POST', values)
-      .then(() => window.setTimeout(() => this.setState({loader: false}), 1000));
+      .then(() => window.setTimeout(() => {
+        this.setState({
+          loader: false,
+        });
+        this.props.reset();
+      }, 1000));
   };
-
-  componentDidUpdate() {
-    const formPristineReduxForm = this.props.pristine;
-
-    if (formPristineReduxForm) {
-      return;
-    }
-
-    if (this.props.onSettingsChange && typeof this.props.onSettingsChange === 'function') {
-      this.props.onSettingsChange();
-      return;
-    }
-
-    console.warn('No onSettingsChange method was triggered after placement settings were changed');
-    console.trace();
-  }
 
   render() {
     const adUnitTypeSettings = this.props.settings[this.props.formValues && this.props.formValues.adUnitType || this.props.placement.adUnitType];
@@ -94,6 +83,7 @@ class PlacementSettings extends Component {
         }
       })
     : null;
+    // TODO: Make onchage on every Field component
     return (
       <div className="placement-settings">
         <Form onSubmit={this.props.handleSubmit(this.save)}>
@@ -111,6 +101,7 @@ class PlacementSettings extends Component {
                   label="Name"
                   validate={[required]}
                   component={Input}
+                  onChange={this.props.onSettingsChange}
                 />
               </div>
 
@@ -162,7 +153,7 @@ PlacementSettings.defaultProps = {
   settings: {}
 };
 
-const selector = formValueSelector('placementSettings');
+const selector = getFormValues('placementSettings');
 
 const reduxFormed = reduxForm({
   form: 'placementSettings',
@@ -171,7 +162,7 @@ const reduxFormed = reduxForm({
 
 const mapStateToProps = (state, props) => ({
   initialValues: props.placement,
-  formValues: selector(state, 'adUnitType', ''),
+  formValues: selector(state),
 });
 
 export default connect(mapStateToProps)(reduxFormed);

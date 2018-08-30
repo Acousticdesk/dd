@@ -15,9 +15,22 @@ const getValue = (props, input) => {
   return input ? input.value : props.value;
 };
 
-const Input = ({icon, extraClass, input, meta, ...props}) => {
+const Input = ({icon, extraClass, input, meta, onChange, ...props}) => {
   const errorClass = errClass(meta.error, meta.touched);
   const value = getValue(props, input);
+  const customOnChange = (evt) => {
+    if ((!input || !input.onChange) && !onChange) {
+      return;
+    }
+
+    if (input.onChange && typeof input.onChange === 'function') {
+      input.onChange(evt);
+    }
+
+    if (onChange && typeof input.onChange === 'function') {
+      onChange(evt);
+    }
+  };
 
   return (
     <Presentation
@@ -28,6 +41,7 @@ const Input = ({icon, extraClass, input, meta, ...props}) => {
       extraClass={extraClass}
       meta={meta}
       input={input}
+      onChange={customOnChange}
     />
   );
 };
@@ -38,6 +52,7 @@ Input.propTypes = {
   extraClass: PropTypes.string,
   input: PropTypes.object,
   meta: PropTypes.object.isRequired,
+  onChange: PropTypes.func
 };
 
 Input.defaultProps = {

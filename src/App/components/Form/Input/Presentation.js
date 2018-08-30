@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import ErrorMsg from './ErrorMsg';
 
-const Presentation = ({icon, errorClass, extraClass, inputValue, input, meta, ...props}) => (
+const Presentation = ({icon, errorClass, extraClass, inputValue, input, meta, onChange, ...props}) => (
   <div className="input">
     <label className="input__label color--grey-lighter">{props.label}</label>
     <input
@@ -15,6 +15,7 @@ const Presentation = ({icon, errorClass, extraClass, inputValue, input, meta, ..
       className={`input__field color--dark ${extraClass} ${errorClass}`}
       value={inputValue}
       onClick={props.onClick}
+      onChange={onChange}
     />
     {icon}
     <ErrorMsg error={meta.error} isTouched={meta.touched}/>
@@ -30,6 +31,7 @@ Presentation.propTypes = {
   classNameValue: PropTypes.string,
   errorClass: PropTypes.string,
   extraClass: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 export default Presentation;

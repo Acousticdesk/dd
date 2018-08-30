@@ -7,7 +7,7 @@ const getClassValue = (condition) => (classNameTrue, classNameFalse = '') => {
   return condition ? classNameTrue : classNameFalse;
 };
 
-const Checkbox = ({classExtra, theSwitch, input, ...props}) => {
+const Checkbox = ({classExtra, theSwitch, input, onChange, ...props}) => {
   const id = 'checkbox_' + Math.random().toString(36).substr(2, 9);
   const valueReduxForm = input && input.value;
   const checked = valueReduxForm || props.checked;
@@ -15,6 +15,10 @@ const Checkbox = ({classExtra, theSwitch, input, ...props}) => {
   const classSwitch = getClassValue(theSwitch)('checkbox__switch-ui', 'checkbox__ui');
   const classLabel = getClassValue(checked)('text-bold');
   const icon = getClassValue(checked && !theSwitch)('done');
+
+  const customOnChange = (evt) => {
+
+  };
 
   return (
     <Presentation
@@ -35,6 +39,7 @@ Checkbox.propTypes = {
   classExtra: PropTypes.string,
   theSwitch: PropTypes.bool,
   input: PropTypes.object,
+  onChange: PropTypes.func,
 };
 
 export default Checkbox;
