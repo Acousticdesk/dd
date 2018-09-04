@@ -3,6 +3,20 @@ import PropTypes from 'prop-types';
 
 import Application from './Application';
 
+const PackageName = ({name}) => {
+  if (name.length <= 18) {
+    return name;
+  }
+
+  const arrName = name.split('');
+
+  return [...arrName.slice(0, 8), '...', ...arrName.slice(-9)];
+};
+
+PackageName.propTypes = {
+  name: PropTypes.string,
+};
+
 const createList = (apps, onEditApp, onDeleteApp, props) => {
   if (!apps) {
     return null;
@@ -16,6 +30,7 @@ const createList = (apps, onEditApp, onDeleteApp, props) => {
     return (
       <Application
         {...props}
+        packageName={<PackageName name={app.package} />}
         key={id}
         id={id}
         isSelected={isSelected}

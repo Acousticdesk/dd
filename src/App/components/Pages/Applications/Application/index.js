@@ -16,7 +16,8 @@ const Application = ({
   zendesk,
   deletePlacement,
   onEditApp,
-  onDeleteApp
+  onDeleteApp,
+  packageName
 }) => {
   return (
     <li className="l-applications-list__row">
@@ -37,7 +38,7 @@ const Application = ({
               </div>
               <div className="app-info__package-col">
                 <span className="color--grey-lighter">Package: </span>
-                <span className="color--dark">{app.package}</span>
+                <span className="color--dark">{packageName}</span>
               </div>
             </div>
           </div>

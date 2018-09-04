@@ -121,6 +121,12 @@
     height: calc(100vh - 120px);
 }
 
+    @media screen and (max-width: 767px) {
+        .l-applications-main {
+            display: block;
+        }
+    }
+
 .l-applications-main__apps-container {
     padding: 16px;
     overflow-y: scroll;
@@ -130,6 +136,12 @@
     background: #fff;
     overflow-y: scroll;
 }
+
+    @media screen and (max-width: 767px) {
+        .l-applications-main__side-bar {
+            display: none;
+        }
+    }
 
 .l-applications-list {
 
