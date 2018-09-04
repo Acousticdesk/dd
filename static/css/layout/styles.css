@@ -95,6 +95,12 @@
         height: 100vh;
     }
 
+    @media screen and (max-width: 767px) {
+        .l-page--with-sidebar {
+            grid-template: 100% / 100%;
+        }
+    }
+
     .l-page-bg-whisper {
         background: #f4f5f9;
     }

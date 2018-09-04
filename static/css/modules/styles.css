@@ -290,6 +290,12 @@
     height: 100%;
 }
 
+    @media screen and (max-width: 767px) {
+        .sidenav {
+            display: none;
+        }
+    }
+
     .sidenav .item {
         position: relative;
         height: 56px;

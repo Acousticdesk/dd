@@ -4,7 +4,6 @@ import { reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 
 import API from '../../../../../API';
-import validate from '../../../../validations/new-app';
 
 import NewAppPresentation from './Presentation';
 import ApplicationTextFields from './ApplicationTextFields';
@@ -144,7 +143,6 @@ const mapStateToProps = (state, props) => ({
 
 const reduxFormed = reduxForm({
   form: 'newapp',
-  validate,
 })(NewApp);
 
 export default connect(mapStateToProps)(reduxFormed);
