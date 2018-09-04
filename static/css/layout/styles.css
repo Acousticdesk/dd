@@ -70,20 +70,26 @@
     border-bottom: #edeef2;
 }
 
-.l-sub-header__search-container {
-    display: flex;
-    align-items: center;
-    margin-right: auto;
-}
+    @media screen and (max-width: 767px) {
+        .l-sub-header {
+            display: none;
+        }
+    }
 
-.l-sub-header__sort-container {
-    width: 155px;
-    line-height: 64px;
-}
+    .l-sub-header__search-container {
+        display: flex;
+        align-items: center;
+        margin-right: auto;
+    }
 
-.l-sub-header__cta-container {
-    line-height: 64px;
-}
+    .l-sub-header__sort-container {
+        width: 155px;
+        line-height: 64px;
+    }
+
+    .l-sub-header__cta-container {
+        line-height: 64px;
+    }
 
 .l-page {
     position: relative;
