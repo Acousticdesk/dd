@@ -4,10 +4,15 @@ import withStopPropagationNativeEvent from '../../../HOC/withStopPropagationNati
 
 const Toggle = ({email, onClick}) => {
   return (
-    <p onClick={onClick} className="color--grey">
-      {email}
-      <i className="material-icons">arrow_drop_down</i>
-    </p>
+    <span onClick={onClick}>
+      <span className="user-dropdown__toggle">
+        {email}
+        <i className="material-icons">arrow_drop_down</i>
+      </span>
+      <span className="user-dropdown__toggle-mobile">
+        <i className="user-dropdown__icon-mobile icon--small icon-regular material-icons isCursorPointer">person</i>
+      </span>
+    </span>
   );
 };
 

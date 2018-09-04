@@ -1034,6 +1034,30 @@
     line-height: 1.78;
 }
 
+.user-dropdown__toggle-mobile {
+    display: none;
+}
+
+    @media screen and (max-width: 767px) {
+        .user-dropdown__toggle-mobile {
+            display: inline-block;
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        .user-dropdown__toggle {
+            display: none;
+        }
+    }
+
+    .user-dropdown__icon-mobile {
+        position: relative;
+        color: #fff;
+        background: #ccc;
+        padding: 2px;
+        border-radius: 50%;
+    }
+
 .color--grey {
     color: #666;
 }

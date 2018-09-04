@@ -10,6 +10,7 @@ const UserDropdown = ({email, onLogOut}) => {
     <Dropdown
       items={<Items onLogOut={onLogOut} />}
       toggle={<Toggle email={email} />}
+      noCaret
     />
   );
 };

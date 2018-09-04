@@ -58,7 +58,7 @@
 }
 
 .l-header__user-container {
-    width: 185px;
+    width: 56px;
     line-height: 56px;
 }
 
@@ -97,7 +97,7 @@
 
     @media screen and (max-width: 767px) {
         .l-page--with-sidebar {
-            grid-template: 100% / 100%;
+            display: block;
         }
     }
 
