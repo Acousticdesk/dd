@@ -27,9 +27,7 @@ const Applications = ({
                 {appsList}
               </ul>
             </div>
-            <div className="l-applications-main__side-bar">
-              {placementEdit}
-            </div>
+            {placementEdit}
           </div>
         </div>
       </div>

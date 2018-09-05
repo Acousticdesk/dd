@@ -6,7 +6,7 @@ import PlacementSettings from './PlacementSettings';
 
 const PlacementEdit = ({selectedPlacement, settings, selectedAppIntegration, onSettingsChange}) => {
   return (
-    <React.Fragment>
+    <div className="l-applications-main__side-bar">
       {!selectedPlacement
         ? <NoAppSelectedPrompt/>
         : (
@@ -16,7 +16,7 @@ const PlacementEdit = ({selectedPlacement, settings, selectedAppIntegration, onS
             onSettingsChange={onSettingsChange}
           />
         )}
-    </React.Fragment>
+    </div>
   );
 };
 

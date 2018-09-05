@@ -38,6 +38,16 @@
     border-bottom: 1px solid #edeef2;
 }
 
+    @media screen and (max-width: 768px) {
+        .l-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
+    }
+
 .l-header__logo-container {
     width: 55px;
     line-height: 56px;
@@ -58,9 +68,16 @@
 }
 
 .l-header__user-container {
-    width: 56px;
+    padding: 0 22px;
     line-height: 56px;
 }
+
+    @media screen and (max-width: 768px) {
+        .l-header__user-container {
+            padding: 0;
+            width: 56px;
+        }
+    }
 
 .l-sub-header {
     display: flex;
@@ -70,7 +87,7 @@
     border-bottom: #edeef2;
 }
 
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
         .l-sub-header {
             display: none;
         }
@@ -80,6 +97,15 @@
         display: flex;
         align-items: center;
         margin-right: auto;
+        width: 49.2rem;
+    }
+
+    @media screen and (max-width: 900px) {
+        .l-sub-header__search-container {
+            width: auto;
+            flex-grow: 1;
+            margin-right: 15px;
+        }
     }
 
     .l-sub-header__sort-container {
@@ -101,9 +127,10 @@
         height: 100vh;
     }
 
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
         .l-page--with-sidebar {
             display: block;
+            padding-top: 56px;
         }
     }
 
@@ -121,7 +148,7 @@
     height: calc(100vh - 120px);
 }
 
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
         .l-applications-main {
             display: block;
         }
@@ -137,9 +164,14 @@
     overflow-y: scroll;
 }
 
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 768px) {
         .l-applications-main__side-bar {
-            display: none;
+            position: fixed;
+            top: 57px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 100;
         }
     }
 

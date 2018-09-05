@@ -122,9 +122,15 @@ class ApplicationsContainer extends Component {
   getPlacementEdit() {
     const selectedApp = this.getAppById(this.state.selectedApp);
     const selectedAppIntegration = selectedApp && selectedApp.integration;
+    const isMobile = document.documentElement.clientWidth <= 768;
+
+    if (isMobile && !this.state.selectedPlacement) {
+      return null;
+    }
 
     return (
       <PlacementEdit
+        isMobile={isMobile}
         settings={this.state.settings}
         selectedAppIntegration={selectedAppIntegration}
         selectedPlacement={this.state.selectedPlacement}
