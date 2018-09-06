@@ -18,9 +18,9 @@ import ApplicationsList from '../components/Pages/Applications/ApplicationsList'
 import PlacementDeleteModal from '../components/Pages/Applications/PlacementDeleteModal';
 import PlacementSaveModal from '../components/Pages/Applications/PlacementSaveModal';
 
-const getSidenav = () => (
-  <Sidenav activeOne={'apps'}/>
-);
+const isMobile = () => {
+  return document.documentElement.clientWidth <= 768;
+};
 
 class ApplicationsContainer extends Component {
   state = {
@@ -33,6 +33,7 @@ class ApplicationsContainer extends Component {
     placementSettingsChanged: false,
     placementSaveModalShow: false,
     placementToLinkAfterSaveModal: null,
+    mobileSidebarShow: false,
   };
 
   selectApp = (id) => () => {
@@ -107,8 +108,12 @@ class ApplicationsContainer extends Component {
   };
 
   getHeader() {
+    const isDarkTheme = isMobile() && this.state.mobileSidebarShow;
+
     return (
       <Header
+        isDarkTheme={isDarkTheme}
+        mobileSidebarToggle={this.mobileSidebarToggle}
         userEmail={this.props.user.email}
         onUserLoggedOut={this.props.onUserLoggedOut}
         pageTitle="Applications"
@@ -125,15 +130,14 @@ class ApplicationsContainer extends Component {
   getPlacementEdit() {
     const selectedApp = this.getAppById(this.state.selectedApp);
     const selectedAppIntegration = selectedApp && selectedApp.integration;
-    const isMobile = document.documentElement.clientWidth <= 768;
 
-    if (isMobile && !this.state.selectedPlacement) {
+    if (isMobile() && !this.state.selectedPlacement) {
       return null;
     }
 
     return (
       <PlacementEdit
-        isMobile={isMobile}
+        isMobile={isMobile()}
         settings={this.state.settings}
         selectedAppIntegration={selectedAppIntegration}
         selectedPlacement={this.state.selectedPlacement}
@@ -245,10 +249,22 @@ class ApplicationsContainer extends Component {
     this.setState({selectedPlacement: null});
   };
 
+  mobileSidebarToggle = () => {
+    this.setState(state => {
+      this.setState({mobileSidebarShow: !state.mobileSidebarShow});
+    });
+  };
+
+  getSidenav() {
+    const show = isMobile() && this.state.mobileSidebarShow;
+
+    return <Sidenav show={show} activeOne={'Applications'} />;
+  }
+
   render() {
     return (
       <Applications
-        sidenav={getSidenav()}
+        sidenav={this.getSidenav()}
         header={this.getHeader()}
         subheader={this.getSubheader()}
         placementEdit={this.getPlacementEdit()}

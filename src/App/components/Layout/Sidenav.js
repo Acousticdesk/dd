@@ -19,7 +19,7 @@ const createLinks = (activeOne) => {
   return iconsArray.map((icon, index) => {
     const label = Object.keys(icon)[0];
     const IconComponent = icon[label];
-    const activeClass = label.toLowerCase() === activeOne ? 'active' : '';
+    const activeClass = label === activeOne ? 'active' : '';
     return (
       <li key={index} className={`sidenav__item sidenav__item--${label} ${activeClass} isCursorPointer`}>
         <a className="sidenav__link" href="javascript:void(0);">
@@ -31,9 +31,9 @@ const createLinks = (activeOne) => {
   })
 };
 
-const Sidenav = ({activeOne}) => {
+const Sidenav = ({activeOne, show}) => {
   return (
-    <nav className="sidenav">
+    <nav className={`sidenav ${show ? 'show' : ''}`}>
       <ul>
         {createLinks(activeOne)}
       </ul>
@@ -42,7 +42,8 @@ const Sidenav = ({activeOne}) => {
 };
 
 Sidenav.propTypes = {
-  activeOne: PropTypes.string
+  activeOne: PropTypes.string,
+  show: PropTypes.bool,
 };
 
 export default Sidenav;

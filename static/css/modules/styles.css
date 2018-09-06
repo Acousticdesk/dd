@@ -365,9 +365,11 @@
         transition: color .3s linear;
     }
 
-    .sidenav__link {
-        display: flex;
-        align-items: center;
+    @media screen and (max-width: 768px) {
+        .sidenav__link {
+            display: flex;
+            align-items: center;
+        }
     }
 
 /* Structure */
@@ -716,7 +718,7 @@
 
 .placement-settings {
     position: relative;
-    padding: 2rem 2.3rem;
+    padding: 2rem 1.6rem;
     height: 100%;
     display: flex;
     flex-direction: column;

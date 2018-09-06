@@ -6,10 +6,10 @@ import logoWhite from '../../../../static/assets/logo/white.png';
 
 import UserDropdown from './UserDropdown';
 
-const Header = ({userEmail, onUserLoggedOut, pageTitle}) => {
+const Header = ({userEmail, onUserLoggedOut, pageTitle, mobileSidebarToggle, isDarkTheme}) => {
   return (
-    <header className="l-header">
-      <div className="l-header__logo-container text-center">
+    <header className={`l-header ${isDarkTheme ? 'l-header--dark' : ''}`}>
+      <div onClick={mobileSidebarToggle} className="l-header__logo-container text-center">
         <img className="l-header__logo" src={logo} width="22px" alt="Display.io"/>
         <img className="l-header__logo-white" src={logoWhite} width="22px" alt="Display.io" />
       </div>
@@ -39,7 +39,9 @@ const Header = ({userEmail, onUserLoggedOut, pageTitle}) => {
 Header.propTypes = {
   userEmail: PropTypes.string,
   onUserLoggedOut: PropTypes.func,
-  pageTitle: PropTypes.string
+  pageTitle: PropTypes.string,
+  mobileSidebarToggle: PropTypes.func,
+  isDarkTheme: PropTypes.bool,
 };
 
 export default Header;
