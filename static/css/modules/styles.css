@@ -290,20 +290,47 @@
     height: 100%;
 }
 
+    .sidenav.show {
+        display: block;
+    }
+
     @media screen and (max-width: 768px) {
         .sidenav {
             display: none;
+            position: fixed;
+            z-index: 99;
+            top: 57px;
+            left: 0;
+            right: 0;
+            bottom: 0;
         }
     }
 
-    .sidenav .item {
+    .sidenav__item {
         position: relative;
         height: 56px;
         line-height: 56px;
         text-align: center;
     }
 
-    .sidenav .item:before {
+    .sidenav__label {
+        display: none;
+        color: #8895bb;
+        margin-left: 20px;
+    }
+
+    @media screen and (max-width: 768px) {
+        .sidenav__item {
+            text-align: left;
+            padding: 0 17px;
+        }
+
+        .sidenav__label {
+            display: inline;
+        }
+    }
+
+    .sidenav__item:before {
         content: ' ';
         position: absolute;
         width: 2px;
@@ -316,23 +343,31 @@
         transition: opacity .3s linear;
     }
 
-        .sidenav .item:hover:before,
-        .sidenav .item.active:before {
+        .sidenav__item:hover:before,
+        .sidenav__item.active:before{
             opacity: 1;
         }
 
-        .sidenav .item:hover path,
-        .sidenav .item.active path{
+        .sidenav__item:hover .sidenav__label {
+            color: #91eae4;
+        }
+
+        .sidenav__item:hover path,
+        .sidenav__item.active path{
             fill: #91eae4;
         }
 
-        .sidenav .item:hover,
-        .sidenav .item:hover *{
-            cursor: pointer;
-        }
-
-    .sidenav .item path {
+    .sidenav__item path {
         transition: fill .3s linear;
+    }
+
+    .sidenav__label {
+        transition: color .3s linear;
+    }
+
+    .sidenav__link {
+        display: flex;
+        align-items: center;
     }
 
 /* Structure */
