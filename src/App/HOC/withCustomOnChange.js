@@ -9,11 +9,11 @@ const withCustomOnChangeReduxForm = (WrappedComponent) => {
         return;
       }
 
-      if (inputReduxForm.onChange && typeof inputReduxForm.onChange === 'function') {
+      if (inputReduxForm && inputReduxForm.onChange && typeof inputReduxForm.onChange === 'function') {
         inputReduxForm.onChange(evt);
       }
 
-      if (onChange && typeof inputReduxForm.onChange === 'function') {
+      if (onChange) {
         onChange(evt);
       }
     };

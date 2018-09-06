@@ -97,7 +97,10 @@ class ApplicationsContainer extends Component {
     });
   };
 
-  deletePlacement = (id) => () => {
+  deletePlacement = (id) => (evt) => {
+    evt.persist();
+    evt.stopPropagation();
+
     this.setState({
       placementToDelete: id
     });
@@ -135,6 +138,7 @@ class ApplicationsContainer extends Component {
         selectedAppIntegration={selectedAppIntegration}
         selectedPlacement={this.state.selectedPlacement}
         onSettingsChange={this.onSettingsChange}
+        close={this.placementSettingsClose}
       />
     );
   }
@@ -235,6 +239,10 @@ class ApplicationsContainer extends Component {
       placementSaveModalShow: false,
       placementSettingsChanged: false,
     });
+  };
+
+  placementSettingsClose = () => {
+    this.setState({selectedPlacement: null});
   };
 
   render() {

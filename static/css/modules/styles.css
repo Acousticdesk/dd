@@ -707,6 +707,10 @@
         margin-bottom: 2.8rem;
     }
 
+    .placement-settings__close {
+        float: right;
+    }
+
 .modal {
     position: fixed;
     top: 0;
@@ -718,6 +722,10 @@
     overflow: scroll;
     background: rgba(0, 0, 0, 0.7);
 }
+
+    @media screen and (max-width: 768px) {
+
+    }
 
     .modal__ui {
         position: relative;
@@ -762,6 +770,29 @@
     .modal__footer {
         border-top: 1px solid #edeef2;
         height: 64px;
+    }
+
+    @media screen and (max-width: 768px) {
+        .modal {
+            height: calc(100% - 57px);
+            top: 57px;
+            padding: 0;
+            background: none;
+        }
+
+        .modal__ui {
+            width: 100%;
+        }
+
+        .modal__header {
+            height: 5.6rem;
+        }
+
+        .modal__close-container {
+            width: 5.6rem;
+            height: 5.6rem;
+            line-height: 5.6rem;
+        }
     }
 
 .platform-select {
@@ -827,6 +858,12 @@
     margin-bottom: 3.2rem;
 }
 
+    @media screen and (max-width: 768px) {
+        .application-info__field-container {
+            width: 100%;
+        }
+    }
+
 .create-app-form__footer {
     display: flex;
     height: 100%;
@@ -834,6 +871,16 @@
     align-items: center;
     padding: 0 2.5rem;
 }
+
+    @media screen and (max-width: 768px) {
+        .create-app-form__footer {
+            padding: 0 1.2rem;
+        }
+
+        .create-app-form__footer-col {
+            flex: 1;
+        }
+    }
 
 @keyframes loader {
     from {

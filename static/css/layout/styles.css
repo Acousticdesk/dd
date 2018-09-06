@@ -64,12 +64,12 @@
     width: 56px;
     line-height: 56px;
     border-left: 1px solid #edeef2;
-    border-right: 1px solid #edeef2;
 }
 
 .l-header__user-container {
     padding: 0 22px;
     line-height: 56px;
+    border-left: 1px solid #edeef2;
 }
 
     @media screen and (max-width: 768px) {
@@ -114,7 +114,8 @@
     }
 
     .l-sub-header__cta-container {
-        line-height: 64px;
+        display: flex;
+        align-items: center;
     }
 
 .l-page {

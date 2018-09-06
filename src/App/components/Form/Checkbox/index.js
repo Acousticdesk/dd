@@ -28,6 +28,7 @@ const Checkbox = ({classExtra, theSwitch, input, onChange, ...props}) => {
       classExtra={classExtra}
       icon={icon}
       isChecked={valueReduxForm}
+      onChange={onChange}
     />
   );
 };

@@ -48,3 +48,10 @@ input {
     outline: none;
     border: none;
 }
+
+input::-webkit-credentials-auto-fill-button {
+    visibility: hidden;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+}
