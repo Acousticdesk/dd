@@ -34,6 +34,7 @@ class ApplicationsContainer extends Component {
     placementSaveModalShow: false,
     placementToLinkAfterSaveModal: null,
     mobileSidebarShow: false,
+    isMobile: false,
   };
 
   selectApp = (id) => () => {
@@ -67,6 +68,10 @@ class ApplicationsContainer extends Component {
     API.request('getSettings')
       .then(res => res.json())
       .then(settings => this.setState({settings: settings.adUnitTypes}));
+
+    this.setState({isMobile: isMobile()});
+
+    window.addEventListener('resize', () => this.setState({isMobile: isMobile()}))
   }
 
   getAppById(id) {
@@ -108,7 +113,7 @@ class ApplicationsContainer extends Component {
   };
 
   getHeader() {
-    const isDarkTheme = isMobile() && this.state.mobileSidebarShow;
+    const isDarkTheme = this.state.isMobile && this.state.mobileSidebarShow;
 
     return (
       <Header
@@ -131,13 +136,13 @@ class ApplicationsContainer extends Component {
     const selectedApp = this.getAppById(this.state.selectedApp);
     const selectedAppIntegration = selectedApp && selectedApp.integration;
 
-    if (isMobile() && !this.state.selectedPlacement) {
+    if (this.state.isMobile && !this.state.selectedPlacement) {
       return null;
     }
 
     return (
       <PlacementEdit
-        isMobile={isMobile()}
+        isMobile={this.state.isMobile}
         settings={this.state.settings}
         selectedAppIntegration={selectedAppIntegration}
         selectedPlacement={this.state.selectedPlacement}
@@ -256,7 +261,7 @@ class ApplicationsContainer extends Component {
   };
 
   getSidenav() {
-    const show = isMobile() && this.state.mobileSidebarShow;
+    const show = this.state.isMobile && this.state.mobileSidebarShow;
 
     return <Sidenav show={show} activeOne={'Applications'} />;
   }
