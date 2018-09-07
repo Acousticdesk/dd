@@ -21,10 +21,10 @@ const createLinks = (activeOne) => {
     const IconComponent = icon[label];
     const activeClass = label === activeOne ? 'active' : '';
     return (
-      <li key={index} className={`sidenav__item sidenav__item--${label} ${activeClass} isCursorPointer`}>
-        <a className="sidenav__link" href="javascript:void(0);">
+      <li key={index} className={`l-sidenav__item l-sidenav__item--${label} ${activeClass} isCursorPointer`}>
+        <a className="l-sidenav__link" href="javascript:void(0);">
           <IconComponent/>
-          <span className="sidenav__label text--big">{label}</span>
+          <span className="l-sidenav__label text--big">{label}</span>
         </a>
       </li>
     );
@@ -33,7 +33,7 @@ const createLinks = (activeOne) => {
 
 const Sidenav = ({activeOne, show}) => {
   return (
-    <nav className={`sidenav ${show ? 'show' : ''}`}>
+    <nav className={`l-sidenav ${show ? 'show' : ''}`}>
       <ul>
         {createLinks(activeOne)}
       </ul>

@@ -1,0 +1,25 @@
+.heading {
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  color: #333;
+}
+
+.heading--thin {
+  font-weight: 400;
+}
+
+.heading.heading--large {
+  font-size: 3.4rem;
+}
+
+.heading.heading--med {
+  font-size: 2.4rem;
+}
+
+.heading.heading--small {
+  font-size: 1.8rem;
+}
+
+.heading.heading--no-offset {
+  margin-bottom: 0;
+}

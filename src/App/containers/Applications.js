@@ -9,14 +9,14 @@ import config from '../../../config';
 import { editApp } from '../redux/reducer';
 
 import Applications from '../pages/Applications';
-import PlacementEdit from '../components/Pages/Applications/PlacementEdit';
+import PlacementEdit from '../components/Page/Applications/PlacementEdit';
 import Sidenav from '../components/Layout/Sidenav';
 import Header from '../components/Layout/Header';
 import SubHeader from '../components/Layout/SubHeader';
-import AppModal from '../components/Pages/Applications/AppModal';
-import ApplicationsList from '../components/Pages/Applications/ApplicationsList';
-import PlacementDeleteModal from '../components/Pages/Applications/PlacementDeleteModal';
-import PlacementSaveModal from '../components/Pages/Applications/PlacementSaveModal';
+import AppModal from '../components/Page/Applications/AppModal';
+import ApplicationsList from '../components/Page/Applications/ApplicationsList';
+import PlacementDeleteModal from '../components/Page/Applications/PlacementDeleteModal';
+import PlacementSaveModal from '../components/Page/Applications/PlacementSaveModal';
 
 const isMobile = () => {
   return document.documentElement.clientWidth <= 768;

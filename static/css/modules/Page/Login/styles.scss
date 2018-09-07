@@ -1,0 +1,48 @@
+@import 'form';
+
+.login-optionals {
+  display: flex;
+}
+
+.login-optionals__item-col--pull-left {
+  margin-right: auto;
+}
+
+.login-btn {
+  display: block;
+  margin: 0 auto;
+  width: 206px;
+  height: 40px;
+  line-height: 40px;
+  color: #fff;
+  font-size: 1.6rem;
+  background-image: linear-gradient(to right, #7f7fd5, #86a8e7 48%, #91eae4);
+  border-radius: 25px;
+}
+
+.login-btn:hover {
+  cursor: pointer;
+}
+
+.login-btn:active {
+  position: relative;
+  top: 2px;
+}
+
+.wave {
+  position: absolute;
+  height: 31.9rem;
+  //background: url('../../assets/login-page/wave/@1x.png') no-repeat;
+  background-size: 100% 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+@media screen and (max-width: 1023px) {
+  .wave {
+    position: fixed;
+    background-size: cover;
+    background-position: top center;
+  }
+}

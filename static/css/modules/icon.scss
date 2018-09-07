@@ -1,0 +1,53 @@
+/* Structure */
+.icon {
+  position: relative;
+}
+
+/* Skin */
+.icon-regular {
+  color: #cccccc;
+}
+
+.icon-light {
+  color: #a6a6a6;
+}
+
+.icon-chetwod-blue-color {
+  color: #7f7fd5;
+}
+
+.icon-chetwod-blue {
+  background: #7f7fd5;
+  color: #fff;
+}
+/* /Skin */
+
+.icon--small {
+  font-size: 1.6rem;
+}
+
+.icon--large {
+  font-size: 4rem;
+}
+
+.icon--notification:after {
+  content: ' ';
+  position: absolute;
+  top: 2px;
+  right: 3px;
+  border-radius: 50%;
+  background: #ff2866;
+  width: 6px;
+  height: 6px;
+}
+
+.icon--notification:before {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  right: 1px;
+  border-radius: 50%;
+  background: #fff;
+  width: 10px;
+  height: 10px;
+}

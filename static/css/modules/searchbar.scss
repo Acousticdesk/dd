@@ -1,0 +1,28 @@
+.search-bar {
+  position: relative;
+  background: #f4f5f9;
+  padding: 12px 9px 9px 42px;
+  width: 100%;
+}
+
+.search-bar:before {
+  content: ' ';
+  width: 21px;
+  height: 21px;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  //background: url('../../assets/icons/serach.svg') no-repeat;
+  background-size: 100% 100%;
+}
+
+.search-bar input {
+  width: 100%;
+  font-size: 1.4rem;
+}
+
+.search-bar input::placeholder {
+  font-size: 1.4rem;
+  color: #a6a6a6;
+}

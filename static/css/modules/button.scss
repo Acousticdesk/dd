@@ -1,0 +1,63 @@
+.btn {
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  padding: 0 10px;
+  width: 140px;
+  font-size: 1.2rem;
+  height: 32px;
+  line-height: 32px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+@media screen and (max-width: 1024px) {
+  .btn {
+    display: block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+  }
+}
+
+.btn--bigger {
+  width: 155px;
+}
+
+.btn--full-width {
+  display: block;
+  width: 100%;
+}
+
+.btn--height-l {
+  height: 40px;
+  line-height: 40px;
+}
+
+/* Skin */
+.btn-regular {
+  background: transparent;
+}
+.btn-chetwod-blue {
+  background: #7f7fd5;
+  color: #fff;
+}
+.btn-border-chetwod-blue {
+  border: 1px solid #7f7fd5;
+}
+.btn-border-chetwod-extra-blue {
+  border: 1px solid #818bdc;
+}
+/* /Skin */
+
+.btn__icon-container {
+  margin-right: 9px;
+}
+
+.btn__icon-container--center {
+  position: relative;
+  top: -2px;
+}

@@ -1,0 +1,42 @@
+.login-form {
+  padding-top: 3.3rem;
+  width: 320px;
+}
+
+@media screen and (max-width: 1023px) {
+  .login-form {
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .login-form {
+    width: 100%;
+  }
+}
+
+.login-form__logo-container {
+  margin-bottom: 3.3rem;
+}
+
+.login-form__field-container {
+  margin-bottom: 6rem;
+}
+
+@media screen and (max-width: 768px) {
+  .login-form__field-container {
+    margin-bottom: 4.9rem;
+  }
+}
+
+.login-form__field-container--offset-small {
+  margin-bottom: 3.5rem;
+}
+
+.login-form__fields-footer {
+  margin-bottom: 6.5rem;
+}
+
+.login-form__cta-container {
+  margin-bottom: 2rem;
+}

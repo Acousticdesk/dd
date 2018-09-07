@@ -1,0 +1,46 @@
+.input {
+  position: relative;
+}
+
+.input__field {
+  display: block;
+  width: 100%;
+  color: #999;
+  font-size: 1.4rem;
+  padding: 1.3rem 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.input__field--error {
+  border-bottom: 1px solid #ff2866;
+}
+
+.input__field::placeholder {
+  color: #999;
+}
+
+.input__icon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #666;
+}
+
+.input__label {
+  margin-bottom: 14px;
+}
+
+.input__error {
+  color: #ff2866;
+  margin-top: 11px;
+}
+
+.password-input--visible .input__icon {
+  color: #7f7fd5;
+}
+
+.password-input--visible .input__field {
+  border-bottom: 1px solid #7f7fd5;
+  color: #7f7fd5;
+}
