@@ -6,7 +6,7 @@ import Sidenav from '../components/Layout/Sidenav';
 import Header from '../components/Layout/Header';
 
 const getSidenav = () => {
-  return <Sidenav activeOne={'dashboard'}/>;
+  return <Sidenav activeOne={'Dashboard'}/>;
 };
 
 class DashboardContainer extends Component {

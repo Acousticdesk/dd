@@ -985,18 +985,18 @@
         animation: loader 1s linear forwards infinite;
     }
 
-.dashboard-header {
+.dashboard-metrics-list {
     padding: 20px;
     display: grid;
     grid-template-columns: repeat(5, 1fr) 75px;
     grid-gap: 10px;
 }
 
-    .dashboard-header__filters-container {
+    .dashboard-metrics-list__filters-container {
         padding-left: 10px;
     }
 
-    .dashboard-header__metric {
+    .dashboard-metrics-list__metric {
         height: 10rem;
         background: #fff;
     }
@@ -1029,58 +1029,58 @@
     fill: #aaa;
 }
 
-.apps-metrics {
+.metrics-table {
     background: #fff;
 }
 
-.apps-metrics-head {
+.metrics-table-head {
     height: 47px;
     display: flex;
     padding: 0 16px;
     align-items: center;
 }
 
-    .apps-metrics-head__controls-container {
+    .metrics-table-head__controls-container {
 
     }
 
-    .apps-metrics-head__icon-container {
+    .metrics-table-head__icon-container {
         margin-left: auto;
     }
 
-.apps-metrics-body {
+.metrics-table-body {
     overflow-x: auto;
 }
 
-    .apps-metrics-body__table {
+    .metrics-table-body__table {
         width: 100%;
         border-collapse: collapse;
         color: #666;
     }
 
-        .apps-metrics-body__table th,
-        .apps-metrics-body__table td {
+        .metrics-table-body__table th,
+        .metrics-table-body__table td {
             padding: 0 1.8rem;
             text-align: left;
             border-bottom: 1px solid #eeeef3;
         }
 
-        .apps-metrics-body__table th {
+        .metrics-table-body__table th {
             padding-top: 5px;
             padding-bottom: 5px;
         }
 
-        .apps-metrics-body__table th {
+        .metrics-table-body__table th {
             border-top: 1px solid #eeeef3;
         }
 
-        .apps-metrics-body__table td {
+        .metrics-table-body__table td {
             padding-top: 1.8rem;
             padding-bottom: 1.8rem;
         }
 
-        .apps-metrics-body__table th:not(:last-of-type),
-        .apps-metrics-body__table td:not(:last-of-type) {
+        .metrics-table-body__table th:not(:last-of-type),
+        .metrics-table-body__table td:not(:last-of-type) {
             border-right: 1px solid #eeeef3;
         }
 
