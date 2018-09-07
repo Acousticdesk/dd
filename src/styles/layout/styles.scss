@@ -1,0 +1,43 @@
+@import './header';
+@import './subheader';
+@import './Page/Applications/styles';
+@import './Page/Dashboard/styles';
+@import './Page/Login/styles';
+@import './sidenav';
+
+.l-container {
+    width: 1190px;
+    padding: 0 16px;
+    margin: 0 auto;
+}
+
+    @media screen and (max-width: 1190px) {
+        .l-container {
+            width: 100%;
+        }
+    }
+
+.l-page {
+    position: relative;
+}
+
+    .l-page--with-sidebar {
+        display: grid;
+        grid-template: 100% / 56px auto;
+        height: 100vh;
+    }
+
+    @media screen and (max-width: 768px) {
+        .l-page--with-sidebar {
+            display: block;
+            padding-top: 56px;
+        }
+    }
+
+    .l-page-bg-whisper {
+        background: #f4f5f9;
+    }
+
+    .l-page-bg-white {
+        background: #fff;
+    }

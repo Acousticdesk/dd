@@ -1,0 +1,26 @@
+.l-login {
+  position: relative;
+  padding-bottom: 10rem;
+}
+
+@media screen and (max-width: 768px) {
+  .l-login {
+    padding-bottom: 1rem;
+  }
+}
+
+.l-login__background {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+@media screen and (max-width: 1023px) {
+  .l-login__background {
+    display: none;
+  }
+}
+
+.l-login .form-column {
+  padding: 3.3rem 0;
+}

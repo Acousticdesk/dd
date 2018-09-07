@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import 'whatwg-fetch';
 import { Provider } from 'react-redux';
 import store from './App/store';
-import '../static/css/styles.scss';
+import './styles/styles.scss';
 
 import App from './App';
 
