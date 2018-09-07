@@ -16,6 +16,7 @@ const NewAppPresentation =
    }) => {
   return (
     <Modal
+      className="modal modal--mobile-fullscreen"
       title={title}
       close={close}
       content={

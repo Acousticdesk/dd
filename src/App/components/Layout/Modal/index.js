@@ -6,9 +6,9 @@ import RenderHeader from './RenderHeader';
 
 const stopPropagation = (e) => e.stopPropagation();
 
-const Modal = ({close, content, title, onSubmit, confirmText, header}) => {
+const Modal = ({close, content, title, onSubmit, confirmText, header, className}) => {
   return (
-    <div onClick={close} className="modal">
+    <div onClick={close} className={className || 'modal'}>
       <div onClick={stopPropagation} className="modal__ui">
         <RenderHeader header={header} title={title} close={close}/>
         {content}
@@ -40,6 +40,7 @@ Modal.propTypes = {
   onSubmit: PropTypes.func,
   confirmText: PropTypes.string,
   header: PropTypes.element,
+  className: PropTypes.string,
 };
 
 export default Modal;

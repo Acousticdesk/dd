@@ -9,7 +9,6 @@ const Presentation = ({icon, errorClass, extraClass, inputValue, input, meta, on
     <input
       {...input}
       {...props}
-      autoComplete="off"
       type="text"
       name={props.name}
       className={`input__field color--dark ${extraClass} ${errorClass}`}

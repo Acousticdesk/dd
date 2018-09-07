@@ -29,7 +29,7 @@ class API {
 
   request(apiMethod, reqMethod = 'GET', body) {
     const headers = {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     };
 
 

@@ -15,6 +15,12 @@
     padding-bottom: 10rem;
 }
 
+    @media screen and (max-width: 768px) {
+        .l-login {
+            padding-bottom: 1rem;
+        }
+    }
+
 .l-login__background {
     position: absolute;
     top: 0;
@@ -174,6 +180,7 @@
     right: 0;
     background: #fff;
     height: 56px;
+    border-top: 1px solid #edeef2;
 }
 
     @media screen and (max-width: 768px) {
@@ -242,6 +249,12 @@
     padding: 16px;
     overflow-y: scroll;
 }
+
+    @media screen and (max-width: 768px) {
+        .l-applications-main__apps-container {
+            height: 100%;
+        }
+    }
 
 .l-applications-main__side-bar {
     background: #fff;
