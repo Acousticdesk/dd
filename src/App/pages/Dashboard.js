@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import MetricsList from '../components/Pages/Dashboard/MetricsList';
 import MetricsTable from '../components/Pages/Dashboard/MetricsTable';
-import Graph from '../components/Pages/Dashboard/Graph';
+import Graph from '../components/Pages/Dashboard/Graph/index';
 
 const Dashboard = ({sidenav, header}) => {
   return (
