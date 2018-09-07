@@ -1,5 +1,6 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   mode: process.env.ENV,
@@ -21,14 +22,33 @@ module.exports = {
       {
         test: /\.svg$/,
         use: 'react-svg-loader'
-      }
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+        ]
+      },
     ],
   },
   plugins: [
     new CleanWebpackPlugin(['dist']),
-    new CopyWebpackPlugin([{
-      from: __dirname + '/static',
-      to: __dirname + '/dist'
-    }])
+    new CopyWebpackPlugin([
+      {
+        from: __dirname + '/static/assets',
+        to: __dirname + '/dist/assets',
+      },
+      {
+        from: __dirname + '/static/index.html',
+        to: __dirname + '/dist/index.html',
+      },
+    ]),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: "[name].css",
+    }),
   ]
 };
