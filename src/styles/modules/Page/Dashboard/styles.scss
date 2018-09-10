@@ -1,3 +1,5 @@
+@import './app-info';
+
 .dashboard-metrics-list {
   padding: 16px;
   display: grid;
@@ -88,27 +90,18 @@
 }
 
 .metrics-table-body__column-body {
-  padding-top: 1.8rem;
-  padding-bottom: 1.8rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.3rem;
+}
+
+.metrics-table-body__column-app-icon {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .metrics-table-body__column-head:not(:last-of-type),
 .metrics-table-body__column-body:not(:last-of-type) {
   border-right: 1px solid #eeeef3;
-}
-
-.app-badge {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.app-badge__icon-container {
-  margin-right: 2rem;
-}
-
-.app-badge__integration {
-  margin-bottom: 1rem;
 }
 
 .graph {

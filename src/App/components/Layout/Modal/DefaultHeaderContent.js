@@ -5,7 +5,7 @@ export const DefaultHeaderContent = ({title, close}) => {
   return (
     <React.Fragment>
       <div className="modal__title-container">
-        <h4 className="heading heading--med heading--thin">{title}</h4>
+        <h4 className="heading heading--md heading--thin">{title}</h4>
       </div>
       <div className="modal__close-container text-center">
         <i onClick={close} className="icon icon-light material-icons isCursorPointer">close</i>

@@ -14,7 +14,7 @@ const Header = ({userEmail, onUserLoggedOut, pageTitle, mobileSidebarToggle, isD
         <img className="l-header__logo-white" src={logoWhite} width="22px" alt="Display.io" />
       </div>
       <div className="l-header__title-container">
-        <h4 className="l-header__title heading heading--med heading--no-offset">{pageTitle}</h4>
+        <h4 className="l-header__title heading heading--md heading--no-offset">{pageTitle}</h4>
       </div>
       <div className="l-header__notifications-container text-center">
         <i className="
