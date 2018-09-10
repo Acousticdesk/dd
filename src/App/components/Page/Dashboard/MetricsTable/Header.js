@@ -7,7 +7,7 @@ const Header = () => {
     return (
       <div className="metrics-table-head">
         <div className="metrics-table-head__controls-container">
-          <p className="text-lead">
+          <p className="text-lead-xl">
             Top performance by
             <span className="isCursorPointer">
               <span className="text-bold"> eCPM</span>

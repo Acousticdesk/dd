@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 const HeadRow = () => {
     return (
       <tr>
-        <th className="text-regular-weight">App Details</th>
-        <th className="text-regular-weight">eCPM</th>
-        <th className="text-regular-weight">Revenue</th>
+        <th className="metrics-table-body__column metrics-table-body__column-head text-regular-weight">App Details</th>
+        <th className="metrics-table-body__column metrics-table-body__column-head text-regular-weight">eCPM</th>
+        <th className="metrics-table-body__column metrics-table-body__column-head text-regular-weight">Revenue</th>
       </tr>
     );
 };
