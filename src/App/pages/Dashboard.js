@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import MetricsList from '../components/Page/Dashboard/MetricsList';
-import MetricsTable from '../components/Page/Dashboard/MetricsTable';
+import MetricsTable from '../components/Page/Dashboard/MetricsTable/index';
 import Graph from '../components/Page/Dashboard/Graph/index';
 
 const Dashboard = ({sidenav, header}) => {

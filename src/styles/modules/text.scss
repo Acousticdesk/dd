@@ -6,12 +6,20 @@
   text-align: left;
 }
 
+.text--smaller {
+  font-size: 1.1rem;
+}
+
 .text--small {
   font-size: 1.2rem;
 }
 
-.text--smaller {
-  font-size: 1.1rem;
+.text-lead {
+  font-size: 1.4rem;
+}
+
+.text-regular {
+  font-size: 1.6rem;
 }
 
 .text--big {
@@ -28,8 +36,4 @@
 
 .text-regular-weight {
   font-weight: 400;
-}
-
-.text-lead {
-  font-size: 14px;
 }

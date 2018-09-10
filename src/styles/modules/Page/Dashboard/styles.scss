@@ -1,5 +1,5 @@
 .dashboard-metrics-list {
-  padding: 20px;
+  padding: 16px;
   display: grid;
   grid-template-columns: repeat(5, 1fr) 75px;
   grid-gap: 10px;
@@ -15,7 +15,7 @@
 }
 
 .metric-card {
-  border-left: 7px solid #cdcdcd;
+  border-left: 6px solid #cdcdcd;
   padding-left: 5rem;
 }
 

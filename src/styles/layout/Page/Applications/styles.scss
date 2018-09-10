@@ -4,38 +4,38 @@
   height: calc(100vh - 120px);
 }
 
-@media screen and (max-width: 768px) {
-  .l-applications-main {
-    display: block;
+  @media screen and (max-width: 768px) {
+    .l-applications-main {
+      display: block;
+    }
   }
-}
 
 .l-applications-main__apps-container {
   padding: 16px;
   overflow-y: scroll;
 }
 
-@media screen and (max-width: 768px) {
-  .l-applications-main__apps-container {
-    height: 100%;
+  @media screen and (max-width: 768px) {
+    .l-applications-main__apps-container {
+      height: 100%;
+    }
   }
-}
 
 .l-applications-main__side-bar {
   background: #fff;
   overflow-y: scroll;
 }
 
-@media screen and (max-width: 768px) {
-  .l-applications-main__side-bar {
-    position: fixed;
-    top: 57px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 100;
+  @media screen and (max-width: 768px) {
+    .l-applications-main__side-bar {
+      position: fixed;
+      top: 57px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 100;
+    }
   }
-}
 
 .l-applications-list {
 
