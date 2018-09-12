@@ -6,6 +6,14 @@ import Applications from './containers/Applications';
 import Dashboard from './containers/Dashboard';
 import API from '../API';
 
+const getPathRoute = (route) => {
+  if (!PRODUCTION) {
+    return route;
+  }
+
+  return '/displayio-test' + route;
+};
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -71,13 +79,13 @@ export default class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route path="/" exact render={props => (
+          <Route path={getPathRoute('/')} exact render={props => (
             this.renderApplicationsPage(props)
           )}/>
-          <Route path="/applications" render={props => (
+          <Route path={getPathRoute('/applications')} render={props => (
             this.renderApplicationsPage(props)
           )}/>
-          <Route path="/dashboard" render={props => (
+          <Route path={getPathRoute('/dashboard')} render={props => (
             <Dashboard
               onUserLoggedOut={this.onUserLoggedOut}
               userEmail={this.getUserEmail()}/>

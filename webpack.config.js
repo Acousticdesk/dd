@@ -1,6 +1,7 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   mode: process.env.ENV,
@@ -50,5 +51,9 @@ module.exports = {
       // both options are optional
       filename: "[name].css",
     }),
+    new webpack.DefinePlugin({
+      PRODUCTION: true
+      // PRODUCTION: process.env.ENV === 'production'
+    })
   ]
 };
