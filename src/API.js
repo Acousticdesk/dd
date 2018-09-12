@@ -47,7 +47,7 @@ class API {
 
     const fetchOptions = {
       headers,
-      method: reqMethod
+      method: reqMethod,
     };
 
     if (body) {

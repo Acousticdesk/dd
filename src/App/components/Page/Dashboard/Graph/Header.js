@@ -1,13 +1,13 @@
 import React from 'react';
 
-import Metrics from './Metrics';
+import ImpressionQuery from './ImpressionQuery';
 
 const Header = () => {
   return (
     <div className="graph-header">
       <div className="graph-header__column">
         <span className="text-lead">Impressions</span>
-        <Metrics />
+        <ImpressionQuery />
       </div>
       <div className="graph-header__column">
         <span className="text-bold">

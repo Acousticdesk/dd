@@ -117,6 +117,7 @@
 
 .graph-header__metrics-container {
   display: inline-block;
+  white-space: normal;
 }
 
 .graph-header__chip-container {
@@ -127,6 +128,7 @@
 .graph-header__column {
   position: relative;
   padding: 0 12px;
+  white-space: nowrap;
 }
 
 .graph-header__column:not(:last-of-type):after {
