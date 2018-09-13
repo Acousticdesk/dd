@@ -10,7 +10,7 @@ import Input from '../../Form/Input';
 
 import validate from '../../../validations/login';
 
-const LoginForm = ({onRememberMeChange, isRememberMe, handleSubmit}) => {
+const LoginForm = ({onRememberMeChange, isRememberMe, handleSubmit, loader}) => {
   return (
     <form className="login-form" onSubmit={handleSubmit}>
       <div className="login-form__logo-container text-center">
@@ -40,7 +40,7 @@ const LoginForm = ({onRememberMeChange, isRememberMe, handleSubmit}) => {
           </div>
         </div>
         <div className="login-form__cta-container text-center">
-          <button type="submit" className="btn login-btn">Log In</button>
+          <button disabled={loader} type="submit" className="btn login-btn">Log In</button>
         </div>
         <div className="color--grey text-center">
           To register <a href="javascript:void(0);" className="text-underline isCursorPointer">click here</a>
@@ -52,7 +52,8 @@ const LoginForm = ({onRememberMeChange, isRememberMe, handleSubmit}) => {
 
 LoginForm.propTypes = {
   onRememberMeChange: PropTypes.func.isRequired,
-  isRememberMe: PropTypes.bool.isRequired
+  isRememberMe: PropTypes.bool.isRequired,
+  loader: PropTypes.bool,
 };
 
 export default reduxForm({

@@ -17,8 +17,15 @@ const loginRequest = (email, password) => {
 };
 
 class LoginContainer extends PureComponent {
+  state = {
+    loader: false
+  };
+
   onSubmit = ({email, password}) => {
+    this.setState({loader: true});
+
     loginRequest(email, password)
+      .finally(() => this.setState({loader: false}))
       .then(loginData => this.props.onUserLoggedIn(loginData))
       .catch((err) => {
         let msg = '';
@@ -38,12 +45,15 @@ class LoginContainer extends PureComponent {
 
   render() {
     return (
-      <Login loginForm={
-        <LoginForm
-          onSubmit={this.onSubmit}
-          onRememberMeChange={this.props.onRememberMeChange}
-          isRememberMe={this.props.isRememberMe}/>
-      }/>
+      <Login
+        loginForm={
+          <LoginForm
+            loader={this.state.loader}
+            onSubmit={this.onSubmit}
+            onRememberMeChange={this.props.onRememberMeChange}
+            isRememberMe={this.props.isRememberMe}/>
+        }
+      />
     );
   }
 }
