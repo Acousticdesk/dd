@@ -52,8 +52,7 @@ module.exports = {
       filename: "[name].css",
     }),
     new webpack.DefinePlugin({
-      PRODUCTION: true
-      // PRODUCTION: process.env.ENV === 'production'
+      PRODUCTION: process.env.ENV === 'production'
     })
   ]
 };

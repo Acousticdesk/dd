@@ -2,6 +2,10 @@ const ZENDESK_URL = 'https://support.display.io/hc/';
 const ARTICLES_PATH = 'en-us/articles/';
 const API_URL = `${ZENDESK_URL}${ARTICLES_PATH}360001659993`;
 
+const getEndpoint = () => {
+  return PRODUCTION ? 'https://developers.display.io/api?method=' : 'http://developers.dist.loc/api?method=';
+};
+
 const zendeskUrls = {
   zendesk: {
     general: ZENDESK_URL,
@@ -24,6 +28,6 @@ const zendeskUrls = {
 };
 
 export default {
-  endpoint: 'http://developers.dist.loc/api?method=',
+  endpoint: getEndpoint(),
   ...zendeskUrls
 };

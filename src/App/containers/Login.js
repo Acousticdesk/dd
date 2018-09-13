@@ -23,6 +23,8 @@ class LoginContainer extends PureComponent {
       .catch((err) => {
         let msg = '';
 
+        console.error(err);
+
         switch (err.message) {
           case "401":
             msg = 'No account found with presented credentials. Please, try again';
