@@ -52,7 +52,7 @@ const Application = ({
         placements={
           <Placements
             deletePlacement={deletePlacement}
-            appIntegration={app.integration}
+            appPlatform={app.platform}
             placements={app.placements}
             selectPlacement={selectPlacement}
             selectedPlacement={selectedPlacement}

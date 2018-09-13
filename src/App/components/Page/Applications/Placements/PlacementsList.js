@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 
 import PlacementPresentation from './PlacementPresentation';
 
-const PlacementsList = ({placements, selectedPlacement, appIntegration, deletePlacement, selectPlacement, zendesk}) => {
+const PlacementsList = ({placements, selectedPlacement, appPlatform, deletePlacement, selectPlacement, zendesk}) => {
   return (
     Object.entries(placements).map(([id, placement]) => {
+      console.log(zendesk);
+      console.log(appPlatform);
       const selectedClassName = selectedPlacement === placement ? 'selected' : '';
-      const zendeskUrl = zendesk[appIntegration][placement.adUnitType];
+      const zendeskUrl = zendesk[appPlatform][placement.adUnitType];
 
       return (
         <PlacementPresentation
@@ -27,7 +29,7 @@ PlacementsList.propTypes = {
   placements: PropTypes.object,
   selectedPlacement: PropTypes.object,
   selectPlacement: PropTypes.func,
-  appIntegration: PropTypes.string,
+  appPlatform: PropTypes.string,
   deletePlacement: PropTypes.func,
   zendesk: PropTypes.object,
 };
