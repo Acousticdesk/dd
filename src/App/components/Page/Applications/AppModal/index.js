@@ -50,7 +50,7 @@ class NewApp extends Component {
     const {formValues, initialValues, app} = this.props;
 
     if (app) {
-      return app.integration;
+      return app.platform;
     }
 
     if (formValues.platform) {
