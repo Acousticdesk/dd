@@ -28,7 +28,7 @@ const Application = ({
         <div className="application-card__info-container">
           <div className="app-info">
             <p className="app-info__title-row">
-              <IntegrationIcon integration={app.integration}/>
+              <IntegrationIcon platform={app.platform}/>
               <span className="app-info__title text-lead color--dark">{app.name} ({app.id})</span>
             </p>
             <div className="app-info__info-row">

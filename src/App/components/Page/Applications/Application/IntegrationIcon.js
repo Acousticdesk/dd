@@ -4,18 +4,18 @@ import PropTypes from 'prop-types';
 import AppleIcon from '../../../../../../static/assets/icons/apple.svg';
 
 
-const IntegrationIcon = ({integration}) => {
+const IntegrationIcon = ({platform}) => {
   return (
-    integration === 'ios'
+    platform === 'ios'
       ? <AppleIcon width="16px" height="16px" className="platform-select__icon"/>
-      : integration === 'android'
+      : platform === 'android'
       ? <i className="platform-select__icon icon icon--small icon-regular material-icons">android</i>
       : null
   );
 };
 
 IntegrationIcon.propTypes = {
-  integration: PropTypes.string
+  platform: PropTypes.string
 };
 
 export default IntegrationIcon;
