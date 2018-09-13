@@ -33,7 +33,7 @@ const Placements = ({placements, selectPlacement, selectedPlacement, zendesk, ap
 };
 
 Placements.propTypes = {
-  placements: PropTypes.object.isRequired,
+  placements: PropTypes.object,
   selectPlacement: PropTypes.func.isRequired,
   selectedPlacement: PropTypes.object,
   zendesk: PropTypes.object.isRequired,

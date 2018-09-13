@@ -38,7 +38,11 @@ class NewApp extends Component {
 
     API.request(endpoint, 'POST', body)
       .then(() => {
-        window.setTimeout(() => this.setState({loader: false}), 1000)
+        window.setTimeout(() => {
+          this.setState({loader: false});
+          this.props.refreshAppsList()
+            .then(() => this.props.close());
+        }, 1000)
       });
   };
 
@@ -108,6 +112,7 @@ NewApp.propTypes = {
   close: PropTypes.func,
   app: PropTypes.object,
   title: PropTypes.string,
+  refreshAppsList: PropTypes.func,
 };
 
 const selector = formValueSelector('newapp');
@@ -125,7 +130,7 @@ const getAppValues = (app) => ({
   platform: app.integration,
   integration: 'sdk',
   name: app.name,
-  package: app.package
+  package: app.package,
 });
 
 const getInitialValues = (props) => {

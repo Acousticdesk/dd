@@ -13,6 +13,7 @@
 .l-applications-main__apps-container {
   padding: 16px;
   overflow-y: scroll;
+  position: relative;
 }
 
   @media screen and (max-width: 768px) {
@@ -38,7 +39,6 @@
   }
 
 .l-applications-list {
-
 }
 
 .l-applications-list__row {

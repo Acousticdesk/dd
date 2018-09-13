@@ -35,6 +35,7 @@ class ApplicationsContainer extends Component {
     placementToLinkAfterSaveModal: null,
     mobileSidebarShow: false,
     isMobile: false,
+    appsLoading: false,
   };
 
   selectApp = (id) => () => {
@@ -62,9 +63,9 @@ class ApplicationsContainer extends Component {
   };
 
   componentDidMount() {
-    API.request('getApps')
-      .then(res => res.json())
-      .then(appsData => this.setState({apps: appsData.results}));
+    this.setState({appsLoading: true});
+
+    this.getApps();
     API.request('getSettings')
       .then(res => res.json())
       .then(settings => this.setState({settings: settings.adUnitTypes}));
@@ -157,6 +158,7 @@ class ApplicationsContainer extends Component {
   getAppsList() {
     return (
       <ApplicationsList
+        loader={this.state.appsLoading}
         apps={this.state.apps}
         deletePlacement={this.deletePlacement}
         selectPlacement={this.selectPlacement}
@@ -175,7 +177,7 @@ class ApplicationsContainer extends Component {
     const title = app ? 'Edit Application' : 'New Application';
 
     return this.state.isCreatingNewApp || this.props.idAppEdit
-      ? <AppModal close={this.hideApplicationModal} app={app} title={title} />
+      ? <AppModal refreshAppsList={this.getApps} close={this.hideApplicationModal} app={app} title={title} />
       : null;
   }
 
@@ -267,6 +269,13 @@ class ApplicationsContainer extends Component {
 
     return <Sidenav show={show} activeOne={'Applications'} />;
   }
+
+  getApps = () => {
+    return API.request('getApps')
+      .finally(() => this.setState({appsLoading: false}))
+      .then(res => res.json())
+      .then(appsData => this.setState({apps: appsData.results}));
+  };
 
   render() {
     return (

@@ -42,10 +42,10 @@ const createList = (apps, onEditApp, onDeleteApp, props) => {
   });
 };
 
-const ApplicationsList = ({apps, onEditApp, onDeleteApp, ...props}) => {
+const ApplicationsList = ({apps, onEditApp, onDeleteApp, loader, ...props}) => {
   return (
     <React.Fragment>
-      {createList(apps, onEditApp, onDeleteApp, props)}
+      {loader ? <div className="loader" /> : createList(apps, onEditApp, onDeleteApp, props)}
     </React.Fragment>
   );
 };
@@ -60,6 +60,7 @@ ApplicationsList.propTypes = {
   zendesk: PropTypes.object,
   onEditApp: PropTypes.func,
   onDeleteApp: PropTypes.func,
+  loader: PropTypes.bool,
 };
 
 export default ApplicationsList;
