@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import NoAppSelectedPrompt from './NoAppSelectedPrompt';
 import PlacementSettings from './PlacementSettings';
 
-const PlacementEdit = ({selectedPlacement, settings, selectedAppIntegration, onSettingsChange, close}) => {
+const PlacementEdit = ({selectedPlacement, settings, selectedAppPlatform, onSettingsChange, close, selectedAppIntegration}) => {
   return (
     <div className="l-applications-main__side-bar">
       {!selectedPlacement
         ? <NoAppSelectedPrompt/>
         : (
           <PlacementSettings
-            settings={settings[selectedAppIntegration]}
+            settings={settings[selectedAppPlatform][selectedAppIntegration]}
             placement={selectedPlacement}
             onSettingsChange={onSettingsChange}
             close={close}
@@ -24,9 +24,10 @@ const PlacementEdit = ({selectedPlacement, settings, selectedAppIntegration, onS
 PlacementEdit.propTypes = {
   settings: PropTypes.object,
   selectedPlacement: PropTypes.object,
-  selectedAppIntegration: PropTypes.string,
+  selectedAppPlatform: PropTypes.string,
   onSettingsChange: PropTypes.func,
   close: PropTypes.func,
+  selectedAppIntegration: PropTypes.string,
 };
 
 PlacementEdit.defaultProps = {

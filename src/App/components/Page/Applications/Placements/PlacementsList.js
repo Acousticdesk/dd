@@ -6,8 +6,6 @@ import PlacementPresentation from './PlacementPresentation';
 const PlacementsList = ({placements, selectedPlacement, appPlatform, deletePlacement, selectPlacement, zendesk}) => {
   return (
     Object.entries(placements).map(([id, placement]) => {
-      console.log(zendesk);
-      console.log(appPlatform);
       const selectedClassName = selectedPlacement === placement ? 'selected' : '';
       const zendeskUrl = zendesk[appPlatform][placement.adUnitType];
 

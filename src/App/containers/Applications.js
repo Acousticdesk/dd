@@ -134,6 +134,7 @@ class ApplicationsContainer extends Component {
 
   getPlacementEdit() {
     const selectedApp = this.getAppById(this.state.selectedApp);
+    const selectedAppPlatform = selectedApp && selectedApp.platform;
     const selectedAppIntegration = selectedApp && selectedApp.integration;
 
     if (this.state.isMobile && !this.state.selectedPlacement) {
@@ -144,6 +145,7 @@ class ApplicationsContainer extends Component {
       <PlacementEdit
         isMobile={this.state.isMobile}
         settings={this.state.settings}
+        selectedAppPlatform={selectedAppPlatform}
         selectedAppIntegration={selectedAppIntegration}
         selectedPlacement={this.state.selectedPlacement}
         onSettingsChange={this.onSettingsChange}
