@@ -12,14 +12,24 @@ class Dropdown extends Component {
 
   componentDidMount() {
     document.body.addEventListener('click', this.close);
+    document.body.addEventListener('keydown', this.closeOnEsc);
   }
 
   componentWillUnmount() {
     document.body.removeEventListener('click', this.close);
+    document.body.removeEventListener('keydown', this.closeOnEsc);
   }
 
   close = () => {
     this.setState({isFocused: false});
+  };
+
+  closeOnEsc = (evt) => {
+    const ESC = 27;
+
+    if (evt.which === ESC) {
+      this.close();
+    }
   };
 
   onToggle = (evt) => {

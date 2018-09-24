@@ -48,14 +48,20 @@ class NewApp extends Component {
   };
 
   componentDidMount() {
-    document.documentElement.addEventListener('keydown', (evt) => {
-      const ESC = 27;
-
-      if (evt.which === ESC) {
-        this.props.appModalHide();
-      }
-    });
+    document.documentElement.addEventListener('keydown', this.hideOnEsc);
   }
+
+  componentWillUnmount() {
+    document.documentElement.removeEventListener('keydown', this.hideOnEsc);
+  }
+
+  hideOnEsc = (evt) => {
+    const ESC = 27;
+
+    if (evt.which === ESC) {
+      this.props.appModalHide();
+    }
+  };
 
   render() {
     const {appModalHide, isAppModalShow, formValues} = this.props;
