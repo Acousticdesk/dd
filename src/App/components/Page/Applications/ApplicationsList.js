@@ -1,5 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { editApp } from '../../../redux/reducer';
 
 import Application from './Application';
 
@@ -17,7 +21,7 @@ PackageName.propTypes = {
   name: PropTypes.string,
 };
 
-const createList = (apps, onEditApp, onDeleteApp, props) => {
+const createList = (apps, editApp, onDeleteApp, props) => {
   if (!apps) {
     return null;
   }
@@ -35,17 +39,17 @@ const createList = (apps, onEditApp, onDeleteApp, props) => {
         id={id}
         isSelected={isSelected}
         app={app}
-        onEditApp={onEditApp(id)}
+        onEditApp={() => editApp(id)}
         onDeleteApp={onDeleteApp}
       />
     );
   });
 };
 
-const ApplicationsList = ({apps, onEditApp, onDeleteApp, loader, ...props}) => {
+const ApplicationsList = ({apps, editApp, onDeleteApp, loader, ...props}) => {
   return (
     <React.Fragment>
-      {loader ? <div className="loader" /> : createList(apps, onEditApp, onDeleteApp, props)}
+      {loader ? <div className="loader" /> : createList(apps, editApp, onDeleteApp, props)}
     </React.Fragment>
   );
 };
@@ -58,9 +62,13 @@ ApplicationsList.propTypes = {
   selectedApp: PropTypes.number,
   select: PropTypes.func,
   zendesk: PropTypes.object,
-  onEditApp: PropTypes.func,
   onDeleteApp: PropTypes.func,
   loader: PropTypes.bool,
+  editApp: PropTypes.func,
 };
 
-export default ApplicationsList;
+const mapDispatchToProps = dispatch => ({
+  editApp: bindActionCreators(editApp, dispatch),
+});
+
+export default connect(null, mapDispatchToProps)(ApplicationsList);

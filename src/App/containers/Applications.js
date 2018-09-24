@@ -6,14 +6,13 @@ import { submit } from 'redux-form';
 
 import API from '../../API';
 import config from '../../../config';
-import { editApp } from '../redux/reducer';
 
 import Applications from '../pages/Applications';
 import PlacementEdit from '../components/Page/Applications/PlacementEdit';
 import Sidenav from '../components/Layout/Sidenav';
 import Header from '../components/Layout/Header';
-import SubHeader from '../components/Layout/SubHeader';
-import AppModal from '../components/Page/Applications/AppModal';
+import SubHeader from '../components/Layout/SubHeader/index';
+import AppModal from '../containers/Page/Applications/AppModal';
 import ApplicationsList from '../components/Page/Applications/ApplicationsList';
 import PlacementDeleteModal from '../components/Page/Applications/PlacementDeleteModal';
 import PlacementSaveModal from '../components/Page/Applications/PlacementSaveModal';
@@ -26,7 +25,6 @@ class ApplicationsContainer extends Component {
   state = {
     selectedApp: null,
     selectedPlacement: null,
-    isCreatingNewApp: false,
     apps: null,
     settings: null,
     placementToDelete: null,
@@ -47,21 +45,6 @@ class ApplicationsContainer extends Component {
     this.setState({selectedApp: id});
   };
 
-  showApplicationModal = () => {
-    this.setState({
-      isCreatingNewApp: true
-    });
-  };
-
-  // TODO: Implement proper property names
-  hideApplicationModal = () => {
-    this.setState({
-      isCreatingNewApp: false,
-    });
-
-    this.props.editApp(null);
-  };
-
   componentDidMount() {
     this.setState({appsLoading: true});
 
@@ -75,9 +58,9 @@ class ApplicationsContainer extends Component {
     window.addEventListener('resize', () => this.setState({isMobile: isMobile()}))
   }
 
-  getAppById(id) {
+  getAppById = (id) => {
     return this.state.apps && this.state.apps[id];
-  }
+  };
 
   getPlacementById(appId, placementId) {
     if (!this.state.apps || !appId) {
@@ -127,12 +110,6 @@ class ApplicationsContainer extends Component {
     );
   };
 
-  getSubheader() {
-    return (
-      <SubHeader onCreateAppClick={this.showApplicationModal}/>
-    );
-  }
-
   getPlacementEdit() {
     const selectedApp = this.getAppById(this.state.selectedApp);
     const selectedAppPlatform = selectedApp && selectedApp.platform;
@@ -166,19 +143,13 @@ class ApplicationsContainer extends Component {
         selectedApp={this.state.selectedApp}
         select={this.selectApp}
         zendesk={config.zendesk}
-        onEditApp={this.onEditApp}
         onDeleteApp={this.onDeleteApp}
       />
     );
   }
 
   getAppModal() {
-    const app = this.getAppById(this.props.idAppEdit);
-    const title = app ? 'Edit Application' : 'New Application';
-
-    return this.state.isCreatingNewApp || this.props.idAppEdit
-      ? <AppModal refreshAppsList={this.getApps} close={this.hideApplicationModal} app={app} title={title} />
-      : null;
+    return <AppModal getAppById={this.getAppById} refreshAppsList={this.getApps}/>;
   }
 
   getPlacementDeleteModal() {
@@ -218,12 +189,6 @@ class ApplicationsContainer extends Component {
       this.selectPlacement(this.state.placementToLinkAfterSaveModal)();
       this.setState({placementToLinkAfterSaveModal: null});
     });
-  };
-
-  onEditApp = (id) => (evt) => {
-    evt.persist();
-    evt.stopPropagation();
-    this.props.editApp(id);
   };
 
   onDeleteApp(evt) {
@@ -282,10 +247,9 @@ class ApplicationsContainer extends Component {
       <Applications
         sidenav={this.getSidenav()}
         header={this.getHeader()}
-        subheader={this.getSubheader()}
+        subheader={<SubHeader/>}
         placementEdit={this.getPlacementEdit()}
         appsList={this.getAppsList()}
-        showApplicationModal={this.showApplicationModal}
         appModal={this.getAppModal()}
         deletePlacementModal={this.getPlacementDeleteModal()}
         placementSaveModal={this.getPlacementSaveModal()}
@@ -297,15 +261,13 @@ class ApplicationsContainer extends Component {
 ApplicationsContainer.propTypes = {
   user: PropTypes.object,
   onUserLoggedOut: PropTypes.func,
-  editApp: PropTypes.func
 };
 
 const mapStateToProps = state => ({
-  idAppEdit: state.app.idAppEdit
+
 });
 
 const mapDispatchToProps = dispatch => ({
-  editApp: bindActionCreators(editApp, dispatch),
   submitPlacementEditForm: bindActionCreators(() => submit('placementSettings'), dispatch)
 });
 
