@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { createApp } from '../../../redux/reducer';
+import { createApp } from '../../../redux/appEdit';
 import DesktopView from './DesktopView';
 import MobileView from './MobileView';
 

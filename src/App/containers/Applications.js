@@ -6,13 +6,14 @@ import { submit } from 'redux-form';
 
 import API from '../../API';
 import config from '../../../config';
+import { getIdAppEdit } from '../redux/appEdit';
 
 import Applications from '../pages/Applications';
 import PlacementEdit from '../components/Page/Applications/PlacementEdit';
 import Sidenav from '../components/Layout/Sidenav';
 import Header from '../components/Layout/Header';
 import SubHeader from '../components/Layout/SubHeader/index';
-import AppModal from '../containers/Page/Applications/AppModal';
+import AppModal from '../components/Page/Applications/AppModal';
 import ApplicationsList from '../components/Page/Applications/ApplicationsList';
 import PlacementDeleteModal from '../components/Page/Applications/PlacementDeleteModal';
 import PlacementSaveModal from '../components/Page/Applications/PlacementSaveModal';
@@ -149,7 +150,9 @@ class ApplicationsContainer extends Component {
   }
 
   getAppModal() {
-    return <AppModal getAppById={this.getAppById} refreshAppsList={this.getApps}/>;
+    const appToEdit = this.getAppById(this.props.idAppEdit);
+
+    return <AppModal app={appToEdit} refreshAppsList={this.getApps}/>;
   }
 
   getPlacementDeleteModal() {
@@ -264,7 +267,7 @@ ApplicationsContainer.propTypes = {
 };
 
 const mapStateToProps = state => ({
-
+  idAppEdit: getIdAppEdit(state)
 });
 
 const mapDispatchToProps = dispatch => ({
