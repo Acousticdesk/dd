@@ -6,7 +6,7 @@ import { submit } from 'redux-form';
 
 import API from '../../API';
 import config from '../../../config';
-import { getIdAppEdit } from '../redux/appEdit';
+import { getIdAppEdit } from '../redux/data/appEdit';
 
 import Applications from '../pages/Applications';
 import PlacementEdit from '../components/Page/Applications/PlacementEdit';

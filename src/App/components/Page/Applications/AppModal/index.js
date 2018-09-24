@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
-import {bindActionCreators} from 'redux';
+import { bindActionCreators } from 'redux';
 
 import API from '../../../../../API';
 
@@ -11,7 +11,9 @@ import ApplicationTextFields from './ApplicationTextFields';
 import IntegrationSelect from './IntegrationSelect';
 import StatusField from './StatusField';
 import PlatformSelect from './PlatformSelect';
-import {appModalClose, editApp, getIdAppEdit, getIsCreatingNewApp} from '../../../../redux/appEdit';
+import { appModalHide, getIsAppModalShow } from '../../../../redux/ui/appEdit';
+import { appEdit } from '../../../../redux/data/appEdit';
+import { getIdAppEdit } from '../../../../redux/data/appEdit';
 
 const integrations = {
   sdk: 'SDK',
@@ -49,7 +51,7 @@ class NewApp extends Component {
   };
 
   render() {
-    const {refreshAppsList, idAppEdit, appModalClose, isCreatingNewApp, formValues} = this.props;
+    const {refreshAppsList, idAppEdit, appModalHide, isCreatingNewApp, formValues} = this.props;
 
     const title = this.props.app ? 'Edit Application' : 'New Application';
 
@@ -58,7 +60,7 @@ class NewApp extends Component {
         <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
           <NewAppPresentation
             title={title}
-            close={appModalClose}
+            close={appModalHide}
             loader={this.state.loader}
             appTextFields={
               <ApplicationTextFields />
@@ -92,9 +94,9 @@ NewApp.propTypes = {
   app: PropTypes.object,
   title: PropTypes.string,
   refreshAppsList: PropTypes.func,
-  editApp: PropTypes.func,
+  appEdit: PropTypes.func,
   idAppEdit: PropTypes.number,
-  appModalClose: PropTypes.func,
+  appModalHide: PropTypes.func,
   getAppById: PropTypes.func,
 };
 
@@ -130,12 +132,12 @@ const mapStateToProps = (state, props) => ({
   formValues: selector(state, 'status', 'platform', 'integration', 'name', 'package'),
   initialValues: getInitialValues(props),
   idAppEdit: getIdAppEdit(state),
-  isCreatingNewApp: getIsCreatingNewApp(state),
+  isCreatingNewApp: getIsAppModalShow(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-  editApp: bindActionCreators(editApp, dispatch),
-  appModalClose: bindActionCreators(appModalClose, dispatch),
+  appEdit: bindActionCreators(appEdit, dispatch),
+  appModalHide: bindActionCreators(appModalHide, dispatch),
 });
 
 const reduxFormed = reduxForm({

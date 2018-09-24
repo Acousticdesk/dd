@@ -3,25 +3,25 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { createApp } from '../../../redux/appEdit';
+import { appModalShow } from '../../../redux/ui/appEdit';
 import DesktopView from './DesktopView';
 import MobileView from './MobileView';
 
-const SubHeader = ({createApp}) => {
+const SubHeader = ({appModalShow}) => {
   return (
     <React.Fragment>
-      <DesktopView onCreateAppClick={createApp} />
-      <MobileView onCreateAppClick={createApp} />
+      <DesktopView onCreateAppClick={appModalShow} />
+      <MobileView onCreateAppClick={appModalShow} />
     </React.Fragment>
   );
 };
 
 SubHeader.propTypes = {
-  createApp: PropTypes.func,
+  appModalShow: PropTypes.func,
 };
 
 const mapDispatchToProps = dispatch => ({
-  createApp: bindActionCreators(createApp, dispatch)
+  appModalShow: bindActionCreators(appModalShow, dispatch)
 });
 
 export default connect(null, mapDispatchToProps)(SubHeader);
