@@ -13,7 +13,6 @@ import StatusField from './StatusField';
 import PlatformSelect from './PlatformSelect';
 import { appModalHide, getIsAppModalShow } from '../../../../redux/ui/appEdit';
 import { appEdit } from '../../../../redux/data/appEdit';
-import { getIdAppEdit } from '../../../../redux/data/appEdit';
 
 const integrations = {
   sdk: 'SDK',
@@ -51,11 +50,11 @@ class NewApp extends Component {
   };
 
   render() {
-    const {refreshAppsList, idAppEdit, appModalHide, isCreatingNewApp, formValues} = this.props;
+    const {appModalHide, isAppModalShow, formValues} = this.props;
 
     const title = this.props.app ? 'Edit Application' : 'New Application';
 
-    return isCreatingNewApp || idAppEdit
+    return isAppModalShow
       ? (
         <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
           <NewAppPresentation
@@ -95,7 +94,6 @@ NewApp.propTypes = {
   title: PropTypes.string,
   refreshAppsList: PropTypes.func,
   appEdit: PropTypes.func,
-  idAppEdit: PropTypes.number,
   appModalHide: PropTypes.func,
   getAppById: PropTypes.func,
 };
@@ -131,8 +129,7 @@ const getInitialValues = (props) => {
 const mapStateToProps = (state, props) => ({
   formValues: selector(state, 'status', 'platform', 'integration', 'name', 'package'),
   initialValues: getInitialValues(props),
-  idAppEdit: getIdAppEdit(state),
-  isCreatingNewApp: getIsAppModalShow(state),
+  isAppModalShow: getIsAppModalShow(state),
 });
 
 const mapDispatchToProps = dispatch => ({

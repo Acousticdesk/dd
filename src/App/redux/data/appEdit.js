@@ -1,4 +1,4 @@
-import { APP_EDIT } from '../action-types';
+import { APP_EDIT, APP_MODAL_HIDE } from '../action-types';
 
 const initialAppState = {
   id: null,
@@ -10,6 +10,11 @@ const appEditReducer = (state = initialAppState, action) => {
       return {
         ...state,
         id: action.payload,
+      };
+    case APP_MODAL_HIDE:
+      return {
+        ...state,
+        id: null
       };
     default:
       return state;

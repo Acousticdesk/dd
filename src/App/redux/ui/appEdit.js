@@ -30,10 +30,6 @@ export const appModalHide = () => ({
   type: APP_MODAL_HIDE,
 });
 
-export const appEdit = () => ({
-  type: APP_EDIT,
-});
-
 export const getIsAppModalShow = state => state.ui.applications.appEdit.appModalShow;
 
 export default appEditReducer;
