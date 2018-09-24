@@ -11,7 +11,7 @@ import ApplicationTextFields from './ApplicationTextFields';
 import IntegrationSelect from './IntegrationSelect';
 import StatusField from './StatusField';
 import PlatformSelect from './PlatformSelect';
-import { appModalHide, getIsAppModalShow } from '../../../../redux/ui/appEdit';
+import { appModalHide, getIsAppModalShow, loader, getLoaderState } from '../../../../redux/ui/appEdit';
 import { appEdit } from '../../../../redux/data/appEdit';
 
 const integrations = {
@@ -26,10 +26,8 @@ const platforms = {
 };
 
 class NewApp extends Component {
-  state = {loader: false};
-
   onSubmit = (values) => {
-    this.setState({loader: true});
+    this.props.loader(true);
 
     const endpoint = this.props.app ? 'updateApp' : 'createApp';
     const id = this.props.app && this.props.app.id;
@@ -42,9 +40,9 @@ class NewApp extends Component {
     API.request(endpoint, 'POST', body)
       .then(() => {
         window.setTimeout(() => {
-          this.setState({loader: false});
+          this.props.loader(false);
           this.props.refreshAppsList()
-            .then(() => this.props.close());
+            .then(() => this.props.appModalHide());
         }, 1000)
       });
   };
@@ -60,7 +58,7 @@ class NewApp extends Component {
           <NewAppPresentation
             title={title}
             close={appModalHide}
-            loader={this.state.loader}
+            loader={this.props.loaderState}
             appTextFields={
               <ApplicationTextFields />
             }
@@ -96,6 +94,7 @@ NewApp.propTypes = {
   appEdit: PropTypes.func,
   appModalHide: PropTypes.func,
   getAppById: PropTypes.func,
+  loader: PropTypes.func,
 };
 
 const selector = formValueSelector('newapp');
@@ -130,11 +129,13 @@ const mapStateToProps = (state, props) => ({
   formValues: selector(state, 'status', 'platform', 'integration', 'name', 'package'),
   initialValues: getInitialValues(props),
   isAppModalShow: getIsAppModalShow(state),
+  loaderState: getLoaderState(state),
 });
 
 const mapDispatchToProps = dispatch => ({
   appEdit: bindActionCreators(appEdit, dispatch),
   appModalHide: bindActionCreators(appModalHide, dispatch),
+  loader: bindActionCreators(loader, dispatch),
 });
 
 const reduxFormed = reduxForm({
