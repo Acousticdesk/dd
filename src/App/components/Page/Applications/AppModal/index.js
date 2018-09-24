@@ -48,40 +48,11 @@ class NewApp extends Component {
       });
   };
 
-  // getSelectedPlatform() {
-  //   const {formValues, initialValues, app} = this.props;
-  //
-  //   if (app) {
-  //     return app.platform;
-  //   }
-  //
-  //   if (formValues.platform) {
-  //     return formValues.platform;
-  //   }
-  //
-  //   return initialValues.platform;
-  //
-  // }
-
-  // getSelectedIntegration() {
-  //   const { formValues, initialValues, app} = this.props;
-  //
-  //   if (app) {
-  //     return 'sdk';
-  //   }
-  //
-  //   if (formValues.integration) {
-  //     return formValues.integration;
-  //   }
-  //
-  //   return initialValues.integration;
-  // }
-
   render() {
     const {refreshAppsList, idAppEdit, appModalClose, isCreatingNewApp, formValues} = this.props;
 
     const title = this.props.app ? 'Edit Application' : 'New Application';
-    
+
     return isCreatingNewApp || idAppEdit
       ? (
         <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
@@ -140,8 +111,8 @@ const getInitialFormValues = () => ({
 const getAppValues = (app) => {
   return {
     status: app.status,
-    platform: app.integration,
-    integration: 'sdk',
+    platform: app.platform,
+    integration: app.integration,
     name: app.name,
     package: app.package,
   }
