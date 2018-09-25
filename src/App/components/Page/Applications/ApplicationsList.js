@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -67,9 +67,9 @@ class ApplicationsList extends Component {
     const {apps, appEdit, onDeleteApp, loader, ...props} = this.props;
 
     return (
-      <React.Fragment>
+      <Fragment>
         {loader ? <div className="loader" /> : createList(apps, appEdit, this.appSelect, onDeleteApp, props)}
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
