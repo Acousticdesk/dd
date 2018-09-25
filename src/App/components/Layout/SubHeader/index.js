@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { appModalShow } from '../../../redux/ui/appEdit';
+import { appModalShow } from '../../../redux/ui/Applications/appEdit';
 import DesktopView from './DesktopView';
 import MobileView from './MobileView';
 

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { appEdit } from '../../../redux/data/appEdit';
+import { appEdit } from '../../../redux/data/Applications/appEdit';
+import { appSelect, getIdAppSelected } from '../../../redux/data/Applications/appSelect';
 
 import Application from './Application';
 
@@ -21,7 +22,7 @@ PackageName.propTypes = {
   name: PropTypes.string,
 };
 
-const createList = (apps, appEdit, onDeleteApp, props) => {
+const createList = (apps, appEdit, appSelect, onDeleteApp, props) => {
   if (!apps) {
     return null;
   }
@@ -41,18 +42,37 @@ const createList = (apps, appEdit, onDeleteApp, props) => {
         app={app}
         onEditApp={() => appEdit(id)}
         onDeleteApp={onDeleteApp}
+        select={appSelect}
       />
     );
   });
 };
 
-const ApplicationsList = ({apps, appEdit, onDeleteApp, loader, ...props}) => {
-  return (
-    <React.Fragment>
-      {loader ? <div className="loader" /> : createList(apps, appEdit, onDeleteApp, props)}
-    </React.Fragment>
-  );
-};
+class ApplicationsList extends Component {
+  appSelect = (id) => () => {
+    const {idAppSelected, appSelect} = this.props;
+
+    console.log(id);
+    console.log(idAppSelected);
+
+    if (id === idAppSelected) {
+      appSelect(null);
+      return;
+    }
+
+    appSelect(id);
+  };
+
+  render() {
+    const {apps, appEdit, onDeleteApp, loader, ...props} = this.props;
+
+    return (
+      <React.Fragment>
+        {loader ? <div className="loader" /> : createList(apps, appEdit, this.appSelect, onDeleteApp, props)}
+      </React.Fragment>
+    );
+  }
+}
 
 ApplicationsList.propTypes = {
   apps: PropTypes.object,
@@ -60,15 +80,20 @@ ApplicationsList.propTypes = {
   selectPlacement: PropTypes.func,
   selectedPlacement: PropTypes.object,
   selectedApp: PropTypes.number,
-  select: PropTypes.func,
   zendesk: PropTypes.object,
   onDeleteApp: PropTypes.func,
   loader: PropTypes.bool,
   appEdit: PropTypes.func,
+  idAppSelected: PropTypes.number,
 };
+
+const mapStateToProps = state => ({
+  idAppSelected: getIdAppSelected(state),
+});
 
 const mapDispatchToProps = dispatch => ({
   appEdit: bindActionCreators(appEdit, dispatch),
+  appSelect: bindActionCreators(appSelect, dispatch),
 });
 
-export default connect(null, mapDispatchToProps)(ApplicationsList);
+export default connect(mapStateToProps, mapDispatchToProps)(ApplicationsList);

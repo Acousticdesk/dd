@@ -1,4 +1,4 @@
-import { APP_EDIT, APP_MODAL_HIDE } from '../action-types';
+import { APP_EDIT, APP_MODAL_HIDE } from '../../action-types';
 
 const initialAppState = {
   id: null,

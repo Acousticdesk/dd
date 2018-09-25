@@ -1,4 +1,4 @@
-import {APP_EDIT, APP_MODAL_SHOW, APP_MODAL_HIDE, APP_MODAL_LOADER} from '../action-types';
+import {APP_EDIT, APP_MODAL_SHOW, APP_MODAL_HIDE, APP_MODAL_LOADER} from '../../action-types';
 
 const initialAppState = {
   appModalShow: false,

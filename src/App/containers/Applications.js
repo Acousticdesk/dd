@@ -6,7 +6,8 @@ import { submit } from 'redux-form';
 
 import API from '../../API';
 import config from '../../../config';
-import { getIdAppEdit } from '../redux/data/appEdit';
+import { getIdAppEdit } from '../redux/data/Applications/appEdit';
+import { getIdAppSelected } from '../redux/data/Applications/appSelect';
 
 import Applications from '../pages/Applications';
 import PlacementEdit from '../components/Page/Applications/PlacementEdit';
@@ -24,7 +25,6 @@ const isMobile = () => {
 
 class ApplicationsContainer extends Component {
   state = {
-    selectedApp: null,
     selectedPlacement: null,
     apps: null,
     settings: null,
@@ -35,15 +35,6 @@ class ApplicationsContainer extends Component {
     mobileSidebarShow: false,
     isMobile: false,
     appsLoading: false,
-  };
-
-  selectApp = (id) => () => {
-    if (id === this.state.selectedApp) {
-      this.setState({selectedApp: null});
-      return;
-    }
-
-    this.setState({selectedApp: id});
   };
 
   componentDidMount() {
@@ -84,7 +75,7 @@ class ApplicationsContainer extends Component {
     }
 
     this.setState({
-      selectedPlacement: this.getPlacementById(this.state.selectedApp, id)
+      selectedPlacement: this.getPlacementById(this.props.idAppSelected, id)
     });
   };
 
@@ -112,7 +103,7 @@ class ApplicationsContainer extends Component {
   };
 
   getPlacementEdit() {
-    const selectedApp = this.getAppById(this.state.selectedApp);
+    const selectedApp = this.getAppById(this.props.idAppSelected);
     const selectedAppPlatform = selectedApp && selectedApp.platform;
     const selectedAppIntegration = selectedApp && selectedApp.integration;
 
@@ -141,8 +132,7 @@ class ApplicationsContainer extends Component {
         deletePlacement={this.deletePlacement}
         selectPlacement={this.selectPlacement}
         selectedPlacement={this.state.selectedPlacement}
-        selectedApp={this.state.selectedApp}
-        select={this.selectApp}
+        selectedApp={this.props.idAppSelected}
         zendesk={config.zendesk}
         onDeleteApp={this.onDeleteApp}
       />
@@ -264,10 +254,13 @@ class ApplicationsContainer extends Component {
 ApplicationsContainer.propTypes = {
   user: PropTypes.object,
   onUserLoggedOut: PropTypes.func,
+  idAppEdit: PropTypes.number,
+  idAppSelected: PropTypes.number,
 };
 
 const mapStateToProps = state => ({
-  idAppEdit: getIdAppEdit(state)
+  idAppEdit: getIdAppEdit(state),
+  idAppSelected: getIdAppSelected(state),
 });
 
 const mapDispatchToProps = dispatch => ({
