@@ -52,9 +52,6 @@ class ApplicationsList extends Component {
   appSelect = (id) => () => {
     const {idAppSelected, appSelect} = this.props;
 
-    console.log(id);
-    console.log(idAppSelected);
-
     if (id === idAppSelected) {
       appSelect(null);
       return;
