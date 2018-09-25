@@ -11,7 +11,7 @@ const Application = ({
   app,
   isSelected,
   select,
-  selectPlacement,
+  placementSelect,
   selectedPlacement,
   zendesk,
   deletePlacement,
@@ -54,7 +54,7 @@ const Application = ({
             deletePlacement={deletePlacement}
             appPlatform={app.platform}
             placements={app.placements}
-            selectPlacement={selectPlacement}
+            placementSelect={placementSelect}
             selectedPlacement={selectedPlacement}
             zendesk={zendesk}
           />
@@ -68,7 +68,7 @@ Application.propTypes = {
   app: PropTypes.object,
   isSelected: PropTypes.bool,
   select: PropTypes.func,
-  selectPlacement: PropTypes.func,
+  placementSelect: PropTypes.func,
   selectedPlacement: PropTypes.object,
   zendesk: PropTypes.object,
   deletePlacement: PropTypes.func,

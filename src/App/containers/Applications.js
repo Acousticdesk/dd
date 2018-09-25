@@ -8,6 +8,16 @@ import API from '../../API';
 import config from '../../../config';
 import { getIdAppEdit } from '../redux/data/Applications/appEdit';
 import { getIdAppSelected } from '../redux/data/Applications/appSelect';
+import { placementSelect, getPlacementSelected } from '../redux/data/Applications/placementSelect';
+
+import {
+  placementSettingsChange,
+  placementSettingsReset,
+  rememberPlacementToGoAfterConfirm,
+  getIdPlacementToGoAfterConfirm,
+} from '../redux/data/Applications/placementSettings';
+
+import { getIsPlacementConfirmModal, placementConfirmModalHide } from '../redux/data/Applications/isPlacementConfirmModal';
 
 import Applications from '../pages/Applications';
 import PlacementEdit from '../components/Page/Applications/PlacementEdit';
@@ -25,12 +35,9 @@ const isMobile = () => {
 
 class ApplicationsContainer extends Component {
   state = {
-    selectedPlacement: null,
     apps: null,
     settings: null,
     placementToDelete: null,
-    placementSettingsChanged: false,
-    placementSaveModalShow: false,
     placementToLinkAfterSaveModal: null,
     mobileSidebarShow: false,
     isMobile: false,
@@ -54,7 +61,7 @@ class ApplicationsContainer extends Component {
     return this.state.apps && this.state.apps[id];
   };
 
-  getPlacementById(appId, placementId) {
+  getPlacementById = (appId, placementId) => {
     if (!this.state.apps || !appId) {
       return null;
     }
@@ -62,21 +69,6 @@ class ApplicationsContainer extends Component {
       return Object.entries(this.state.apps[appId].placements)[0][1];
     }
     return this.state.apps[appId].placements[placementId];
-  }
-
-  selectPlacement = (id) => () => {
-    if (this.state.placementSettingsChanged) {
-      this.setState({
-        placementSaveModalShow: true,
-        placementToLinkAfterSaveModal: id
-      });
-
-      return;
-    }
-
-    this.setState({
-      selectedPlacement: this.getPlacementById(this.props.idAppSelected, id)
-    });
   };
 
   deletePlacement = (id) => (evt) => {
@@ -107,7 +99,7 @@ class ApplicationsContainer extends Component {
     const selectedAppPlatform = selectedApp && selectedApp.platform;
     const selectedAppIntegration = selectedApp && selectedApp.integration;
 
-    if (this.state.isMobile && !this.state.selectedPlacement) {
+    if (this.state.isMobile && !this.props.placementSelected) {
       return null;
     }
 
@@ -117,7 +109,7 @@ class ApplicationsContainer extends Component {
         settings={this.state.settings}
         selectedAppPlatform={selectedAppPlatform}
         selectedAppIntegration={selectedAppIntegration}
-        selectedPlacement={this.state.selectedPlacement}
+        selectedPlacement={this.props.placementSelected}
         onSettingsChange={this.onSettingsChange}
         close={this.placementSettingsClose}
       />
@@ -130,11 +122,10 @@ class ApplicationsContainer extends Component {
         loader={this.state.appsLoading}
         apps={this.state.apps}
         deletePlacement={this.deletePlacement}
-        selectPlacement={this.selectPlacement}
-        selectedPlacement={this.state.selectedPlacement}
-        selectedApp={this.props.idAppSelected}
+        selectedPlacement={this.props.placementSelected}
         zendesk={config.zendesk}
         onDeleteApp={this.onDeleteApp}
+        getPlacementById={this.getPlacementById}
       />
     );
   }
@@ -157,12 +148,12 @@ class ApplicationsContainer extends Component {
   }
 
   getPlacementSaveModal() {
-    return this.state.placementSaveModalShow
+    return this.props.isPlacementConfirmModal
       ? (
         <PlacementSaveModal
           close={this.closePlacementSaveModal}
           submitForm={this.submitPlacementEditForm}
-          placementId={this.state.selectedPlacement.id}
+          placementId={this.props.placementSelected.id}
         />
       )
       : null;
@@ -175,13 +166,12 @@ class ApplicationsContainer extends Component {
   };
 
   closePlacementSaveModal = () => {
-    this.setState({
-      placementSaveModalShow: false,
-      placementSettingsChanged: false,
-    }, () => {
-      this.selectPlacement(this.state.placementToLinkAfterSaveModal)();
-      this.setState({placementToLinkAfterSaveModal: null});
-    });
+    const placementToGoTo = this.getPlacementById(this.props.idAppSelected, this.props.idPlacementToGoAfterConfirm);
+
+    this.props.placementSettingsReset();
+    this.props.placementConfirmModalHide();
+    this.props.placementSelect(placementToGoTo);
+    this.props.rememberPlacementToGoAfterConfirm(null);
   };
 
   onDeleteApp(evt) {
@@ -191,10 +181,7 @@ class ApplicationsContainer extends Component {
   }
 
   onSettingsChange = () => {
-    console.log('Wow, my first Hoc works really well!');
-    this.setState({
-      placementSettingsChanged: true
-    });
+    this.props.placementSettingsChange();
   };
 
   submitPlacementEditForm = () => {
@@ -206,14 +193,12 @@ class ApplicationsContainer extends Component {
 
     submitPlacementEditForm();
 
-    this.setState({
-      placementSaveModalShow: false,
-      placementSettingsChanged: false,
-    });
+    this.props.placementSettingsReset();
+    this.props.placementConfirmModalHide();
   };
 
   placementSettingsClose = () => {
-    this.setState({selectedPlacement: null});
+    this.props.placementSelect(null);
   };
 
   mobileSidebarToggle = () => {
@@ -256,15 +241,28 @@ ApplicationsContainer.propTypes = {
   onUserLoggedOut: PropTypes.func,
   idAppEdit: PropTypes.number,
   idAppSelected: PropTypes.number,
+  placementSelected: PropTypes.object,
+  placementSelect: PropTypes.func,
+  isPlacementConfirmModal: PropTypes.bool,
+  placementConfirmModalHide: PropTypes.func,
+  rememberPlacementToGoAfterConfirm: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
   idAppEdit: getIdAppEdit(state),
   idAppSelected: getIdAppSelected(state),
+  placementSelected: getPlacementSelected(state),
+  isPlacementConfirmModal: getIsPlacementConfirmModal(state),
+  idPlacementToGoAfterConfirm: getIdPlacementToGoAfterConfirm(state),
 });
 
 const mapDispatchToProps = dispatch => ({
-  submitPlacementEditForm: bindActionCreators(() => submit('placementSettings'), dispatch)
+  submitPlacementEditForm: bindActionCreators(() => submit('placementSettings'), dispatch),
+  placementSelect: bindActionCreators(placementSelect, dispatch),
+  placementSettingsChange: bindActionCreators(placementSettingsChange, dispatch),
+  placementSettingsReset: bindActionCreators(placementSettingsReset, dispatch),
+  placementConfirmModalHide: bindActionCreators(placementConfirmModalHide, dispatch),
+  rememberPlacementToGoAfterConfirm: bindActionCreators(rememberPlacementToGoAfterConfirm, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ApplicationsContainer);

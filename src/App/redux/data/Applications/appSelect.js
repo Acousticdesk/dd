@@ -1,10 +1,8 @@
 import { APP_SELECT } from '../../action-types';
 
-const initialAppState = {
-  id: null,
-};
+const initialState = null;
 
-const selectedAppReducer = (state = initialAppState, action) => {
+const selectedAppReducer = (state = initialState, action) => {
   switch (action.type) {
     case APP_SELECT:
       return {
@@ -21,6 +19,6 @@ export const appSelect = id => ({
   payload: id,
 });
 
-export const getIdAppSelected = state => state.data.applications.appSelected.id;
+export const getIdAppSelected = state => state.data.applications.appSelected && state.data.applications.appSelected.id;
 
 export default selectedAppReducer;

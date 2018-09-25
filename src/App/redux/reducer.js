@@ -1,20 +1,16 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import appEditReducerUI from './ui/Applications/appEdit';
-import appEditReducerData from './data/Applications/appEdit';
-import selectedAppReducer from './data/Applications/appSelect';
+import applicationsDataReducer from './data/Applications/reducer';
 
 const uiReducer = combineReducers({
   applications: combineReducers({
-    appEdit: appEditReducerUI
-  })
+    appEdit: appEditReducerUI,
+  }),
 });
 
 const dataReducer = combineReducers({
-  applications: combineReducers({
-    appEdit: appEditReducerData,
-    appSelected: selectedAppReducer,
-  })
+  applications: applicationsDataReducer,
 });
 
 export default combineReducers({

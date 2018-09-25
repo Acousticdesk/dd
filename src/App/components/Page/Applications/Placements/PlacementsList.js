@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import PlacementPresentation from './PlacementPresentation';
 
-const PlacementsList = ({placements, selectedPlacement, appPlatform, deletePlacement, selectPlacement, zendesk}) => {
+const PlacementsList = ({placements, selectedPlacement, appPlatform, deletePlacement, placementSelect, zendesk}) => {
   return (
     Object.entries(placements).map(([id, placement]) => {
       const selectedClassName = selectedPlacement === placement ? 'selected' : '';
@@ -16,7 +16,7 @@ const PlacementsList = ({placements, selectedPlacement, appPlatform, deletePlace
           selectedClassName={selectedClassName}
           zendeskUrl={zendeskUrl}
           deletePlacement={deletePlacement}
-          selectPlacement={selectPlacement(id)}
+          placementSelect={placementSelect(id)}
         />
       );
     })
@@ -26,7 +26,7 @@ const PlacementsList = ({placements, selectedPlacement, appPlatform, deletePlace
 PlacementsList.propTypes = {
   placements: PropTypes.object,
   selectedPlacement: PropTypes.object,
-  selectPlacement: PropTypes.func,
+  placementSelect: PropTypes.func,
   appPlatform: PropTypes.string,
   deletePlacement: PropTypes.func,
   zendesk: PropTypes.object,

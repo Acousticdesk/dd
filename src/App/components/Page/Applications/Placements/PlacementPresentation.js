@@ -19,10 +19,10 @@ AdUnitIcon.propTypes = {
   type: PropTypes.string,
 };
 
-const PlacementPresentation = ({selectPlacement, selectedClassName, placement, zendeskUrl, deletePlacement}) => {
+const PlacementPresentation = ({placementSelect, selectedClassName, placement, zendeskUrl, deletePlacement}) => {
   return (
     <div className="placements__item-col">
-      <div onClick={selectPlacement} className={`card-selectable placement-card isCursorPointer ${selectedClassName}`}>
+      <div onClick={placementSelect} className={`card-selectable placement-card isCursorPointer ${selectedClassName}`}>
         <div className="placement-card__content">
           <div className="placement-summary text-center text--smaller">
             <div className="placement-summary__icon-container">
@@ -66,7 +66,7 @@ const PlacementPresentation = ({selectPlacement, selectedClassName, placement, z
 };
 
 PlacementPresentation.propTypes = {
-  selectPlacement: PropTypes.func,
+  placementSelect: PropTypes.func,
   selectedClassName: PropTypes.string,
   placement: PropTypes.object,
   zendeskUrl: PropTypes.string,
