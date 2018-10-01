@@ -30,6 +30,7 @@ import PlacementDeleteModal from '../components/Page/Applications/PlacementDelet
 import PlacementSaveModal from '../components/Page/Applications/PlacementSaveModal';
 import { getIsLoaderApps } from '../redux/ui/Applications/loaderApps';
 import { fetchSettingsApps, getSettingsApps } from '../redux/data/Applications/settings';
+import { getIdPlacementToDelete, placementToDeleteUpdate } from '../redux/ui/Applications/placementToDelete';
 
 const isMobile = () => {
   return document.documentElement.clientWidth <= 768;
@@ -37,7 +38,6 @@ const isMobile = () => {
 
 class ApplicationsContainer extends Component {
   state = {
-    placementToDelete: null,
     placementToLinkAfterSaveModal: null,
     mobileSidebarShow: false,
     isMobile: false,
@@ -70,9 +70,7 @@ class ApplicationsContainer extends Component {
     evt.persist();
     evt.stopPropagation();
 
-    this.setState({
-      placementToDelete: id
-    });
+    this.props.placementToDeleteUpdate(id);
   };
 
   getHeader() {
@@ -132,11 +130,11 @@ class ApplicationsContainer extends Component {
   }
 
   getPlacementDeleteModal() {
-    return this.state.placementToDelete
+    return this.props.idPlacementToDelete
       ? (
         <PlacementDeleteModal
           close={this.closePlacementDeleteModal}
-          placementId={this.state.placementToDelete}
+          placementId={this.props.idPlacementToDelete}
         />
       )
       : null;
@@ -155,9 +153,7 @@ class ApplicationsContainer extends Component {
   }
 
   closePlacementDeleteModal = () => {
-    this.setState({
-      placementToDelete: null
-    });
+    this.props.placementToDeleteUpdate(null);
   };
 
   closePlacementSaveModal = () => {
@@ -238,6 +234,8 @@ ApplicationsContainer.propTypes = {
   apps: PropTypes.object,
   isLoaderApps: PropTypes.bool,
   fetchSettings: PropTypes.func,
+  placementToDeleteUpdate: PropTypes.func,
+  idPlacementToDelete: PropTypes.number,
 };
 
 const mapStateToProps = state => ({
@@ -249,6 +247,7 @@ const mapStateToProps = state => ({
   apps: getApps(state),
   isLoaderApps: getIsLoaderApps(state),
   settings: getSettingsApps(state),
+  idPlacementToDelete: getIdPlacementToDelete(state),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -260,6 +259,7 @@ const mapDispatchToProps = dispatch => ({
   rememberPlacementToGoAfterConfirm: bindActionCreators(rememberPlacementToGoAfterConfirm, dispatch),
   fetchApps: bindActionCreators(fetchApps, dispatch),
   fetchSettings: bindActionCreators(fetchSettingsApps, dispatch),
+  placementToDeleteUpdate: bindActionCreators(placementToDeleteUpdate, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ApplicationsContainer);

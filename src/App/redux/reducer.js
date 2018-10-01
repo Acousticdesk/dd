@@ -8,6 +8,7 @@ import placementSettingsReducer from './ui/Applications/placementSettings';
 import selectedAppReducer from './ui/Applications/selected';
 import isPlacementConfirmModalReducer from './ui/Applications/isPlacementConfirmModal';
 import placementSelectReducer from './ui/Applications/placementSelect';
+import placementToDeleteReducer from './ui/Applications/placementToDelete';
 
 const uiReducer = combineReducers({
   applications: combineReducers({
@@ -17,6 +18,7 @@ const uiReducer = combineReducers({
     placementSelected: placementSelectReducer,
     placementSettings: placementSettingsReducer,
     isPlacementConfirmModal: isPlacementConfirmModalReducer,
+    placementToDelete: placementToDeleteReducer,
   }),
 });
 
