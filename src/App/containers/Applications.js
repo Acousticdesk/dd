@@ -30,6 +30,7 @@ import ApplicationsList from '../components/Page/Applications/ApplicationsList';
 import PlacementDeleteModal from '../components/Page/Applications/PlacementDeleteModal';
 import PlacementSaveModal from '../components/Page/Applications/PlacementSaveModal';
 import { getIsLoaderApps } from '../redux/ui/Applications/loaderApps';
+import { fetchSettingsApps, getSettingsApps } from '../redux/data/Applications/settings';
 
 const isMobile = () => {
   return document.documentElement.clientWidth <= 768;
@@ -37,7 +38,6 @@ const isMobile = () => {
 
 class ApplicationsContainer extends Component {
   state = {
-    settings: null,
     placementToDelete: null,
     placementToLinkAfterSaveModal: null,
     mobileSidebarShow: false,
@@ -46,9 +46,7 @@ class ApplicationsContainer extends Component {
 
   componentDidMount() {
     this.props.fetchApps();
-    API.request('getSettings')
-      .then(res => res.json())
-      .then(settings => this.setState({settings: settings.adUnitTypes}));
+    this.props.fetchSettings();
 
     this.setState({isMobile: isMobile()});
 
@@ -104,7 +102,7 @@ class ApplicationsContainer extends Component {
     return (
       <PlacementEdit
         isMobile={this.state.isMobile}
-        settings={this.state.settings}
+        settings={this.props.settings}
         selectedAppPlatform={selectedAppPlatform}
         selectedAppIntegration={selectedAppIntegration}
         selectedPlacement={this.props.placementSelected}
@@ -240,6 +238,7 @@ ApplicationsContainer.propTypes = {
   fetchApps: PropTypes.func,
   apps: PropTypes.object,
   isLoaderApps: PropTypes.bool,
+  fetchSettings: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -250,6 +249,7 @@ const mapStateToProps = state => ({
   idPlacementToGoAfterConfirm: getIdPlacementToGoAfterConfirm(state),
   apps: getApps(state),
   isLoaderApps: getIsLoaderApps(state),
+  settings: getSettingsApps(state),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -260,6 +260,7 @@ const mapDispatchToProps = dispatch => ({
   placementConfirmModalHide: bindActionCreators(placementConfirmModalHide, dispatch),
   rememberPlacementToGoAfterConfirm: bindActionCreators(rememberPlacementToGoAfterConfirm, dispatch),
   fetchApps: bindActionCreators(fetchApps, dispatch),
+  fetchSettings: bindActionCreators(fetchSettingsApps, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ApplicationsContainer);

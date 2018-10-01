@@ -5,6 +5,7 @@ import appEditReducerData from './appEdit';
 import selectedAppReducer from './appSelect';
 import placementSelectReducer from './placementSelect';
 import isPlacementConfirmModalReducer from './isPlacementConfirmModal';
+import settingsReducer from './settings';
 
 const applicationsDataReducer = combineReducers({
   appEdit: appEditReducerData,
@@ -12,6 +13,7 @@ const applicationsDataReducer = combineReducers({
   placementSelected: placementSelectReducer,
   placementSettings: placementSettingsReducer,
   isPlacementConfirmModal: isPlacementConfirmModalReducer,
+  settings: settingsReducer,
 });
 
 export default applicationsDataReducer;
