@@ -9,6 +9,7 @@ import config from '../../../config';
 import { getIdAppEdit } from '../redux/data/Applications/appEdit';
 import { getIdAppSelected } from '../redux/data/Applications/appSelect';
 import { placementSelect, getPlacementSelected } from '../redux/data/Applications/placementSelect';
+import { fetchApps, getApps } from '../redux/data/entities/apps';
 
 import {
   placementSettingsChange,
@@ -28,6 +29,7 @@ import AppModal from '../components/Page/Applications/AppModal';
 import ApplicationsList from '../components/Page/Applications/ApplicationsList';
 import PlacementDeleteModal from '../components/Page/Applications/PlacementDeleteModal';
 import PlacementSaveModal from '../components/Page/Applications/PlacementSaveModal';
+import { getIsLoaderApps } from '../redux/ui/Applications/loaderApps';
 
 const isMobile = () => {
   return document.documentElement.clientWidth <= 768;
@@ -35,19 +37,15 @@ const isMobile = () => {
 
 class ApplicationsContainer extends Component {
   state = {
-    apps: null,
     settings: null,
     placementToDelete: null,
     placementToLinkAfterSaveModal: null,
     mobileSidebarShow: false,
     isMobile: false,
-    appsLoading: false,
   };
 
   componentDidMount() {
-    this.setState({appsLoading: true});
-
-    this.getApps();
+    this.props.fetchApps();
     API.request('getSettings')
       .then(res => res.json())
       .then(settings => this.setState({settings: settings.adUnitTypes}));
@@ -58,17 +56,17 @@ class ApplicationsContainer extends Component {
   }
 
   getAppById = (id) => {
-    return this.state.apps && this.state.apps[id];
+    return this.props.apps && this.props.apps[id];
   };
 
   getPlacementById = (appId, placementId) => {
-    if (!this.state.apps || !appId) {
+    if (!this.props.apps || !appId) {
       return null;
     }
     if (!placementId) {
-      return Object.entries(this.state.apps[appId].placements)[0][1];
+      return Object.entries(this.props.apps[appId].placements)[0][1];
     }
-    return this.state.apps[appId].placements[placementId];
+    return this.props.apps[appId].placements[placementId];
   };
 
   deletePlacement = (id) => (evt) => {
@@ -119,8 +117,8 @@ class ApplicationsContainer extends Component {
   getAppsList() {
     return (
       <ApplicationsList
-        loader={this.state.appsLoading}
-        apps={this.state.apps}
+        loader={this.props.isLoaderApps}
+        apps={this.props.apps}
         deletePlacement={this.deletePlacement}
         selectedPlacement={this.props.placementSelected}
         zendesk={config.zendesk}
@@ -133,7 +131,7 @@ class ApplicationsContainer extends Component {
   getAppModal() {
     const appToEdit = this.getAppById(this.props.idAppEdit);
 
-    return <AppModal app={appToEdit} refreshAppsList={this.getApps}/>;
+    return <AppModal app={appToEdit} refreshAppsList={() => this.props.fetchApps()}/>;
   }
 
   getPlacementDeleteModal() {
@@ -213,13 +211,6 @@ class ApplicationsContainer extends Component {
     return <Sidenav show={show} activeOne={'Applications'} />;
   }
 
-  getApps = () => {
-    return API.request('getApps')
-      .finally(() => this.setState({appsLoading: false}))
-      .then(res => res.json())
-      .then(appsData => this.setState({apps: appsData.results}));
-  };
-
   render() {
     return (
       <Applications
@@ -246,6 +237,9 @@ ApplicationsContainer.propTypes = {
   isPlacementConfirmModal: PropTypes.bool,
   placementConfirmModalHide: PropTypes.func,
   rememberPlacementToGoAfterConfirm: PropTypes.func,
+  fetchApps: PropTypes.func,
+  apps: PropTypes.object,
+  isLoaderApps: PropTypes.bool,
 };
 
 const mapStateToProps = state => ({
@@ -254,6 +248,8 @@ const mapStateToProps = state => ({
   placementSelected: getPlacementSelected(state),
   isPlacementConfirmModal: getIsPlacementConfirmModal(state),
   idPlacementToGoAfterConfirm: getIdPlacementToGoAfterConfirm(state),
+  apps: getApps(state),
+  isLoaderApps: getIsLoaderApps(state),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -263,6 +259,7 @@ const mapDispatchToProps = dispatch => ({
   placementSettingsReset: bindActionCreators(placementSettingsReset, dispatch),
   placementConfirmModalHide: bindActionCreators(placementConfirmModalHide, dispatch),
   rememberPlacementToGoAfterConfirm: bindActionCreators(rememberPlacementToGoAfterConfirm, dispatch),
+  fetchApps: bindActionCreators(fetchApps, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ApplicationsContainer);
