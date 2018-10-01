@@ -18,6 +18,6 @@ export const placementSelect = placement => ({
   payload: placement,
 });
 
-export const getPlacementSelected = state => state.data.applications.placementSelected;
+export const getPlacementSelected = state => state.ui.applications.placementSelected;
 
 export default placementSelectReducer;

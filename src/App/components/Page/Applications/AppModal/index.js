@@ -12,7 +12,7 @@ import IntegrationSelect from './IntegrationSelect';
 import StatusField from './StatusField';
 import PlatformSelect from './PlatformSelect';
 import { appModalHide, getIsAppModalShow, loader, getLoaderState } from '../../../../redux/ui/Applications/appEdit';
-import { appEdit } from '../../../../redux/data/Applications/appEdit';
+import { appEdit } from '../../../../redux/ui/Applications/appEdit';
 
 const integrations = {
   sdk: 'SDK',

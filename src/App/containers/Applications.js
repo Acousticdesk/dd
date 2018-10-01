@@ -4,11 +4,10 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { submit } from 'redux-form';
 
-import API from '../../API';
 import config from '../../../config';
-import { getIdAppEdit } from '../redux/data/Applications/appEdit';
-import { getIdAppSelected } from '../redux/data/Applications/appSelect';
-import { placementSelect, getPlacementSelected } from '../redux/data/Applications/placementSelect';
+import { getIdAppEdit } from '../redux/ui/Applications/appEdit';
+import { getIdAppSelected } from '../redux/ui/Applications/appSelect';
+import { placementSelect, getPlacementSelected } from '../redux/ui/Applications/placementSelect';
 import { fetchApps, getApps } from '../redux/data/entities/apps';
 
 import {
@@ -16,9 +15,9 @@ import {
   placementSettingsReset,
   rememberPlacementToGoAfterConfirm,
   getIdPlacementToGoAfterConfirm,
-} from '../redux/data/Applications/placementSettings';
+} from '../redux/ui/Applications/placementSettings';
 
-import { getIsPlacementConfirmModal, placementConfirmModalHide } from '../redux/data/Applications/isPlacementConfirmModal';
+import { getIsPlacementConfirmModal, placementConfirmModalHide } from '../redux/ui/Applications/isPlacementConfirmModal';
 
 import Applications from '../pages/Applications';
 import PlacementEdit from '../components/Page/Applications/PlacementEdit';

@@ -1,4 +1,4 @@
-import {APP_EDIT, APP_MODAL_SHOW, APP_MODAL_HIDE, APP_MODAL_LOADER} from '../../action-types';
+import { APP_EDIT, APP_MODAL_SHOW, APP_MODAL_HIDE, APP_MODAL_LOADER } from '../../action-types';
 
 const initialAppState = {
   appModalShow: false,
@@ -7,6 +7,10 @@ const initialAppState = {
 const appEditReducer = (state = initialAppState, action) => {
   switch (action.type) {
     case APP_EDIT:
+      return {
+        ...state,
+        id: action.payload,
+      };
     case APP_MODAL_SHOW:
       return {
         ...state,
@@ -16,6 +20,7 @@ const appEditReducer = (state = initialAppState, action) => {
       return {
         ...state,
         appModalShow: false,
+        id: null,
       };
     case APP_MODAL_LOADER:
       return {
@@ -40,6 +45,12 @@ export const loader = (isLoader) => ({
   payload: isLoader
 });
 
+export const appEdit = (id) => ({
+  type: APP_EDIT,
+  payload: id
+});
+
+export const getIdAppEdit = state => state.ui.applications.appEdit.id;
 export const getIsAppModalShow = state => state.ui.applications.appEdit.appModalShow;
 export const getLoaderState = state => state.ui.applications.appEdit.loader;
 

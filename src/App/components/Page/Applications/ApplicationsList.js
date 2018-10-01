@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { appEdit } from '../../../redux/data/Applications/appEdit';
-import { appSelect, getIdAppSelected } from '../../../redux/data/Applications/appSelect';
-import { placementSelect, getPlacementSelected } from '../../../redux/data/Applications/placementSelect';
-import { placementConfirmModalShow } from '../../../redux/data/Applications/isPlacementConfirmModal';
+import { appEdit } from '../../../redux/ui/Applications/appEdit';
+import { appSelect, getIdAppSelected } from '../../../redux/ui/Applications/appSelect';
+import { placementSelect, getPlacementSelected } from '../../../redux/ui/Applications/placementSelect';
+import { placementConfirmModalShow } from '../../../redux/ui/Applications/isPlacementConfirmModal';
 
 import Application from './Application';
-import { getIsPlacementSettingsChanged, rememberPlacementToGoAfterConfirm } from '../../../redux/data/Applications/placementSettings';
+import { getIsPlacementSettingsChanged, rememberPlacementToGoAfterConfirm } from '../../../redux/ui/Applications/placementSettings';
 
 const PackageName = ({name}) => {
   if (name.length <= 18) {

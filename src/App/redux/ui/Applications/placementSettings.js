@@ -39,7 +39,7 @@ export const rememberPlacementToGoAfterConfirm = (id) => ({
   payload: id,
 });
 
-export const getIsPlacementSettingsChanged = state => state.data.applications.placementSettings.isChanged;
-export const getIdPlacementToGoAfterConfirm = state => state.data.applications.placementSettings.idPlacementToGoAfterConfirm;
+export const getIsPlacementSettingsChanged = state => state.ui.applications.placementSettings.isChanged;
+export const getIdPlacementToGoAfterConfirm = state => state.ui.applications.placementSettings.idPlacementToGoAfterConfirm;
 
 export default placementSettingsReducer;

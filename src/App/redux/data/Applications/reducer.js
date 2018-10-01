@@ -1,18 +1,12 @@
 import { combineReducers } from 'redux';
 
-import placementSettingsReducer from './placementSettings';
-import appEditReducerData from './appEdit';
-import selectedAppReducer from './appSelect';
-import placementSelectReducer from './placementSelect';
-import isPlacementConfirmModalReducer from './isPlacementConfirmModal';
+import placementSettingsReducer from '../../ui/Applications/placementSettings';
+import selectedAppReducer from '../../ui/Applications/appSelect';
+import placementSelectReducer from '../../ui/Applications/placementSelect';
+import isPlacementConfirmModalReducer from '../../ui/Applications/isPlacementConfirmModal';
 import settingsReducer from './settings';
 
 const applicationsDataReducer = combineReducers({
-  appEdit: appEditReducerData,
-  appSelected: selectedAppReducer,
-  placementSelected: placementSelectReducer,
-  placementSettings: placementSettingsReducer,
-  isPlacementConfirmModal: isPlacementConfirmModalReducer,
   settings: settingsReducer,
 });
 

@@ -21,6 +21,6 @@ export const placementConfirmModalHide = () => ({
   type: PLACEMENT_CONFIRM_MODAL_HIDE,
 });
 
-export const getIsPlacementConfirmModal = state => state.data.applications.isPlacementConfirmModal;
+export const getIsPlacementConfirmModal = state => state.ui.applications.isPlacementConfirmModal;
 
 export default isPlacementConfirmModalReducer;
