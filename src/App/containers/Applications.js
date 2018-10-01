@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import { submit } from 'redux-form';
 
 import config from '../../../config';
-import { getIdAppEdit } from '../redux/ui/Applications/appEdit';
-import { getIdAppSelected } from '../redux/ui/Applications/appSelect';
+import { getIdAppEdit } from '../redux/ui/Applications/editing';
+import { getIdAppSelected } from '../redux/ui/Applications/selected';
 import { placementSelect, getPlacementSelected } from '../redux/ui/Applications/placementSelect';
 import { fetchApps, getApps } from '../redux/data/entities/apps';
 

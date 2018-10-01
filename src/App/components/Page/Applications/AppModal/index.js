@@ -11,8 +11,8 @@ import ApplicationTextFields from './ApplicationTextFields';
 import IntegrationSelect from './IntegrationSelect';
 import StatusField from './StatusField';
 import PlatformSelect from './PlatformSelect';
-import { appModalHide, getIsAppModalShow, loader, getLoaderState } from '../../../../redux/ui/Applications/appEdit';
-import { appEdit } from '../../../../redux/ui/Applications/appEdit';
+import { appModalHide, getIsAppModalShow, loader, getLoaderState } from '../../../../redux/ui/Applications/editing';
+import { appEdit } from '../../../../redux/ui/Applications/editing';
 
 const integrations = {
   sdk: 'SDK',

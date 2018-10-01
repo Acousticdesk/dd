@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 import placementSettingsReducer from '../../ui/Applications/placementSettings';
-import selectedAppReducer from '../../ui/Applications/appSelect';
+import selectedAppReducer from '../../ui/Applications/selected';
 import placementSelectReducer from '../../ui/Applications/placementSelect';
 import isPlacementConfirmModalReducer from '../../ui/Applications/isPlacementConfirmModal';
 import settingsReducer from './settings';

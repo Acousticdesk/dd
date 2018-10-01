@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { appEdit } from '../../../redux/ui/Applications/appEdit';
-import { appSelect, getIdAppSelected } from '../../../redux/ui/Applications/appSelect';
+import { appEdit } from '../../../redux/ui/Applications/editing';
+import { appSelect, getIdAppSelected } from '../../../redux/ui/Applications/selected';
 import { placementSelect, getPlacementSelected } from '../../../redux/ui/Applications/placementSelect';
 import { placementConfirmModalShow } from '../../../redux/ui/Applications/isPlacementConfirmModal';
 

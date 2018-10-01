@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import appEditReducerUI from './ui/Applications/appEdit';
+import appEditReducerUI from './ui/Applications/editing';
 import applicationsDataReducer from './data/Applications/reducer';
 import entitiesReducer from './data/entities';
 import loaderAppsReducer from './ui/Applications/loaderApps';
 import placementSettingsReducer from './ui/Applications/placementSettings';
-import selectedAppReducer from './ui/Applications/appSelect';
+import selectedAppReducer from './ui/Applications/selected';
 import isPlacementConfirmModalReducer from './ui/Applications/isPlacementConfirmModal';
 import placementSelectReducer from './ui/Applications/placementSelect';
 
@@ -13,7 +13,7 @@ const uiReducer = combineReducers({
   applications: combineReducers({
     editing: appEditReducerUI,
     loader: loaderAppsReducer,
-    appSelected: selectedAppReducer,
+    selected: selectedAppReducer,
     placementSelected: placementSelectReducer,
     placementSettings: placementSettingsReducer,
     isPlacementConfirmModal: isPlacementConfirmModalReducer,
