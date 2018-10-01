@@ -11,7 +11,7 @@ import placementSelectReducer from './ui/Applications/placementSelect';
 
 const uiReducer = combineReducers({
   applications: combineReducers({
-    appEdit: appEditReducerUI,
+    editing: appEditReducerUI,
     loader: loaderAppsReducer,
     appSelected: selectedAppReducer,
     placementSelected: placementSelectReducer,
