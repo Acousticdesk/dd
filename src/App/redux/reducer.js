@@ -10,6 +10,7 @@ import isPlacementConfirmModalReducer from './ui/Applications/isPlacementConfirm
 import placementSelectReducer from './ui/Applications/placementSelect';
 import placementToDeleteReducer from './ui/Applications/placementToDelete';
 import mobileSidebarReducer from './ui/mobileSidebar';
+import mobileViewportReducer from './ui/mobileViewport';
 
 const uiReducer = combineReducers({
   applications: combineReducers({
@@ -22,6 +23,7 @@ const uiReducer = combineReducers({
     placementToDelete: placementToDeleteReducer,
   }),
   mobileSidebarShow: mobileSidebarReducer,
+  isMobileViewport: mobileViewportReducer,
 });
 
 const dataReducer = combineReducers({

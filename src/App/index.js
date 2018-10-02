@@ -1,18 +1,37 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
+
+import API from '../API';
 
 import Login from './containers/Login';
 import Applications from './containers/Applications';
 import Dashboard from './containers/Dashboard';
-import API from '../API';
+import { getIsMobileViewport, viewportChange } from './redux/ui/mobileViewport';
 
-export default class App extends Component {
+const isMobileViewport = () => {
+  return document.documentElement.clientWidth <= 768;
+};
+
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loginData: JSON.parse(API.getPersistedData('loginData')),
       rememberMe: false
     };
+  }
+
+  componentDidMount() {
+    this.props.viewportChange(isMobileViewport());
+
+    window.addEventListener('resize', () => {
+      if (this.props.isMobileViewport !== isMobileViewport()) {
+        this.props.viewportChange();
+      }
+    });
   }
 
   onUserLoggedIn = (loginData) => {
@@ -86,4 +105,18 @@ export default class App extends Component {
       </Router>
     );
   }
+}
+
+App.propTypes = {
+  viewportChange: PropTypes.func,
 };
+
+const mapStateToProps = state => ({
+  isMobileViewport: getIsMobileViewport(state),
+});
+
+const mapDispatchToProps = dispatch => ({
+  viewportChange: bindActionCreators(viewportChange, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

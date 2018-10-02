@@ -32,23 +32,12 @@ import { getIsLoaderApps } from '../redux/ui/Applications/loaderApps';
 import { fetchSettingsApps, getSettingsApps } from '../redux/data/Applications/settings';
 import { getIdPlacementToDelete, placementToDeleteUpdate } from '../redux/ui/Applications/placementToDelete';
 import { getIsMobileSidebarShown, mobileSidebarToggle } from '../redux/ui/mobileSidebar';
-
-const isMobile = () => {
-  return document.documentElement.clientWidth <= 768;
-};
+import { getIsMobileViewport } from '../redux/ui/mobileViewport';
 
 class ApplicationsContainer extends Component {
-  state = {
-    isMobile: false,
-  };
-
   componentDidMount() {
     this.props.fetchApps();
     this.props.fetchSettings();
-
-    this.setState({isMobile: isMobile()});
-
-    window.addEventListener('resize', () => this.setState({isMobile: isMobile()}))
   }
 
   getAppById = (id) => {
@@ -73,7 +62,7 @@ class ApplicationsContainer extends Component {
   };
 
   getHeader() {
-    const isDarkTheme = this.state.isMobile && this.props.isMobileSidebarShown;
+    const isDarkTheme = this.props.isMobileViewport && this.props.isMobileSidebarShown;
 
     return (
       <Header
@@ -91,13 +80,13 @@ class ApplicationsContainer extends Component {
     const selectedAppPlatform = selectedApp && selectedApp.platform;
     const selectedAppIntegration = selectedApp && selectedApp.integration;
 
-    if (this.state.isMobile && !this.props.placementSelected) {
+    if (this.props.isMobileViewport && !this.props.placementSelected) {
       return null;
     }
 
     return (
       <PlacementEdit
-        isMobile={this.state.isMobile}
+        isMobile={this.props.isMobileViewport}
         settings={this.props.settings}
         selectedAppPlatform={selectedAppPlatform}
         selectedAppIntegration={selectedAppIntegration}
@@ -196,7 +185,7 @@ class ApplicationsContainer extends Component {
   };
 
   getSidenav() {
-    const show = this.state.isMobile && this.props.isMobileSidebarShown;
+    const show = this.props.isMobileViewport && this.props.isMobileSidebarShown;
 
     return <Sidenav show={show} activeOne={'Applications'} />;
   }
@@ -235,6 +224,7 @@ ApplicationsContainer.propTypes = {
   idPlacementToDelete: PropTypes.number,
   isMobileSidebarShown: PropTypes.bool,
   mobileSidebarToggle: PropTypes.func,
+  isMobileViewport: PropTypes.bool,
 };
 
 const mapStateToProps = state => ({
@@ -248,6 +238,7 @@ const mapStateToProps = state => ({
   settings: getSettingsApps(state),
   idPlacementToDelete: getIdPlacementToDelete(state),
   isMobileSidebarShown: getIsMobileSidebarShown(state),
+  isMobileViewport: getIsMobileViewport(state),
 });
 
 const mapDispatchToProps = dispatch => ({
