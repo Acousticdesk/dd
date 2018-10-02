@@ -32,6 +32,7 @@ export const fetchApps = () => dispatch => {
     .catch(err => dispatch(errorFetchApps(err)));
 };
 
-export const getApps = (state) => state.data.entities.apps;
+export const getApps = state => state.data.entities.apps;
+export const getAppById = state => id => state.data.entities.apps[id];
 
 export default appsReducer;

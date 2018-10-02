@@ -8,7 +8,7 @@ import config from '../../../config';
 import { getIdAppEdit } from '../redux/ui/Applications/editing';
 import { getIdAppSelected } from '../redux/ui/Applications/selected';
 import { placementSelect, getPlacementSelected } from '../redux/ui/Applications/placementSelect';
-import { fetchApps, getApps } from '../redux/data/entities/apps';
+import { fetchApps, getAppById, getApps } from '../redux/data/entities/apps';
 
 import {
   placementSettingsChange,
@@ -39,10 +39,6 @@ class ApplicationsContainer extends Component {
     this.props.fetchApps();
     this.props.fetchSettings();
   }
-
-  getAppById = (id) => {
-    return this.props.apps && this.props.apps[id];
-  };
 
   getPlacementById = (appId, placementId) => {
     if (!this.props.apps || !appId) {
@@ -76,7 +72,7 @@ class ApplicationsContainer extends Component {
   };
 
   getPlacementEdit() {
-    const selectedApp = this.getAppById(this.props.idAppSelected);
+    const selectedApp = this.props.getAppById(this.props.idAppSelected);
     const selectedAppPlatform = selectedApp && selectedApp.platform;
     const selectedAppIntegration = selectedApp && selectedApp.integration;
 
@@ -112,7 +108,7 @@ class ApplicationsContainer extends Component {
   }
 
   getAppModal() {
-    const appToEdit = this.getAppById(this.props.idAppEdit);
+    const appToEdit = this.props.getAppById(this.props.idAppEdit);
 
     return <AppModal app={appToEdit} refreshAppsList={() => this.props.fetchApps()}/>;
   }
@@ -225,6 +221,7 @@ ApplicationsContainer.propTypes = {
   isMobileSidebarShown: PropTypes.bool,
   mobileSidebarToggle: PropTypes.func,
   isMobileViewport: PropTypes.bool,
+  getAppById: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -239,6 +236,7 @@ const mapStateToProps = state => ({
   idPlacementToDelete: getIdPlacementToDelete(state),
   isMobileSidebarShown: getIsMobileSidebarShown(state),
   isMobileViewport: getIsMobileViewport(state),
+  getAppById: getAppById(state),
 });
 
 const mapDispatchToProps = dispatch => ({
