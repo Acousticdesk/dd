@@ -31,6 +31,7 @@ import PlacementSaveModal from '../components/Page/Applications/PlacementSaveMod
 import { getIsLoaderApps } from '../redux/ui/Applications/loaderApps';
 import { fetchSettingsApps, getSettingsApps } from '../redux/data/Applications/settings';
 import { getIdPlacementToDelete, placementToDeleteUpdate } from '../redux/ui/Applications/placementToDelete';
+import { getIsMobileSidebarShown, mobileSidebarToggle } from '../redux/ui/mobileSidebar';
 
 const isMobile = () => {
   return document.documentElement.clientWidth <= 768;
@@ -38,8 +39,6 @@ const isMobile = () => {
 
 class ApplicationsContainer extends Component {
   state = {
-    placementToLinkAfterSaveModal: null,
-    mobileSidebarShow: false,
     isMobile: false,
   };
 
@@ -74,7 +73,7 @@ class ApplicationsContainer extends Component {
   };
 
   getHeader() {
-    const isDarkTheme = this.state.isMobile && this.state.mobileSidebarShow;
+    const isDarkTheme = this.state.isMobile && this.props.isMobileSidebarShown;
 
     return (
       <Header
@@ -193,13 +192,11 @@ class ApplicationsContainer extends Component {
   };
 
   mobileSidebarToggle = () => {
-    this.setState(state => {
-      this.setState({mobileSidebarShow: !state.mobileSidebarShow});
-    });
+    this.props.mobileSidebarToggle();
   };
 
   getSidenav() {
-    const show = this.state.isMobile && this.state.mobileSidebarShow;
+    const show = this.state.isMobile && this.props.isMobileSidebarShown;
 
     return <Sidenav show={show} activeOne={'Applications'} />;
   }
@@ -236,6 +233,8 @@ ApplicationsContainer.propTypes = {
   fetchSettings: PropTypes.func,
   placementToDeleteUpdate: PropTypes.func,
   idPlacementToDelete: PropTypes.number,
+  isMobileSidebarShown: PropTypes.bool,
+  mobileSidebarToggle: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -248,6 +247,7 @@ const mapStateToProps = state => ({
   isLoaderApps: getIsLoaderApps(state),
   settings: getSettingsApps(state),
   idPlacementToDelete: getIdPlacementToDelete(state),
+  isMobileSidebarShown: getIsMobileSidebarShown(state),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -260,6 +260,7 @@ const mapDispatchToProps = dispatch => ({
   fetchApps: bindActionCreators(fetchApps, dispatch),
   fetchSettings: bindActionCreators(fetchSettingsApps, dispatch),
   placementToDeleteUpdate: bindActionCreators(placementToDeleteUpdate, dispatch),
+  mobileSidebarToggle: bindActionCreators(mobileSidebarToggle, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ApplicationsContainer);
