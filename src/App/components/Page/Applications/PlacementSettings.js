@@ -93,7 +93,11 @@ class PlacementSettings extends Component {
             {this.state.loader ? <div className="loader"/> : null}
             <div className="placement-settings__fields-container">
               <div className="placement-settings__heading-container">
-                <i onClick={this.props.close} className="placement-settings__close icon icon-regular material-icons">close</i>
+                <i
+                  onClick={this.props.close}
+                  className="placement-settings__close icon icon-regular material-icons isCursorPointer">
+                  close
+                </i>
                 <h4 className="heading heading--small heading--thin heading--no-offset">
                   {this.props.placement.name} ({this.props.placement.id})
                 </h4>

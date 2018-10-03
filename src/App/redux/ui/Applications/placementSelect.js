@@ -5,9 +5,7 @@ const initialState = null;
 const placementSelectReducer = (state = initialState, action) => {
   switch (action.type) {
     case PLACEMENT_SELECT:
-      return {
-        ...action.payload
-      };
+      return action.payload;
     default:
       return state;
   }
