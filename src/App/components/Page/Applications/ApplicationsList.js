@@ -90,7 +90,6 @@ class ApplicationsList extends Component {
 
 ApplicationsList.propTypes = {
   apps: PropTypes.object,
-  deletePlacement: PropTypes.func,
   selectedPlacement: PropTypes.object,
   zendesk: PropTypes.object,
   onDeleteApp: PropTypes.func,

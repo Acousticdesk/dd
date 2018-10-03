@@ -1,9 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import PlacementPresentation from './PlacementPresentation';
+import {placementToDeleteUpdate} from '../../../../redux/ui/Applications/placementToDelete';
 
-const PlacementsList = ({placements, selectedPlacement, appPlatform, deletePlacement, placementSelect, zendesk}) => {
+const PlacementsList = ({placements, selectedPlacement, appPlatform, placementToDeleteUpdate, placementSelect, zendesk}) => {
+  const deletePlacement = (id) => (evt) => {
+    evt.persist();
+    evt.stopPropagation();
+
+    placementToDeleteUpdate(id);
+  };
+
   return (
     Object.entries(placements).map(([id, placement]) => {
       const selectedClassName = selectedPlacement === placement ? 'selected' : '';
@@ -28,8 +38,12 @@ PlacementsList.propTypes = {
   selectedPlacement: PropTypes.object,
   placementSelect: PropTypes.func,
   appPlatform: PropTypes.string,
-  deletePlacement: PropTypes.func,
   zendesk: PropTypes.object,
+  placementToDeleteUpdate: PropTypes.func,
 };
 
-export default PlacementsList;
+const mapDispatchToProps = dispatch => ({
+  placementToDeleteUpdate: bindActionCreators(placementToDeleteUpdate, dispatch),
+});
+
+export default connect(null, mapDispatchToProps)(PlacementsList);

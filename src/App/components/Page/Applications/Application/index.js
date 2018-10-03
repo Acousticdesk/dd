@@ -14,7 +14,6 @@ const Application = ({
   placementSelect,
   selectedPlacement,
   zendesk,
-  deletePlacement,
   onEditApp,
   onDeleteApp,
   packageName,
@@ -52,7 +51,6 @@ const Application = ({
         isSelected={isSelected}
         placements={
           <Placements
-            deletePlacement={deletePlacement}
             appPlatform={app.platform}
             placements={placements}
             placementSelect={placementSelect}
@@ -72,7 +70,6 @@ Application.propTypes = {
   placementSelect: PropTypes.func,
   selectedPlacement: PropTypes.object,
   zendesk: PropTypes.object,
-  deletePlacement: PropTypes.func,
   onEditApp: PropTypes.func,
   onDeleteApp: PropTypes.func,
   placements: PropTypes.object,

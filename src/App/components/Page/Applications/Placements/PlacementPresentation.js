@@ -38,7 +38,7 @@ const PlacementPresentation = ({placementSelect, selectedClassName, placement, z
           </div>
         </div>
         <div className="placement-card__footer">
-          <div className="placement-card__footer-col">
+          <div className="placement-card__footer-col text-center">
             <a
               onClick={stopPropagation}
               target="_blank"
@@ -51,7 +51,7 @@ const PlacementPresentation = ({placementSelect, selectedClassName, placement, z
               Integrate
             </a>
           </div>
-          <div className="placement-card__footer-col">
+          <div className="placement-card__footer-col text-center">
             <button onClick={deletePlacement(placement.id)} className="btn btn-regular color--grey">
               <span className="btn__icon-container btn__icon-container--center">
                 <i className="icon icon-regular material-icons">delete</i>

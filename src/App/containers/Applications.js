@@ -40,13 +40,6 @@ class ApplicationsContainer extends Component {
     this.props.fetchSettings();
   }
 
-  deletePlacement = (id) => (evt) => {
-    evt.persist();
-    evt.stopPropagation();
-
-    this.props.placementToDeleteUpdate(id);
-  };
-
   getHeader() {
     const isDarkTheme = this.props.isMobileViewport && this.props.isMobileSidebarShown;
 
@@ -88,7 +81,6 @@ class ApplicationsContainer extends Component {
       <ApplicationsList
         loader={this.props.isLoaderApps}
         apps={this.props.apps}
-        deletePlacement={this.deletePlacement}
         selectedPlacement={this.props.placementSelected}
         zendesk={config.zendesk}
         onDeleteApp={this.onDeleteApp}

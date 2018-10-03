@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import PlacementsList from './PlacementsList';
 
-const Placements = ({placements, placementSelect, selectedPlacement, zendesk, appPlatform, deletePlacement, settings}) => {
+const Placements = ({placements, placementSelect, selectedPlacement, zendesk, appPlatform, settings}) => {
   return (
     <div className="placements">
       <div className="placements__header">
@@ -24,7 +24,6 @@ const Placements = ({placements, placementSelect, selectedPlacement, zendesk, ap
           selectedPlacement={selectedPlacement}
           zendesk={zendesk}
           appPlatform={appPlatform}
-          deletePlacement={deletePlacement}
           settings={settings}
         />
       </div>
@@ -38,7 +37,6 @@ Placements.propTypes = {
   selectedPlacement: PropTypes.object,
   zendesk: PropTypes.object.isRequired,
   appPlatform: PropTypes.string.isRequired,
-  deletePlacement: PropTypes.func.isRequired,
   settings: PropTypes.object
 };
 
