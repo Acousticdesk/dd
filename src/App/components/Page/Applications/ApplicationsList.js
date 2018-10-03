@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import Application from './Application';
+
 import { appEdit } from '../../../redux/ui/Applications/editing';
 import { appSelect, getIdAppSelected } from '../../../redux/ui/Applications/selected';
 import { placementSelect, getPlacementSelected } from '../../../redux/ui/Applications/placementSelect';
 import { placementConfirmModalShow } from '../../../redux/ui/Applications/isPlacementConfirmModal';
-
-import Application from './Application';
+import config from '../../../../../config';
 import { getIsPlacementSettingsChanged, rememberPlacementToGoAfterConfirm } from '../../../redux/ui/Applications/placementSettings';
 import { getApps, getPlacementById, getPlacements } from '../../../redux/data/entities/apps';
-import config from '../../../../../config';
 import { getIsLoaderApps } from '../../../redux/ui/Applications/loaderApps';
 
 const PackageName = ({name}) => {
