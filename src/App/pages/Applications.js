@@ -1,16 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Header from '../components/Layout/Header';
+
 const Applications = ({
-    appsList,
-    placementEdit,
-    appModal,
-    sidenav,
-    header,
-    subheader,
-    deletePlacementModal,
-    placementSaveModal
-  }) => {
+  appsList,
+  placementEdit,
+  appModal,
+  sidenav,
+  subheader,
+  deletePlacementModal,
+  placementSaveModal,
+  userEmail,
+  onUserLoggedOut,
+}) => {
   return (
     <React.Fragment>
       <div className="l-page l-page--with-sidebar l-page-bg-whisper">
@@ -19,7 +22,11 @@ const Applications = ({
         </div>
 
         <div>
-          {header}
+          <Header
+            userEmail={userEmail}
+            onUserLoggedOut={onUserLoggedOut}
+            pageTitle="Applications"
+          />
           {subheader}
           <div className="l-applications-main">
             <div className="l-applications-main__apps-container">
@@ -43,10 +50,11 @@ Applications.propTypes = {
   placementEdit: PropTypes.element,
   appModal: PropTypes.element,
   sidenav: PropTypes.element,
-  header: PropTypes.element,
   subheader: PropTypes.element,
   deletePlacementModal: PropTypes.element,
   placementSaveModal: PropTypes.element,
+  userEmail: PropTypes.string,
+  onUserLoggedOut: PropTypes.func,
 };
 
 export default Applications;

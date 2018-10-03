@@ -1,12 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import logo from '../../../../static/assets/logo/@1x.png';
 import logoWhite from '../../../../static/assets/logo/white.png';
 
 import UserDropdown from './UserDropdown';
 
-const Header = ({userEmail, onUserLoggedOut, pageTitle, mobileSidebarToggle, isDarkTheme}) => {
+import { getIsMobileSidebarShown, mobileSidebarToggle } from '../../redux/ui/mobileSidebar';
+import { getIsMobileViewport } from '../../redux/ui/mobileViewport';
+
+const Header = ({userEmail, onUserLoggedOut, pageTitle, mobileSidebarToggle, isMobileViewport, isMobileSidebarShown}) => {
+  const isDarkTheme = isMobileViewport && isMobileSidebarShown;
+
   return (
     <header className={`l-header ${isDarkTheme ? 'l-header--dark' : ''}`}>
       <div onClick={mobileSidebarToggle} className="l-header__logo-container text-center">
@@ -41,7 +48,17 @@ Header.propTypes = {
   onUserLoggedOut: PropTypes.func,
   pageTitle: PropTypes.string,
   mobileSidebarToggle: PropTypes.func,
-  isDarkTheme: PropTypes.bool,
+  isMobileViewport: PropTypes.bool,
+  isMobileSidebarShown: PropTypes.bool,
 };
 
-export default Header;
+const mapStateToProps = state => ({
+  isMobileViewport: getIsMobileViewport(state),
+  isMobileSidebarShown: getIsMobileSidebarShown(state),
+});
+
+const mapDispatchToProps = dispatch => ({
+  mobileSidebarToggle: bindActionCreators(mobileSidebarToggle, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

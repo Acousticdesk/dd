@@ -22,7 +22,6 @@ import { getIsPlacementConfirmModal, placementConfirmModalHide } from '../redux/
 import Applications from '../pages/Applications';
 import PlacementEdit from '../components/Page/Applications/PlacementEdit';
 import Sidenav from '../components/Layout/Sidenav';
-import Header from '../components/Layout/Header';
 import SubHeader from '../components/Layout/SubHeader/index';
 import AppModal from '../components/Page/Applications/AppModal';
 import ApplicationsList from '../components/Page/Applications/ApplicationsList';
@@ -31,7 +30,7 @@ import PlacementSaveModal from '../components/Page/Applications/PlacementSaveMod
 import { getIsLoaderApps } from '../redux/ui/Applications/loaderApps';
 import { fetchSettingsApps, getSettingsApps } from '../redux/data/Applications/settings';
 import { getIdPlacementToDelete, placementToDeleteUpdate } from '../redux/ui/Applications/placementToDelete';
-import { getIsMobileSidebarShown, mobileSidebarToggle } from '../redux/ui/mobileSidebar';
+import { getIsMobileSidebarShown } from '../redux/ui/mobileSidebar';
 import { getIsMobileViewport } from '../redux/ui/mobileViewport';
 
 class ApplicationsContainer extends Component {
@@ -39,20 +38,6 @@ class ApplicationsContainer extends Component {
     this.props.fetchApps();
     this.props.fetchSettings();
   }
-
-  getHeader() {
-    const isDarkTheme = this.props.isMobileViewport && this.props.isMobileSidebarShown;
-
-    return (
-      <Header
-        isDarkTheme={isDarkTheme}
-        mobileSidebarToggle={this.mobileSidebarToggle}
-        userEmail={this.props.user.email}
-        onUserLoggedOut={this.props.onUserLoggedOut}
-        pageTitle="Applications"
-      />
-    );
-  };
 
   getPlacementEdit() {
     const selectedApp = this.props.getAppById(this.props.idAppSelected);
@@ -158,10 +143,6 @@ class ApplicationsContainer extends Component {
     this.props.placementSelect(null);
   };
 
-  mobileSidebarToggle = () => {
-    this.props.mobileSidebarToggle();
-  };
-
   getSidenav() {
     const show = this.props.isMobileViewport && this.props.isMobileSidebarShown;
 
@@ -172,13 +153,14 @@ class ApplicationsContainer extends Component {
     return (
       <Applications
         sidenav={this.getSidenav()}
-        header={this.getHeader()}
         subheader={<SubHeader/>}
         placementEdit={this.getPlacementEdit()}
         appsList={this.getAppsList()}
         appModal={this.getAppModal()}
         deletePlacementModal={this.getPlacementDeleteModal()}
         placementSaveModal={this.getPlacementSaveModal()}
+        userEmail={this.props.user.email}
+        onUserLoggedOut={this.props.onUserLoggedOut}
       />
     );
   }
@@ -201,7 +183,6 @@ ApplicationsContainer.propTypes = {
   placementToDeleteUpdate: PropTypes.func,
   idPlacementToDelete: PropTypes.number,
   isMobileSidebarShown: PropTypes.bool,
-  mobileSidebarToggle: PropTypes.func,
   isMobileViewport: PropTypes.bool,
   getAppById: PropTypes.func,
   getPlacementById: PropTypes.func,
@@ -233,7 +214,6 @@ const mapDispatchToProps = dispatch => ({
   fetchApps: bindActionCreators(fetchApps, dispatch),
   fetchSettings: bindActionCreators(fetchSettingsApps, dispatch),
   placementToDeleteUpdate: bindActionCreators(placementToDeleteUpdate, dispatch),
-  mobileSidebarToggle: bindActionCreators(mobileSidebarToggle, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ApplicationsContainer);
