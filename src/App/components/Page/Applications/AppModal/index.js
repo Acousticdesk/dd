@@ -11,8 +11,12 @@ import ApplicationTextFields from './ApplicationTextFields';
 import IntegrationSelect from './IntegrationSelect';
 import StatusField from './StatusField';
 import PlatformSelect from './PlatformSelect';
-import { appModalHide, getIsAppModalShow, loader, getLoaderState } from '../../../../redux/ui/Applications/editing';
+import {
+  appModalHide, getIsAppModalShow, loader, getLoaderState,
+  getIdAppEdit
+} from '../../../../redux/ui/Applications/editing';
 import { appEdit } from '../../../../redux/ui/Applications/editing';
+import { fetchApps, getAppById } from '../../../../redux/data/entities/apps';
 
 const integrations = {
   sdk: 'SDK',
@@ -133,25 +137,31 @@ const getAppValues = (app) => {
   }
 };
 
-const getInitialValues = (props) => {
-  if (!props.app) {
+const getInitialValues = (app) => {
+  if (!app) {
     return getInitialFormValues();
   }
 
-  return getAppValues(props.app);
+  return getAppValues(app);
 };
 
-const mapStateToProps = (state, props) => ({
-  formValues: selector(state, 'status', 'platform', 'integration', 'name', 'package'),
-  initialValues: getInitialValues(props),
-  isAppModalShow: getIsAppModalShow(state),
-  loaderState: getLoaderState(state),
-});
+const mapStateToProps = state => {
+  const appToEdit = getAppById(state)(getIdAppEdit(state));
+
+  return {
+    formValues: selector(state, 'status', 'platform', 'integration', 'name', 'package'),
+    initialValues: getInitialValues(appToEdit),
+    isAppModalShow: getIsAppModalShow(state),
+    loaderState: getLoaderState(state),
+    app: appToEdit,
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   appEdit: bindActionCreators(appEdit, dispatch),
   appModalHide: bindActionCreators(appModalHide, dispatch),
   loader: bindActionCreators(loader, dispatch),
+  refreshAppsList: bindActionCreators(fetchApps, dispatch),
 });
 
 const reduxFormed = reduxForm({

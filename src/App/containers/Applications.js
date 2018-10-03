@@ -19,7 +19,6 @@ import { getIsPlacementConfirmModal, placementConfirmModalHide } from '../redux/
 import Applications from '../pages/Applications';
 import Sidenav from '../components/Layout/Sidenav';
 import SubHeader from '../components/Layout/SubHeader/index';
-import AppModal from '../components/Page/Applications/AppModal';
 import PlacementDeleteModal from '../components/Page/Applications/PlacementDeleteModal';
 import PlacementSaveModal from '../components/Page/Applications/PlacementSaveModal';
 import { getIsLoaderApps } from '../redux/ui/Applications/loaderApps';
@@ -32,12 +31,6 @@ class ApplicationsContainer extends Component {
   componentDidMount() {
     this.props.fetchApps();
     this.props.fetchSettings();
-  }
-
-  getAppModal() {
-    const appToEdit = this.props.getAppById(this.props.idAppEdit);
-
-    return <AppModal app={appToEdit} refreshAppsList={() => this.props.fetchApps()}/>;
   }
 
   getPlacementDeleteModal() {
@@ -100,7 +93,6 @@ class ApplicationsContainer extends Component {
       <Applications
         sidenav={this.getSidenav()}
         subheader={<SubHeader/>}
-        appModal={this.getAppModal()}
         deletePlacementModal={this.getPlacementDeleteModal()}
         placementSaveModal={this.getPlacementSaveModal()}
         userEmail={this.props.user.email}
