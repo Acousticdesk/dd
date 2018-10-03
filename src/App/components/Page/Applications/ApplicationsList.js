@@ -10,7 +10,9 @@ import { placementConfirmModalShow } from '../../../redux/ui/Applications/isPlac
 
 import Application from './Application';
 import { getIsPlacementSettingsChanged, rememberPlacementToGoAfterConfirm } from '../../../redux/ui/Applications/placementSettings';
-import { getPlacements } from '../../../redux/data/entities/apps';
+import { getApps, getPlacementById, getPlacements } from '../../../redux/data/entities/apps';
+import config from '../../../../../config';
+import { getIsLoaderApps } from '../../../redux/ui/Applications/loaderApps';
 
 const PackageName = ({name}) => {
   if (name.length <= 18) {
@@ -26,7 +28,7 @@ PackageName.propTypes = {
   name: PropTypes.string,
 };
 
-const createList = (apps, placements, appEdit, appSelect, placementSelect, onDeleteApp, props) => {
+const createList = (apps, placements, appEdit, appSelect, placementSelect, props) => {
   if (!apps) {
     return null;
   }
@@ -39,6 +41,7 @@ const createList = (apps, placements, appEdit, appSelect, placementSelect, onDel
     return (
       <Application
         {...props}
+        zendesk={config.zendesk}
         packageName={<PackageName name={app.package} />}
         key={id}
         id={id}
@@ -46,7 +49,6 @@ const createList = (apps, placements, appEdit, appSelect, placementSelect, onDel
         app={app}
         placements={placements.byAppId[app.id]}
         onEditApp={() => appEdit(id)}
-        onDeleteApp={onDeleteApp}
         select={appSelect}
         placementSelect={placementSelect}
       />
@@ -78,11 +80,11 @@ class ApplicationsList extends Component {
   };
 
   render() {
-    const {apps, appEdit, onDeleteApp, loader, placements, ...props} = this.props;
+    const {apps, appEdit, loader, placements, ...props} = this.props;
 
     return (
       <Fragment>
-        {loader ? <div className="loader" /> : createList(apps, placements, appEdit, this.appSelect, this.placementSelect, onDeleteApp, props)}
+        {loader ? <div className="loader" /> : createList(apps, placements, appEdit, this.appSelect, this.placementSelect, props)}
       </Fragment>
     );
   }
@@ -91,8 +93,6 @@ class ApplicationsList extends Component {
 ApplicationsList.propTypes = {
   apps: PropTypes.object,
   selectedPlacement: PropTypes.object,
-  zendesk: PropTypes.object,
-  onDeleteApp: PropTypes.func,
   loader: PropTypes.bool,
   appEdit: PropTypes.func,
   idAppSelected: PropTypes.number,
@@ -110,6 +110,9 @@ const mapStateToProps = state => ({
   placementSelected: getPlacementSelected(state),
   isPlacementSettingsChanged: getIsPlacementSettingsChanged(state),
   placements: getPlacements(state),
+  loader: getIsLoaderApps(state),
+  apps: getApps(state),
+  getPlacementById: getPlacementById(state),
 });
 
 const mapDispatchToProps = dispatch => ({

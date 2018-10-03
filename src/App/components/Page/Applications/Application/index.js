@@ -15,7 +15,6 @@ const Application = ({
   selectedPlacement,
   zendesk,
   onEditApp,
-  onDeleteApp,
   packageName,
   placements,
 }) => {
@@ -44,7 +43,7 @@ const Application = ({
           </div>
         </div>
         <div className="application-card__options-container">
-          <EditDropdown onEditClick={onEditApp} onDeleteClick={onDeleteApp} />
+          <EditDropdown onEditClick={onEditApp} />
         </div>
       </div>
       <RenderPlacements
@@ -71,7 +70,6 @@ Application.propTypes = {
   selectedPlacement: PropTypes.object,
   zendesk: PropTypes.object,
   onEditApp: PropTypes.func,
-  onDeleteApp: PropTypes.func,
   placements: PropTypes.object,
 };
 

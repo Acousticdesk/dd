@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Items = ({onEditClick, onDeleteClick}) => {
+const Items = ({onEditClick}) => {
   return (
     <React.Fragment>
       <li onClick={onEditClick} className="option-item isCursorPointer">
@@ -12,7 +12,7 @@ const Items = ({onEditClick, onDeleteClick}) => {
           <span className="text text--lead">Edit</span>
         </div>
       </li>
-      <li onClick={onDeleteClick} className="dropdown__item">
+      <li className="dropdown__item">
         <div className="option-item isCursorPointer">
           <div className="option-item__icon-container">
             <i className="icon icon-regular icon--small material-icons">delete</i>
@@ -28,7 +28,6 @@ const Items = ({onEditClick, onDeleteClick}) => {
 
 Items.propTypes = {
   onEditClick: PropTypes.func,
-  onDeleteClick: PropTypes.func,
 };
 
 export default Items;

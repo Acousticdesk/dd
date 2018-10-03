@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { submit } from 'redux-form';
 
-import config from '../../../config';
 import { getIdAppEdit } from '../redux/ui/Applications/editing';
 import { placementSelect, getPlacementSelected } from '../redux/ui/Applications/placementSelect';
 import { fetchApps, getAppById, getApps, getPlacementById } from '../redux/data/entities/apps';
@@ -21,7 +20,6 @@ import Applications from '../pages/Applications';
 import Sidenav from '../components/Layout/Sidenav';
 import SubHeader from '../components/Layout/SubHeader/index';
 import AppModal from '../components/Page/Applications/AppModal';
-import ApplicationsList from '../components/Page/Applications/ApplicationsList';
 import PlacementDeleteModal from '../components/Page/Applications/PlacementDeleteModal';
 import PlacementSaveModal from '../components/Page/Applications/PlacementSaveModal';
 import { getIsLoaderApps } from '../redux/ui/Applications/loaderApps';
@@ -34,19 +32,6 @@ class ApplicationsContainer extends Component {
   componentDidMount() {
     this.props.fetchApps();
     this.props.fetchSettings();
-  }
-
-  getAppsList() {
-    return (
-      <ApplicationsList
-        loader={this.props.isLoaderApps}
-        apps={this.props.apps}
-        selectedPlacement={this.props.placementSelected}
-        zendesk={config.zendesk}
-        onDeleteApp={this.onDeleteApp}
-        getPlacementById={this.props.getPlacementById}
-      />
-    );
   }
 
   getAppModal() {
@@ -91,12 +76,6 @@ class ApplicationsContainer extends Component {
     this.props.rememberPlacementToGoAfterConfirm(null);
   };
 
-  onDeleteApp(evt) {
-    evt.persist();
-    evt.stopPropagation();
-    console.log('the app should be deleted');
-  }
-
   submitPlacementEditForm = () => {
     const {submitPlacementEditForm} = this.props;
 
@@ -121,7 +100,6 @@ class ApplicationsContainer extends Component {
       <Applications
         sidenav={this.getSidenav()}
         subheader={<SubHeader/>}
-        appsList={this.getAppsList()}
         appModal={this.getAppModal()}
         deletePlacementModal={this.getPlacementDeleteModal()}
         placementSaveModal={this.getPlacementSaveModal()}

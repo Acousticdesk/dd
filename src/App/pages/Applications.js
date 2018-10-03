@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import Header from '../components/Layout/Header';
 import PlacementEdit from '../components/Page/Applications/PlacementEdit';
+import ApplicationsList from '../components/Page/Applications/ApplicationsList';
 
 const Applications = ({
-  appsList,
   appModal,
   sidenav,
   subheader,
@@ -31,7 +31,7 @@ const Applications = ({
           <div className="l-applications-main">
             <div className="l-applications-main__apps-container">
               <ul className="l-applications-list">
-                {appsList}
+                <ApplicationsList />
               </ul>
             </div>
             <PlacementEdit />
@@ -46,7 +46,6 @@ const Applications = ({
 };
 
 Applications.propTypes = {
-  appsList: PropTypes.element,
   appModal: PropTypes.element,
   sidenav: PropTypes.element,
   subheader: PropTypes.element,
