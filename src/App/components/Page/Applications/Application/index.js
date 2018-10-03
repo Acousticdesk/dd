@@ -17,7 +17,8 @@ const Application = ({
   deletePlacement,
   onEditApp,
   onDeleteApp,
-  packageName
+  packageName,
+  placements,
 }) => {
   return (
     <li className="l-applications-list__row">
@@ -53,7 +54,7 @@ const Application = ({
           <Placements
             deletePlacement={deletePlacement}
             appPlatform={app.platform}
-            placements={app.placements}
+            placements={placements}
             placementSelect={placementSelect}
             selectedPlacement={selectedPlacement}
             zendesk={zendesk}
@@ -74,6 +75,7 @@ Application.propTypes = {
   deletePlacement: PropTypes.func,
   onEditApp: PropTypes.func,
   onDeleteApp: PropTypes.func,
+  placements: PropTypes.object,
 };
 
 export default Application;

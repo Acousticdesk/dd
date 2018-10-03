@@ -1,6 +1,11 @@
 import {PLACEMENTS_RECEIVE} from '../../action-types';
 
-export default (state = [], action) => {
+const initialState = {
+  byId: {},
+  byAppId: {},
+};
+
+export default (state = initialState, action) => {
   switch (action.type) {
     case PLACEMENTS_RECEIVE:
       return action.payload;

@@ -16,7 +16,7 @@ const PlacementsList = ({placements, selectedPlacement, appPlatform, deletePlace
           selectedClassName={selectedClassName}
           zendeskUrl={zendeskUrl}
           deletePlacement={deletePlacement}
-          placementSelect={placementSelect(id)}
+          placementSelect={placementSelect(placement)}
         />
       );
     })

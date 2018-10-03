@@ -30,7 +30,7 @@ export const fetchApps = () => dispatch => {
   return API.request('getApps')
     .then(res => res.json())
     .then(apps => {
-      const placements = getPlacements(apps.results);
+      const placements = getNormalizedPlacements(apps.results);
 
       dispatch(receiveApps(apps.results));
       dispatch(receivePlacements(placements));
@@ -38,7 +38,7 @@ export const fetchApps = () => dispatch => {
     .catch(err => dispatch(errorFetchApps(err)));
 };
 
-const getPlacements = apps => {
+const getNormalizedPlacements = apps => {
   const result = {
     byId: {},
     byAppId: {},
@@ -64,14 +64,7 @@ const getPlacements = apps => {
 export const getApps = state => state.data.entities.apps;
 export const getAppById = state => id => state.data.entities.apps[id];
 
-export const getPlacementById = (appId, placementId) => {
-  if (!this.props.apps || !appId) {
-    return null;
-  }
-  if (!placementId) {
-    return Object.entries(this.props.apps[appId].placements)[0][1];
-  }
-  return this.props.apps[appId].placements[placementId];
-};
+export const getPlacements = state => state.data.entities.placements;
+export const getPlacementById = state => id => state.data.entities.placements[id];
 
 export default appsReducer;

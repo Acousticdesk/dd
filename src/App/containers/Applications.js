@@ -8,7 +8,7 @@ import config from '../../../config';
 import { getIdAppEdit } from '../redux/ui/Applications/editing';
 import { getIdAppSelected } from '../redux/ui/Applications/selected';
 import { placementSelect, getPlacementSelected } from '../redux/ui/Applications/placementSelect';
-import { fetchApps, getAppById, getApps } from '../redux/data/entities/apps';
+import { fetchApps, getAppById, getApps, getPlacementById } from '../redux/data/entities/apps';
 
 import {
   placementSettingsChange,
@@ -39,16 +39,6 @@ class ApplicationsContainer extends Component {
     this.props.fetchApps();
     this.props.fetchSettings();
   }
-
-  getPlacementById = (appId, placementId) => {
-    if (!this.props.apps || !appId) {
-      return null;
-    }
-    if (!placementId) {
-      return Object.entries(this.props.apps[appId].placements)[0][1];
-    }
-    return this.props.apps[appId].placements[placementId];
-  };
 
   deletePlacement = (id) => (evt) => {
     evt.persist();
@@ -102,7 +92,7 @@ class ApplicationsContainer extends Component {
         selectedPlacement={this.props.placementSelected}
         zendesk={config.zendesk}
         onDeleteApp={this.onDeleteApp}
-        getPlacementById={this.getPlacementById}
+        getPlacementById={this.props.getPlacementById}
       />
     );
   }
@@ -141,7 +131,7 @@ class ApplicationsContainer extends Component {
   };
 
   closePlacementSaveModal = () => {
-    const placementToGoTo = this.getPlacementById(this.props.idAppSelected, this.props.idPlacementToGoAfterConfirm);
+    const placementToGoTo = this.props.getPlacementById(this.props.idPlacementToGoAfterConfirm);
 
     this.props.placementSettingsReset();
     this.props.placementConfirmModalHide();
@@ -222,6 +212,7 @@ ApplicationsContainer.propTypes = {
   mobileSidebarToggle: PropTypes.func,
   isMobileViewport: PropTypes.bool,
   getAppById: PropTypes.func,
+  getPlacementById: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -237,6 +228,7 @@ const mapStateToProps = state => ({
   isMobileSidebarShown: getIsMobileSidebarShown(state),
   isMobileViewport: getIsMobileViewport(state),
   getAppById: getAppById(state),
+  getPlacementById: getPlacementById(state),
 });
 
 const mapDispatchToProps = dispatch => ({

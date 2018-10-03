@@ -10,6 +10,7 @@ import { placementConfirmModalShow } from '../../../redux/ui/Applications/isPlac
 
 import Application from './Application';
 import { getIsPlacementSettingsChanged, rememberPlacementToGoAfterConfirm } from '../../../redux/ui/Applications/placementSettings';
+import { getPlacements } from '../../../redux/data/entities/apps';
 
 const PackageName = ({name}) => {
   if (name.length <= 18) {
@@ -25,7 +26,7 @@ PackageName.propTypes = {
   name: PropTypes.string,
 };
 
-const createList = (apps, appEdit, appSelect, placementSelect, onDeleteApp, props) => {
+const createList = (apps, placements, appEdit, appSelect, placementSelect, onDeleteApp, props) => {
   if (!apps) {
     return null;
   }
@@ -43,6 +44,7 @@ const createList = (apps, appEdit, appSelect, placementSelect, onDeleteApp, prop
         id={id}
         isSelected={isSelected}
         app={app}
+        placements={placements.byAppId[app.id]}
         onEditApp={() => appEdit(id)}
         onDeleteApp={onDeleteApp}
         select={appSelect}
@@ -64,25 +66,23 @@ class ApplicationsList extends Component {
     appSelect(id);
   };
 
-  placementSelect = (id) => () => {
+  placementSelect = (placement) => () => {
     if (this.props.isPlacementSettingsChanged) {
       this.props.placementConfirmModalShow();
-      this.props.rememberPlacementToGoAfterConfirm(id);
+      this.props.rememberPlacementToGoAfterConfirm(placement.id);
 
       return;
     }
 
-    const placementSelected = this.props.getPlacementById(this.props.idAppSelected, id);
-
-    this.props.placementSelect(placementSelected);
+    this.props.placementSelect(placement);
   };
 
   render() {
-    const {apps, appEdit, onDeleteApp, loader, ...props} = this.props;
+    const {apps, appEdit, onDeleteApp, loader, placements, ...props} = this.props;
 
     return (
       <Fragment>
-        {loader ? <div className="loader" /> : createList(apps, appEdit, this.appSelect, this.placementSelect, onDeleteApp, props)}
+        {loader ? <div className="loader" /> : createList(apps, placements, appEdit, this.appSelect, this.placementSelect, onDeleteApp, props)}
       </Fragment>
     );
   }
@@ -103,12 +103,14 @@ ApplicationsList.propTypes = {
   isPlacementSettingsChanged: PropTypes.bool,
   placementConfirmModalShow: PropTypes.func,
   rememberPlacementToGoAfterConfirm: PropTypes.func,
+  placements: PropTypes.object,
 };
 
 const mapStateToProps = state => ({
   idAppSelected: getIdAppSelected(state),
   placementSelected: getPlacementSelected(state),
   isPlacementSettingsChanged: getIsPlacementSettingsChanged(state),
+  placements: getPlacements(state),
 });
 
 const mapDispatchToProps = dispatch => ({
