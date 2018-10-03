@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Header from '../components/Layout/Header';
+import PlacementEdit from '../components/Page/Applications/PlacementEdit';
 
 const Applications = ({
   appsList,
-  placementEdit,
   appModal,
   sidenav,
   subheader,
@@ -34,7 +34,7 @@ const Applications = ({
                 {appsList}
               </ul>
             </div>
-            {placementEdit}
+            <PlacementEdit />
           </div>
         </div>
       </div>
@@ -47,7 +47,6 @@ const Applications = ({
 
 Applications.propTypes = {
   appsList: PropTypes.element,
-  placementEdit: PropTypes.element,
   appModal: PropTypes.element,
   sidenav: PropTypes.element,
   subheader: PropTypes.element,

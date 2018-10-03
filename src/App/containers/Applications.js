@@ -6,12 +6,10 @@ import { submit } from 'redux-form';
 
 import config from '../../../config';
 import { getIdAppEdit } from '../redux/ui/Applications/editing';
-import { getIdAppSelected } from '../redux/ui/Applications/selected';
 import { placementSelect, getPlacementSelected } from '../redux/ui/Applications/placementSelect';
 import { fetchApps, getAppById, getApps, getPlacementById } from '../redux/data/entities/apps';
 
 import {
-  placementSettingsChange,
   placementSettingsReset,
   rememberPlacementToGoAfterConfirm,
   getIdPlacementToGoAfterConfirm,
@@ -20,7 +18,6 @@ import {
 import { getIsPlacementConfirmModal, placementConfirmModalHide } from '../redux/ui/Applications/isPlacementConfirmModal';
 
 import Applications from '../pages/Applications';
-import PlacementEdit from '../components/Page/Applications/PlacementEdit';
 import Sidenav from '../components/Layout/Sidenav';
 import SubHeader from '../components/Layout/SubHeader/index';
 import AppModal from '../components/Page/Applications/AppModal';
@@ -28,7 +25,7 @@ import ApplicationsList from '../components/Page/Applications/ApplicationsList';
 import PlacementDeleteModal from '../components/Page/Applications/PlacementDeleteModal';
 import PlacementSaveModal from '../components/Page/Applications/PlacementSaveModal';
 import { getIsLoaderApps } from '../redux/ui/Applications/loaderApps';
-import { fetchSettingsApps, getSettingsApps } from '../redux/data/Applications/settings';
+import { fetchSettingsApps } from '../redux/data/Applications/settings';
 import { getIdPlacementToDelete, placementToDeleteUpdate } from '../redux/ui/Applications/placementToDelete';
 import { getIsMobileSidebarShown } from '../redux/ui/mobileSidebar';
 import { getIsMobileViewport } from '../redux/ui/mobileViewport';
@@ -37,28 +34,6 @@ class ApplicationsContainer extends Component {
   componentDidMount() {
     this.props.fetchApps();
     this.props.fetchSettings();
-  }
-
-  getPlacementEdit() {
-    const selectedApp = this.props.getAppById(this.props.idAppSelected);
-    const selectedAppPlatform = selectedApp && selectedApp.platform;
-    const selectedAppIntegration = selectedApp && selectedApp.integration;
-
-    if (this.props.isMobileViewport && !this.props.placementSelected) {
-      return null;
-    }
-
-    return (
-      <PlacementEdit
-        isMobile={this.props.isMobileViewport}
-        settings={this.props.settings}
-        selectedAppPlatform={selectedAppPlatform}
-        selectedAppIntegration={selectedAppIntegration}
-        selectedPlacement={this.props.placementSelected}
-        onSettingsChange={this.onSettingsChange}
-        close={this.placementSettingsClose}
-      />
-    );
   }
 
   getAppsList() {
@@ -122,10 +97,6 @@ class ApplicationsContainer extends Component {
     console.log('the app should be deleted');
   }
 
-  onSettingsChange = () => {
-    this.props.placementSettingsChange();
-  };
-
   submitPlacementEditForm = () => {
     const {submitPlacementEditForm} = this.props;
 
@@ -139,10 +110,6 @@ class ApplicationsContainer extends Component {
     this.props.placementConfirmModalHide();
   };
 
-  placementSettingsClose = () => {
-    this.props.placementSelect(null);
-  };
-
   getSidenav() {
     const show = this.props.isMobileViewport && this.props.isMobileSidebarShown;
 
@@ -154,7 +121,6 @@ class ApplicationsContainer extends Component {
       <Applications
         sidenav={this.getSidenav()}
         subheader={<SubHeader/>}
-        placementEdit={this.getPlacementEdit()}
         appsList={this.getAppsList()}
         appModal={this.getAppModal()}
         deletePlacementModal={this.getPlacementDeleteModal()}
@@ -170,7 +136,6 @@ ApplicationsContainer.propTypes = {
   user: PropTypes.object,
   onUserLoggedOut: PropTypes.func,
   idAppEdit: PropTypes.number,
-  idAppSelected: PropTypes.number,
   placementSelected: PropTypes.object,
   placementSelect: PropTypes.func,
   isPlacementConfirmModal: PropTypes.bool,
@@ -190,13 +155,11 @@ ApplicationsContainer.propTypes = {
 
 const mapStateToProps = state => ({
   idAppEdit: getIdAppEdit(state),
-  idAppSelected: getIdAppSelected(state),
   placementSelected: getPlacementSelected(state),
   isPlacementConfirmModal: getIsPlacementConfirmModal(state),
   idPlacementToGoAfterConfirm: getIdPlacementToGoAfterConfirm(state),
   apps: getApps(state),
   isLoaderApps: getIsLoaderApps(state),
-  settings: getSettingsApps(state),
   idPlacementToDelete: getIdPlacementToDelete(state),
   isMobileSidebarShown: getIsMobileSidebarShown(state),
   isMobileViewport: getIsMobileViewport(state),
@@ -207,7 +170,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   submitPlacementEditForm: bindActionCreators(() => submit('placementSettings'), dispatch),
   placementSelect: bindActionCreators(placementSelect, dispatch),
-  placementSettingsChange: bindActionCreators(placementSettingsChange, dispatch),
   placementSettingsReset: bindActionCreators(placementSettingsReset, dispatch),
   placementConfirmModalHide: bindActionCreators(placementConfirmModalHide, dispatch),
   rememberPlacementToGoAfterConfirm: bindActionCreators(rememberPlacementToGoAfterConfirm, dispatch),
