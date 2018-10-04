@@ -1,17 +1,13 @@
-import { VIEWPORT_CHANGE } from '../action-types';
+import { createAction, handleAction } from 'redux-actions';
 
-export default (state = false, action) => {
-  switch (action.type) {
-    case VIEWPORT_CHANGE:
-      return typeof action.payload !== 'undefined' ? action.payload : !state;
-    default:
-      return state;
-  }
-};
+export const viewportChange = createAction('VIEWPORT_CHANGE', isMobile => isMobile);
 
-export const viewportChange = (isMobile) => ({
-  type: VIEWPORT_CHANGE,
-  payload: isMobile,
-});
+const initialState = false;
+
+export default handleAction(
+  viewportChange,
+  (state, action) => typeof action.payload !== 'undefined' ? action.payload : !state,
+  initialState,
+);
 
 export const getIsMobileViewport = state => state.ui.isMobileViewport;
