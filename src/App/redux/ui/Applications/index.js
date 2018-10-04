@@ -1,7 +1,8 @@
+import { combineReducers } from 'redux';
+
 import placementSettingsReducer from './placementSettings';
 import loaderAppsReducer from './loaderApps';
 import placementToDeleteReducer from './placementToDelete';
-import { combineReducers } from 'redux';
 import placementSelectReducer from './placementSelect';
 import appEditReducerUI from './editing';
 import selectedAppReducer from './selected';
