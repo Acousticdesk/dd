@@ -11,7 +11,8 @@ import { placementSelect, getPlacementSelected } from '../../../redux/ui/Applica
 import { placementConfirmModalShow } from '../../../redux/ui/Applications/isPlacementConfirmModal';
 import config from '../../../../../config';
 import { getIsPlacementSettingsChanged, rememberPlacementToGoAfterConfirm } from '../../../redux/ui/Applications/placementSettings';
-import { getApps, getPlacementById, getPlacements } from '../../../redux/data/entities/apps';
+import { getApps } from '../../../redux/data/entities/apps';
+import { getPlacementById, getPlacements } from '../../../redux/data/entities/placements';
 import { getIsLoaderApps } from '../../../redux/ui/Applications/loaderApps';
 
 const PackageName = ({name}) => {

@@ -6,7 +6,8 @@ import { submit } from 'redux-form';
 
 import { getIdAppEdit } from '../redux/ui/Applications/editing';
 import { placementSelect, getPlacementSelected } from '../redux/ui/Applications/placementSelect';
-import { fetchApps, getAppById, getApps, getPlacementById } from '../redux/data/entities/apps';
+import { fetchApps, getAppById, getApps } from '../redux/data/entities/apps';
+import { getPlacementById } from '../redux/data/entities/placements';
 
 import {
   placementSettingsReset,

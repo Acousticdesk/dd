@@ -1,7 +1,9 @@
 import { createAction, handleAction } from 'redux-actions';
 
-import { receivePlacements } from './placements';
 import API from '../../../../API';
+
+import { receivePlacements } from './placements';
+import { getNormalizedPlacements } from './placements';
 
 export const requestApps = createAction('APPS_FETCH_REQUEST');
 
@@ -30,33 +32,7 @@ export const fetchApps = () => dispatch => {
     .catch(err => dispatch(errorFetchApps(err)));
 };
 
-const getNormalizedPlacements = apps => {
-  const result = {
-    byId: {},
-    byAppId: {},
-    allIds: [],
-  };
-
-  Object.keys(apps).forEach(key => {
-    const placements = apps[key].placements;
-
-    result.byId = {
-      ...result.byId,
-      ...placements,
-    };
-
-    result.byAppId[key] = placements;
-
-    delete apps[key].placements;
-  });
-
-  return result;
-};
-
 export const getApps = state => state.data.entities.apps;
 export const getAppById = state => id => state.data.entities.apps[id];
-
-export const getPlacements = state => state.data.entities.placements;
-export const getPlacementById = state => id => state.data.entities.placements[id];
 
 export default appsReducer;
