@@ -1,23 +1,16 @@
-import { SETTINGS_APPS_FETCH_REQUEST, SETTINGS_APPS_FETCH_SUCCESS, SETTINGS_APPS_FETCH_FAIL } from '../../action-types';
 import API from '../../../../API';
+import { createAction, handleAction } from 'redux-actions';
 
-export default (state = {}, action) => {
-  switch (action.type) {
-    case SETTINGS_APPS_FETCH_SUCCESS:
-      return action.payload;
-    default:
-      return state;
-  }
-};
+export const settingsAppsRequest = createAction('SETTINGS_APPS_FETCH_REQUEST');
+export const settingsAppsReceive = createAction('SETTINGS_APPS_RECEIVE', (settings) => ({settings}));
 
-const settingsAppsRequest = () => ({
-  type: SETTINGS_APPS_FETCH_REQUEST,
-});
+const initialState = {};
 
-const settingsAppsReceive = (settings) => ({
-  type: SETTINGS_APPS_FETCH_SUCCESS,
-  payload: settings,
-});
+export default handleAction(
+  settingsAppsReceive,
+  (state, action) => action.payload.settings,
+  initialState,
+);
 
 export const fetchSettingsApps = () => dispatch => {
   dispatch(settingsAppsRequest());
