@@ -13,7 +13,7 @@ const ErrorMsg = ({error, isTouched}) => {
 
 ErrorMsg.propTypes = {
   error: PropTypes.string,
-  isTouched: PropTypes.bool
+  isTouched: PropTypes.bool,
 };
 
 export default ErrorMsg;
