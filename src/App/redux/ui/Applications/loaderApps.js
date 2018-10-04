@@ -1,17 +1,15 @@
-import {APPS_FETCH_SUCCESS} from '../../action-types';
-import { errorFetchApps } from '../../data/entities/apps';
-import { requestApps } from '../../data/entities/apps';
+import { combineActions, handleActions } from 'redux-actions';
 
-export default (state = false, action) => {
-  switch (action.payload) {
-    case requestApps:
-      return true;
-    case errorFetchApps:
-    case APPS_FETCH_SUCCESS:
-      return false;
-    default:
-      return state;
-  }
-};
+import { requestApps, receiveApps, errorFetchApps } from '../../data/entities/apps';
+
+const initialState = false;
+
+export default handleActions(
+  {
+    [requestApps]: () => true,
+    [combineActions(receiveApps, errorFetchApps)]: () => false,
+  },
+  initialState,
+);
 
 export const getIsLoaderApps = state => state.ui.applications.loader;

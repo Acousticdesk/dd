@@ -9,7 +9,7 @@ export const requestApps = createAction('APPS_FETCH_REQUEST');
 
 export const errorFetchApps = createAction('APPS_FETCH_FAIL', (err) => err);
 
-const receiveApps = createAction('APPS_FETCH_SUCCESS', apps => apps);
+export const receiveApps = createAction('APPS_FETCH_SUCCESS', apps => apps);
 
 const initialState = {};
 
