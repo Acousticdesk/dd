@@ -1,20 +1,14 @@
-import {PLACEMENTS_RECEIVE} from '../../action-types';
+import { createAction, handleAction } from 'redux-actions';
+
+export const receivePlacements = createAction('PLACEMENTS_RECEIVE', placements => placements);
 
 const initialState = {
   byId: {},
   byAppId: {},
 };
 
-export default (state = initialState, action) => {
-  switch (action.type) {
-    case PLACEMENTS_RECEIVE:
-      return action.payload;
-    default:
-      return state;
-  }
-};
-
-export const receivePlacements = (placements) => ({
-  type: PLACEMENTS_RECEIVE,
-  payload: placements,
-});
+export default handleAction(
+  receivePlacements,
+  (state, action) => action.payload,
+  initialState,
+);
