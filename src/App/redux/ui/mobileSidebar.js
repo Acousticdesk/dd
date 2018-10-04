@@ -1,16 +1,13 @@
-import { MOBILE_SIDEBAR_TOGGLE } from '../action-types';
+import { createAction, handleAction } from 'redux-actions';
 
-export const mobileSidebarToggle = () => ({
-  type: MOBILE_SIDEBAR_TOGGLE,
-});
+export const mobileSidebarToggle = createAction('MOBILE_SIDEBAR_TOGGLE');
 
-export default (state = false, action) => {
-  switch (action.type) {
-    case MOBILE_SIDEBAR_TOGGLE:
-      return !state;
-    default:
-      return state;
-  }
-};
+const initialState = false;
+
+export default handleAction(
+  mobileSidebarToggle,
+  state => !state,
+  initialState,
+);
 
 export const getIsMobileSidebarShown = state => state.ui.mobileSidebarShow;
