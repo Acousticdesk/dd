@@ -1,26 +1,16 @@
-import { PLACEMENT_CONFIRM_MODAL_SHOW, PLACEMENT_CONFIRM_MODAL_HIDE } from '../../action-types';
+import { createAction, handleActions } from 'redux-actions';
+
+export const placementConfirmModalShow = createAction('PLACEMENT_CONFIRM_MODAL_SHOW');
+export const placementConfirmModalHide = createAction('PLACEMENT_CONFIRM_MODAL_HIDE');
 
 const initialState = false;
 
-const isPlacementConfirmModalReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case PLACEMENT_CONFIRM_MODAL_SHOW:
-      return true;
-    case PLACEMENT_CONFIRM_MODAL_HIDE:
-      return false;
-    default:
-      return state;
-  }
-};
-
-export const placementConfirmModalShow = () => ({
-  type: PLACEMENT_CONFIRM_MODAL_SHOW,
-});
-
-export const placementConfirmModalHide = () => ({
-  type: PLACEMENT_CONFIRM_MODAL_HIDE,
-});
+export default handleActions(
+  {
+    [placementConfirmModalShow]: () => true,
+    [placementConfirmModalHide]: () => false,
+  },
+  initialState,
+);
 
 export const getIsPlacementConfirmModal = state => state.ui.applications.isPlacementConfirmModal;
-
-export default isPlacementConfirmModalReducer;
