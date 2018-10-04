@@ -1,29 +1,21 @@
-import { APPS_FETCH_FAIL, APPS_FETCH_REQUEST, APPS_FETCH_SUCCESS } from '../../action-types';
+import { createAction, handleAction } from 'redux-actions';
+
 import { receivePlacements } from './placements';
 import API from '../../../../API';
 
-const appsReducer = (state = {}, action) => {
-  switch (action.type) {
-    case APPS_FETCH_SUCCESS:
-      return action.payload;
-    default:
-      return state;
-  }
-};
+export const requestApps = createAction('APPS_FETCH_REQUEST');
 
-const requestApps = () => ({
-  type: APPS_FETCH_REQUEST,
-});
+export const errorFetchApps = createAction('APPS_FETCH_FAIL', (err) => err);
 
-const receiveApps = (apps) => ({
-  type: APPS_FETCH_SUCCESS,
-  payload: apps,
-});
+const receiveApps = createAction('APPS_FETCH_SUCCESS', (apps) => apps);
 
-const errorFetchApps = (err) => ({
-  type: APPS_FETCH_FAIL,
-  payload: err,
-});
+const initialState = {};
+
+const appsReducer = handleAction(
+  receiveApps,
+  (state, action) => action.payload,
+  initialState,
+);
 
 export const fetchApps = () => dispatch => {
   dispatch(requestApps());

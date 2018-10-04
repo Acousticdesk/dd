@@ -1,14 +1,15 @@
-import API from '../../../../API';
 import { createAction, handleAction } from 'redux-actions';
 
+import API from '../../../../API';
+
 export const settingsAppsRequest = createAction('SETTINGS_APPS_FETCH_REQUEST');
-export const settingsAppsReceive = createAction('SETTINGS_APPS_RECEIVE', (settings) => ({settings}));
+export const settingsAppsReceive = createAction('SETTINGS_APPS_RECEIVE', (settings) => settings);
 
 const initialState = {};
 
 export default handleAction(
   settingsAppsReceive,
-  (state, action) => action.payload.settings,
+  (state, action) => action.payload,
   initialState,
 );
 

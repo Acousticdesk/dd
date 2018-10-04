@@ -1,10 +1,12 @@
-import {APPS_FETCH_FAIL, APPS_FETCH_REQUEST, APPS_FETCH_SUCCESS} from '../../action-types';
+import {APPS_FETCH_SUCCESS} from '../../action-types';
+import { errorFetchApps } from '../../data/entities/apps';
+import { requestApps } from '../../data/entities/apps';
 
 export default (state = false, action) => {
   switch (action.payload) {
-    case APPS_FETCH_REQUEST:
+    case requestApps:
       return true;
-    case APPS_FETCH_FAIL:
+    case errorFetchApps:
     case APPS_FETCH_SUCCESS:
       return false;
     default:
