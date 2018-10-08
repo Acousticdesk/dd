@@ -13,7 +13,7 @@ export default handleAction(
   initialState,
 );
 
-export const fetchSettingsApps = () => dispatch => {
+export const fetchSettingsApps = () => (dispatch) => {
   dispatch(settingsAppsRequest());
   return API.request('getSettings')
     .then(res => res.json())

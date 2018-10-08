@@ -34,12 +34,16 @@ export const placementSettingsReset = () => ({
   type: PLACEMENT_SETTINGS_RESET,
 });
 
-export const rememberPlacementToGoAfterConfirm = (id) => ({
+export const rememberPlacementToGoAfterConfirm = id => ({
   type: REMEMBER_PLACEMENT_TO_GO_AFTER_CONFIRM,
   payload: id,
 });
 
-export const getIsPlacementSettingsChanged = state => state.ui.applications.placementSettings.isChanged;
-export const getIdPlacementToGoAfterConfirm = state => state.ui.applications.placementSettings.idPlacementToGoAfterConfirm;
+export const getIsPlacementSettingsChanged = (
+  state => state.ui.applications.placementSettings.isChanged
+);
+export const getIdPlacementToGoAfterConfirm = (
+  state => state.ui.applications.placementSettings.idPlacementToGoAfterConfirm
+);
 
 export default placementSettingsReducer;

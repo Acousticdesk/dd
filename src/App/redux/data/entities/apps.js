@@ -2,8 +2,7 @@ import { createAction, handleAction } from 'redux-actions';
 
 import API from '../../../../API';
 
-import { receivePlacements } from './placements';
-import { getNormalizedPlacements } from './placements';
+import { receivePlacements, getNormalizedPlacements } from './placements';
 
 export const requestApps = createAction('APPS_FETCH_REQUEST');
 

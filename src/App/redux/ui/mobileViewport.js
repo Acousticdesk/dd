@@ -6,7 +6,7 @@ const initialState = false;
 
 export default handleAction(
   viewportChange,
-  (state, action) => typeof action.payload !== 'undefined' ? action.payload : !state,
+  (state, action) => (typeof action.payload !== 'undefined' ? action.payload : !state),
   initialState,
 );
 

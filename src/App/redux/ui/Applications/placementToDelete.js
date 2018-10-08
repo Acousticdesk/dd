@@ -9,7 +9,7 @@ export default (state = null, action) => {
   }
 };
 
-export const placementToDeleteUpdate = (id) => ({
+export const placementToDeleteUpdate = id => ({
   type: PLACEMENT_TO_DELETE_UPDATE,
   payload: id,
 });

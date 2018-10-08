@@ -8,7 +8,7 @@ const Body = () => (
     <table className="metrics-table-body__table">
       <tbody>
         <HeadRow />
-        {(new Array(15)).fill(undefined).map((i, index) => <MetricRow key={index} />)}
+        {(new Array(15)).fill(undefined).map(() => <MetricRow />)}
       </tbody>
     </table>
   </div>
