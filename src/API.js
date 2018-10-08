@@ -9,7 +9,9 @@ const getInitialStorage = () => {
 };
 
 class API {
-  storage = getInitialStorage();
+  constructor() {
+    this.storage = getInitialStorage();
+  }
 
   setStorage(storage) {
     this.storage = storage;
@@ -42,7 +44,7 @@ class API {
     }
 
     if (token) {
-      headers['Authorization'] = `Bearer ${token}`;
+      headers.Authorization = `Bearer ${token}`;
     }
 
     const fetchOptions = {

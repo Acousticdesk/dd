@@ -1,12 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
-const ConfirmText = ({text}) => {
-  return text || 'Save';
-};
+const ConfirmText = ({ text }) => text || 'Save';
 
 ConfirmText.propTypes = {
-  text: PropTypes.string
+  text: PropTypes.string,
 };
 
 export default ConfirmText;

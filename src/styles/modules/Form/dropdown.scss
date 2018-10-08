@@ -39,11 +39,14 @@
   background: #f3f4f8;
 }
 
-.option-item {
+.option-item__container {
   display: flex;
-  height: 35px;
-  padding: 0 18px;
   align-items: center;
+}
+
+.option-item {
+  padding: 0 18px;
+  height: 35px;
 }
 
 .option-item:hover {

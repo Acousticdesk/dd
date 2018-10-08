@@ -19,6 +19,8 @@ export const appSelect = id => ({
   payload: id,
 });
 
-export const getIdAppSelected = state => state.ui.applications.selected && state.ui.applications.selected.id;
+export const getIdAppSelected = state => (
+  state.ui.applications.selected && state.ui.applications.selected.id
+);
 
 export default selectedAppReducer;

@@ -6,7 +6,8 @@ const path = require('path');
 
 module.exports = {
   mode: process.env.ENV,
-  entry: path.join(__dirname, 'src/index.js'),
+  entry: path.join(__dirname, 'src/index.jsx'),
+  resolve: { extensions: ['.js', '.jsx'] },
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -14,7 +15,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         use: [
           {
             loader: 'babel-loader',
@@ -22,7 +23,7 @@ module.exports = {
           {
             loader: 'eslint-loader',
             options: {
-              failOnError: true,
+              failOnError: process.env.ENV === 'production',
             },
           },
         ],

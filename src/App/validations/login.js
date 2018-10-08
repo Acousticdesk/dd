@@ -7,15 +7,21 @@ const isValidEmail = (email) => {
 };
 
 const validateEmail = (email) => {
+  let msg;
+
   if (!email) {
-    return 'Please, provide your email';
-  } else if (!isValidEmail(email)) {
-    return 'Yikes! that’s not a valid mail address, don’t forget to add “@”';
+    msg = 'Please, provide your email';
   }
+
+  if (!isValidEmail(email)) {
+    msg = 'Yikes! that’s not a valid mail address, don’t forget to add “@”';
+  }
+
+  return msg;
 };
 
 export default (values) => {
-  let errors = {};
+  const errors = {};
 
   errors.email = validateEmail(values.email);
 

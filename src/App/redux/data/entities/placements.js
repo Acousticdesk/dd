@@ -16,15 +16,15 @@ export default handleAction(
 export const getPlacements = state => state.data.entities.placements;
 export const getPlacementById = state => id => state.data.entities.placements[id];
 
-export const getNormalizedPlacements = apps => {
+export const getNormalizedPlacements = (apps) => {
   const result = {
     byId: {},
     byAppId: {},
     allIds: [],
   };
 
-  Object.keys(apps).forEach(key => {
-    const placements = apps[key].placements;
+  Object.keys(apps).forEach((key) => {
+    const { placements } = apps[key];
 
     result.byId = {
       ...result.byId,
@@ -32,8 +32,6 @@ export const getNormalizedPlacements = apps => {
     };
 
     result.byAppId[key] = placements;
-
-    delete apps[key].placements;
   });
 
   return result;

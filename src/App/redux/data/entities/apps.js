@@ -7,7 +7,7 @@ import { getNormalizedPlacements } from './placements';
 
 export const requestApps = createAction('APPS_FETCH_REQUEST');
 
-export const errorFetchApps = createAction('APPS_FETCH_FAIL', (err) => err);
+export const errorFetchApps = createAction('APPS_FETCH_FAIL', err => err);
 
 export const receiveApps = createAction('APPS_FETCH_SUCCESS', apps => apps);
 
@@ -19,11 +19,11 @@ const appsReducer = handleAction(
   initialState,
 );
 
-export const fetchApps = () => dispatch => {
+export const fetchApps = () => (dispatch) => {
   dispatch(requestApps());
   return API.request('getApps')
     .then(res => res.json())
-    .then(apps => {
+    .then((apps) => {
       const placements = getNormalizedPlacements(apps.results);
 
       dispatch(receiveApps(apps.results));
