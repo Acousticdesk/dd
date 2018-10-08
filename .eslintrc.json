@@ -15,5 +15,8 @@
                 "some": [ "nesting", "id" ]
             }
         }]
+    },
+    "globals": {
+        "PRODUCTION": true
     }
 }

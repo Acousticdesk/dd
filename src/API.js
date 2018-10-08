@@ -36,12 +36,7 @@ class API {
 
 
     const persistedLoginData = this.getPersistedData('loginData');
-
-    let token;
-
-    if (persistedLoginData) {
-      token = JSON.parse(persistedLoginData).token;
-    }
+    const token = persistedLoginData ? JSON.parse(persistedLoginData).token : null;
 
     if (token) {
       headers.Authorization = `Bearer ${token}`;
@@ -56,7 +51,7 @@ class API {
       fetchOptions.body = JSON.stringify(body);
     }
 
-    return fetch(config.endpoint + apiMethod, fetchOptions)
+    return fetch(config.endpoint + apiMethod, fetchOptions);
   }
 }
 

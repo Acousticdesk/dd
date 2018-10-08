@@ -12,7 +12,7 @@ AppIcon.defaultProps = {
 };
 
 AppIcon.propTypes = {
-  url: PropTypes.string
+  url: PropTypes.string,
 };
 
 export default AppIcon;

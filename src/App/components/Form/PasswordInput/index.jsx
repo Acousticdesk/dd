@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import PasswordInputPresentation from './Presentation';
 
-const getInputType = isPasswordVisible => (isPasswordVisible ? 'password' : 'text');
+const getInputType = isPasswordVisible => (isPasswordVisible ? 'text' : 'password');
 
 const getVisibilityClass = isPasswordVisible => (isPasswordVisible ? 'password-input--visible' : '');
 

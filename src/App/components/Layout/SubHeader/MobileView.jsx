@@ -15,6 +15,9 @@ const SubHeaderMobile = ({ onCreateAppClick }) => (
       </p>
     </div>
     <div
+      role="button"
+      tabIndex="0"
+      onKeyDown={onCreateAppClick}
       onClick={onCreateAppClick}
       className="l-sub-header__side-col l-sub-header-mobile__cta-container text-center isCursorPointer"
     >

@@ -44,7 +44,7 @@ const Header = ({
         </i>
       </div>
       <div className="l-header__user-container text-center isCursorPointer">
-        <UserDropdown email={userEmail} onLogOut={onUserLoggedOut}/>
+        <UserDropdown email={userEmail} onLogOut={onUserLoggedOut} />
       </div>
     </header>
   );

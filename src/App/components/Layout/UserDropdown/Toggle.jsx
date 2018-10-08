@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStopPropagationNativeEvent from '../../../HOC/withStopPropagationNativeEvent';
 
-const Toggle = ({ email, onClick }) => (
-  <span tabIndex="0" role="button" onKeyDown={onClick} onClick={onClick}>
+const Toggle = ({ email, onClick, savedRef }) => (
+  <span tabIndex="0" role="button" ref={savedRef} onKeyDown={onClick} onClick={onClick}>
     <span className="user-dropdown__toggle">
       {email}
       <i className="material-icons">arrow_drop_down</i>
@@ -17,9 +17,11 @@ const Toggle = ({ email, onClick }) => (
 Toggle.defaultProps = {
   email: null,
   onClick: null,
+  savedRef: null,
 };
 
 Toggle.propTypes = {
+  savedRef: PropTypes.shape(),
   email: PropTypes.string,
   onClick: PropTypes.func,
 };

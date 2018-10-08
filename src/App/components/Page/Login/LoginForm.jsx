@@ -48,7 +48,7 @@ const LoginForm = ({
       </div>
       <div className="color--grey text-center">
         To register
-        <a href="#" className="text-underline isCursorPointer">click here</a>
+        <a href="http://example.com" className="text-underline isCursorPointer">click here</a>
       </div>
     </div>
   </form>

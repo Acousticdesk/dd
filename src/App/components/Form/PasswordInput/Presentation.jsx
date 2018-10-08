@@ -12,8 +12,8 @@ const Presentation = ({
 }) => (
   <div className={`password-input input ${passwordVisibleClass}`}>
     <input
-      {...input}
       {...props}
+      {...input}
       className="input__field"
       placeholder="Password it like a boss"
     />

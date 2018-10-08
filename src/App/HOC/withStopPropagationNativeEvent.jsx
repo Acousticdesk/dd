@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
 const withStopPropagationNativeEvent = (WrappedComponent) => {
   class WithStopPropagationNativeEvent extends Component {
+    constructor(props) {
+      super(props);
+
+      this.ref = React.createRef();
+    }
+
     componentDidMount() {
       const { onClick } = this.props;
-      // https://stackoverflow.com/a/40522282
-      ReactDOM.findDOMNode(this).addEventListener('click', onClick);
+
+      this.ref.current.addEventListener('click', onClick);
     }
 
     render() {
-      return <WrappedComponent {...this.props} />;
+      return <WrappedComponent {...this.props} savedRef={this.ref} />;
     }
   }
 

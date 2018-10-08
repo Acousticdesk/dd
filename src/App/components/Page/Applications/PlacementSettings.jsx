@@ -9,7 +9,7 @@ import required from '../../../validations';
 
 import Checkbox from '../../Form/Checkbox/index';
 import Input from '../../Form/Input/index';
-import Select from '../../Form/Select/index';
+import Select from '../../Form/Select';
 import API from '../../../../API';
 
 const getOptions = (optionsValues) => {
@@ -56,7 +56,8 @@ class PlacementSettings extends Component {
             return (
               <div
                 key={key}
-                className="placement-settings__field-container placement-settings__field-container--offset-s">
+                className="placement-settings__field-container placement-settings__field-container--offset-s"
+              >
                 <Field
                   name={key}
                   label={props.label}
@@ -69,7 +70,8 @@ class PlacementSettings extends Component {
             return (
               <div
                 key={key}
-                className="placement-settings__field-container placement-settings__field-container--offset-s">
+                className="placement-settings__field-container placement-settings__field-container--offset-s"
+              >
                 <Field
                   name={key}
                   label={props.label}
@@ -83,7 +85,8 @@ class PlacementSettings extends Component {
             return (
               <div
                 key={key}
-                className="placement-settings__field-container placement-settings__field-container--offset-s">
+                className="placement-settings__field-container placement-settings__field-container--offset-s"
+              >
                 <Field
                   name={key}
                   label={props.label}
@@ -109,7 +112,8 @@ class PlacementSettings extends Component {
                 <button
                   type="button"
                   onClick={close}
-                  className="placement-settings__close icon icon-regular material-icons isCursorPointer">
+                  className="placement-settings__close icon icon-regular material-icons isCursorPointer"
+                >
                   close
                 </button>
                 <h4 className="heading heading--small heading--thin heading--no-offset">
@@ -157,7 +161,8 @@ class PlacementSettings extends Component {
             <div className="placement-settings__cta-container">
               <button
                 type="submit"
-                className="btn btn--height-l btn--full-width btn-chetwod-blue btn-border-chetwod-extra-blue">
+                className="btn btn--height-l btn--full-width btn-chetwod-blue btn-border-chetwod-extra-blue"
+              >
                 Save
               </button>
             </div>

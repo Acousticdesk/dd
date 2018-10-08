@@ -159,15 +159,13 @@ const getInitialFormValues = () => ({
   package: '',
 });
 
-const getAppValues = (app) => {
-  return {
-    status: app.status,
-    platform: app.platform,
-    integration: app.integration,
-    name: app.name,
-    package: app.package,
-  };
-};
+const getAppValues = app => ({
+  status: app.status,
+  platform: app.platform,
+  integration: app.integration,
+  name: app.name,
+  package: app.package,
+});
 
 const getInitialValues = (app) => {
   if (!app) {
