@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Option = ({ label, onOptionClick }) => (
-  <li className="option-item-container">
+  <li>
     <div role="button" tabIndex="0" onKeyDown={onOptionClick} onClick={onOptionClick} className="option-item isCursorPointer">
       <div className="option-item__legend-container">
         <span className="text text--lead">{label}</span>

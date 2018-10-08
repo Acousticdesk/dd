@@ -30,6 +30,12 @@ a {
 button {
     border: none;
     outline: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+button:focus {
+    outline: none;
 }
 
 ul {
