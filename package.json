@@ -48,6 +48,6 @@
     "redux-actions": "^2.6.1",
     "redux-form": "^7.4.2",
     "redux-thunk": "^2.3.0",
-    "whatwg-fetch": "^2.0.4"
+    "whatwg-fetch": "^3.0.0"
   }
 }
