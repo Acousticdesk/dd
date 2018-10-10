@@ -55,4 +55,15 @@ class API {
   }
 }
 
-export default new API();
+const api = new API();
+
+export const loginRequest = (email, password) => api.request('auth', 'POST', { email, password })
+  .then((res) => {
+    if (res.status !== 200) {
+      throw new Error(res.status);
+    }
+
+    return res.json();
+  });
+
+export default api;

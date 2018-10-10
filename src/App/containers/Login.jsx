@@ -2,17 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 import Login from '../pages/Login';
-import API from '../../API';
+import { loginRequest } from '../../API';
 import LoginForm from '../components/Page/Login/LoginForm';
-
-const loginRequest = (email, password) => API.request('auth', 'POST', { email, password })
-  .then((res) => {
-    if (res.status !== 200) {
-      throw new Error(res.status);
-    }
-
-    return res.json();
-  });
 
 class LoginContainer extends PureComponent {
   constructor(props) {
