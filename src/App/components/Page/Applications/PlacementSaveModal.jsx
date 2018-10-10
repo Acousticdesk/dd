@@ -2,18 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect, bindActionCreators } from 'redux';
 
-import { placementSelect as placementSelectImport, getPlacementSelected } from '../redux/ui/Applications/placementSelect';
-import { getPlacementById as getPlacementByIdImport } from '../redux/data/entities/placements';
-import { placementSettingsReset as placementSettingsResetImport } from '../redux/ui/Applications/placementSettings';
-
+import { placementSelect as placementSelectImport, getPlacementSelected } from '../../../redux/ui/Applications/placementSelect';
+import { getPlacementById as getPlacementByIdImport } from '../../../redux/data/entities/placements';
 import {
+  placementSettingsReset as placementSettingsResetImport,
   rememberPlacementToGoAfterConfirm as rememberPlacementToGoAfterConfirmImport,
   getIdPlacementToGoAfterConfirm,
-} from '../redux/ui/Applications/placementSettings';
+} from '../../../redux/ui/Applications/placementSettings';
 
-import { getIsPlacementConfirmModal } from '../redux/ui/Applications/isPlacementConfirmModal';
-import PlacementPromptModal from './PlacementPromptModal/index';
-import { placementConfirmModalHide as placementConfirmModalHideImport } from '../../../redux/ui/Applications/isPlacementConfirmModal';
+import PlacementPromptModal from './PlacementPromptModal';
+import { placementConfirmModalHide as placementConfirmModalHideImport, getIsPlacementConfirmModal } from '../../../redux/ui/Applications/isPlacementConfirmModal';
 
 const Content = () => (
   <div className="modal__content modal__content--placement-delete">
