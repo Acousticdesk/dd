@@ -93,7 +93,8 @@ const mapDispatchToProps = dispatch => ({
   placementSettingsReset: bindActionCreators(placementSettingsResetImport, dispatch),
   placementConfirmModalHide: bindActionCreators(placementConfirmModalHideImport, dispatch),
   placementSelect: bindActionCreators(placementSelectImport, dispatch),
-  rememberPlacementToGoAfterConfirm: bindActionCreators(rememberPlacementToGoAfterConfirmImport, dispatch),
+  rememberPlacementToGoAfterConfirm:
+    bindActionCreators(rememberPlacementToGoAfterConfirmImport, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlacementSaveModal);
