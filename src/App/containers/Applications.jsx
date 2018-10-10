@@ -4,22 +4,13 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { submit } from 'redux-form';
 
-import { placementSelect as placementSelectImport, getPlacementSelected } from '../redux/ui/Applications/placementSelect';
 import { fetchApps as fetchAppsImport } from '../redux/data/entities/apps';
-import { getPlacementById as getPlacementByIdImport } from '../redux/data/entities/placements';
-
-import {
-  placementSettingsReset,
-  rememberPlacementToGoAfterConfirm as rememberPlacementToGoAfterConfirmImport,
-  getIdPlacementToGoAfterConfirm,
-} from '../redux/ui/Applications/placementSettings';
-
-import { getIsPlacementConfirmModal, placementConfirmModalHide } from '../redux/ui/Applications/isPlacementConfirmModal';
+import { placementSettingsReset } from '../redux/ui/Applications/placementSettings';
+import { placementConfirmModalHide } from '../redux/ui/Applications/isPlacementConfirmModal';
 
 import Applications from '../pages/Applications';
 import Sidenav from '../components/Layout/Sidenav';
 import SubHeader from '../components/Layout/SubHeader/index';
-import PlacementSaveModal from '../components/Page/Applications/PlacementSaveModal';
 import { fetchSettingsApps } from '../redux/data/Applications/settings';
 import { getIsMobileSidebarShown } from '../redux/ui/mobileSidebar';
 import { getIsMobileViewport } from '../redux/ui/mobileViewport';
@@ -28,7 +19,6 @@ class ApplicationsContainer extends Component {
   constructor(props) {
     super(props);
 
-    this.closePlacementSaveModal = this.closePlacementSaveModal.bind(this);
     this.submitPlacementEditForm = this.submitPlacementEditForm.bind(this);
   }
 
@@ -39,43 +29,11 @@ class ApplicationsContainer extends Component {
     fetchSettings();
   }
 
-  getPlacementSaveModal() {
-    const { isPlacementConfirmModal, placementSelected } = this.props;
-
-    return isPlacementConfirmModal
-      ? (
-        <PlacementSaveModal
-          close={this.closePlacementSaveModal}
-          submitForm={this.submitPlacementEditForm}
-          placementId={placementSelected.id}
-        />
-      )
-      : null;
-  }
-
   getSidenav() {
     const { isMobileViewport, isMobileSidebarShown } = this.props;
     const show = isMobileViewport && isMobileSidebarShown;
 
     return <Sidenav show={show} activeOne="Applications" />;
-  }
-
-  closePlacementSaveModal() {
-    const {
-      getPlacementById,
-      idPlacementToGoAfterConfirm,
-      resetPlacementSettings,
-      hidePlacementConfirmModal,
-      placementSelect,
-      rememberPlacementToGoAfterConfirm,
-    } = this.props;
-
-    const placementToGoTo = getPlacementById(idPlacementToGoAfterConfirm);
-
-    resetPlacementSettings();
-    hidePlacementConfirmModal();
-    placementSelect(placementToGoTo);
-    rememberPlacementToGoAfterConfirm(null);
   }
 
   submitPlacementEditForm() {
@@ -102,7 +60,6 @@ class ApplicationsContainer extends Component {
       <Applications
         sidenav={this.getSidenav()}
         subheader={<SubHeader />}
-        placementSaveModal={this.getPlacementSaveModal()}
         userEmail={user.email}
         onUserLoggedOut={onUserLoggedOut}
       />
@@ -113,56 +70,37 @@ class ApplicationsContainer extends Component {
 ApplicationsContainer.defaultProps = {
   user: null,
   onUserLoggedOut: null,
-  placementSelected: null,
-  placementSelect: null,
-  isPlacementConfirmModal: null,
-  hidePlacementConfirmModal: null,
-  rememberPlacementToGoAfterConfirm: null,
   fetchApps: null,
   fetchSettings: null,
   isMobileSidebarShown: null,
   isMobileViewport: null,
-  getPlacementById: null,
   submitPlacementEditForm: null,
   resetPlacementSettings: null,
-  idPlacementToGoAfterConfirm: null,
+  hidePlacementConfirmModal: null,
 };
 
 ApplicationsContainer.propTypes = {
   user: PropTypes.shape({ email: PropTypes.string }),
   onUserLoggedOut: PropTypes.func,
-  placementSelected: PropTypes.shape(),
-  placementSelect: PropTypes.func,
-  isPlacementConfirmModal: PropTypes.bool,
-  hidePlacementConfirmModal: PropTypes.func,
-  rememberPlacementToGoAfterConfirm: PropTypes.func,
   fetchApps: PropTypes.func,
   fetchSettings: PropTypes.func,
   isMobileSidebarShown: PropTypes.bool,
   isMobileViewport: PropTypes.bool,
-  getPlacementById: PropTypes.func,
+  hidePlacementConfirmModal: PropTypes.func,
   submitPlacementEditForm: PropTypes.func,
   resetPlacementSettings: PropTypes.func,
-  idPlacementToGoAfterConfirm: PropTypes.number,
 };
 
 const mapStateToProps = state => ({
-  placementSelected: getPlacementSelected(state),
-  isPlacementConfirmModal: getIsPlacementConfirmModal(state),
-  idPlacementToGoAfterConfirm: getIdPlacementToGoAfterConfirm(state),
   isMobileSidebarShown: getIsMobileSidebarShown(state),
   isMobileViewport: getIsMobileViewport(state),
-  getPlacementById: getPlacementByIdImport(state),
 });
 
 const mapDispatchToProps = dispatch => ({
   submitPlacementEditForm: bindActionCreators(() => submit('placementSettings'), dispatch),
-  placementSelect: bindActionCreators(placementSelectImport, dispatch),
   resetPlacementSettings: bindActionCreators(placementSettingsReset, dispatch),
-  hidePlacementConfirmModal: bindActionCreators(placementConfirmModalHide, dispatch),
-  rememberPlacementToGoAfterConfirm:
-    bindActionCreators(rememberPlacementToGoAfterConfirmImport, dispatch),
   fetchApps: bindActionCreators(fetchAppsImport, dispatch),
+  hidePlacementConfirmModal: bindActionCreators(placementConfirmModalHide, dispatch),
   fetchSettings: bindActionCreators(fetchSettingsApps, dispatch),
 });
 
