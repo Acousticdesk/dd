@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import PlacementPromptModal from './PlacementPromptModal/index';
+import PlacementPromptModal from './PlacementPromptModal';
+import { getIdPlacementToDelete, placementToDeleteUpdate as placementToDeleteUpdateImport } from '../../../redux/ui/Applications/placementToDelete';
 
 const Content = () => (
   <div className="modal__content modal__content--placement-delete">
@@ -13,18 +16,35 @@ const Content = () => (
   </div>
 );
 
-const PlacementDeleteModal = ({ close, placementId }) => (
-  <PlacementPromptModal close={close} content={<Content />} confirmText="Delete" placementId={placementId} />
+const PlacementDeleteModal = ({ idPlacementToDelete, placementToDeleteUpdate }) => (
+  idPlacementToDelete
+    ? (
+      <PlacementPromptModal
+        close={() => placementToDeleteUpdate(null)}
+        content={<Content />}
+        confirmText="Delete"
+        placementId={idPlacementToDelete}
+      />
+    )
+    : null
 );
 
 PlacementDeleteModal.defaultProps = {
-  close: null,
-  placementId: null,
+  idPlacementToDelete: null,
+  placementToDeleteUpdate: PropTypes.func,
 };
 
 PlacementDeleteModal.propTypes = {
-  close: PropTypes.func,
-  placementId: PropTypes.number,
+  idPlacementToDelete: PropTypes.number,
+  placementToDeleteUpdate: PropTypes.func,
 };
 
-export default PlacementDeleteModal;
+const mapStateToProps = state => ({
+  idPlacementToDelete: getIdPlacementToDelete(state),
+});
+
+const mapDispatchToProps = dispatch => ({
+  placementToDeleteUpdate: bindActionCreators(placementToDeleteUpdateImport, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlacementDeleteModal);

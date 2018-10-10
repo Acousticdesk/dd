@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 import Header from '../components/Layout/Header';
 import PlacementEdit from '../components/Page/Applications/PlacementEdit';
 import ApplicationsList from '../components/Page/Applications/ApplicationsList';
-import AppModal from '../components/Page/Applications/AppModal/index';
+import AppModal from '../components/Page/Applications/AppModal';
+import PlacementDeleteModal from '../components/Page/Applications/PlacementDeleteModal';
+
 
 const Applications = ({
   sidenav,
   subheader,
-  deletePlacementModal,
   placementSaveModal,
   userEmail,
   onUserLoggedOut,
@@ -38,7 +39,7 @@ const Applications = ({
       </div>
     </div>
     {placementSaveModal}
-    {deletePlacementModal}
+    <PlacementDeleteModal />
     <AppModal />
   </React.Fragment>
 );
@@ -46,7 +47,6 @@ const Applications = ({
 Applications.defaultProps = {
   sidenav: null,
   subheader: null,
-  deletePlacementModal: null,
   placementSaveModal: null,
   userEmail: null,
   onUserLoggedOut: null,
@@ -55,7 +55,6 @@ Applications.defaultProps = {
 Applications.propTypes = {
   sidenav: PropTypes.element,
   subheader: PropTypes.element,
-  deletePlacementModal: PropTypes.element,
   placementSaveModal: PropTypes.element,
   userEmail: PropTypes.string,
   onUserLoggedOut: PropTypes.func,
