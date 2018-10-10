@@ -3,7 +3,6 @@
     "env": {
         "browser": true
     },
-    "plugins": ["class-property"],
     "rules": {
         "jsx-a11y/label-has-for": [ "error", {
             "required": {
