@@ -10,13 +10,6 @@ import documentation from '../../../../static/assets/icons/documentation.svg';
 import { getIsMobileViewport } from '../../redux/ui/mobileViewport';
 import { getIsMobileSidebarShown } from '../../redux/ui/mobileSidebar';
 
-// getSidenav() {
-//   const { isMobileViewport, isMobileSidebarShown } = this.props;
-//   const show = isMobileViewport && isMobileSidebarShown;
-//
-//   return <Sidenav show={show} activeOne="Applications" />;
-// }
-
 const iconsArray = [
   { Dashboard: dashboard },
   { Applications: apps },
