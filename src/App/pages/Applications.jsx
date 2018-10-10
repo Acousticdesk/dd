@@ -7,10 +7,10 @@ import ApplicationsList from '../components/Page/Applications/ApplicationsList';
 import AppModal from '../components/Page/Applications/AppModal';
 import PlacementDeleteModal from '../components/Page/Applications/PlacementDeleteModal';
 import PlacementSaveModal from '../components/Page/Applications/PlacementSaveModal';
+import Sidenav from '../components/Layout/Sidenav';
 
 
 const Applications = ({
-  sidenav,
   subheader,
   userEmail,
   onUserLoggedOut,
@@ -18,7 +18,7 @@ const Applications = ({
   <React.Fragment>
     <div className="l-page l-page--with-sidebar l-page-bg-whisper">
       <div>
-        {sidenav}
+        <Sidenav />
       </div>
 
       <div>
@@ -45,14 +45,12 @@ const Applications = ({
 );
 
 Applications.defaultProps = {
-  sidenav: null,
   subheader: null,
   userEmail: null,
   onUserLoggedOut: null,
 };
 
 Applications.propTypes = {
-  sidenav: PropTypes.element,
   subheader: PropTypes.element,
   userEmail: PropTypes.string,
   onUserLoggedOut: PropTypes.func,

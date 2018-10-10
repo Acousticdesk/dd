@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect, bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 import { placementSelect as placementSelectImport, getPlacementSelected } from '../../../redux/ui/Applications/placementSelect';
 import { getPlacementById as getPlacementByIdImport } from '../../../redux/data/entities/placements';
