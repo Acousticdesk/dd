@@ -66,4 +66,11 @@ export const loginRequest = (email, password) => api.request('auth', 'POST', { e
     return res.json();
   });
 
+export const updatePlacement = values => API.request('updatePlacement', 'POST', values)
+  .then(() => window.setTimeout(() => {
+    this.setState({
+      loader: false,
+    });
+  }, 1000));
+
 export default api;

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import NoAppSelectedPrompt from './NoAppSelectedPrompt';
-import PlacementSettings from './PlacementSettings';
+import PlacementSettings from './PlacementSettings/index';
 import { getIsMobileViewport } from '../../../redux/ui/mobileViewport';
 import { getSettingsApps } from '../../../redux/data/Applications/settings';
 import { getAppById as getAppByIdImport } from '../../../redux/data/entities/apps';
